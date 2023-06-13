@@ -1,58 +1,44 @@
-import React from 'react'
+import React from 'react';
 
 export default function Portfolio() {
   return (
-    <div className="flex flex-col min-h-screen bg-white text-gray-800">
+    <div className="flex-grow flex flex-col items-center justify-center p-6">
+      {/* About */}
+      <section className="p-6 max-w-2xl mb-12">
+        <h2 className="text-2xl font-bold mb-4">About Me</h2>
+        <p>
+          I'm a Software Engineer specializing in front-end development with an interest in back-end technologies.
+          Experienced in modern JavaScript technologies and libraries, and a diverse set of skills covering areas such
+          as responsive web design, accessibility, and performance optimization.
+        </p>
+      </section>
 
-      {/* Header */}
-      <header className="p-6 bg-blue-500 text-white">
-        <h1 className="text-3xl font-bold">John Seong</h1>
-        <p className="text-lg">Software Engineer</p>
-      </header>
-
-      {/* Main content */}
-      <main className="flex-grow flex flex-col items-center justify-center p-6">
-
-        {/* About */}
-        <section className="p-6 max-w-2xl mb-12">
-          <h2 className="text-2xl font-bold mb-4">About Me</h2>
-          <p>I'm a Software Engineer specializing in front end development with an interest in back end technologies. Experienced in modern JavaScript technologies and libraries, and a diverse set of skills covering areas such as responsive web design, accessibility, and performance optimization.</p>
-        </section>
-
-        {/* Skills */}
-        <section className="p-6 max-w-2xl mb-12">
-          <h2 className="text-2xl font-bold mb-4">Skills</h2>
-          <div className="flex flex-wrap justify-center">
-            <div className="p-4">
-              <img src="/icons/swiftui.svg" alt="SwiftUI" className="w-12 h-12 mb-2"/>
-              <p>SwiftUI</p>
-            </div>
-            {/* Add more skills here */}
+      {/* Skills */}
+      <section className="p-6 max-w-2xl mb-12">
+        <h2 className="text-2xl font-bold mb-4">Skills</h2>
+        <div className="flex flex-wrap justify-center">
+          <div className="p-4">
+            <img src="/icons/swiftui.svg" alt="SwiftUI" className="w-12 h-12 mb-2" />
+            <p>SwiftUI</p>
           </div>
-        </section>
+          {/* Add more skills here */}
+        </div>
+      </section>
 
-        {/* Projects */}
-        <section className="p-6 max-w-2xl mb-12">
-          <h2 className="text-2xl font-bold mb-4">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="rounded overflow-hidden shadow-md">
-              <img src="/img/project.jpg" alt="Project" className="w-full"/>
-              <div className="px-6 py-4">
-                <h3 className="font-bold text-xl mb-2">Project Title</h3>
-                <p>Project description...</p>
-              </div>
+      {/* Projects */}
+      <section className="p-6 max-w-2xl mb-12">
+        <h2 className="text-2xl font-bold mb-4">Projects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="rounded overflow-hidden shadow-md">
+            <img src="/img/project.jpg" alt="Project" className="w-full" />
+            <div className="px-6 py-4">
+              <h3 className="font-bold text-xl mb-2">Project Title</h3>
+              <p>Project description...</p>
             </div>
-            {/* Add more project cards here */}
           </div>
-        </section>
-
-      </main>
-
-      {/* Footer */}
-      <footer className="p-6 bg-blue-500 text-white text-center">
-        <p>&copy; {new Date().getFullYear()} John Seong. All rights reserved.</p>
-      </footer>
-
+          {/* Add more project cards here */}
+        </div>
+      </section>
     </div>
-  )
+  );
 }
