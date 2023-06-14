@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Portfolio() {
   return (
-    <div className="flex-grow flex flex-col items-center justify-center p-6">
+    <>
       {/* About */}
       <section className="p-6 max-w-2xl mb-12">
         <h2 className="text-2xl font-bold mb-4">About Me</h2>
@@ -39,6 +39,6 @@ export default function Portfolio() {
           {/* Add more project cards here */}
         </div>
       </section>
-    </div>
+    </>
   );
 }
