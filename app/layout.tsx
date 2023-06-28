@@ -1,7 +1,8 @@
-import React from "react";
-import "./globals.css";
+import Image from "next/image";
 
 import { Roboto_Mono } from "next/font/google";
+
+import "./globals.css";
 
 const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
@@ -24,9 +25,12 @@ export default function RootLayout({
         ].join(" ")}
       >
         {/* Header */}
-        <header className="p-6 border-b border-gray-600 text-center">
-          <h1 className="text-6xl font-thin">john seong.</h1>
-        </header>
+        <a href="/">
+          <header className="p-6 border-b border-gray-600 justify-center items-center text-center flex flex-row gap-4 mb-5">
+            <Image className="rounded-lg overflow-hidden" src="/profile.png" alt="Profile Picture" width={100} height={100} />
+            <h1 className="text-6xl font-thin">johnS</h1>
+          </header>
+          </a>
 
         {/* Main content */}
         <main>{children}</main>
