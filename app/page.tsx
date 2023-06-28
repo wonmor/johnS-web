@@ -50,7 +50,7 @@ export default function Portfolio() {
         />
 
         <p className="text-2xl font-light mb-10">
-          A computer has become more than just a hobby or a career for me, it is
+          A computer has become more than just a hobby or a career for me; it is
           a way of life.
         </p>
 
