@@ -1,43 +1,56 @@
-import React from 'react';
+import Image from "next/image";
 
 export default function Portfolio() {
   return (
     <div className="flex-grow flex flex-col items-center justify-center p-6">
       {/* About */}
       <section className="p-6 max-w-2xl mb-12">
-        <h2 className="text-2xl font-bold mb-4">About Me</h2>
-        <p>
-          I'm a Software Engineer specializing in front-end development with an interest in back-end technologies.
-          Experienced in modern JavaScript technologies and libraries, and a diverse set of skills covering areas such
-          as responsive web design, accessibility, and performance optimization.
+        <p className="text-2xl font-light">
+          When I first discovered the art of coding, it quickly became my
+          passion.
         </p>
-      </section>
-
-      {/* Skills */}
-      <section className="p-6 max-w-2xl mb-12">
-        <h2 className="text-2xl font-bold mb-4">Skills</h2>
-        <div className="flex flex-wrap justify-center">
-          <div className="p-4">
-            <img src="/icons/swiftui.svg" alt="SwiftUI" className="w-12 h-12 mb-2" />
-            <p>SwiftUI</p>
-          </div>
-          {/* Add more skills here */}
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section className="p-6 max-w-2xl mb-12">
-        <h2 className="text-2xl font-bold mb-4">Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded overflow-hidden shadow-md">
-            <img src="/img/project.jpg" alt="Project" className="w-full" />
-            <div className="px-6 py-4">
-              <h3 className="font-bold text-xl mb-2">Project Title</h3>
-              <p>Project description...</p>
+        <div className="m-10 flex flex-row relative">
+          <a
+            href="https://electronvisual.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-white border-2 rounded-xl p-5 hover:bg-white hover:border-transparent hover:text-gray-800 relative z-10 flex items-center"
+          >
+            <div className="w-1/2">
+              <p className="text-2xl">
+                Check out my app, ElectronVisualized.
+                <br />
+                <br />
+                An elegant and beautiful chemistry visualization tool.
+              </p>
             </div>
-          </div>
-          {/* Add more project cards here */}
+            <div className="w-1/2 flex justify-center">
+              <Image
+                src="/molecular-orbital.png"
+                alt="Background Image"
+                width={250}
+                height={250}
+              />
+            </div>
+          </a>
         </div>
+
+        <p className="text-2xl font-light mb-5">
+          I found beauty in being able to express my thoughts and emotions.
+        </p>
+
+        <Image
+          className="m-10"
+          src="/image2.jpg"
+          alt="Picture of the author"
+          width={500}
+          height={500}
+        />
+
+        <p className="text-2xl font-light">
+          A computer has become more than just a hobby or a career for me, it is
+          a way of life.
+        </p>
       </section>
     </div>
   );
