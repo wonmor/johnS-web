@@ -5,12 +5,12 @@ export default function Portfolio() {
   return (
     <div className="flex-grow flex flex-col items-center justify-center p-6">
       {/* About */}
-      <section className="p-6 max-w-2xl mb-12">
+      <section className="fill-width-available p-6 max-w-2xl mb-12 flex flex-col items-center justify-center">
         <p className="text-2xl font-light">
           When I first discovered the art of coding, it quickly became my
           passion.
         </p>
-        <div className="m-10 flex flex-row relative">
+        <div className="m-10 justify-center items-center flex flex-row relative">
           <a
             href="https://electronvisual.org/"
             target="_blank"
@@ -22,10 +22,12 @@ export default function Portfolio() {
                 Check out my app, ElectronVisualized.
                 <br />
                 <br />
-                An elegant and beautiful chemistry visualization tool.
+                <span className="text-lg font-light">
+                  An elegant and beautiful chemistry visualization tool.
+                </span>
               </p>
             </div>
-            <div className="w-1/2 flex justify-center">
+            <div className="w-1/2">
               <Image
                 src="/molecular-orbital.png"
                 alt="Background Image"
@@ -41,7 +43,7 @@ export default function Portfolio() {
         </p>
 
         <Image
-          className="m-10"
+          className="m-10 rounded-lg overflow-hidden border-4 border-white"
           src="/image2.jpg"
           alt="Picture of the author"
           width={500}
