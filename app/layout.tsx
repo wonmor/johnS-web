@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <div
+      <body
         className={[
           robotoMono.className,
           "flex flex-col min-h-screen bg-gray-800 text-white",
@@ -29,7 +29,7 @@ export default function RootLayout({
         </header>
 
         {/* Main content */}
-        <body>{children}</body>
+        <main>{children}</main>
 
         {/* Footer */}
         <footer className="p-6 border-t border-gray-600 font-light text-xl text-center">
@@ -37,7 +37,7 @@ export default function RootLayout({
             &copy; {new Date().getFullYear()} John Seong. All rights reserved.
           </p>
         </footer>
-      </div>
+      </body>
     </html>
   );
 }
