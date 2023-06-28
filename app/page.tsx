@@ -50,10 +50,29 @@ export default function Portfolio() {
           height={500}
         />
 
-        <p className="text-2xl font-light">
+        <p className="text-2xl font-light mb-10">
           A computer has become more than just a hobby or a career for me, it is
           a way of life.
         </p>
+
+        <div grid-cols-2 className="grid gap-4 text-center border-2 border-gray-600 rounded-lg p-5">
+          <a className="bg-transparent text-white hover:bg-white hover:text-gray-800 rounded-lg p-2" href="https://github.com/wonmor" target="_blank" rel="noopener noreferrer">
+            <span>GitHub</span>
+          </a>
+
+          <div className="border-b-2 border-gray-600"></div>
+
+          <a className="bg-transparent text-white hover:bg-white hover:text-gray-800 rounded-lg p-2" href="https://www.linkedin.com/in/john-seong-9194321a9/" target="_blank" rel="noopener noreferrer">
+            <span>LinkedIn</span>
+          </a>
+
+          <div className="border-b-2 border-gray-600"></div>
+
+          <a className="bg-transparent text-white hover:bg-white hover:text-gray-800 rounded-lg p-2" href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w" target="_blank" rel="noopener noreferrer">
+            <span>YouTube</span>
+          </a>
+        </div>
+
       </section>
     </div>
   );
