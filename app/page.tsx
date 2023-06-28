@@ -38,7 +38,7 @@ export default function Portfolio() {
         </div>
 
         <p className="text-2xl font-light mb-5">
-          I found beauty in being able to express my thoughts and emotions.
+          I find beauty in being able to express my thoughts and emotions.
         </p>
 
         <Image
