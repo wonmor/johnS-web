@@ -14,10 +14,10 @@ export default function Portfolio() {
             href="https://electronvisual.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="border-white border-2 rounded-xl p-5 hover:bg-white hover:border-transparent hover:text-gray-800 relative z-10 flex items-center"
+            className="border-gray-600 border-2 rounded-xl p-5 hover:bg-gray-600 relative z-10 flex items-center"
           >
             <div className="w-1/2">
-              <p className="text-2xl">
+              <p className="text-2xl mb-10">
                 Check out my app, ElectronVisualized.
                 <br />
                 <br />
@@ -25,6 +25,30 @@ export default function Portfolio() {
                   An elegant and beautiful chemistry visualization tool.
                 </span>
               </p>
+
+              <div className="flex flex-row justify-center items-center gap-0 sm:gap-4 bg-black border-gray-600 border-2 w-fit p-5 rounded-xl">
+                <Image
+                  className="scale-75 sm:scale-100"
+                  src="/pwa-icon.png"
+                  alt="Background Image"
+                  width={75}
+                  height={15}
+                />
+                <Image
+                  className="scale-75 sm:scale-100"
+                  src="/apple-logo.png"
+                  alt="Background Image"
+                  width={35}
+                  height={35}
+                />
+                <Image
+                  className="scale-75 sm:scale-100"
+                  src="/playstore-logo.png"
+                  alt="Background Image"
+                  width={35}
+                  height={35}
+                />
+              </div>
             </div>
             <div className="w-1/2">
               <Image
@@ -53,25 +77,6 @@ export default function Portfolio() {
           A computer has become more than just a hobby or a career for me; it is
           a way of life.
         </p>
-
-        <div grid-cols-2 className="grid gap-4 text-center border-2 border-gray-600 rounded-lg p-5">
-          <a className="bg-transparent text-white hover:bg-white hover:text-gray-800 rounded-lg p-2" href="https://github.com/wonmor" target="_blank" rel="noopener noreferrer">
-            <span>GitHub</span>
-          </a>
-
-          <div className="border-b-2 border-gray-600"></div>
-
-          <a className="bg-transparent text-white hover:bg-white hover:text-gray-800 rounded-lg p-2" href="https://www.linkedin.com/in/john-seong-9194321a9/" target="_blank" rel="noopener noreferrer">
-            <span>LinkedIn</span>
-          </a>
-
-          <div className="border-b-2 border-gray-600"></div>
-
-          <a className="bg-transparent text-white hover:bg-white hover:text-gray-800 rounded-lg p-2" href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w" target="_blank" rel="noopener noreferrer">
-            <span>YouTube</span>
-          </a>
-        </div>
-
       </section>
     </div>
   );
