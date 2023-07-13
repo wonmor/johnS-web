@@ -39,7 +39,7 @@ export default function RootLayout({
             <h1 className="text-6xl font-thin">johnS</h1>
             </div>
 
-            <div className="font-thin text-2xl w-fit m-auto flex flex-wrap gap-4 justify-center bg-gray-800 rounded-lg p-5">
+            <div className="font-thin text-2xl w-fit m-auto flex flex-col gap-4 justify-center bg-gray-800 rounded-lg p-5">
               <Link
                 className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
                 href="/coding"
@@ -47,7 +47,7 @@ export default function RootLayout({
                 <span>Coding<br />Projects</span>
               </Link>
 
-            <div className="border-l-2 border-gray-600"></div>
+            <div className="border-b-2 border-gray-600"></div>
 
             <Link
               className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
