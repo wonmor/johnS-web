@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Roboto_Mono } from "next/font/google";
 
@@ -21,13 +22,14 @@ export default function RootLayout({
       <body
         className={[
           robotoMono.className,
-          "flex flex-col min-h-screen bg-gray-800 text-white",
+          "flex flex-col min-h-screen bg-gray-900 text-white",
         ].join(" ")}
       >
         {/* Header */}
         <a href="/">
-          <header className="p-6 border-b border-gray-600 justify-center items-center text-center flex flex-row gap-4 mb-5">
-            <Image
+          <header className="p-6 border-b border-gray-600 justify-center items-center text-center flex flex-col gap-4 mb-5">
+            <div className="flex flex-row gap-4 items-center">
+              <Image
               className="rounded-lg overflow-hidden"
               src="/profile.png"
               alt="Profile Picture"
@@ -35,6 +37,25 @@ export default function RootLayout({
               height={100}
             />
             <h1 className="text-6xl font-thin">johnS</h1>
+            </div>
+
+            <div className="font-thin text-2xl w-fit m-auto flex flex-wrap gap-4 justify-center bg-gray-800 rounded-lg p-5">
+              <Link
+                className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
+                href="/coding"
+              >
+                <span>Coding<br />Projects</span>
+              </Link>
+
+            <div className="border-l-2 border-gray-600"></div>
+
+            <Link
+              className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
+              href="/photography"
+            >
+              <span>Photography<br />Business</span>
+            </Link>
+          </div>
           </header>
         </a>
 
