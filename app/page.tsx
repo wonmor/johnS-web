@@ -18,6 +18,18 @@ export default function Portfolio() {
           height={500}
         />
 
+<p className="text-2xl font-light mb-10">
+          In 2023, I visited Apple's legendary campus in Cupertino, the Apple Park.<br /><br />I was thrilled to meet CEO Tim Cook as well as influencers such as iJustine.<br /><br />We had an interesting conversation about where the industry is heading to beyond the current scope of computing.
+        </p>
+
+        <Image
+          className="m-10 rounded-lg overflow-hidden border-4 border-white"
+          src="/image3.png"
+          alt="Picture of the author"
+          width={500}
+          height={500}
+        />
+
         <p className="text-2xl font-light mb-10">
           Technology has become more than just a hobby or a career for me; it is
           a way of life.
