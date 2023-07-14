@@ -19,7 +19,7 @@ export default function Portfolio() {
         />
 
 <p className="text-2xl font-light mb-10">
-          In 2023, I visited Apple's legendary campus in Cupertino, the Apple Park.<br /><br />I was thrilled to meet CEO Tim Cook as well as influencers such as iJustine.<br /><br />We had an interesting conversation about where the industry is heading to beyond the current scope of computing.
+          In 2023, I visited Apple's legendary campus in Cupertino, the Apple Park.<br /><br />I was thrilled to meet CEO Tim Cook as well as influencers such as iJustine.<br /><br />We had an interesting conversation about where the industry is heading — beyond the current scope of computing.
         </p>
 
         <Image
