@@ -2,12 +2,11 @@ import Image from "next/image";
 
 export default function Portfolio() {
   return (
-    <div className="flex-grow flex flex-col items-center justify-center p-6">
+    <div className="flex-grow flex flex-col items-center justify-center px-6 pb-6">
       {/* About */}
       <section className="fill-width-available p-6 max-w-2xl mb-12 flex flex-col items-center justify-center">
         <p className="text-2xl font-light">
-          When I first discovered the art of coding and photography, they
-          quickly became my passion.
+          I am a student at University of California, Irvine with an undeclared major.<br /><br />I take an interest in computer science, chemistry, and photography.
         </p>
 
         <Image

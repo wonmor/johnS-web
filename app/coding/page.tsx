@@ -2,12 +2,12 @@ import Image from 'next/image'
 
 export default function Coding() {
     return (
-        <div className="m-auto mb-5 justify-center items-center flex flex-col gap-4 relative" style={{ maxWidth: "50%"}}>
+        <div className="m-auto mb-5 justify-center items-center flex flex-col gap-4 relative md:w-1/2 p-5 md:p-0">
           <a
             href="https://electronvisual.org/"
             target="_blank"
             rel="noopener noreferrer"
-            className="border-gray-600 border-2 rounded-xl p-5 hover:bg-gray-600 relative z-10 flex items-center"
+            className="border-gray-600 border-2 rounded-xl p-5 hover:bg-gray-600 relative z-10 flex md:flex-row flex-col items-center"
           >
             <div className="md:w-1/2">
               <p className="text-2xl mb-10">
@@ -46,7 +46,7 @@ export default function Coding() {
             href="https://apps.apple.com/us/app/atomizer-ar/id6449015706"
             target="_blank"
             rel="noopener noreferrer"
-            className="border-gray-600 border-2 rounded-xl p-5 hover:bg-gray-600 relative z-10 flex items-center"
+            className="border-gray-600 border-2 rounded-xl p-5 hover:bg-gray-600 relative z-10 flex md:flex-row flex-col items-center"
           >
             <div className="md:w-1/2">
               <p className="text-2xl mb-10">
