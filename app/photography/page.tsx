@@ -47,7 +47,7 @@ export default function Photography() {
 
   return (
     <div className="m-10 flex justify-center items-center">
-      <div className="w-1/2">
+      <div className="md:w-1/2">
         <p className="text-2xl mb-10">
           With incomparable quality, I offer a wide range of photography services.
           <br />

@@ -9,7 +9,7 @@ export default function Coding() {
             rel="noopener noreferrer"
             className="border-gray-600 border-2 rounded-xl p-5 hover:bg-gray-600 relative z-10 flex items-center"
           >
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <p className="text-2xl mb-10">
                 Check out my progressive web app, ElectronVisualized.
                 <br />
@@ -32,7 +32,7 @@ export default function Coding() {
 />
               </div>
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <Image
                 src="/Icon1024.png"
                 alt="Background Image"
@@ -48,9 +48,9 @@ export default function Coding() {
             rel="noopener noreferrer"
             className="border-gray-600 border-2 rounded-xl p-5 hover:bg-gray-600 relative z-10 flex items-center"
           >
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <p className="text-2xl mb-10">
-                Atomizer AR. Available on the App Store.
+                Meet Atomizer AR. Available on the App Store.
                 <br />
                 <br />
                 <span className="font-thin py-2">TAP TO NAVIGATE</span>
@@ -62,7 +62,6 @@ export default function Coding() {
               </p>
 
               <div className="flex flex-row justify-center items-center gap-0 sm:gap-4 bg-black border-gray-600 border-2 w-fit p-5 rounded-xl">
-
                 <Image
                   className="scale-75 sm:scale-100"
                   src="/apple-logo.png"
@@ -70,11 +69,11 @@ export default function Coding() {
                   width={35}
                   height={35}
                 />
-
               </div>
             </div>
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <Image
+              style={{ overflow: "hidden", borderRadius: "50px", scale: "0.75" }}
                 src="/1024.png"
                 alt="Background Image"
                 width={250}
