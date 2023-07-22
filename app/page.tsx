@@ -6,8 +6,8 @@ export default function Portfolio() {
       {/* About */}
       <section className="fill-width-available p-6 max-w-2xl mb-12 flex flex-col items-center justify-center">
         <p className="text-2xl font-light">
-          When I first discovered the art of coding and photography, they quickly became my
-          passion.
+          When I first discovered the art of coding and photography, they
+          quickly became my passion.
         </p>
 
         <Image
@@ -18,8 +18,16 @@ export default function Portfolio() {
           height={500}
         />
 
-<p className="text-2xl font-light mb-10">
-          In 2023, I visited Apple's legendary campus in Cupertino, the Apple Park.<br /><br />I was thrilled to meet CEO Tim Cook as well as influencers such as iJustine.<br /><br />We had an interesting conversation about where the industry is heading — beyond the current scope of computing.
+        <p className="text-2xl font-light mb-10">
+          In 2023, I visited Apple's legendary campus in Cupertino, the Apple
+          Park.
+          <br />
+          <br />I was thrilled to meet CEO Tim Cook as well as influencers such
+          as iJustine.
+          <br />
+          <br />
+          We had an interesting conversation about where the industry is heading
+          — beyond the current scope of computing.
         </p>
 
         <Image
