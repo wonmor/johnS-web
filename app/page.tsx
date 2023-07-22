@@ -6,7 +6,7 @@ export default function Portfolio() {
       {/* About */}
       <section className="fill-width-available p-6 max-w-2xl mb-12 flex flex-col items-center justify-center">
         <p className="text-2xl font-light">
-          I am a student at University of California, Irvine with an undeclared major.<br /><br />I take an interest in computer science, chemistry, and photography.
+          I am a freshman at University of California, Irvine with an undeclared major.<br /><br />I take an interest in computer science, chemistry, and photography.
         </p>
 
         <Image
