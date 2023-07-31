@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Head from "next/head";
+import Script from "next/script";
 import Link from "next/link";
 
 import { Roboto_Mono } from "next/font/google";
@@ -20,14 +20,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6461064835542419"
-          crossOrigin="anonymous"
-        ></script>
-      </Head>
-      
+      <Script
+        id="adsbygoogle-init"
+        strategy="afterInteractive"
+        crossOrigin="anonymous"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxx"
+      />
+
       <body
         className={[
           robotoMono.className,
