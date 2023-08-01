@@ -11,7 +11,7 @@ export default function Coding() {
           >
             <div className="md:w-1/2">
               <p className="text-2xl mb-10">
-                Check out my progressive web app, ElectronVisualized.
+                Check out my website, ElectronVisualized.
                 <br />
                 <br />
                 <span className="font-thin py-2">TAP TO NAVIGATE</span>
