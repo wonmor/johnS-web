@@ -2,11 +2,11 @@ import Image from "next/image";
 import Script from "next/script";
 import Link from "next/link";
 
-import { Roboto_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 
 import "./globals.css";
 
-const robotoMono = Roboto_Mono({ subsets: ["latin"] });
+const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
   title: "johnS",
@@ -29,7 +29,7 @@ export default function RootLayout({
 
       <body
         className={[
-          robotoMono.className,
+          outfit.className,
           "flex flex-col min-h-screen bg-gray-900 text-white",
         ].join(" ")}
       >
