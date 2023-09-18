@@ -24,7 +24,7 @@ export default function RootLayout({
         id="adsbygoogle-init"
         strategy="afterInteractive"
         crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxx"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6461064835542419"
       />
 
       <body

@@ -18,19 +18,10 @@ export default function Photography() {
 
     if (selectedService === "wedding") {
       content = <img src="recapitulate.jpg" alt="Recapitulate" width="800" height="533" />;
-      price = "$500";
-    } else if (selectedService === "graduation") {
-      content = (
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/kXdBd7LIEE8"
-          title="Graduation Video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      );
       price = "$250";
+    } else if (selectedService === "pets") {
+      content = <img src="cat.jpg" alt="People" width="800" height="600" />;
+      price = "$50";
     } else if (selectedService === "people") {
       content = <img src="people.jpg" alt="People" width="800" height="600" />;
       price = "$150";
@@ -41,7 +32,7 @@ export default function Photography() {
 
   const options = [
     { value: 'wedding', label: 'Wedding' },
-    { value: 'graduation', label: 'Graduation' },
+    { value: 'pets', label: 'Pets' },
     { value: 'people', label: 'People' }
   ];
 
