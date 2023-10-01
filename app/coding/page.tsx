@@ -11,7 +11,7 @@ export default function Coding() {
           >
             <div className="md:w-1/2">
               <p className="text-2xl mb-10">
-                UC Irvine ClassFinder,<br />College Made Easy.
+                ZOT ClassFinder,<br />College Made Easy.
                 <br />
                 <br />
                 <span className="font-thin py-2">TAP TO NAVIGATE</span>
