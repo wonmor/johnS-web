@@ -11,7 +11,7 @@ export default function Portfolio() {
 
         <Image
           className="m-10 rounded-lg overflow-hidden border-4 border-white"
-          src="/image2.jpg"
+          src="/apple-park2.jpg"
           alt="Picture of the author"
           width={500}
           height={500}
@@ -31,7 +31,7 @@ export default function Portfolio() {
 
         <Image
           className="m-10 rounded-lg overflow-hidden border-4 border-white"
-          src="/image3.png"
+          src="/image2.jpg"
           alt="Picture of the author"
           width={500}
           height={500}
