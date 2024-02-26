@@ -22,6 +22,43 @@
   height: fill-available;
 }
 
+.neon-title {
+  color: #39f; /* Neon blue color */
+  text-shadow:
+    0 0 5px #39f,
+    0 0 10px #39f,
+    0 0 20px #39f,
+    0 0 40px #09f,
+    0 0 80px #09f,
+    0 0 90px #09f,
+    0 0 100px #09f,
+    0 0 150px #09f;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow:
+      0 0 5px #39f,
+      0 0 10px #39f,
+      0 0 20px #39f,
+      0 0 40px #09f,
+      0 0 80px #09f,
+      0 0 90px #09f,
+      0 0 100px #09f,
+      0 0 150px #09f;
+    color: #39f;
+  }
+
+  20%, 24%, 55% {
+    text-shadow: none;
+    color: #6cf; /* A lighter shade for the flicker effect */
+  }
+}
+
+.flicker {
+  animation: flicker 1.5s infinite alternate;  
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
