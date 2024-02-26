@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Script from "next/script";
-import Link from "next/link";
 
 import { Outfit } from "next/font/google";
 
@@ -9,7 +8,7 @@ import "./globals.css";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "johnS",
+  title: "John Seong",
   description: "Hi, I’m John. I’m a software engineer.",
 };
 

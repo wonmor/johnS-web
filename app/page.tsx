@@ -5,7 +5,7 @@ export default function Portfolio() {
     <div className="flex flex-col items-center justify-center px-6 pb-6 bg-gray-900 text-white">
       {/* Inspirational Quote */}
       <section className="text-center p-6">
-        <h2 className="text-3xl font-semibold italic text-white">"I skate to where the puck is going to be, not where it has been."</h2>
+        <h2 className="text-3xl text-white">"I skate to where the puck is going to be, not where it has been."</h2>
         <p className="text-xl mt-2 text-gray-400">– Wayne Gretzky, Former NHL Player</p>
       </section>
 
