@@ -36,7 +36,8 @@ export default function RootLayout({
         {/* Header */}
         <a href="/">
           <header className="p-6 border-b border-gray-600 justify-center items-center text-center flex flex-col gap-4 mb-5">
-            <div className="flex flex-row gap-4 items-center">
+            <div className="flex flex-col gap-4 items-center">
+              <h1 className="text-6xl font-thin">@j0hnse0ng</h1>
               <Image
                 className="rounded-lg overflow-hidden"
                 src="/profile.png"
@@ -44,79 +45,14 @@ export default function RootLayout({
                 width={100}
                 height={100}
               />
-              <h1 className="text-6xl font-thin">johnS</h1>
             </div>
-
-            <div className="flex flex-row gap-4 items-center scale-75 sm:scale-100">
-              <div className="font-thin text-2xl w-fit m-auto flex flex-col gap-4 justify-center bg-gray-800 rounded-lg p-5">
-                <Link
-                  className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
-                  href="/articles"
-                >
-                  <span>
-                    News
-                    <br />
-                    Articles
-                  </span>
-                </Link>
-
-                <div className="border-b-2 border-gray-600"></div>
-
-                <a
-                  className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
-                  href="https://lcbcdock.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>
-                    Research
-                    <br />
-                    Publications
-                  </span>
-                </a>
-              </div>
-
-              <div className="font-thin text-2xl w-fit m-auto flex flex-col gap-4 justify-center bg-gray-800 rounded-lg p-5">
-                <Link
-                  className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
-                  href="/coding"
-                >
-                  <span>
-                    Coding
-                    <br />
-                    Projects
-                  </span>
-                </Link>
-
-                <div className="border-b-2 border-gray-600"></div>
-
-                <Link
-                  className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
-                  href="/photography"
-                >
-                  <span>
-                    Photography
-                    <br />
-                    Business
-                  </span>
-                </Link>
-              </div>
-            </div>
+            <p className="text-xl">
+              mixed reality<br />cloud computing<br />photogrammetry
+            </p>
           </header>
         </a>
 
-        {/* Main content */}
-        <main>{children}</main>
-
-        {/* Footer */}
-        <footer className="flex flex-col gap-7 p-6 border-t border-gray-600 font-light text-xl text-center">
-          <p>
-            &copy; {new Date().getFullYear()} John Seong.
-            <br />
-            <span className="text-gray-400">Based in Irvine, California.</span>
-          </p>
-
-          <div className="w-fit m-auto flex flex-wrap gap-4 justify-center bg-gray-800 rounded-lg p-5">
+        <div className="w-fit m-auto flex flex-wrap gap-4 justify-center bg-gray-800 rounded-lg p-5">
             <a
               className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
               href="https://github.com/wonmor"
@@ -152,13 +88,24 @@ export default function RootLayout({
 
             <a
               className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
-              href="https://medium.com/@wonmor"
+              href="https://www.flickr.com/photos/johnseongemini8/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span>Medium</span>
+              <span>Flickr</span>
             </a>
           </div>
+
+        {/* Main content */}
+        <main>{children}</main>
+
+        {/* Footer */}
+        <footer className="flex flex-col gap-7 p-6 border-t border-gray-600 font-light text-xl text-center">
+          <p>
+            &copy; {new Date().getFullYear()} Orchestr Inc. in Delaware, USA.
+            <br />
+            <span className="text-gray-400">Subsidary of Umbrella Term Limited (UK).</span>
+          </p>
         </footer>
       </body>
     </html>
