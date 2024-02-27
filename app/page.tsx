@@ -60,21 +60,21 @@ function PortfolioContent() {
         <p className="text-xl mt-2 text-gray-400">– Wayne Gretzky, Former NHL Player</p>
       </section>
 
-      {/* Projects */}
+      Projects
       <section className="bg-gray-800 shadow-md rounded-lg p-6 my-6 max-w-4xl mx-auto">
         <h3 className="text-2xl font-bold mb-4">Projects</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Placeholder for Project 1 */}
           <div className="bg-gray-700 p-4 rounded-lg">
-            <Image src="/placeholder-image.png" alt="Project 1" width={300} height={200} className="rounded-md" />
-            <h4 className="text-xl font-semibold mt-3">Stealth Project 1</h4>
-            <p className="text-md text-gray-400 mt-1">A brief description of the project, its goals, and technologies used.</p>
+            <Image src="/stealth.jpg" alt="Project 1" width={300} height={200} className="rounded-md" />
+            <h4 className="text-xl font-semibold mt-3">Stealth Project</h4>
+            <p className="text-md text-gray-400 mt-1">Something related to Zuck's Metaverse<br />and Apple's Spatial Computing...</p>
           </div>
           {/* Placeholder for Project 2 */}
           <div className="bg-gray-700 p-4 rounded-lg">
-            <Image src="/placeholder-image.png" alt="Project 2" width={300} height={200} className="rounded-md" />
-            <h4 className="text-xl font-semibold mt-3">Stealth Project 2</h4>
-            <p className="text-md text-gray-400 mt-1">A brief description of the project, its goals, and technologies used.</p>
+            <Image src="/mo-2.png" alt="Project 2" width={300} height={200} className="rounded-md" />
+            <h4 className="text-xl font-semibold mt-3">Atomizer AR on App Store</h4>
+            <p className="text-md text-gray-400 mt-1">3D Visualization of Quantum Mechanics.<br />Proteins, Atomic and Molecular Orbitals.</p>
           </div>
         </div>
       </section>
@@ -120,9 +120,9 @@ function PortfolioContent() {
             width={100}
             height={100}
           />
-          <h4 className="text-xl font-semibold mt-2">Computer Vision Software Engineer</h4>
+          <h4 className="text-xl font-semibold mt-2">Software Engineer</h4>
           <p className="text-gray-400">Reach · Contract · Jun 2023 - Aug 2023</p>
-          <p className="text-gray-400">Developed a 3D face scan software for eyewear products using iPhone's TrueDepth sensor.</p>
+          <p className="text-gray-400">Skills: SwiftUI, Metal Shader Language, Objective-C++, Python, TensorFlow, Business Management</p>
         </div>
 
         {/* Other Experiences */}

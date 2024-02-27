@@ -97,7 +97,7 @@ export default function RootLayout({
           <p>
             &copy; {new Date().getFullYear()} John Seong
             <br />
-            <span className="text-gray-400">Based in Irvine, California</span>
+            <span className="text-gray-400">johnseong@havit.space</span>
           </p>
         </footer>
       </body>
