@@ -105,7 +105,7 @@ function PortfolioContent() {
             width={100}
             height={100}
           />
-          <h4 className="text-xl font-semibold mt-2">Undergraduate Researcher</h4>
+          <h4 className="text-xl font-semibold mt-2">Research Assistant</h4>
           <p className="text-gray-400">Seoul National University · Internship · Jul 2023 - Aug 2023</p>
           <p className="text-gray-400">Skills: Research, Computer Science, Computational Chemistry, Python, Communication, JavaScript</p>
         </div>
