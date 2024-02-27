@@ -141,7 +141,7 @@ function PortfolioContent() {
 
         {/* Shad Canada */}
         <p className="mb-2">
-          <span className="font-semibold">Fellow, </span>
+          <span className="font-semibold">Fellow at Western University, </span>
           Shad Canada · Seasonal · Jul 2022
         </p>
 
