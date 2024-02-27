@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import React from 'react';
+
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { OrbitControls } from '@react-three/drei';
 import { useEffect, useRef } from 'react';
+
+import * as THREE from 'three';
 import { Box3, Vector3, MathUtils } from 'three';
 
 function Model({ modelPath }: { modelPath: string }) {
@@ -14,6 +17,12 @@ function Model({ modelPath }: { modelPath: string }) {
 
   useEffect(() => {
     if (objRef.current) {
+      objRef.current.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material.side = THREE.DoubleSide;
+        }
+      });
+
       objRef.current.rotation.x = MathUtils.degToRad(180);
       objRef.current.rotation.y = MathUtils.degToRad(40);
       objRef.current.rotation.z = MathUtils.degToRad(90);
