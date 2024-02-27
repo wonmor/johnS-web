@@ -40,7 +40,7 @@ export default function RootLayout({
          
             </div>
             <p className="text-xl">
-              mixed reality<br />cloud computing<br />photogrammetry
+              computer vision<br />software engineering<br />photography
             </p>
           </header>
         </a>

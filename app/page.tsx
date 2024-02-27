@@ -10,16 +10,17 @@ import { Box3, Vector3, MathUtils } from 'three';
 
 function Model({ modelPath }: { modelPath: string }) {
   const obj = useLoader(OBJLoader, modelPath);
-  const objRef = useRef<THREE.Object3D>(); // Add type assertion here
+  const objRef = useRef<THREE.Object3D>();
 
   useEffect(() => {
     if (objRef.current) {
       objRef.current.rotation.x = MathUtils.degToRad(180);
+      objRef.current.rotation.y = MathUtils.degToRad(40);
       objRef.current.rotation.z = MathUtils.degToRad(90);
 
-      objRef.current.scale.x = 10.0;
-      objRef.current.scale.y = 10.0;
-      objRef.current.scale.z = 10.0;
+      objRef.current.scale.x = 15.0;
+      objRef.current.scale.y = 15.0;
+      objRef.current.scale.z = 15.0;
 
       const boundingBox = new Box3().setFromObject(objRef.current);
       const center = new Vector3();
@@ -41,7 +42,7 @@ export default function Portfolio() {
         camera={{ position: [0, 0, 5] }}
         gl={{ alpha: true, antialias: true }}
       >
-        <ambientLight intensity={2.0} />
+        <ambientLight intensity={3.0} />
         <Model modelPath="face_model1.obj" />
         <OrbitControls />
       </Canvas>
