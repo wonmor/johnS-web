@@ -116,7 +116,7 @@ function PortfolioContent() {
           />
           <h4 className="text-xl font-semibold mt-2">Research Assistant</h4>
           <p className="text-gray-400">Seoul National University · Internship · Jul 2023 - Aug 2023</p>
-          <p className="text-gray-400">Skills: Research, Computer Science, Computational Chemistry, Python, Communication, React</p>
+          <p className="text-gray-400">Skills: Research, Computer Science, Computational Chemistry, AutoDock Vina, Python, React</p>
         </div>
 
         {/* Software Engineer */}
