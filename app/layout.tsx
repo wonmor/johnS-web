@@ -37,13 +37,7 @@ export default function RootLayout({
           <header className="p-6 border-b border-gray-600 justify-center items-center text-center flex flex-col gap-4 mb-5">
             <div className="flex flex-col gap-4 items-center">
             <h1 className="text-6xl font-thin neon-title flicker">@j0hnse0ng</h1>
-              <Image
-                className="rounded-lg overflow-hidden"
-                src="/profile.png"
-                alt="Profile Picture"
-                width={100}
-                height={100}
-              />
+         
             </div>
             <p className="text-xl">
               mixed reality<br />cloud computing<br />photogrammetry

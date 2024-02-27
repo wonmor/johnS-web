@@ -1,6 +1,56 @@
+"use client";
+
 import Image from "next/image";
+import React from 'react';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { OrbitControls } from '@react-three/drei';
+import { useEffect, useRef } from 'react';
+import { Box3, Vector3, MathUtils } from 'three';
+
+function Model({ modelPath }: { modelPath: string }) {
+  const obj = useLoader(OBJLoader, modelPath);
+  const objRef = useRef<THREE.Object3D>(); // Add type assertion here
+
+  useEffect(() => {
+    if (objRef.current) {
+      objRef.current.rotation.x = MathUtils.degToRad(180);
+      objRef.current.rotation.z = MathUtils.degToRad(90);
+
+      objRef.current.scale.x = 10.0;
+      objRef.current.scale.y = 10.0;
+      objRef.current.scale.z = 10.0;
+
+      const boundingBox = new Box3().setFromObject(objRef.current);
+      const center = new Vector3();
+      boundingBox.getCenter(center);
+      objRef.current.position.x = -center.x;
+      objRef.current.position.y = -center.y;
+      objRef.current.position.z = -center.z;
+    }
+  }, [obj]);
+
+  return <primitive object={obj} ref={objRef} />;
+}
 
 export default function Portfolio() {
+  return (
+    <div style={{ position: 'relative' }}>
+      <Canvas
+        style={{ height: '500px', background: 'transparent' }}
+        camera={{ position: [0, 0, 5] }}
+        gl={{ alpha: true, antialias: true }}
+      >
+        <ambientLight intensity={2.0} />
+        <Model modelPath="face_model1.obj" />
+        <OrbitControls />
+      </Canvas>
+      <PortfolioContent />
+    </div>
+  );
+}
+
+function PortfolioContent() {
   return (
     <div className="flex flex-col items-center justify-center px-6 pb-6 bg-gray-900 text-white">
       {/* Inspirational Quote */}
