@@ -40,7 +40,7 @@ export default function RootLayout({
          
             </div>
             <p className="text-xl">
-              computer vision<br />software engineering<br />photography
+              Computer Vision<br />Software Engineering<br />Photography
             </p>
           </header>
         </a>
@@ -95,9 +95,9 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="flex flex-col gap-7 p-6 border-t border-gray-600 font-light text-xl text-center">
           <p>
-            &copy; {new Date().getFullYear()} Orchestr Inc. in Delaware, USA.
+            &copy; {new Date().getFullYear()} John Seong
             <br />
-            <span className="text-gray-400">Subsidary of Umbrella Term Limited (UK).</span>
+            <span className="text-gray-400">Based in Irvine, California</span>
           </p>
         </footer>
       </body>
