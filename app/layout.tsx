@@ -5,7 +5,9 @@ import { Outfit } from "next/font/google";
 
 import "./globals.css";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const font = Outfit({
+  subsets: ["latin"]
+});
 
 export const metadata = {
   title: "John Seong",
@@ -28,8 +30,8 @@ export default function RootLayout({
 
       <body
         className={[
-          outfit.className,
-          "flex flex-col min-h-screen bg-black text-white",
+          font.className,
+          "flex flex-col min-h-screen bg-gray-900 text-white",
         ].join(" ")}
       >
         {/* Header */}
