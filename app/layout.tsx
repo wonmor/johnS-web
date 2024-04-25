@@ -31,16 +31,16 @@ export default function RootLayout({
       <body
         className={[
           font.className,
-          "flex flex-col min-h-screen bg-gray-900 text-white",
+          "flex flex-col min-h-screen bg-black text-white",
         ].join(" ")}
       >
         {/* Header */}
         <a href="/">
-          <header className="p-6 border-b border-gray-600 justify-center items-center text-center flex flex-col gap-4 mb-5">
+          <header className="p-6 border-b border-gray-600 bg-gray-900 justify-center items-center text-center flex flex-col gap-4 mb-5">
             <div className="flex flex-col gap-4 items-center">
             <h1 className="text-6xl font-thin neon-title flicker">@j0hnse0ng</h1>
             </div>
-            <p className="text-xl">
+            <p className="text-2xl font-thin">
               Aerospace Engineering<br />Computer Vision Research<br />Cinematography
             </p>
           </header>
@@ -48,7 +48,7 @@ export default function RootLayout({
 
         <div className="w-fit m-auto flex flex-wrap gap-4 justify-center rounded-lg pb-5">
             <a
-              className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
+              className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
               href="https://github.com/wonmor"
               target="_blank"
               rel="noopener noreferrer"
@@ -59,7 +59,7 @@ export default function RootLayout({
             <div className="border-l-2 border-gray-600"></div>
 
             <a
-              className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
+              className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
               href="https://www.linkedin.com/in/john-seong-9194321a9/"
               target="_blank"
               rel="noopener noreferrer"
@@ -70,7 +70,7 @@ export default function RootLayout({
             <div className="border-l-2 border-gray-600"></div>
 
             <a
-              className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
+              className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
               href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
               target="_blank"
               rel="noopener noreferrer"
@@ -81,7 +81,7 @@ export default function RootLayout({
             <div className="border-l-2 border-gray-600"></div>
 
             <a
-              className="bg-transparent text-white hover:bg-gray-600 rounded-lg p-2"
+              className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
               href="https://www.flickr.com/photos/johnseongemini8/"
               target="_blank"
               rel="noopener noreferrer"

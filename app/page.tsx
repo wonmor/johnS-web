@@ -62,7 +62,7 @@ export default function Portfolio() {
 
 function PortfolioContent() {
   return (
-    <div className="flex flex-col items-center justify-center px-6 pb-6 bg-gray-900 text-white">
+    <div className="flex flex-col items-center justify-center px-6 pb-6 bg-black text-white">
       {/* Inspirational Quote */}
       <section className="text-center p-6">
         <h2 className="text-3xl text-white">"I skate to where the puck is going to be, not where it has been."</h2>
@@ -70,7 +70,7 @@ function PortfolioContent() {
       </section>
 
       <section className="bg-gray-800 shadow-md rounded-lg p-6 my-6 max-w-4xl mx-auto">
-        <h3 className="text-2xl font-bold mb-4">Projects</h3>
+        <h3 className="text-5xl font-thin mb-4">Projects</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Placeholder for Project 1 */}
           <div className="bg-gray-700 p-4 rounded-lg">
@@ -89,7 +89,7 @@ function PortfolioContent() {
 
        {/* Experience Section */}
        <section className="fill-width-available p-6 max-w-4xl mb-12 flex flex-col items-center justify-center bg-gray-800 rounded-lg">
-        <h3 className="text-2xl font-semibold mb-4">Experience & Skills</h3>
+        <h3 className="text-5xl font-thin mb-4">Things I've Done</h3>
         
         {/* Event Photographer */}
         <div className="mb-6">
@@ -133,8 +133,9 @@ function PortfolioContent() {
           <p className="text-gray-400">Skills: SwiftUI, Metal Shader Language, Objective-C++, Python, TensorFlow, Business Management</p>
         </div>
 
+        <div className="flex flex-col p-5 rounded-xl bg-black">
         {/* Other Experiences */}
-        <h4 className="text-xl font-semibold mb-4 mt-6">Other Experiences</h4>
+        <h4 className="text-5xl font-thin mb-4">Other Stuff</h4>
 
         {/* Content Writer */}
         <p className="mb-2">
@@ -159,6 +160,7 @@ function PortfolioContent() {
           <span className="font-semibold">Public Outreach, </span>
           Garth Webb Robotics · Seasonal · Oct 2021 - Apr 2022
         </p>
+        </div>
       </section>
     </div>
   );
