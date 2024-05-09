@@ -1,15 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import React from 'react';
+import React from "react";
 
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-import { OrbitControls } from '@react-three/drei';
-import { useEffect, useRef } from 'react';
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { OrbitControls } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
-import * as THREE from 'three';
-import { Box3, Vector3, MathUtils } from 'three';
+import * as THREE from "three";
+import { Box3, Vector3, MathUtils } from "three";
 
 function Model({ modelPath }: { modelPath: string }) {
   const obj = useLoader(OBJLoader, modelPath);
@@ -45,9 +45,9 @@ function Model({ modelPath }: { modelPath: string }) {
 
 export default function Portfolio() {
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <Canvas
-        style={{ height: '500px', background: 'transparent' }}
+        style={{ height: "500px", background: "transparent" }}
         camera={{ position: [0, 0, 5] }}
         gl={{ alpha: true, antialias: true }}
       >
@@ -65,32 +65,79 @@ function PortfolioContent() {
     <div className="flex flex-col items-center justify-center px-6 pb-6 bg-black text-white">
       {/* Inspirational Quote */}
       <section className="text-center p-6">
-        <h2 className="text-3xl text-white">"I skate to where the puck is going to be, not where it has been."</h2>
-        <p className="text-xl mt-2 text-gray-400">– Wayne Gretzky, Former NHL Player</p>
+        <h2 className="text-3xl text-white">
+          "I skate to where the puck is going to be, not where it has been."
+        </h2>
+        <p className="text-xl mt-2 text-gray-400">
+          – Wayne Gretzky, Former NHL Player
+        </p>
       </section>
 
       <section className="bg-gray-800 shadow-md rounded-lg p-6 my-6 max-w-4xl mx-auto">
         <h3 className="text-5xl font-thin mb-4">Projects</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Placeholder for Project 1 */}
           <div className="bg-gray-700 p-4 rounded-lg">
-            <Image src="/stealth.jpg" alt="Project 1" width={300} height={200} className="rounded-md" />
-            <h4 className="text-xl font-semibold mt-3">Stealth Project</h4>
-            <p className="text-md text-gray-400 mt-1">Something related to Zuck's Metaverse<br />and Apple's Spatial Computing...</p>
+            <Image
+              src="/molecular-orbital.png"
+              alt="Project 2"
+              width={300}
+              height={200}
+              className="rounded-md"
+            />
+            <h4 className="text-xl font-semibold mt-3">
+              Atomizer AR | ElectronVisualized
+            </h4>
+            <p className="text-md text-gray-400 mt-1">
+              3D Visualization of Quantum Mechanics.
+              <br />
+              Proteins, Atomic and Molecular Orbitals.
+            </p>
+            <a
+              href="https://apps.apple.com/us/app/atomizer-ar-quantum-visuals/id6449015706" // App Store URL
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
+            >
+              Download on the App Store
+            </a>
+            <br />
+            <a
+              href="https://electronvisual.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
+            >
+              Explore the Web Version
+            </a>
           </div>
-          {/* Placeholder for Project 2 */}
           <div className="bg-gray-700 p-4 rounded-lg">
-            <Image src="/mo-2.png" alt="Project 2" width={300} height={200} className="rounded-md" />
-            <h4 className="text-xl font-semibold mt-3">Atomizer AR on App Store</h4>
-            <p className="text-md text-gray-400 mt-1">3D Visualization of Quantum Mechanics.<br />Proteins, Atomic and Molecular Orbitals.</p>
+            <h2 className="text-5xl font-thin mt-3">ORCHESTR<br />SIMULATIONS</h2>
+            <p className="text-md text-gray-400 my-2">
+              Building EFB (Electronic Flight Bag) apps and tools for both real-life and Flight Simulator pilots.
+            </p>
+            <a
+              href="https://orchestrsim.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 mb-5 inline-block px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
+            >
+              Visit the Website
+            </a>
+            <Image
+              src="/orchestr-sim.png"
+              alt="Orchestr Simulations"
+              width={300}
+              height={200}
+              className="rounded-md"
+            />
           </div>
         </div>
       </section>
 
-       {/* Experience Section */}
-       <section className="fill-width-available p-6 max-w-4xl mb-12 flex flex-col items-center justify-center bg-gray-800 rounded-lg">
+      {/* Experience Section */}
+      <section className="fill-width-available p-6 max-w-4xl mb-12 flex flex-col items-center justify-center bg-gray-800 rounded-lg">
         <h3 className="text-5xl font-thin mb-4">Things I've Done</h3>
-        
+
         {/* Event Photographer */}
         <div className="mb-6">
           <Image
@@ -101,8 +148,14 @@ function PortfolioContent() {
             height={100}
           />
           <h4 className="text-xl font-semibold mt-2">Event Photographer</h4>
-          <p className="text-gray-400">University of California, Irvine - The Paul Merage School of Business · Part-time · Dec 2023 - Present</p>
-          <p className="text-gray-400">Skills: Commercial Photography, Cinematography, Adobe Lightroom, Adobe Premiere Pro</p>
+          <p className="text-gray-400">
+            University of California, Irvine - The Paul Merage School of
+            Business · Part-time · Dec 2023 - Present
+          </p>
+          <p className="text-gray-400">
+            Skills: Commercial Photography, Cinematography, Adobe Lightroom,
+            Adobe Premiere Pro
+          </p>
         </div>
 
         {/* Undergraduate Researcher */}
@@ -115,8 +168,13 @@ function PortfolioContent() {
             height={100}
           />
           <h4 className="text-xl font-semibold mt-2">Research Assistant</h4>
-          <p className="text-gray-400">Seoul National University · Internship · Jul 2023 - Aug 2023</p>
-          <p className="text-gray-400">Skills: Research, Computer Science, Computational Chemistry, AutoDock Vina, Python, React</p>
+          <p className="text-gray-400">
+            Seoul National University · Internship · Jul 2023 - Aug 2023
+          </p>
+          <p className="text-gray-400">
+            Skills: Research, Computer Science, Computational Chemistry,
+            AutoDock Vina, Python, React
+          </p>
         </div>
 
         {/* Software Engineer */}
@@ -129,37 +187,44 @@ function PortfolioContent() {
             height={100}
           />
           <h4 className="text-xl font-semibold mt-2">Software Engineer</h4>
-          <p className="text-gray-400">Reach · Contract · Jun 2023 - Aug 2023</p>
-          <p className="text-gray-400">Skills: SwiftUI, Metal Shader Language, Objective-C++, Python, TensorFlow, Business Management</p>
+          <p className="text-gray-400">
+            Reach · Contract · Jun 2023 - Aug 2023
+          </p>
+          <p className="text-gray-400">
+            Skills: SwiftUI, Metal Shader Language, Objective-C++, Python,
+            TensorFlow, Business Management
+          </p>
         </div>
 
         <div className="flex flex-col p-5 rounded-xl bg-black">
-        {/* Other Experiences */}
-        <h4 className="text-5xl font-thin mb-4">Other Stuff</h4>
+          {/* Other Experiences */}
+          <h4 className="text-5xl font-thin mb-4">Other Stuff</h4>
 
-        {/* Content Writer */}
-        <p className="mb-2">
-          <span className="font-semibold">Web Content Writer, </span>
-          Daeryun Law Firm LLC. · Part-time · Jan 2023 - Aug 2023
-        </p>
+          {/* Content Writer */}
+          <p className="mb-2">
+            <span className="font-semibold">Web Content Writer, </span>
+            Daeryun Law Firm LLC. · Part-time · Jan 2023 - Aug 2023
+          </p>
 
-        {/* Line Cook */}
-        <p className="mb-2">
-          <span className="font-semibold">Line Cook, </span>
-          The Famous Owl of Minerva · Part-time · Feb 2023 - May 2023
-        </p>
+          {/* Line Cook */}
+          <p className="mb-2">
+            <span className="font-semibold">Line Cook, </span>
+            The Famous Owl of Minerva · Part-time · Feb 2023 - May 2023
+          </p>
 
-        {/* Shad Canada */}
-        <p className="mb-2">
-          <span className="font-semibold">Fellow at Western University, </span>
-          Shad Canada · Seasonal · Jul 2022
-        </p>
+          {/* Shad Canada */}
+          <p className="mb-2">
+            <span className="font-semibold">
+              Fellow at Western University,{" "}
+            </span>
+            Shad Canada · Seasonal · Jul 2022
+          </p>
 
-        {/* Business & Media Strategist */}
-        <p className="mb-2">
-          <span className="font-semibold">Public Outreach, </span>
-          Garth Webb Robotics · Seasonal · Oct 2021 - Apr 2022
-        </p>
+          {/* Business & Media Strategist */}
+          <p className="mb-2">
+            <span className="font-semibold">Public Outreach, </span>
+            Garth Webb Robotics · Seasonal · Oct 2021 - Apr 2022
+          </p>
         </div>
       </section>
     </div>
