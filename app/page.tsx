@@ -214,7 +214,7 @@ function PortfolioContent() {
               rel="noopener noreferrer"
               className="mt-2 mb-5 inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
             >
-              View my Previous Works/Gigs
+              View Samples of my Photos
             </a>
         </div>
 
@@ -284,6 +284,12 @@ function PortfolioContent() {
             <span className="font-semibold">Public Outreach, </span>
             Garth Webb Robotics · Seasonal · Oct 2021 - Apr 2022
           </p>
+
+          <p className="text-md text-gray-400 mt-1">
+              I also happen to be an avid filmmaker who is trying to enter the Hollywood industry! I have experience with both cinematography (assisting the business school to take candid shots and portraits) as well as CGI/VFX using Blender.
+              Check out my filmography/portfolio <a href="https://drive.google.com/file/d/1pMhuKsz90JDSwXpynwpho4C5jbflLNeI/view?usp=sharing"  target="_blank"
+              rel="noopener noreferrer" className="text-white hover:underline">here</a>.
+            </p>
         </div>
       </section>
     </div>

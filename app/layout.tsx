@@ -6,7 +6,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 
 const font = Outfit({
-  subsets: ["latin"]
+  subsets: ["latin"],
 });
 
 export const metadata = {
@@ -38,58 +38,59 @@ export default function RootLayout({
         <a href="/">
           <header className="p-6 border-b border-gray-600 bg-gray-900 justify-center items-center text-center flex flex-col gap-4 mb-5">
             <div className="flex flex-col gap-4 items-center">
-            <h1 className="text-6xl font-thin neon-title flicker">@j0hnse0ng</h1>
+              <h1 className="text-6xl font-thin neon-title flicker">
+                @j0hnse0ng
+              </h1>
             </div>
             <p className="text-2xl font-thin">
-              Aerospace Engineering<br />Computer Vision Research<br />Cinematography
+              Engineering, Design, and Filmmaking
             </p>
           </header>
         </a>
 
         <div className="w-fit m-auto flex flex-wrap gap-4 justify-center rounded-lg pb-5">
+          <a
+            className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
+            href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>YouTube</span>
+          </a>
 
-<a
-  className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
-  href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <span>YouTube</span>
-</a>
+          <div className="border-l-2 border-gray-600"></div>
 
-<div className="border-l-2 border-gray-600"></div>
+          <a
+            className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
+            href="https://github.com/wonmor"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>GitHub</span>
+          </a>
 
-            <a
-              className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
-              href="https://github.com/wonmor"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>GitHub</span>
-            </a>
+          <div className="border-l-2 border-gray-600"></div>
 
-            <div className="border-l-2 border-gray-600"></div>
+          <a
+            className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
+            href="https://www.linkedin.com/in/john-seong-9194321a9/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>LinkedIn</span>
+          </a>
 
-            <a
-              className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
-              href="https://www.linkedin.com/in/john-seong-9194321a9/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>LinkedIn</span>
-            </a>
+          <div className="border-l-2 border-gray-600"></div>
 
-            <div className="border-l-2 border-gray-600"></div>
-
-            <a
-              className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
-              href="https://www.flickr.com/photos/johnseongemini8/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Flickr</span>
-            </a>
-          </div>
+          <a
+            className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
+            href="https://www.flickr.com/photos/johnseongemini8/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Flickr</span>
+          </a>
+        </div>
 
         {/* Main content */}
         <main>{children}</main>
