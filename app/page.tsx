@@ -85,12 +85,18 @@ function PortfolioContent() {
               className="rounded-md"
             />
             <h4 className="text-xl font-semibold mt-3">
-              Atomizer AR | ElectronVisualized
+              Atomizer AR <span className="font-light">(iOS, iPadOS, visionOS)</span><br />ElectronVisualized <span className="font-light">(Web)</span>
             </h4>
             <p className="text-md text-gray-400 mt-1">
               3D Visualization of Quantum Mechanics.
               <br />
               Proteins, Atomic and Molecular Orbitals.
+              <br />
+              DFT, Hatree-Fock, and Spherical Harmonics.
+              <br />
+              <br />
+              Visuals on the application I developed were honorably mentioned in the biography of theoretical physicist Walter Kohn, written by <a href="https://en.wikipedia.org/wiki/David_Clary"  target="_blank"
+              rel="noopener noreferrer" className="text-white hover:underline">Professor Sir David Clary FRS</a> at University of Oxford. Available under <i>World Scientific Publishing</i>. Amazon links will be posted soon.
             </p>
             <a
               href="https://apps.apple.com/us/app/atomizer-ar-quantum-visuals/id6449015706" // App Store URL
@@ -114,6 +120,10 @@ function PortfolioContent() {
             <h2 className="text-5xl font-thin mt-3">ORCHESTR<br />SIMULATIONS</h2>
             <p className="text-md text-gray-400 my-2">
               Building EFB (Electronic Flight Bag) apps and tools for both real-life and Flight Simulator pilots.
+              <br /><br />
+              Developing a 3D walkaround app that shows you the steps of operating an Airbus A320 in both normal and emergency circumstances. All the switches and panels are labelled in a detailed manner that are 1:1 correspondant to the real operational manual.
+              <br /><br />
+              Additionally, there are plans set to develop an all-emcompassing VATSIM pilot training module powered by the GPT-4o model, which supports voice and image. This won't replace existing solutions like BeyondATC or SayIntentions, but will be conveniently available on mobile devices. An all-new VATSIM controller client on iPad and Vision Pro is also in the works!
             </p>
             <a
               href="https://orchestrsim.com"
@@ -132,6 +142,32 @@ function PortfolioContent() {
             />
           </div>
         </div>
+        <div className="bg-white bg-opacity-90 p-4 rounded-lg mt-4">
+           <Image
+              src="/shredded-apart.png"
+              alt="shredded-apart"
+              width={150}
+              height={150}
+              className="rounded-md"
+            />
+            <h2 className="text-4xl my-3 text-black">Bringing Engineering to Casual Streetwear.</h2>
+           
+            <a
+              href="https://shreddedapart.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 mb-5 inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-blue-500"
+            >
+              Visit the Store
+            </a>
+            <Image
+              src="/tripleseven-sweatshirt.png"
+              alt="TripleSeven Shirt"
+              width={300}
+              height={200}
+              className="rounded-md"
+            />
+          </div>
       </section>
 
       {/* Experience Section */}
