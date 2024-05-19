@@ -47,6 +47,18 @@ export default function RootLayout({
         </a>
 
         <div className="w-fit m-auto flex flex-wrap gap-4 justify-center rounded-lg pb-5">
+
+<a
+  className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
+  href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <span>YouTube</span>
+</a>
+
+<div className="border-l-2 border-gray-600"></div>
+
             <a
               className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
               href="https://github.com/wonmor"
@@ -65,17 +77,6 @@ export default function RootLayout({
               rel="noopener noreferrer"
             >
               <span>LinkedIn</span>
-            </a>
-
-            <div className="border-l-2 border-gray-600"></div>
-
-            <a
-              className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
-              href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>YouTube</span>
             </a>
 
             <div className="border-l-2 border-gray-600"></div>

@@ -6,7 +6,7 @@ import React from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { OrbitControls } from "@react-three/drei";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import * as THREE from "three";
 import { Box3, Vector3, MathUtils } from "three";
@@ -14,6 +14,23 @@ import { Box3, Vector3, MathUtils } from "three";
 function Model({ modelPath }: { modelPath: string }) {
   const obj = useLoader(OBJLoader, modelPath);
   const objRef = useRef<THREE.Object3D>();
+
+  const [rotationDirection, setRotationDirection] = useState(1);
+  const [rotationY, setRotationY] = useState(0);
+  const rotationSpeed = 0.001; // Slower rotation speed
+  const rotationLimit = MathUtils.degToRad(50); // Small range limit
+
+  useFrame(() => {
+    if (objRef.current) {
+      const newYRotation = rotationY + rotationSpeed * rotationDirection;
+      if (Math.abs(newYRotation) > rotationLimit) {
+        setRotationDirection(rotationDirection * -1);
+      } else {
+        setRotationY(newYRotation);
+      }
+      objRef.current.rotation.y = newYRotation;
+    }
+  });
 
   useEffect(() => {
     if (objRef.current) {
@@ -27,9 +44,9 @@ function Model({ modelPath }: { modelPath: string }) {
       objRef.current.rotation.y = MathUtils.degToRad(40);
       objRef.current.rotation.z = MathUtils.degToRad(90);
 
-      objRef.current.scale.x = 15.0;
-      objRef.current.scale.y = 15.0;
-      objRef.current.scale.z = 15.0;
+      objRef.current.scale.x = 20.0;
+      objRef.current.scale.y = 20.0;
+      objRef.current.scale.z = 20.0;
 
       const boundingBox = new Box3().setFromObject(objRef.current);
       const center = new Vector3();
@@ -53,7 +70,6 @@ export default function Portfolio() {
       >
         <ambientLight intensity={3.0} />
         <Model modelPath="face_model1.obj" />
-        <OrbitControls />
       </Canvas>
       <PortfolioContent />
     </div>
@@ -66,10 +82,10 @@ function PortfolioContent() {
       {/* Inspirational Quote */}
       <section className="text-center p-6">
         <h2 className="text-3xl text-white">
-          "I skate to where the puck is going to be, not where it has been."
+          Scanned only using an iPhone
         </h2>
         <p className="text-xl mt-2 text-gray-400">
-          – Wayne Gretzky, Former NHL Player
+          Rendered real-time, in fact this is one of the projects that I wrote code for
         </p>
       </section>
 
@@ -183,15 +199,23 @@ function PortfolioContent() {
             width={100}
             height={100}
           />
-          <h4 className="text-xl font-semibold mt-2">Event Photographer</h4>
+          <h4 className="text-xl font-semibold mt-2">Event Photographer | Drone Operator</h4>
           <p className="text-gray-400">
             University of California, Irvine - The Paul Merage School of
-            Business · Part-time · Dec 2023 - Present
+            Business · Part-time · Started in Dec 2023
           </p>
           <p className="text-gray-400">
             Skills: Commercial Photography, Cinematography, Adobe Lightroom,
             Adobe Premiere Pro
           </p>
+          <a
+              href="https://www.flickr.com/people/johnseongemini8/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 mb-5 inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
+            >
+              View my Previous Works/Gigs
+            </a>
         </div>
 
         {/* Undergraduate Researcher */}
@@ -203,13 +227,12 @@ function PortfolioContent() {
             width={100}
             height={100}
           />
-          <h4 className="text-xl font-semibold mt-2">Research Assistant</h4>
+          <h4 className="text-xl font-semibold mt-2">Research Assistant in Bioinformatics</h4>
           <p className="text-gray-400">
             Seoul National University · Internship · Jul 2023 - Aug 2023
           </p>
           <p className="text-gray-400">
-            Skills: Research, Computer Science, Computational Chemistry,
-            AutoDock Vina, Python, React
+            Skills: Research, Computer Science, Computational Chemistry, AutoDock Vina, Python, React
           </p>
         </div>
 
@@ -222,13 +245,13 @@ function PortfolioContent() {
             width={100}
             height={100}
           />
-          <h4 className="text-xl font-semibold mt-2">Software Engineer</h4>
+          <h4 className="text-xl font-semibold mt-2">Computer Vision Software Engineer</h4>
           <p className="text-gray-400">
-            Reach · Contract · Jun 2023 - Aug 2023
+            Reach · Contract · Started in Jun 2023
           </p>
           <p className="text-gray-400">
-            Skills: SwiftUI, Metal Shader Language, Objective-C++, Python,
-            TensorFlow, Business Management
+            Skills: C++, Objective-C, SwiftUI, Metal Shader Language, OpenCV, Open3D, Python,
+            TensorFlow
           </p>
         </div>
 
