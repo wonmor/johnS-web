@@ -85,7 +85,7 @@ function PortfolioContent() {
           Scanned only using an iPhone
         </h2>
         <p className="text-xl mt-2 text-gray-400">
-          Rendered real-time, in fact this is one of the projects that I wrote code for
+          Rendered real-time, in fact this is one of the many projects that I developed
         </p>
       </section>
 
