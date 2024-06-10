@@ -14,6 +14,30 @@ export const metadata = {
   description: "Hi, I’m John. I’m a software engineer.",
 };
 
+import Link from 'next/link';
+
+interface ImageButtonProps {
+  src: string;
+  alt: string;
+  href: string;
+  width?: number;
+  height?: number;
+}
+
+const ImageButton: React.FC<ImageButtonProps> = ({ src, alt, href, width = 100, height = 100 }) => {
+  return (
+    <Link href={href} passHref legacyBehavior>
+      <a
+        style={{ display: 'inline-block', border: 'none', background: 'none', padding: 0, cursor: 'pointer' }}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Image src={src} alt={alt} width={width} height={height} />
+      </a>
+    </Link>
+  );
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -45,6 +69,8 @@ export default function RootLayout({
             <p className="text-2xl font-thin">
               Engineering, Design, and Filmmaking
             </p>
+
+            <ImageButton src="/join-discord.png" alt="Join Discord" href="https://discord.com/invite/pTP8S5Gn" width={150} height={150} />
           </header>
         </a>
 
