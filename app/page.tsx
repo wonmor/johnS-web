@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
@@ -63,14 +63,16 @@ function Model({ modelPath }: { modelPath: string }) {
 export default function Portfolio() {
   return (
     <div style={{ position: "relative" }}>
-      <Canvas
-        style={{ height: "500px", background: "transparent" }}
-        camera={{ position: [0, 0, 5] }}
-        gl={{ alpha: true, antialias: true }}
-      >
-        <ambientLight intensity={3.0} />
-        <Model modelPath="face_model1.obj" />
-      </Canvas>
+      <Suspense fallback={<div className="flex justify-center align-center items-center text-center py-20"><h1 className="text-6xl font-thin">Loading...</h1></div>}>
+        <Canvas
+          style={{ height: "500px", background: "transparent" }}
+          camera={{ position: [0, 0, 5] }}
+          gl={{ alpha: true, antialias: true }}
+        >
+          <ambientLight intensity={3.0} />
+          <Model modelPath="face_model1.obj" />
+        </Canvas>
+      </Suspense>
       <PortfolioContent />
     </div>
   );
