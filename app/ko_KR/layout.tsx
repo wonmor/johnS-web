@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from 'next/link'
 import Script from "next/script";
 
 import { Outfit } from "next/font/google";
@@ -40,9 +40,17 @@ export default function RootLayout({
         ].join(" ")}
       >
         {/* Header */}
-        <a href="/">
-       
-        </a>
+        <header className="p-6 border-b border-gray-600 bg-gray-900 justify-center items-center text-center flex flex-col gap-4 mb-5">
+<div className="flex items-center justify-center flex-row gap-4">
+        <Link href="/" locale="en-US">
+      <span>English</span>
+    </Link>
+
+        <Link href="/" locale="ko_KR">
+      <span>Korean</span>
+    </Link>
+    </div>
+          </header>
 
         <div className={[
           mediumFont.className,
