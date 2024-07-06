@@ -283,7 +283,7 @@ function PortfolioContent() {
           {/* Content Writer */}
           <p className="mb-2">
             <span className="font-semibold">웹 콘텐츠 작가, </span>
-            다연 법률 사무소 LLC. · 파트타임 · 2023년 1월 - 2023년 8월
+            법무법인 대륜 · 파트타임 · 2023년 1월 - 2023년 8월
           </p>
 
           {/* Line Cook */}
