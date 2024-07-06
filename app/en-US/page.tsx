@@ -216,7 +216,7 @@ function PortfolioContent() {
             width={100}
             height={100}
           />
-          <h4 className="text-xl font-semibold mt-2">Event Photographer | Drone Pilot</h4>
+          <h4 className="text-xl font-semibold mt-2">Event Photographer, Drone Pilot</h4>
           <p className="text-gray-400">
             University of California, Irvine - The Paul Merage School of
             Business · Part-time · Started in Dec 2023
