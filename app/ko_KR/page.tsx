@@ -72,7 +72,7 @@ export default function Portfolio() {
          <h1 className="text-3xl text-center font-thin px-6">
        <Typewriter
             options={{
-              strings: ["현대 미술과 하이-테크의 감각적인 만남.", "성원모의 누리집에 오신 것을 환영합니다."],
+              strings: ["현대 미술과 하이-테크의 감각적인 만남.", "성원모의 누리집에 오신 것을 환영합니다!"],
               autoStart: true,
               loop: true,
             }}
