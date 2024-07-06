@@ -302,7 +302,7 @@ function PortfolioContent() {
 
           {/* Business & Media Strategist */}
           <p className="mb-2">
-            <span className="font-semibold">공공 홍보, </span>
+            <span className="font-semibold">마케팅 및 비즈니스, </span>
             Garth Webb Robotics · 시즌제 · 2021년 10월 - 2022년 4월
           </p>
 
