@@ -129,7 +129,7 @@ function PortfolioContent() {
               <br />
               단백질, 원자 및 분자 오비탈.
               <br />
-              DFT, Hatree-Fock, 그리고 구면 조화 함수들.
+              DFT, Hatree-Fock, 그리고 구면 조화 함수.
               <br />
               <br />
               제가 개발한 응용 프로그램의 시각 자료는 이론 물리학자 Walter Kohn의 전기에서 명예롭게 언급되었습니다. 이 전기는 <a href="https://en.wikipedia.org/wiki/David_Clary"  target="_blank"
