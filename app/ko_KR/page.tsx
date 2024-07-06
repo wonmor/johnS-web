@@ -156,7 +156,7 @@ function PortfolioContent() {
           <div className="bg-gray-700 p-4 rounded-lg">
             <h2 className="text-3xl font-thin mt-3">ORCHESTR<br />SIMULATIONS</h2>
             <p className="text-md text-gray-400 my-2">
-              실제 조종사와 비행 시뮬레이터 조종사를 위한 EFB(전자 비행 가방) 앱 및 도구 제작.
+              실제 파일럿과 비행 시뮬레이터 조종사를 위한 EFB(전자 비행 가방) 앱 및 도구 제작.
               <br /><br />
               정상 및 비상 상황 모두에서 Airbus A320의 작동 단계를 보여주는 3D 워크어라운드 앱을 개발 중입니다. 모든 스위치와 패널은 실제 작동 매뉴얼과 1:1로 대응하는 자세한 라벨이 붙어 있습니다.
               <br /><br />
