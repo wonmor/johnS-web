@@ -14,7 +14,7 @@ module.exports = {
       // Change Vercel domain configuration for redirects below...
       domains: [
         {
-          domain: 'johnseong.info',
+          domain: 'johnseong.com',
           defaultLocale: 'en-US',
         },
         {
