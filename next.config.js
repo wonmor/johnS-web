@@ -17,7 +17,7 @@ module.exports = {
           defaultLocale: 'en-US',
         },
         {
-            domain: 'www.johnseong.kr',
+            domain: 'johnseong.kr',
             defaultLocale: 'ko_KR',
           },
       ],

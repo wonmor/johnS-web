@@ -41,9 +41,7 @@ export default function RootLayout({
       >
         {/* Header */}
         <a href="/">
-          <header className="p-6 border-b border-gray-600 bg-gray-900 justify-center items-center text-center flex flex-col gap-4 mb-5">
-            
-          </header>
+       
         </a>
 
         <div className={[
