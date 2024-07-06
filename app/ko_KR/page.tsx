@@ -295,7 +295,7 @@ function PortfolioContent() {
           {/* Shad Canada */}
           <p className="mb-2">
             <span className="font-semibold">
-              웨스턴 대학교 연구원,{" "}
+              웨스턴 대학교 Fellow,{" "}
             </span>
             Shad Canada · 시즌제 · 2022년 7월
           </p>
