@@ -46,6 +46,8 @@ export default function RootLayout({
               <span>영어</span>
             </Link>
 
+            <span>•</span>
+
             <Link href="https://johnseong.kr">
               <span>한국어</span>
             </Link>
