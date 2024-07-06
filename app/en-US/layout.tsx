@@ -45,7 +45,7 @@ export default function RootLayout({
         {/* Header */}
         <header className="p-6 border-b border-gray-600 bg-gray-900 justify-center items-center text-center flex flex-col gap-4 mb-5">
           <div className="flex items-center justify-center flex-row gap-4 text-2xl">
-            <Link href="https://johnseong.info">
+            <Link href="https://johnseong.com">
               <span>English</span>
             </Link>
 
