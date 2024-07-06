@@ -100,7 +100,9 @@ function PortfolioContent() {
           Scanned only using an iPhone
         </h2>
         <p className="text-xl mt-2 text-gray-400">
-          Rendered real-time, in fact this is one of the many projects that I developed
+          Rendered real-time, Vision Pro-level 3D mapping in the palm of your hand.
+          <br />
+          One of the many softwares that I developed!
         </p>
       </section>
 
