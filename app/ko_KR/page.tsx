@@ -288,7 +288,7 @@ function PortfolioContent() {
 
           {/* Line Cook */}
           <p className="mb-2">
-            <span className="font-semibold">라인 요리사, </span>
+            <span className="font-semibold">주방 보조, </span>
             The Famous Owl of Minerva · 파트타임 · 2023년 2월 - 2023년 5월
           </p>
 
