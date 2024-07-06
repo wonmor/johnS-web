@@ -278,7 +278,7 @@ function PortfolioContent() {
 
         <div className="flex flex-col p-5 rounded-xl bg-black">
           {/* Other Experiences */}
-          <h4 className="text-5xl font-thin mb-4">다른 활동들</h4>
+          <h4 className="text-5xl font-thin mb-4">다른 활동</h4>
 
           {/* Content Writer */}
           <p className="mb-2">
