@@ -150,7 +150,7 @@ function PortfolioContent() {
               rel="noopener noreferrer"
               className="mt-2 inline-block px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
             >
-              웹 버전 탐색
+              웹 버전 실행하기
             </a>
           </div>
           <div className="bg-gray-700 p-4 rounded-lg">
