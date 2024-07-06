@@ -209,7 +209,7 @@ function PortfolioContent() {
 
       {/* Experience Section */}
       <section className="fill-width-available p-6 max-w-4xl mb-12 flex flex-col items-center justify-center bg-gray-800 rounded-lg">
-        <h3 className="text-5xl font-thin mb-4">내가 한 활동들</h3>
+        <h3 className="text-5xl font-thin mb-4">내가 한 일</h3>
 
         {/* Event Photographer */}
         <div className="mb-6">
