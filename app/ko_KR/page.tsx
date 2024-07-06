@@ -220,7 +220,7 @@ function PortfolioContent() {
             width={100}
             height={100}
           />
-          <h4 className="text-xl font-semibold mt-2">행사 사진작가 | 드론 조종사</h4>
+          <h4 className="text-xl font-semibold mt-2">행사 사진작가, 그리고 드론 조종사</h4>
           <p className="text-gray-400">
             University of California, Irvine - The Paul Merage School of
             Business · 파트타임 · 2023년 12월 시작
