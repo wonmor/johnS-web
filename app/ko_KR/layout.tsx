@@ -46,7 +46,7 @@ export default function RootLayout({
         ].join(" ")}>
           <div className="flex items-center justify-center flex-row gap-4 text-2xl">
             <Link href="https://johnseong.com">
-              <span>영어</span>
+              <span>English</span>
             </Link>
 
             <span>•</span>
