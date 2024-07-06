@@ -125,11 +125,11 @@ function PortfolioContent() {
               Atomizer AR <span className="font-light">(iOS, iPadOS, visionOS)</span><br />ElectronVisualized <span className="font-light">(Web)</span>
             </h4>
             <p className="text-md text-gray-400 mt-1">
-              양자 역학의 3D 시각화.
+              양자 역학를 3D로 시각화하세요.
               <br />
-              단백질, 원자 및 분자 궤도.
+              단백질, 원자 및 분자 오비탈.
               <br />
-              DFT, Hatree-Fock, 구면 고조파.
+              DFT, Hatree-Fock, 그리고 구면 조화 함수들.
               <br />
               <br />
               제가 개발한 응용 프로그램의 시각 자료는 이론 물리학자 Walter Kohn의 전기에서 명예롭게 언급되었습니다. 이 전기는 <a href="https://en.wikipedia.org/wiki/David_Clary"  target="_blank"
@@ -154,7 +154,7 @@ function PortfolioContent() {
             </a>
           </div>
           <div className="bg-gray-700 p-4 rounded-lg">
-            <h2 className="text-5xl font-thin mt-3">ORCHESTR<br />SIMULATIONS</h2>
+            <h2 className="text-3xl font-thin mt-3">ORCHESTR<br />SIMULATIONS</h2>
             <p className="text-md text-gray-400 my-2">
               실제 조종사와 비행 시뮬레이터 조종사를 위한 EFB(전자 비행 가방) 앱 및 도구 제작.
               <br /><br />
@@ -195,7 +195,7 @@ function PortfolioContent() {
               rel="noopener noreferrer"
               className="mt-2 mb-5 inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-blue-500"
             >
-              상점 방문
+              스토어 방문하기
             </a>
             <Image
               src="/tripleseven-sweatshirt.png"
@@ -209,7 +209,7 @@ function PortfolioContent() {
 
       {/* Experience Section */}
       <section className="fill-width-available p-6 max-w-4xl mb-12 flex flex-col items-center justify-center bg-gray-800 rounded-lg">
-        <h3 className="text-5xl font-thin mb-4">내가 한 일</h3>
+        <h3 className="text-5xl font-thin mb-4">내가 한 활동들</h3>
 
         {/* Event Photographer */}
         <div className="mb-6">
