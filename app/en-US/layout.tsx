@@ -3,7 +3,7 @@ import Script from "next/script";
 
 import { Outfit } from "next/font/google";
 
-import "./globals.css";
+import "../globals.css";
 
 const font = Outfit({
   subsets: ["latin"],
@@ -11,7 +11,7 @@ const font = Outfit({
 
 export const metadata = {
   title: "John Seong",
-  description: "Hi, I’m John. I’m a software engineer.",
+  description: "Hi, I’m John. I Love Engineering.",
 };
 
 import Link from 'next/link';
@@ -61,20 +61,11 @@ export default function RootLayout({
         {/* Header */}
         <a href="/">
           <header className="p-6 border-b border-gray-600 bg-gray-900 justify-center items-center text-center flex flex-col gap-4 mb-5">
-            <div className="flex flex-col gap-4 items-center">
-              <h1 className="text-6xl font-thin neon-title flicker">
-                @j0hnse0ng
-              </h1>
-            </div>
-            <p className="text-2xl font-thin">
-              Engineering, Design, and Filmmaking
-            </p>
-
-            <ImageButton src="/join-discord.png" alt="Join Discord" href="https://discord.com/invite/pTP8S5Gn" width={150} height={150} />
+   
           </header>
         </a>
 
-        <div className="w-fit m-auto flex flex-wrap gap-4 justify-center rounded-lg pb-5">
+        <div className="w-fit m-auto flex flex-wrap gap-4 justify-center rounded-lg pb-10">
           <a
             className="bg-transparent text-white hover:bg-gray-800 rounded-lg p-2"
             href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"

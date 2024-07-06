@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Typewriter from 'typewriter-effect';
 import React, { Suspense } from "react";
 
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { OrbitControls } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 
 import * as THREE from "three";
@@ -62,9 +62,21 @@ function Model({ modelPath }: { modelPath: string }) {
 
 export default function Portfolio() {
   return (
+    <div className="flex flex-col gap-4">
+      <h1 className="text-5xl text-center font-thin px-6">
+       <Typewriter
+            options={{
+              strings: ["Hi, I’m John Seong.", " I Love Engineering."],
+              autoStart: true,
+              loop: true,
+            }}
+          />
+          </h1>
+
     <div style={{ position: "relative" }}>
-      <Suspense fallback={<div className="flex justify-center align-center items-center text-center py-20"><h1 className="text-6xl font-thin">Loading...</h1></div>}>
+      <Suspense fallback={<div className="flex justify-center align-center items-center text-center py-20"><h1 className="text-4xl font-thin">Loading...</h1></div>}>
         <Canvas
+        className="grayscale"
           style={{ height: "500px", background: "transparent" }}
           camera={{ position: [0, 0, 5] }}
           gl={{ alpha: true, antialias: true }}
@@ -74,6 +86,7 @@ export default function Portfolio() {
         </Canvas>
       </Suspense>
       <PortfolioContent />
+    </div>
     </div>
   );
 }
@@ -92,7 +105,7 @@ function PortfolioContent() {
       </section>
 
       <section className="bg-gray-800 shadow-md rounded-lg p-6 my-6 max-w-4xl mx-auto">
-        <h3 className="text-5xl font-thin mb-4">Projects</h3>
+        <h3 className="text-5xl font-thin mb-4">Passion Projects</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-gray-700 p-4 rounded-lg">
             <Image
