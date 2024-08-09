@@ -114,7 +114,7 @@ export default function RootLayout({
           <p>
             &copy; {new Date().getFullYear()} 성원모
             <br />
-            <span className="text-gray-400">johnseong@havit.space</span>
+            <span className="text-gray-400">wonmor@gmail.com</span>
           </p>
         </footer>
       </body>
