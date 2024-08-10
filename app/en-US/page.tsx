@@ -66,7 +66,7 @@ export default function Portfolio() {
       <h1 className="text-5xl text-center font-thin px-6">
        <Typewriter
             options={{
-              strings: ["Hi, I’m John Seong.", " I Love Film & Engineering."],
+              strings: ["Hi, I’m John Seong.", " I Love Film & Computers."],
               autoStart: true,
               loop: true,
             }}
