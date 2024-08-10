@@ -76,6 +76,7 @@ export default function Portfolio() {
           <iframe width="560" height="315" src="https://www.youtube.com/embed/muQHUdCSyBc?si=HBTOSGeI7cZ_ZK4Q" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
           <iframe width="560" height="315" src="https://www.youtube.com/embed/y4GvrWos3Bo?si=0o3tW9Q95Zq10TTA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/eVRG_xXRwas?si=nyl7IKnf7foQ8UNQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/7CgN6cBOriI?si=m5jfo_GbIE5YBC7X" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
           </div>
     <div style={{ position: "relative" }}>
       <PortfolioContent />
