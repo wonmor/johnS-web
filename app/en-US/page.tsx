@@ -258,7 +258,7 @@ function PortfolioContent() {
           </p>
 
           <p className="text-md text-gray-400 mt-1">
-              I also happen to be an avid filmmaker who is trying to enter the Hollywood industry! I have experience with both cinematography (assisting the business school to take candid shots and portraits) as well as CGI/VFX using Blender.
+              I also happen to be an aspiring actor/filmmaker who is trying to enter the Hollywood industry! I have experience with both cinematography (assisting the business school to take candid shots and portraits) as well as CGI/VFX using Blender.
               Check out my filmography/portfolio <a href="https://drive.google.com/file/d/1pMhuKsz90JDSwXpynwpho4C5jbflLNeI/view?usp=sharing"  target="_blank"
               rel="noopener noreferrer" className="text-white hover:underline">here</a>.
             </p>
