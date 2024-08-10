@@ -72,8 +72,10 @@ export default function Portfolio() {
             }}
           />
           </h1>
-            <div className="flex items-center justify-center">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/muQHUdCSyBc?si=HBTOSGeI7cZ_ZK4Q" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+            <div className="flex flex-col items-center justify-center">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/muQHUdCSyBc?si=HBTOSGeI7cZ_ZK4Q" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/y4GvrWos3Bo?si=0o3tW9Q95Zq10TTA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/eVRG_xXRwas?si=nyl7IKnf7foQ8UNQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
           </div>
     <div style={{ position: "relative" }}>
       <PortfolioContent />
@@ -154,10 +156,6 @@ function PortfolioContent() {
           </div>
         </div>
       </section>
-
-      <div className="mb-6 flex item-center justify-center">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/eVRG_xXRwas?si=nyl7IKnf7foQ8UNQ" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-      </div>
 
       {/* Experience Section */}
       <section className="fill-width-available p-6 max-w-4xl mb-12 flex flex-col items-center justify-center bg-gray-800 rounded-lg">
