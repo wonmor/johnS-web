@@ -106,7 +106,7 @@ function PortfolioContent() {
           LiDAR 얼굴 스캔, 그것도 오직 아이폰을 이용해서.
         </h2>
         <p className="text-xl mt-2 text-gray-400">
-          그리고 치과, 성형외과 등지에서 사용 가능한 가히 혁신적인 소프트웨어.<br />C++로 점철된 복잡한 코드 속에서, Vision Pro 수준 공간 3D 매핑을<br />오직 아이폰의 전방 TrueDepth 카메라로 구현하였습니다.
+          그리고 치과나 안경 제조 업체 등지에서 사용 가능한 가히 혁신적인 소프트웨어.<br />C++로 점철된 복잡한 코드 속에서, Vision Pro 수준 공간 3D 매핑을<br />오직 아이폰의 전방 TrueDepth 카메라로 구현하였습니다.
         </p>
       </section>
 
