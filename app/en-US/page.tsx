@@ -118,7 +118,7 @@ function PortfolioContent() {
               href="https://electronvisual.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-block px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
+              className="mt-4 mb-2 inline-block px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
             >
               Explore the Web Version
             </a>
@@ -127,7 +127,7 @@ function PortfolioContent() {
               href="https://apps.apple.com/us/app/atomizer-ar-quantum-visuals/id6449015706" // App Store URL
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
+              className="inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
             >
               Download on the App Store
             </a>
