@@ -103,7 +103,10 @@ function PortfolioContent() {
               Atomizer AR <span className="font-light">(iOS, iPadOS, visionOS)</span><br />ElectronVisualized <span className="font-light">(Web)</span>
             </h4>
             <p className="text-md text-gray-400 mt-1">
-              3D Visualization of Quantum Mechanics.
+              3D Visualization of Quantum Mechanics, Featuring Characters from Pixar & <a href="https://en.wikipedia.org/wiki/Peter_Sohn" target="_blank"
+              rel="noopener noreferrer" className="text-white hover:underline">Peter Sohn</a>'s <a href="https://en.wikipedia.org/wiki/Elemental_(2023_film)" target="_blank"
+              rel="noopener noreferrer" className="text-white hover:underline italic">Elemental</a>.
+              <br />
               <br />
               Proteins, Atomic and Molecular Orbitals.
               <br />
