@@ -115,21 +115,21 @@ function PortfolioContent() {
               rel="noopener noreferrer" className="text-white hover:underline italic">World Scientific Publishing</a>.
             </p>
             <a
-              href="https://apps.apple.com/us/app/atomizer-ar-quantum-visuals/id6449015706" // App Store URL
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
-            >
-              Download on the App Store
-            </a>
-            <br />
-            <a
               href="https://electronvisual.org"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 inline-block px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
             >
               Explore the Web Version
+            </a>
+            <br />
+            <a
+              href="https://apps.apple.com/us/app/atomizer-ar-quantum-visuals/id6449015706" // App Store URL
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
+            >
+              Download on the App Store
             </a>
           </div>
           <div className="bg-black p-4 rounded-lg">
