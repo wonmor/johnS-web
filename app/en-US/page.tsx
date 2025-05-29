@@ -169,16 +169,12 @@ function PortfolioContent() {
         <div className="mb-6">
           <Image
             className="rounded-full border-2 border-gray-700"
-            src="/university-logo.jpg" // Replace with the path to The Paul Merage School of Business logo
-            alt="University of California, Irvine - The Paul Merage School of Business"
+            src="/university-logo.jpg" // Placeholder for university logo
+            alt="University Logo"
             width={100}
             height={100}
           />
           <h4 className="text-xl font-semibold mt-2">Event Photographer, Drone Pilot</h4>
-          <p className="text-gray-400">
-            University of California, Irvine - The Paul Merage School of
-            Business · Part-time · Started in Dec 2023
-          </p>
           <p className="text-gray-400">
             Skills: Commercial Photography, Cinematography, Adobe Lightroom,
             Adobe Premiere Pro

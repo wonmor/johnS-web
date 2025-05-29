@@ -215,16 +215,12 @@ function PortfolioContent() {
         <div className="mb-6">
           <Image
             className="rounded-full border-2 border-gray-700"
-            src="/university-logo.jpg" // Replace with the path to The Paul Merage School of Business logo
-            alt="University of California, Irvine - The Paul Merage School of Business"
+            src="/university-logo.jpg"
+            alt="University Logo" // Replace with your university logo
             width={100}
             height={100}
           />
           <h4 className="text-xl font-semibold mt-2">행사 사진작가, 그리고 드론 조종사</h4>
-          <p className="text-gray-400">
-            University of California, Irvine - The Paul Merage School of
-            Business · 파트타임 · 2023년 12월 시작
-          </p>
           <p className="text-gray-400">
             스킬: 상업 사진 촬영, 영화 촬영, Adobe Lightroom,
             Adobe Premiere Pro
