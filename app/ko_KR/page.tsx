@@ -301,12 +301,6 @@ function PortfolioContent() {
             <span className="font-semibold">마케팅 및 비즈니스, </span>
             Garth Webb Robotics · 시즌제 · 2021년 10월 - 2022년 4월
           </p>
-
-          <p className="text-md text-gray-400 mt-1">
-              저는 또한 할리우드 산업에 진입하려고 하는 인디 영화 제작자이기도 합니다! 저는 상업 사진 촬영과 초상화 촬영을 도와주며 영화 촬영에 대한 경험이 있으며, Blender를 사용한 CGI/VFX 작업도 경험이 있습니다.
-              제 영화 포트폴리오를 <a href="https://drive.google.com/file/d/1pMhuKsz90JDSwXpynwpho4C5jbflLNeI/view?usp=sharing"  target="_blank"
-              rel="noopener noreferrer" className="text-white hover:underline">여기서</a> 확인하세요.
-            </p>
         </div>
       </section>
     </div>
