@@ -122,19 +122,6 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Intro + Typewriter */}
-      <div className="text-center px-6">
-        <h2 className="text-4xl font-light">
-          <Typewriter
-            options={{
-              strings: ["Hi, I’m John Seong.", "I build 3D quantum visualizers and apps."],
-              autoStart: true,
-              loop: true
-            }}
-          />
-        </h2>
-      </div>
-
       {/* Gadolinium 4f⁷ Shell GLTF Model */}
       <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg mt-6">
         <Suspense fallback={<div className="p-20 text-center text-white font-thin text-3xl">Loading Gadolinium Atom...</div>}>
