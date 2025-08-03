@@ -204,7 +204,7 @@ export default function Portfolio() {
       <section className="max-w-4xl mx-auto bg-white rounded-md shadow-lg p-6">
         <h3 className="text-3xl uppercase border-b-4 mb-4" style={{ borderColor: tubeBlue }}>ElectronVisual / Atomizer AR (Sept 2022 – Apr 2025)</h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
-          <li>Quantum Mechanics Visualizer across Web (Three.js), iOS, macOS, visionOS via Atomizer AR (10 K downloads)</li>
+          <li>Quantum Mechanics Visualizer that uses DFT, across Web (Three.js), iOS, macOS, visionOS via Atomizer AR (10 K downloads)</li>
           <li>Tech stack: Three.js, React, Redux, WebXR; Back-end: RDKit, SciPy, ASE, GPAW, Celery, Redis, Docker, AWS</li>
           <li>Featured on <a href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Sir David Clary’s Book</a></li>
           <li>Watch demo walkthrough: <a href="https://www.youtube.com/watch?v=kHcdvyaqslU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a></li>
