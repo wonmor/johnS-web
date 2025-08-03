@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Typewriter from "typewriter-effect";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { useEffect, useRef, useState } from "react";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { Box3, Vector3, MathUtils } from "three";
 
@@ -17,7 +17,6 @@ const tubeText = tubeBlue;
 function Model({ modelPath }: { modelPath: string }) {
   const obj = useLoader(OBJLoader, modelPath);
   const objRef = useRef<THREE.Object3D>();
-
   const [rotDir, setRotDir] = useState(1);
   const [rotY, setRotY] = useState(0);
   const speed = 0.001;
@@ -34,7 +33,7 @@ function Model({ modelPath }: { modelPath: string }) {
 
   useEffect(() => {
     if (!objRef.current) return;
-    objRef.current.traverse(c => {
+    objRef.current.traverse((c) => {
       if (c instanceof THREE.Mesh) c.material.side = THREE.DoubleSide;
     });
     objRef.current.rotation.set(MathUtils.degToRad(180), MathUtils.degToRad(40), MathUtils.degToRad(90));
@@ -47,6 +46,42 @@ function Model({ modelPath }: { modelPath: string }) {
 
   return <primitive object={obj} ref={objRef} />;
 }
+
+function GLTFModel({ modelPath }: { modelPath: string }) {
+  const gltf = useLoader(GLTFLoader, modelPath);
+  const objRef = useRef<THREE.Object3D>(null);
+
+  useEffect(() => {
+    if (!objRef.current) return;
+    objRef.current.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        const mesh = child as THREE.Mesh;
+        if (Array.isArray(mesh.material)) {
+          mesh.material.forEach((mat) => {
+            mat.side = THREE.DoubleSide;
+          });
+        } else {
+          mesh.material.side = THREE.DoubleSide;
+        }
+      }
+    });
+
+    objRef.current.scale.setScalar(1);
+    const bbox = new Box3().setFromObject(objRef.current);
+    const center = new Vector3();
+    bbox.getCenter(center);
+    objRef.current.position.copy(center.negate());
+  }, [gltf]);
+
+  useFrame(() => {
+    if (objRef.current) {
+      objRef.current.rotation.y += 0.002;
+    }
+  });
+
+  return <primitive object={gltf.scene} ref={objRef} />;
+}
+
 
 export default function Portfolio() {
   return (
@@ -85,21 +120,43 @@ export default function Portfolio() {
         </h2>
       </div>
 
+      {/* Gadolinium 4f⁷ Shell GLTF Model */}
+      <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg mt-6">
+        <Suspense fallback={<div className="p-20 text-center text-white font-thin text-3xl">Loading Gadolinium Atom...</div>}>
+          <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
+            <ambientLight intensity={2} />
+            <GLTFModel modelPath="/model-4.gltf" />
+          </Canvas>
+        </Suspense>
+        <div className="text-center p-6 bg-gray-900 text-white">
+          <h4 className="text-2xl tracking-wide">Gadolinium Atom – 4f⁷ Electron Shell</h4>
+          <p className="mt-2 text-gray-300">A 3D quantum orbital visualization of Gadolinium’s outermost electron configuration, modeled from its 4f⁷ shell.</p>
+        </div>
+      </div>
+
       {/* ElectronVisual Section */}
       <section className="max-w-4xl mx-auto bg-white rounded-md shadow-lg p-6">
         <h3 className="text-3xl uppercase border-b-4 mb-4" style={{ borderColor: tubeBlue }}>ElectronVisual / Atomizer AR (Sept 2022 – Apr 2025)</h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
-          <li>Quantum Mechanics Visualizer across Web (Three.js), iOS, macOS, visionOS via Atomizer AR (>10 K downloads)</li>
+          <li>Quantum Mechanics Visualizer across Web (Three.js), iOS, macOS, visionOS via Atomizer AR (10 K downloads)</li>
           <li>Tech stack: Three.js, React, Redux, WebXR; Back-end: RDKit, SciPy, ASE, GPAW, Celery, Redis, Docker, AWS</li>
           <li>Featured on <a href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Sir David Clary’s Book</a></li>
-          <li>Watch demo walkthrough: <a href="https://www.youtube.com/watch?v=zzyEBO4TMiU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a></li>
+          <li>Watch demo walkthrough: <a href="https://www.youtube.com/watch?v=kHcdvyaqslU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a></li>
         </ul>
         <a href="https://www.electronvisual.org" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Visit ElectronVisual.org</a>
-        <a href="https://github.com/ElectronVisualized" className="inline-block mt-2 px-4 py-2 text-blue-600 border border-blue-600 rounded hover:bg-blue-50">Source on GitHub</a>
+        <a href="https://github.com/wonmor/ElectronVisualized" className="inline-block mt-2 px-4 py-2 text-blue-600 border border-blue-600 rounded hover:bg-blue-50">Source on GitHub</a>
+
+        <table><tr>
+
+<td valign="middle"><img width="500" alt="Screenshot-1" src="docs/screenshot1.png" /></td>
+
+<td valign="middle"><img width="500" alt="Screenshot-2" src="docs/screenshot2.png" /></td>
+
+</tr></table>
       </section>
 
-      {/* 3D Model Display */}
-      <div className="max-w-4xl mx-auto bg-black rounded-md overflow-hidden">
+      {/* 3D Face Model */}
+      <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg">
         <Suspense fallback={<div className="p-20 text-center text-white font-thin text-3xl">Loading 3D Model...</div>}>
           <Canvas style={{ height: 400 }} camera={{ position: [0,0,5] }}>
             <ambientLight intensity={3} />
@@ -107,7 +164,7 @@ export default function Portfolio() {
           </Canvas>
         </Suspense>
         <div className="text-center p-6 bg-gray-900 text-white">
-          <h4 className="text-2xl tracking-wide">Vision Pro-level 3D face mapping from iPhone TrueDepth</h4>
+          <h4 className="text-2xl tracking-wide">3D Face Scan only using an iPhone</h4>
           <p className="mt-2 text-gray-300">Portable, real‑time face scanning app I developed for lenses design.</p>
         </div>
       </div>
@@ -119,7 +176,7 @@ export default function Portfolio() {
           <li>iOS app using Swift & Objective‑C++ with C++ back‑end for ICP, feature-based pose estimation, meshing, point-cloud registration</li>
           <li>TrueDepth face scan with full point cloud registration—novel method with wide industry interest</li>
           <li>U.S. Provisional Patent pending (No. 63/727,879)</li>
-          <li>Product walkthrough demo: <a href="https://www.youtube.com/watch?v=kHcdvyaqslU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a></li>
+          <li>Product walkthrough demo: <a href="https://www.youtube.com/watch?v=LqiZKoXhtDA" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a></li>
         </ul>
       </section>
 
