@@ -130,7 +130,7 @@ export default function Portfolio() {
         </Suspense>
         <div className="text-center p-6 bg-gray-900 text-white">
           <h4 className="text-2xl tracking-wide">Gadolinium Atom – 4f⁷ Electron Shell</h4>
-          <p className="mt-2 text-gray-300">A 3D quantum orbital visualization of Gadolinium’s outermost electron configuration, modeled from its 4f⁷ shell. Generated using my own tool: ElectronVisualized.</p>
+          <p className="mt-2 text-gray-300">A 3D quantum orbital visualization of Gadolinium’s outermost electron configuration, modeled from its 4f⁷ shell. Generated using my own tool: ElectronVisualized. You can view it on my iOS app Atomizer AR as well.</p>
         </div>
       </div>
 
