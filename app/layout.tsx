@@ -114,7 +114,8 @@ export default function RootLayout({
           <h1 className="text-4xl tracking-widest uppercase">ORCHESTR INC.™</h1>
           <div className="bg-white h-2 w-36 mt-2 mb-1"></div>
           <p className="text-sm uppercase tracking-wide">
-            A DELAWARE COMPANY BASED IN LONDON
+            A DELAWARE COMPANY BASED IN LONDON<br />
+            UK 15387031
           </p>
         </header>
       </body>
