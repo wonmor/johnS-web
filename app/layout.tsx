@@ -38,7 +38,7 @@ export default function RootLayout({
       >
 
         {/* Navigation bar */}
-        <nav className="w-fit m-auto mt-6 mb-10 flex flex-wrap justify-center gap-6 text-sm font-medium text-[#003688]">
+        <nav className="w-fit m-auto mt-6 mb-10 flex flex-wrap justify-center gap-6 text-md font-medium text-[#003688]">
           <a
             className="hover:underline hover:text-[#e32017] transition-all"
             href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
@@ -115,7 +115,7 @@ export default function RootLayout({
           <div className="bg-white h-2 w-36 mt-2 mb-1"></div>
           <p className="text-sm uppercase tracking-wide">
             A DELAWARE COMPANY BASED IN LONDON<br />
-            UK 15387031
+            UK 15387031 US
           </p>
         </header>
       </body>
