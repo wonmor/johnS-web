@@ -352,23 +352,6 @@ export default function Portfolio() {
               YouTube
             </a>
           </li>
-
-                 {/* App Store badge */}
-        <div className="mt-6 flex justify-left">
-          <a
-            href="https://apps.apple.com/us/app/3d-face-scan-by-optically/id6468313142?l=en-GB"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="OpticALLY on the App Store"
-          >
-            <img
-              src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
-              alt="Download OpticALLY on the App Store"
-              height={50}
-              style={{ height: 50, cursor: "pointer" }}
-            />
-          </a>
-        </div>
         </ul>
       </section>
 
