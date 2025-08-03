@@ -94,9 +94,24 @@ export default function Portfolio() {
         <p className="text-xl mt-2">SOFTWARE ARCHITECT. FILMMAKER. PILOT.</p>
         {/* Awards & Visa */}
         <div className="flex justify-center items-center gap-6 mt-4">
-          <div className="rounded-full border-4" style={{ borderColor: tubeRed, width: 100, height: 100, padding: 4 }}>
-            <Image src="/reach-logo.jpg" alt="WWDC23 Scholar" width={92} height={92} className="rounded-full" />
-          </div>
+        <div
+  className="rounded-full border-4 overflow-hidden"
+  style={{
+    borderColor: tubeRed,
+    width: 100,
+    height: 100,
+    boxSizing: "border-box",  // include border in size
+  }}
+>
+  <Image
+    src="/reach-logo.jpg"
+    alt="WWDC23 Scholar"
+    width={100}
+    height={100}
+    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+  />
+</div>
+
           <div className="text-left">
             <p className="font-semibold">Apple WWDC23 Swift Student Challenge Winner</p>
             <p className="flex items-center gap-1 mt-2">
