@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Typewriter from "typewriter-effect";
+import localFont from "next/font/local";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
@@ -9,10 +9,76 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { Box3, Vector3, MathUtils } from "three";
 
+const tubeFont = localFont({
+  src: "../public/LondonTube.ttf",
+  display: "swap",
+});
+
 const tubeRed = "#e32017";
 const tubeBlue = "#003688";
 const tubeGreyBg = "#f5f5f5";
 const tubeText = tubeBlue;
+
+function TubeRoundel() {
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: 120,
+        height: 120,
+        borderRadius: "50%",
+        backgroundColor: tubeRed,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        margin: "0 auto",
+      }}
+    >
+      {/* Hollow center */}
+      <div
+        style={{
+          position: "absolute",
+          width: 70,
+          height: 70,
+          borderRadius: "50%",
+          backgroundColor: "white", // or match page background
+          zIndex: 1,
+        }}
+      />
+
+      {/* Blue bar across the circle */}
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "-15%",
+          width: "130%",
+          height: 30,
+          backgroundColor: tubeBlue,
+          transform: "translateY(-50%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 2,
+        }}
+      >
+        <span
+          style={{
+            color: "white",
+            fontWeight: "bold",
+            fontFamily: tubeFont.style.fontFamily,
+            letterSpacing: "0.2em",
+            fontSize: 16,
+            textTransform: "uppercase",
+          }}
+        >
+          JOHN SEONG
+        </span>
+      </div>
+    </div>
+  );
+}
+
 
 function Model({ modelPath }: { modelPath: string }) {
   const obj = useLoader(OBJLoader, modelPath);
@@ -88,9 +154,7 @@ export default function Portfolio() {
     <div className="flex flex-col gap-6" style={{ background: tubeGreyBg, color: tubeText }}>
       {/* Header banner */}
       <div className="text-center py-8 bg-white border-b-8" style={{ borderColor: tubeBlue }}>
-        <h1 className="text-6xl uppercase tracking-widest" style={{ color: tubeRed }}>
-          JOHN SEONG
-        </h1>
+        <TubeRoundel />
         <p className="text-xl mt-2">SOFTWARE ARCHITECT. FILMMAKER. PILOT.</p>
         {/* Awards & Visa */}
         <div className="flex justify-center items-center gap-6 mt-4">
