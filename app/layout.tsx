@@ -85,37 +85,38 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
 
         <footer className="text-center py-6 mt-auto border-t-4 border-[#003688] bg-[#f5f5f5] text-[#003688] text-sm font-light">
-  <p>
-    &copy; {new Date().getFullYear()} John Seong
-    <br />
-    <span className="text-gray-500">wonmor@gmail.com</span>
-  </p>
+          <p>
+            &copy; {new Date().getFullYear()} John Seong
+            <br />
+            <span className="text-gray-500">wonmor@gmail.com</span>
+          </p>
 
-  {/* First image with caption */}
-  <div className="mt-6 flex flex-col items-center">
-    <Image
-      src="/IMG_3505.jpg"
-      alt="With iJustine"
-      width={320}
-      height={192}
-      style={{ objectFit: "contain" }}
-    />
-    <p className="italic text-xs mt-2">with iJustine, at Apple’s HQ</p>
-  </div>
+          {/* First image with caption */}
+          <div className="mt-6 flex flex-col items-center">
+            <Image
+              src="/IMG_3505.jpg"
+              alt="With iJustine"
+              width={320}
+              height={192}
+              style={{ objectFit: "contain" }}
+            />
+            <p className="italic text-sm mt-2">with iJustine, at Apple’s HQ</p>
+          </div>
 
-  {/* Second image with caption */}
-  <div className="mt-6 flex flex-col items-center">
-    <Image
-      src="/IMG_0629.jpeg"
-      alt="With flight instructor"
-      width={320}
-      height={192}
-      style={{ objectFit: "contain" }}
-    />
-    <p className="italic text-xs mt-2">with my flight instructor at John Wayne Airport</p>
-  </div>
-</footer>
-
+          {/* Second image with caption */}
+          <div className="mt-6 flex flex-col items-center">
+            <Image
+              src="/IMG_0629.jpeg"
+              alt="With flight instructor"
+              width={320}
+              height={192}
+              style={{ objectFit: "contain" }}
+            />
+            <p className="italic text-sm mt-2">
+              with my flight instructor at John Wayne Airport
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );
