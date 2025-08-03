@@ -76,7 +76,7 @@ export default function RootLayout({
         {/* Main page content */}
         <main className="flex-grow">{children}</main>
 
-        <footer className="text-center py-6 mt-auto border-t-4 border-[#003688] bg-[#f5f5f5] text-[#003688] text-sm font-light">
+        <footer className="text-center py-6 mt-auto border-t-4 border-[#003688] bg-[#f5f5f5] text-[#003688] text-md font-light">
           <p>
             &copy; {new Date().getFullYear()} John Seong
             <br />
