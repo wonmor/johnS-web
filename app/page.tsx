@@ -143,16 +143,26 @@ export default function Portfolio() {
           <li>Featured on <a href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Sir David Clary’s Book</a></li>
           <li>Watch demo walkthrough: <a href="https://www.youtube.com/watch?v=kHcdvyaqslU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a></li>
         </ul>
-        <a href="https://www.electronvisual.org" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Visit ElectronVisual.org</a>
+        <a href="https://www.electronvisual.org" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2">Visit ElectronVisual.org</a>
         <a href="https://github.com/wonmor/ElectronVisualized" className="inline-block mt-2 px-4 py-2 text-blue-600 border border-blue-600 rounded hover:bg-blue-50">Source on GitHub</a>
 
-        <table><tr>
+      {/* App Store badge */}
+<div className="mt-6 flex justify-left">
+  <a
+    href="https://apps.apple.com/us/app/atomizer-ar/id6449015706"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Atomizer AR on the App Store"
+  >
+    <img
+      src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
+      alt="Download Atomizer AR on the App Store"
+      height={50}
+      style={{ height: 50, cursor: "pointer" }}
+    />
+  </a>
+</div>
 
-<td valign="middle"><img width="500" alt="Screenshot-1" src="docs/screenshot1.png" /></td>
-
-<td valign="middle"><img width="500" alt="Screenshot-2" src="docs/screenshot2.png" /></td>
-
-</tr></table>
       </section>
 
       {/* 3D Face Model */}
