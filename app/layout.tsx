@@ -36,14 +36,6 @@ export default function RootLayout({
           "flex flex-col min-h-screen bg-[#f5f5f5] text-[#003688]",
         ].join(" ")}
       >
-        {/* Header styled like London Underground roundel */}
-        <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center justify-center gap-1">
-          <h1 className="text-4xl tracking-widest uppercase">ORCHESTR INC.</h1>
-          <div className="bg-white h-2 w-36 mt-2 mb-1"></div>
-          <p className="text-sm uppercase tracking-wide">
-            A DELAWARE COMPANY BASED IN LONDON
-          </p>
-        </header>
 
         {/* Navigation bar */}
         <nav className="w-fit m-auto mt-6 mb-10 flex flex-wrap justify-center gap-6 text-sm font-medium text-[#003688]">

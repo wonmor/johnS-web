@@ -255,6 +255,7 @@ export default function Portfolio() {
             >
               Sir David Clary’s Book
             </a>
+            ,{" "}<i className="text-sm">former President of Magdalene College, Oxford</i>
           </li>
           <li>
             Watch demo walkthrough:{" "}
