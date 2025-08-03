@@ -1,6 +1,6 @@
 import Script from "next/script";
 import localFont from "next/font/local";
-import Image from "next/image";  // <-- import Image component
+import Image from "next/image"; // <-- import Image component
 import "./globals.css";
 
 // Load custom London Underground font
@@ -41,7 +41,7 @@ export default function RootLayout({
           <h1 className="text-4xl tracking-widest uppercase">ORCHESTR INC.</h1>
           <div className="bg-white h-2 w-36 mt-2 mb-1"></div>
           <p className="text-sm uppercase tracking-wide">
-           A DELAWARE COMPANY BASED IN LONDON
+            A DELAWARE COMPANY BASED IN LONDON
           </p>
         </header>
 
@@ -84,26 +84,38 @@ export default function RootLayout({
         {/* Main page content */}
         <main className="flex-grow">{children}</main>
 
-        {/* Footer styled like Tube signage */}
         <footer className="text-center py-6 mt-auto border-t-4 border-[#003688] bg-[#f5f5f5] text-[#003688] text-sm font-light">
-          <p>
-            &copy; {new Date().getFullYear()} John Seong
-            <br />
-            <span className="text-gray-500">wonmor@gmail.com</span>
-          </p>
+  <p>
+    &copy; {new Date().getFullYear()} John Seong
+    <br />
+    <span className="text-gray-500">wonmor@gmail.com</span>
+  </p>
 
-          {/* Image added below the email */}
-          <div className="mt-4 flex justify-center">
-      <Image
-  src="/IMG_0629.jpeg"
-  alt="Footer image"
-  width={200}
-  height={120} // replace 120 with your image's height proportionally
-  style={{ objectFit: "contain" }}
-/>
+  {/* First image with caption */}
+  <div className="mt-6 flex flex-col items-center">
+    <Image
+      src="/IMG_3505.jpg"
+      alt="With iJustine"
+      width={320}
+      height={192}
+      style={{ objectFit: "contain" }}
+    />
+    <p className="italic text-xs mt-2">with iJustine, at Apple’s HQ</p>
+  </div>
 
-          </div>
-        </footer>
+  {/* Second image with caption */}
+  <div className="mt-6 flex flex-col items-center">
+    <Image
+      src="/IMG_0629.jpeg"
+      alt="With flight instructor"
+      width={320}
+      height={192}
+      style={{ objectFit: "contain" }}
+    />
+    <p className="italic text-xs mt-2">with my flight instructor at John Wayne Airport</p>
+  </div>
+</footer>
+
       </body>
     </html>
   );
