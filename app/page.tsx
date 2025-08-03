@@ -79,7 +79,6 @@ function TubeRoundel() {
   );
 }
 
-
 function Model({ modelPath }: { modelPath: string }) {
   const obj = useLoader(OBJLoader, modelPath);
   const objRef = useRef<THREE.Object3D>();
@@ -102,7 +101,11 @@ function Model({ modelPath }: { modelPath: string }) {
     objRef.current.traverse((c) => {
       if (c instanceof THREE.Mesh) c.material.side = THREE.DoubleSide;
     });
-    objRef.current.rotation.set(MathUtils.degToRad(180), MathUtils.degToRad(40), MathUtils.degToRad(90));
+    objRef.current.rotation.set(
+      MathUtils.degToRad(180),
+      MathUtils.degToRad(40),
+      MathUtils.degToRad(90)
+    );
     objRef.current.scale.setScalar(20);
     const bbox = new Box3().setFromObject(objRef.current);
     const center = new Vector3();
@@ -148,36 +151,48 @@ function GLTFModel({ modelPath }: { modelPath: string }) {
   return <primitive object={gltf.scene} ref={objRef} />;
 }
 
-
 export default function Portfolio() {
   return (
-    <div className="flex flex-col gap-6" style={{ background: tubeGreyBg, color: tubeText }}>
+    <div
+      className="flex flex-col gap-6"
+      style={{ background: tubeGreyBg, color: tubeText }}
+    >
       {/* Header banner */}
-      <div className="text-center py-8 bg-white border-b-8" style={{ borderColor: tubeBlue }}>
+      <div
+        className="text-center py-8 bg-white border-b-8"
+        style={{ borderColor: tubeBlue }}
+      >
         <TubeRoundel />
         <p className="text-xl mt-2">SOFTWARE ARCHITECT. FILMMAKER. PILOT.</p>
         {/* Awards & Visa */}
         <div className="flex justify-center items-center gap-6 mt-4">
-        <div
-  className="rounded-full border-4 overflow-hidden"
-  style={{
-    borderColor: tubeRed,
-    width: 100,
-    height: 100,
-    boxSizing: "border-box",  // include border in size
-  }}
->
-  <Image
-    src="/reach-logo.jpg"
-    alt="WWDC23 Scholar"
-    width={100}
-    height={100}
-    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-  />
-</div>
+          <div
+            className="rounded-full border-4 overflow-hidden"
+            style={{
+              borderColor: tubeRed,
+              width: 100,
+              height: 100,
+              boxSizing: "border-box", // include border in size
+            }}
+          >
+            <Image
+              src="/reach-logo.jpg"
+              alt="WWDC23 Scholar"
+              width={100}
+              height={100}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          </div>
 
           <div className="text-left">
-            <p className="font-semibold">Apple WWDC23 Swift Student Challenge Winner</p>
+            <p className="font-semibold">
+              Apple WWDC23 Swift Student Challenge Winner
+            </p>
             <p className="flex items-center gap-1 mt-2">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
               <span>UK Global Talent Visa Holder</span>
@@ -188,85 +203,203 @@ export default function Portfolio() {
 
       {/* Gadolinium 4f⁷ Shell GLTF Model */}
       <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg mt-6">
-        <Suspense fallback={<div className="p-20 text-center text-white font-thin text-3xl">Loading Gadolinium Atom...</div>}>
+        <Suspense
+          fallback={
+            <div className="p-20 text-center text-white font-thin text-3xl">
+              Loading Gadolinium Atom...
+            </div>
+          }
+        >
           <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
             <ambientLight intensity={2} />
             <GLTFModel modelPath="/model-4.gltf" />
           </Canvas>
         </Suspense>
         <div className="text-center p-6 bg-gray-900 text-white">
-          <h4 className="text-2xl tracking-wide">Gadolinium Atom – 4f⁷ Electron Shell</h4>
-          <p className="mt-2 text-gray-300">A 3D quantum orbital visualization of Gadolinium’s outermost electron configuration, modeled from its 4f⁷ shell. Generated using my own tool: ElectronVisualized. You can view it on my iOS app Atomizer AR as well.</p>
+          <h4 className="text-2xl tracking-wide">
+            Gadolinium Atom – 4f⁷ Electron Shell
+          </h4>
+          <p className="mt-2 text-gray-300">
+            A 3D quantum orbital visualization of Gadolinium’s outermost
+            electron configuration, modeled from its 4f⁷ shell. Generated using
+            my own tool: ElectronVisualized. You can view it on my iOS app
+            Atomizer AR as well.
+          </p>
         </div>
       </div>
 
       {/* ElectronVisual Section */}
       <section className="max-w-4xl mx-auto bg-white rounded-md shadow-lg p-6">
-        <h3 className="text-3xl uppercase border-b-4 mb-4" style={{ borderColor: tubeBlue }}>ElectronVisual / Atomizer AR (Sept 2022 – Apr 2025)</h3>
+        <h3
+          className="text-3xl uppercase border-b-4 mb-4"
+          style={{ borderColor: tubeBlue }}
+        >
+          ElectronVisual / Atomizer AR (Sept 2022 – Apr 2025)
+        </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
-          <li>Quantum Mechanics Visualizer that uses DFT, across Web (Three.js), iOS, macOS, visionOS via Atomizer AR (10 K downloads)</li>
-          <li>Tech stack: Three.js, React, Redux, WebXR; Back-end: RDKit, SciPy, ASE, GPAW, Celery, Redis, Docker, AWS</li>
-          <li>Featured on <a href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Sir David Clary’s Book</a></li>
-          <li>Watch demo walkthrough: <a href="https://www.youtube.com/watch?v=kHcdvyaqslU" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a></li>
+          <li>
+            Quantum Mechanics Visualizer that uses DFT, across Web (Three.js),
+            iOS, macOS, visionOS via Atomizer AR (10 K downloads)
+          </li>
+          <li>
+            Tech stack: Three.js, React, Redux, WebXR; Back-end: RDKit, SciPy,
+            ASE, GPAW, Celery, Redis, Docker, AWS
+          </li>
+          <li>
+            Featured on{" "}
+            <a
+              href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Sir David Clary’s Book
+            </a>
+          </li>
+          <li>
+            Watch demo walkthrough:{" "}
+            <a
+              href="https://www.youtube.com/watch?v=kHcdvyaqslU"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              YouTube
+            </a>
+          </li>
         </ul>
-        <a href="https://www.electronvisual.org" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2">Visit ElectronVisual.org</a>
-        <a href="https://github.com/wonmor/ElectronVisualized" className="inline-block mt-2 px-4 py-2 text-blue-600 border border-blue-600 rounded hover:bg-blue-50">Source on GitHub</a>
+        <a
+          href="https://www.electronvisual.org"
+          className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2"
+        >
+          Visit ElectronVisual.org
+        </a>
+        <a
+          href="https://github.com/wonmor/ElectronVisualized"
+          className="inline-block mt-2 px-4 py-2 text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
+        >
+          Source on GitHub
+        </a>
 
-      {/* App Store badge */}
-<div className="mt-6 flex justify-left">
-  <a
-    href="https://apps.apple.com/us/app/atomizer-ar/id6449015706"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Atomizer AR on the App Store"
-  >
-    <img
-      src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
-      alt="Download Atomizer AR on the App Store"
-      height={50}
-      style={{ height: 50, cursor: "pointer" }}
-    />
-  </a>
-</div>
-
+        {/* App Store badge */}
+        <div className="mt-6 flex justify-left">
+          <a
+            href="https://apps.apple.com/us/app/atomizer-ar/id6449015706"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Atomizer AR on the App Store"
+          >
+            <img
+              src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
+              alt="Download Atomizer AR on the App Store"
+              height={50}
+              style={{ height: 50, cursor: "pointer" }}
+            />
+          </a>
+        </div>
       </section>
 
       {/* 3D Face Model */}
       <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg">
-        <Suspense fallback={<div className="p-20 text-center text-white font-thin text-3xl">Loading 3D Model...</div>}>
-          <Canvas style={{ height: 400 }} camera={{ position: [0,0,5] }}>
+        <Suspense
+          fallback={
+            <div className="p-20 text-center text-white font-thin text-3xl">
+              Loading 3D Model...
+            </div>
+          }
+        >
+          <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
             <ambientLight intensity={3} />
             <Model modelPath="face_model1.obj" />
           </Canvas>
         </Suspense>
         <div className="text-center p-6 bg-gray-900 text-white">
-          <h4 className="text-2xl tracking-wide">3D Face Scan only using an iPhone</h4>
-          <p className="mt-2 text-gray-300">Portable, real‑time face scanning app I developed for lenses design.</p>
+          <h4 className="text-2xl tracking-wide">
+            3D Face Scan only using an iPhone
+          </h4>
+          <p className="mt-2 text-gray-300">
+            Portable, real‑time face scanning app I developed for lenses design.
+          </p>
         </div>
       </div>
 
       {/* OpticALLY Section */}
       <section className="max-w-4xl mx-auto bg-white rounded-md shadow-md p-6">
-        <h3 className="text-3xl uppercase border-b-4 mb-4" style={{ borderColor: tubeBlue }}>OpticALLY – Bespoke Eyewear Face Scanner</h3>
+        <h3
+          className="text-3xl uppercase border-b-4 mb-4"
+          style={{ borderColor: tubeBlue }}
+        >
+          OpticALLY – Bespoke Eyewear Face Scanner
+        </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
-          <li>iOS app using Swift & Objective‑C++ with C++ back‑end for ICP, feature-based pose estimation, meshing, point-cloud registration</li>
-          <li>TrueDepth face scan with full point cloud registration—novel method with wide industry interest</li>
+          <li>
+            iOS app using Swift & Objective‑C++ with C++ back‑end for ICP,
+            feature-based pose estimation, meshing, point-cloud registration
+          </li>
+          <li>
+            TrueDepth face scan with full point cloud registration—novel method
+            with wide industry interest
+          </li>
           <li>U.S. Provisional Patent pending (No. 63/727,879)</li>
-          <li>Product walkthrough demo: <a href="https://www.youtube.com/watch?v=LqiZKoXhtDA" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a></li>
+          <li>
+            Product walkthrough demo:{" "}
+            <a
+              href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              YouTube
+            </a>
+          </li>
+
+                 {/* App Store badge */}
+        <div className="mt-6 flex justify-left">
+          <a
+            href="https://apps.apple.com/us/app/3d-face-scan-by-optically/id6468313142?l=en-GB"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="OpticALLY on the App Store"
+          >
+            <img
+              src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
+              alt="Download OpticALLY on the App Store"
+              height={50}
+              style={{ height: 50, cursor: "pointer" }}
+            />
+          </a>
+        </div>
         </ul>
       </section>
 
       {/* Experience Section */}
       <section className="max-w-4xl mx-auto bg-white rounded-md shadow-md p-6">
-        <h3 className="text-3xl uppercase border-b-4 mb-4" style={{ borderColor: tubeBlue }}>Experience</h3>
+        <h3
+          className="text-3xl uppercase border-b-4 mb-4"
+          style={{ borderColor: tubeBlue }}
+        >
+          Experience
+        </h3>
         <div className="space-y-6 text-lg">
           <div>
-            <h4 className="text-2xl font-semibold">Reach Media Group – Senior Software Engineer (2025–)</h4>
-            <p>Developing computer vision pipelines in C++ & Python (OpenCV, linear algebra), full-stack iOS, Objective-C, Swift, Vue based systems.</p>
+            <h4 className="text-2xl font-semibold">
+              Reach Media Group – Senior Software Engineer (2025–)
+            </h4>
+            <p>
+              Developing computer vision pipelines in C++ & Python (OpenCV,
+              linear algebra), full-stack iOS, Objective-C, Swift, Vue based
+              systems.
+            </p>
           </div>
           <div>
-            <h4 className="text-2xl font-semibold">Seoul National University – Research Intern (Jul 2023)</h4>
-            <p>Improved molecular visualizer using Python (SciPy, RDKit); GUI for AutoDock Vina; gained experience in Docker and server orchestration under Prof. Juyong Lee.</p>
+            <h4 className="text-2xl font-semibold">
+              Seoul National University – Research Intern (Jul 2023)
+            </h4>
+            <p>
+              Improved molecular visualizer using Python (SciPy, RDKit); GUI for
+              AutoDock Vina; gained experience in Docker and server
+              orchestration under Prof. Juyong Lee.
+            </p>
           </div>
         </div>
       </section>
