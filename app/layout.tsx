@@ -1,5 +1,6 @@
 import Script from "next/script";
 import localFont from "next/font/local";
+import Image from "next/image";  // <-- import Image component
 import "./globals.css";
 
 // Load custom London Underground font
@@ -90,6 +91,18 @@ export default function RootLayout({
             <br />
             <span className="text-gray-500">wonmor@gmail.com</span>
           </p>
+
+          {/* Image added below the email */}
+          <div className="mt-4 flex justify-center">
+      <Image
+  src="/IMG_0629.jpeg"
+  alt="Footer image"
+  width={200}
+  height={120} // replace 120 with your image's height proportionally
+  style={{ objectFit: "contain" }}
+/>
+
+          </div>
         </footer>
       </body>
     </html>
