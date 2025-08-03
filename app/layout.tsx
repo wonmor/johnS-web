@@ -109,6 +109,10 @@ export default function RootLayout({
             </p>
           </div>
         </footer>
+
+<div className="flex justify-center mt-10 mb-6">
+        <h1 className="text-4xl tracking-widest uppercase">COMPUTER<br />VISION. SORTED.</h1>
+        </div>
            {/* Header styled like London Underground roundel */}
         <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center justify-center gap-1">
           <h1 className="text-4xl tracking-widest uppercase">ORCHESTR INC.</h1>
