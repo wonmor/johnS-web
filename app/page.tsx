@@ -67,12 +67,12 @@ function TubeRoundel() {
             color: "white",
             fontWeight: "bold",
             fontFamily: tubeFont.style.fontFamily,
-            letterSpacing: "0.2em",
+            letterSpacing: "0.05em",
             fontSize: 16,
             textTransform: "uppercase",
           }}
         >
-          JOHN SEONG
+          WONMO SEONG
         </span>
       </div>
     </div>
