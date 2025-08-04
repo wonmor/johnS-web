@@ -144,27 +144,27 @@ function CityOfLondonLogo() {
       xmlns="http://www.w3.org/2000/svg"
       className="mr-4"
     >
-      {/* Shield shape: white fill with subtle border */}
-      <path
-        d="M30 0 
-           C10 0, 5 25, 5 45 
-           C5 70, 30 80, 30 80 
-           C30 80, 55 70, 55 45 
-           C55 25, 50 0, 30 0Z"
-        fill="white"
-        stroke="#e32017"
-        strokeWidth="2"
-      />
+      <g transform="translate(0,80) scale(1,-1)">
+        {/* Shield shape: white fill with subtle border */}
+        <path
+          d="M30 0 
+             C10 0, 5 25, 5 45 
+             C5 70, 30 80, 30 80 
+             C30 80, 55 70, 55 45 
+             C55 25, 50 0, 30 0Z"
+          fill="white"
+          stroke="#e32017"
+          strokeWidth="2"
+        />
 
-      
-{/* Red circle near top */}
-<circle cx="30" cy="20" r="6" fill="#e32017" />
+        {/* Red circle near top */}
+        <circle cx="30" cy="20" r="6" fill="#e32017" />
 
-{/* Small red dots near corners */}
-<circle cx="15" cy="40" r="3" fill="#e32017" />
-<circle cx="45" cy="40" r="3" fill="#e32017" />
+        {/* Small red dots near corners */}
+<circle cx="20" cy="40" r="3" fill="#e32017" />
+<circle cx="40" cy="40" r="3" fill="#e32017" />
 
-
+      </g>
     </svg>
   );
 }
