@@ -36,7 +36,6 @@ export default function RootLayout({
           "flex flex-col min-h-screen bg-[#f5f5f5] text-[#003688]",
         ].join(" ")}
       >
-
         {/* Navigation bar */}
         <nav className="w-fit m-auto mt-6 mb-10 flex flex-wrap justify-center gap-6 text-md font-medium text-[#003688]">
           <a
@@ -110,19 +109,62 @@ export default function RootLayout({
           </div>
         </footer>
 
-<div className="flex justify-center mt-10 mb-6">
-        <h1 className="text-4xl tracking-widest uppercase">COMPUTER<br />VISION. SORTED.</h1>
+        <div className="flex justify-center mt-10 mb-6">
+          <h1 className="text-4xl tracking-widest uppercase">
+            COMPUTER
+            <br />
+            VISION. SORTED.
+          </h1>
         </div>
-           {/* Header styled like London Underground roundel */}
+        {/* Header styled like London Underground roundel */}
         <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center justify-center gap-1">
-          <h1 className="text-4xl tracking-widest uppercase">ORCHESTR INC.</h1>
+          <CityOfLondonLogo />
+          <h1 className="text-4xl tracking-widest uppercase mt-2">
+            ORCHESTR INC.
+          </h1>
           <div className="bg-white h-2 w-36 mt-2 mb-1"></div>
           <p className="text-sm uppercase tracking-wide">
-            A DELAWARE COMPANY BASED IN LONDON<br />
+            A DELAWARE COMPANY BASED IN LONDON
+            <br />
             UK 15387031
           </p>
         </header>
       </body>
     </html>
+  );
+}
+
+function CityOfLondonLogo() {
+  return (
+    <svg
+      width="60"
+      height="80"
+      viewBox="0 0 60 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="mr-4"
+    >
+      {/* Shield shape: white fill with subtle border */}
+      <path
+        d="M30 0 
+           C10 0, 5 25, 5 45 
+           C5 70, 30 80, 30 80 
+           C30 80, 55 70, 55 45 
+           C55 25, 50 0, 30 0Z"
+        fill="white"
+        stroke="#e32017"
+        strokeWidth="2"
+      />
+
+      
+{/* Red circle near top */}
+<circle cx="30" cy="20" r="6" fill="#e32017" />
+
+{/* Small red dots near corners */}
+<circle cx="15" cy="40" r="3" fill="#e32017" />
+<circle cx="45" cy="40" r="3" fill="#e32017" />
+
+
+    </svg>
   );
 }
