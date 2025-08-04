@@ -116,11 +116,11 @@ export default function RootLayout({
         <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center justify-center gap-1">
           <p>COMPUTER VISION. SORTED.</p>
           <h1 className="text-4xl tracking-widest uppercase mt-2">
-            ORCHESTR INC.
+            ORCHESTR EUROPE LTD.
           </h1>
           <div className="bg-white h-2 w-36 mt-2 mb-1"></div>
           <p className="text-sm uppercase tracking-wide">
-            A DELAWARE COMPANY BASED IN LONDON
+            A COMPANY BASED IN LONDON
                <br />
             UK 15387031
           </p>
