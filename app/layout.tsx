@@ -112,22 +112,17 @@ export default function RootLayout({
           </div>
         </footer>
 
-        <div className="flex justify-center mt-10 mb-6">
-          <h1 className="text-4xl tracking-widest uppercase">
-            COMPUTER
-            <br />
-            VISION. SORTED.
-          </h1>
-        </div>
         {/* Header styled like London Underground roundel */}
         <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center justify-center gap-1">
-          <CityOfLondonLogo />
+          <p>COMPUTER VISION. SORTED.</p>
           <h1 className="text-4xl tracking-widest uppercase mt-2">
             ORCHESTR INC.
           </h1>
           <div className="bg-white h-2 w-36 mt-2 mb-1"></div>
           <p className="text-sm uppercase tracking-wide">
-            A DELAWARE COMPANY, BASED IN LONDON
+            A DELAWARE COMPANY BASED IN LONDON
+               <br />
+            UK 15387031
           </p>
         </header>
       </body>
