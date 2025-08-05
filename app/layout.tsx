@@ -121,13 +121,12 @@ export default function RootLayout({
         </div>
         {/* Header styled like London Underground roundel */}
         <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center justify-center gap-1">
-          <CityOfLondonLogo />
           <h1 className="text-4xl tracking-widest uppercase mt-2">
             ORCHESTR<br />EUROPE LTD.
           </h1>
           <div className="bg-white h-2 w-36 mt-2 mb-1"></div>
           <p className="text-sm uppercase tracking-wide">
-            MY COMPANY BASED IN LONDON
+            SAN FRANCISCO AND LONDON
                <br />
             UK 15387031
           </p>
