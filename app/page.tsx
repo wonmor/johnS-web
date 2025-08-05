@@ -197,6 +197,10 @@ export default function Portfolio() {
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
               <span>UK Global Talent Visa Holder</span>
             </p>
+               <p className="flex items-center gap-1 mt-2">
+              <Image src="/american-flag.png" alt="American Flag" width={24} height={16} />
+              <span>US O-1A Extraordinary Ability Visa</span>
+            </p>
           </div>
         </div>
       </div>
