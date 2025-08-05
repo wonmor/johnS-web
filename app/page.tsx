@@ -205,6 +205,8 @@ export default function Portfolio() {
             <p className="flex items-center gap-1 mt-2">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
               <span>UK Global Talent Visa Holder</span>
+            
+              <span className="text-gray-500 italic">ILR route</span>
             </p>
           </div>
         </div>

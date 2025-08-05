@@ -2,6 +2,7 @@ import Script from "next/script";
 import localFont from "next/font/local";
 import Image from "next/image"; // <-- import Image component
 import "./globals.css";
+import Head from "next/head";
 
 // Load custom London Underground font
 const tubeFont = localFont({
@@ -21,6 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <meta name="apple-itunes-app" content="app-id=6449015706" />
+      </Head>
       <Script
         id="adsbygoogle-init"
         strategy="afterInteractive"
@@ -159,7 +163,9 @@ function CityOfLondonLogo() {
         {/* Red circle near top */}
         <circle cx="30" cy="20" r="6" fill="#e32017" />
 
-
+        {/* Small red dots near corners */}
+<circle cx="20" cy="40" r="3" fill="#e32017" />
+<circle cx="40" cy="40" r="3" fill="#e32017" />
 
       </g>
     </svg>
