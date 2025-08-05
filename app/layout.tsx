@@ -127,7 +127,7 @@ export default function RootLayout({
           </h1>
           <div className="bg-white h-2 w-36 mt-2 mb-1"></div>
           <p className="text-sm uppercase tracking-wide">
-            A COMPANY BASED IN LONDON
+            MY COMPANY BASED IN LONDON
                <br />
             UK 15387031
           </p>
