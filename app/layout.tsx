@@ -54,6 +54,11 @@ export default function RootLayout({
           "flex flex-col min-h-screen bg-[#f5f5f5] text-[#003688]",
         ].join(" ")}
       >
+        {/* Thin gray bar at the very top */}
+        <div className="w-full bg-gray-200 text-center text-xs text-gray-700 py-1">
+          NO COOKIES COLLECTED
+        </div>
+
         <main className="flex-grow mb-10">{children}</main>
 
         {/* Always-render the modals, but hidden by default */}
