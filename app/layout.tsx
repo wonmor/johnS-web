@@ -66,12 +66,23 @@ export default function RootLayout({
         <EulaModal />
 
         <footer className="text-center py-6 mt-auto border-t-4 border-[#003688] bg-[#f5f5f5] text-[#003688] text-md font-light">
-          <p>
-            &copy; {new Date().getFullYear()} John Seong
-            <br />
-          </p>
-          {/* First image with caption */}
-          <div className="mt-6 flex flex-col items-center">
+
+    <div className="mt-6 flex flex-col items-center">
+         <iframe
+  width="500"
+  height="250"
+  src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
+  title="YouTube video player"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerPolicy="strict-origin-when-cross-origin"
+  allowFullScreen
+></iframe>
+   <p className="italic text-sm mt-2">
+              Microsoft Flight Simulator with brain-computer interface (BCI) control
+            </p>
+</div>
+
+    <div className="mt-6 flex flex-col items-center">
             <Image
               src="/IMG_3505.jpg"
               alt="With iJustine"
@@ -140,8 +151,8 @@ function PolicyModal() {
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
         <h2 className="text-lg font-bold mb-2">Privacy Policy</h2>
         <p className="text-sm mb-4">
-          We do not collect any usage of cookie data. Your
-          rights under UK GDPR apply.
+          We do not collect any usage of cookie data. Your rights under UK GDPR
+          apply.
         </p>
         <button
           id="privacy-close"
@@ -163,8 +174,8 @@ function EulaModal() {
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
         <h2 className="text-lg font-bold mb-2">EULA</h2>
         <p className="text-sm mb-4">
-          Any software made by this company is licensed (UK law): no reverse engineering or
-          redistribution.
+          Any software made by this company is licensed (UK law): no reverse
+          engineering or redistribution.
         </p>
         <button
           id="eula-close"
