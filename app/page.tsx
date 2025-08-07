@@ -371,7 +371,7 @@ export default function Portfolio() {
             3D Face Scan only using an iPhone
           </h4>
           <p className="mt-2 text-gray-300">
-            Portable, real‑time face scanning app I developed for lenses design.
+            Portable, real‑time 3D face scanning app I developed for medical application.
           </p>
         </div>
       </div>
