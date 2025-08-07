@@ -293,7 +293,7 @@ export default function Portfolio() {
               <div className="text-center p-6 bg-gray-900 text-white">
                 <h4 className="text-2xl tracking-wide">Benzene Molecule – C₆H₆</h4>
                 <p className="mt-2 text-gray-300">
-                  Electron density calculated using DFT, with molecular orbital visualization generated via Hartree–Fock methods. Ideal for educational demonstrations and computational chemistry insights.
+                  Electron density calculated using DFT, with molecular orbital visualization generated via Hartree–Fock methods. By John Seong, 2023.
                 </p>
               </div>
             </div>
