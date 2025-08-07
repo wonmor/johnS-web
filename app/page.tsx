@@ -9,6 +9,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { Box3, Vector3, MathUtils } from "three";
 import Link from "next/link";
+import { OrbitControls } from "@react-three/drei";
 
 const tubeFont = localFont({
   src: "../public/LondonTube.ttf",
@@ -42,7 +43,7 @@ function TubeRoundel() {
           width: 70,
           height: 70,
           borderRadius: "50%",
-          backgroundColor: "white", // or match page background
+          backgroundColor: "white",
           zIndex: 1,
         }}
       />
@@ -176,7 +177,7 @@ export default function Portfolio() {
               borderColor: tubeRed,
               width: 100,
               height: 100,
-              boxSizing: "border-box", // include border in size
+              boxSizing: "border-box",
             }}
           >
             <Image
@@ -197,15 +198,6 @@ export default function Portfolio() {
             <p className="font-semibold">
               Apple WWDC23 Swift Student Challenge Winner
             </p>
-            {/* <p className="flex items-center gap-1 mt-2">
-              <Image
-                src="/american-flag.png"
-                alt="American Flag"
-                width={24}
-                height={16}
-              />
-              <span>US O-1A Extraordinary Ability Visa</span>
-            </p> */}
             <p className="flex items-center gap-1 mt-2">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
               <span>UK Global Talent Visa Holder</span>
@@ -262,6 +254,7 @@ export default function Portfolio() {
           <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
             <ambientLight intensity={2} />
             <GLTFModel modelPath="/model-4.gltf" />
+            <OrbitControls enablePan enableZoom enableRotate />
           </Canvas>
         </Suspense>
         <div className="text-center p-6 bg-gray-900 text-white">
@@ -295,7 +288,7 @@ export default function Portfolio() {
             ASE, GPAW, Celery, Redis, Docker, AWS
           </li>
           <li>
-            Featured on{" "}
+            Featured on{' '}
             <a
               href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
               target="_blank"
@@ -304,13 +297,13 @@ export default function Portfolio() {
             >
               Sir David Clary’s Book
             </a>
-            ,{" "}
+            ,{' '}
             <i className="text-sm">
               former President of Magdalen College, Oxford
             </i>
           </li>
           <li>
-            Watch demo walkthrough:{" "}
+            Watch demo walkthrough:{' '}
             <a
               href="https://www.youtube.com/watch?v=kHcdvyaqslU"
               target="_blank"
@@ -364,6 +357,7 @@ export default function Portfolio() {
           <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
             <ambientLight intensity={3} />
             <Model modelPath="face_model1.obj" />
+            <OrbitControls enablePan enableZoom enableRotate />
           </Canvas>
         </Suspense>
         <div className="text-center p-6 bg-gray-900 text-white">
@@ -394,7 +388,7 @@ export default function Portfolio() {
           </li>
           <li>U.S. Provisional Patent pending (No. 63/727,879)</li>
           <li>
-            Product walkthrough demo:{" "}
+            Product walkthrough demo:{' '}
             <a
               href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
               target="_blank"
