@@ -371,7 +371,7 @@ export default function Portfolio() {
             3D Face Scan only using an iPhone
           </h4>
           <p className="mt-2 text-gray-300">
-            Portable, medical-grade 3D face scanning app I developed for iDevices.
+            Portable, real‑time 3D face scanning app I developed for medical (vision and dental) applications.
           </p>
         </div>
       </div>
@@ -386,12 +386,11 @@ export default function Portfolio() {
         </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
           <li>
-            iOS app using Swift & Objective‑C++ with C++ back‑end for ICP,
-            feature-based pose estimation, meshing, point-cloud registration
+            iOS app using Swift & Objective‑C++ with C++ back‑end
           </li>
           <li>
-            TrueDepth face scan with full point cloud registration—novel method
-            with wide industry interest
+            TrueDepth face scan with full point cloud processing using ICP,
+            feature-based pose estimation, meshing, and point-cloud registration
           </li>
           <li>U.S. Provisional Patent pending (No. 63/727,879)</li>
           <li>
