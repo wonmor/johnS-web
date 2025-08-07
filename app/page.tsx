@@ -474,7 +474,7 @@ export default function Portfolio() {
             TrueDepth face scan with full point cloud processing using ICP,
             feature-based pose estimation, meshing, and point-cloud registration
           </li>
-          <li>U.S. Provisional Patent pending (No. 63/727,879) for the method of rough point cloud alignment only using pitch, roll, and yaw values from head pose estimation</li>
+          <li>U.S. Provisional Patent pending (No. 63/727,879) for the method of rough point cloud alignment only using yaw, pitch, and roll values from the head pose estimation</li>
         </ul>
       </section>
 
