@@ -164,10 +164,10 @@ export default function Portfolio() {
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       // Pause auto-switch when scrolling
       if (autoSwitchInterval.current) clearInterval(autoSwitchInterval.current);
-      // Restart auto-switch after 3s of no scroll
+      // Restart auto-switch after 5s of no scroll
       scrollTimeout.current = window.setTimeout(() => {
         startAutoSwitch();
-      }, 3000);
+      }, 5000);
 
       const gadTop = gadoliniumRef.current?.offsetTop || 0;
       const threshold = window.innerHeight / 2; // Trigger point at half the viewport height
@@ -188,7 +188,7 @@ export default function Portfolio() {
     if (autoSwitchInterval.current) clearInterval(autoSwitchInterval.current);
     autoSwitchInterval.current = window.setInterval(() => {
       setActiveTab((prev) => (prev === "benzene" ? "gadolinium" : "benzene"));
-    }, 3000);
+    }, 5000);
   };
 
   return (
@@ -361,9 +361,7 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   A custom-made 3D electron density visualization of
-                  Gadolinium’s outermost electron configuration, modeled from
-                  its 4f⁷ shell. Generated using my own tool:
-                  ElectronVisualized.
+                  Gadolinium’s outermost electron configuration, modeled using spherical harmonics on ElectronVisualized.
                 </p>
               </div>
             </div>
