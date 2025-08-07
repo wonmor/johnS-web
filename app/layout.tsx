@@ -135,7 +135,7 @@ function PolicyModal() {
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
         <h2 className="text-lg font-bold mb-2">Privacy Policy</h2>
         <p className="text-sm mb-4">
-          We collect minimal data (usage, cookies) to improve service. Your
+          We do not collect any usage of cookie data. Your
           rights under UK GDPR apply.
         </p>
         <button
