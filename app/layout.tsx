@@ -89,7 +89,7 @@ export default function RootLayout({
           <div className="mt-6 flex flex-col items-center">
             <iframe
             className="m-auto overflow-hidden rounded-lg shadow-lg"
-              width="400"
+              width="350"
               height="250"
               src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
               title="YouTube video player"
