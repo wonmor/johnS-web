@@ -56,6 +56,10 @@ export default function RootLayout({
       >
         <main className="flex-grow">{children}</main>
 
+        {/* Always-render the modals, but hidden by default */}
+        <PolicyModal />
+        <EulaModal />
+
         <footer className="text-center py-6 mt-auto border-t-4 border-[#003688] bg-[#f5f5f5] text-[#003688] text-md font-light">
           <p>
             &copy; {new Date().getFullYear()} John Seong
@@ -87,11 +91,6 @@ export default function RootLayout({
             </p>
           </div>
         </footer>
-
-               {/* Always-render the modals, but hidden by default */}
-        <PolicyModal />
-        <EulaModal />
-
 
         <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center gap-1">
           <CityOfLondonLogo />
