@@ -262,7 +262,7 @@ export default function Portfolio() {
             Gadolinium Atom – 4f⁷ Electron Shell
           </h4>
           <p className="mt-2 text-gray-300">
-            A 3D quantum orbital visualization of Gadolinium’s outermost
+            A custom-made 3D quantum orbital visualization of Gadolinium’s outermost
             electron configuration, modeled from its 4f⁷ shell. Generated using
             my own tool: ElectronVisualized. You can view it on my iOS app
             Atomizer AR as well.
