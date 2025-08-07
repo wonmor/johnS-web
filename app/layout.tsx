@@ -88,6 +88,7 @@ export default function RootLayout({
           </div>
           <div className="mt-6 flex flex-col items-center">
             <iframe
+            className="m-auto overflow-hidden rounded-lg shadow-lg"
               width="500"
               height="250"
               src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
