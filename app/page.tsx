@@ -362,7 +362,7 @@ export default function Portfolio() {
         </Suspense>
         <div className="text-center p-6 bg-gray-900 text-white">
           <h4 className="text-2xl tracking-wide">
-            3D Face Scan only using an iPhone
+            3D Face Scan of myself, only using an iPhone
           </h4>
           <p className="mt-2 text-gray-300">
             Portable, real‑time 3D face scanning app I developed for medical (vision and dental) applications.
