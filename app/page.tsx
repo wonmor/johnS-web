@@ -154,6 +154,8 @@ function GLTFModel({ modelPath }: { modelPath: string }) {
 }
 
 export default function Portfolio() {
+  const [activeTab, setActiveTab] = useState<'gadolinium' | 'benzene'>('gadolinium');
+
   return (
     <div
       className="flex flex-col gap-6"
@@ -241,34 +243,89 @@ export default function Portfolio() {
           Flickr
         </a>
       </nav>
+{/* Gadolinium / Benzene Tabs */}
+<div className="max-w-4xl mx-auto bg-white rounded-md p-4 shadow-md">
+  <div className="flex justify-center gap-4 mb-4">
+    <button
+      className={`px-4 py-2 rounded ${
+        activeTab === 'gadolinium'
+          ? 'bg-[#003688] text-white'
+          : 'bg-white text-[#003688] border border-[#003688]'
+      }`}
+      onClick={() => setActiveTab('gadolinium')}
+    >
+      Gadolinium
+    </button>
+    <button
+      className={`px-4 py-2 rounded ${
+        activeTab === 'benzene'
+          ? 'bg-[#003688] text-white'
+          : 'bg-white text-[#003688] border border-[#003688]'
+      }`}
+      onClick={() => setActiveTab('benzene')}
+    >
+      Benzene
+    </button>
+  </div>
 
-      {/* Gadolinium 4f⁷ Shell GLTF Model */}
-      <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg">
-        <Suspense
-          fallback={
-            <div className="p-20 text-center text-white font-thin text-3xl">
-              Loading Gadolinium Atom...
-            </div>
-          }
-        >
-          <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
-            <ambientLight intensity={2} />
-            <GLTFModel modelPath="/model-4.gltf" />
-            <OrbitControls enablePan enableZoom enableRotate />
-          </Canvas>
-        </Suspense>
-        <div className="text-center p-6 bg-gray-900 text-white">
-          <h4 className="text-2xl tracking-wide">
-            Gadolinium Atom – 4f⁷ Electron Shell
-          </h4>
-          <p className="mt-2 text-gray-300">
-            A custom-made 3D electron density visualization of Gadolinium’s outermost
-            electron configuration, modeled from its 4f⁷ shell. Generated using
-            my own tool: ElectronVisualized. You can view it on my iOS app
-            Atomizer AR as well.
-          </p>
-        </div>
+  {activeTab === 'gadolinium' && (
+    <div className="bg-black rounded-md p-6 shadow-lg">
+      <Suspense
+        fallback={
+          <div className="p-20 text-center text-white font-thin text-3xl">
+            Loading Gadolinium Atom...
+          </div>
+        }
+      >
+        <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
+          <ambientLight intensity={2} />
+          <GLTFModel modelPath="/model-4.gltf" />
+          <OrbitControls enablePan enableZoom enableRotate />
+        </Canvas>
+      </Suspense>
+      <div className="text-center p-6 bg-gray-900 text-white">
+        <h4 className="text-2xl tracking-wide">
+          Gadolinium Atom – 4f⁷ Electron Shell
+        </h4>
+        <p className="mt-2 text-gray-300">
+          A custom-made 3D electron density visualization of Gadolinium’s
+          outermost electron configuration, modeled from its 4f⁷ shell.
+          Generated using my own tool: ElectronVisualized. You can view it
+          on my iOS app Atomizer AR as well.
+        </p>
       </div>
+    </div>
+  )}
+
+  {activeTab === 'benzene' && (
+    <div className="bg-black rounded-md p-6 shadow-lg">
+      <Suspense
+        fallback={
+          <div className="p-20 text-center text-white font-thin text-3xl">
+            Loading Benzene Model...
+          </div>
+        }
+      >
+        <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
+          <ambientLight intensity={2} />
+          <GLTFModel modelPath="/model-6.gltf" />
+          <OrbitControls enablePan enableZoom enableRotate />
+        </Canvas>
+      </Suspense>
+      <div className="text-center p-6 bg-gray-900 text-white">
+        <h4 className="text-2xl tracking-wide">
+          Benzene Molecule – C₆H₆
+        </h4>
+        <p className="mt-2 text-gray-300">
+          Electron density calculated using DFT, with molecular orbital
+          visualization generated via Hartree–Fock methods. Ideal for
+          educational demonstrations and computational chemistry insights.
+        </p>
+      </div>
+    </div>
+  )}
+</div>
+
 
       {/* ElectronVisual Section */}
       <section className="max-w-4xl mx-auto bg-white rounded-md shadow-lg p-6">
