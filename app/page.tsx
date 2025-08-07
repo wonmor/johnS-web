@@ -455,7 +455,7 @@ export default function Portfolio() {
           className="text-3xl uppercase border-b-4 mb-4"
           style={{ borderColor: tubeBlue }}
         >
-          OpticALLY – Portable 3D Avatar Scanner
+          OpticALLY – Portable 3D Head Scanner
         </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
           <li>
@@ -474,7 +474,7 @@ export default function Portfolio() {
             TrueDepth face scan with full point cloud processing using ICP,
             feature-based pose estimation, meshing, and point-cloud registration
           </li>
-          <li>U.S. Provisional Patent pending (No. 63/727,879)</li>
+          <li>U.S. Provisional Patent pending (No. 63/727,879) for the method of rough alignment using yaw, pitch, and roll values of the head</li>
         </ul>
       </section>
 
