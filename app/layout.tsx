@@ -158,7 +158,7 @@ function EulaModal() {
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
         <h2 className="text-lg font-bold mb-2">EULA</h2>
         <p className="text-sm mb-4">
-          This website is licensed (UK law): no reverse engineering or
+          Any software made by this company is licensed (UK law): no reverse engineering or
           redistribution.
         </p>
         <button
