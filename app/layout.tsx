@@ -1,8 +1,8 @@
 import Script from "next/script";
 import localFont from "next/font/local";
-import Image from "next/image";
 import Head from "next/head";
 import React from "react";
+import Image from "next/image";
 import "./globals.css";
 
 const tubeFont = localFont({
@@ -15,7 +15,11 @@ export const metadata = {
   description: "Hi, I’m John. I Love Engineering.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <Head>
@@ -43,7 +47,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           toggle('eula-btn',    'eula-modal',    'eula-close');
         `}
       </Script>
-      
 
       <body
         className={[
@@ -56,11 +59,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center gap-1">
           <CityOfLondonLogo />
           <h1 className="text-4xl tracking-widest uppercase mt-2">
-            ORCHESTR<br />EUROPE LTD.
+            ORCHESTR
+            <br />
+            EUROPE LTD.
           </h1>
           <div className="bg-white h-2 w-36 my-2" />
           <p className="text-sm uppercase tracking-wide">
-            A SOFTWARE COMPANY BASED IN<br />LONDON UK 15387031
+            A SOFTWARE COMPANY BASED IN
+            <br />
+            LONDON UK 15387031
           </p>
 
           <div className="mt-4 flex gap-3">
@@ -88,7 +95,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             &copy; {new Date().getFullYear()} John Seong
             <br />
           </p>
-          {/* …your footer images… */}
+          {/* First image with caption */}
+          <div className="mt-6 flex flex-col items-center">
+            <Image
+              src="/IMG_3505.jpg"
+              alt="With iJustine"
+              width={320}
+              height={192}
+              style={{ objectFit: "contain" }}
+            />
+            <p className="italic text-sm mt-2">with iJustine, at Apple’s HQ</p>
+          </div>
+
+          {/* Second image with caption */}
+          <div className="mt-6 flex flex-col items-center">
+            <Image
+              src="/IMG_0629.jpeg"
+              alt="With flight instructor"
+              width={320}
+              height={192}
+              style={{ objectFit: "contain" }}
+            />
+            <p className="italic text-sm mt-2">
+              with my flight instructor at John Wayne Airport
+            </p>
+          </div>
         </footer>
       </body>
     </html>
@@ -104,7 +135,8 @@ function PolicyModal() {
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
         <h2 className="text-lg font-bold mb-2">Privacy Policy</h2>
         <p className="text-sm mb-4">
-          We collect minimal data (usage, cookies) to improve service. Your rights under UK GDPR apply.
+          We collect minimal data (usage, cookies) to improve service. Your
+          rights under UK GDPR apply.
         </p>
         <button
           id="privacy-close"
@@ -126,7 +158,8 @@ function EulaModal() {
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
         <h2 className="text-lg font-bold mb-2">EULA</h2>
         <p className="text-sm mb-4">
-          This software is licensed (UK law): no reverse engineering or redistribution.
+          This software is licensed (UK law): no reverse engineering or
+          redistribution.
         </p>
         <button
           id="eula-close"
@@ -142,11 +175,21 @@ function EulaModal() {
 function CityOfLondonLogo() {
   return (
     <svg
-      width="80" height="80" viewBox="0 0 80 80"
-      fill="none" xmlns="http://www.w3.org/2000/svg"
+      width="80"
+      height="80"
+      viewBox="0 0 80 80"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
       className="mr-4"
     >
-      <circle cx="40" cy="40" r="36" fill="none" stroke="white" strokeWidth="8" />
+      <circle
+        cx="40"
+        cy="40"
+        r="36"
+        fill="none"
+        stroke="white"
+        strokeWidth="8"
+      />
     </svg>
   );
 }
