@@ -56,36 +56,6 @@ export default function RootLayout({
       >
         <main className="flex-grow">{children}</main>
 
-        <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center gap-1">
-          <CityOfLondonLogo />
-          <h1 className="text-4xl tracking-widest uppercase mt-2">
-            ORCHESTR
-            <br />
-            EUROPE LTD.
-          </h1>
-          <div className="bg-white h-2 w-36 my-2" />
-          <p className="text-sm uppercase tracking-wide">
-            A SOFTWARE COMPANY BASED IN
-            <br />
-            LONDON UK 15387031
-          </p>
-
-          <div className="mt-4 flex gap-3">
-            <button
-              id="privacy-btn"
-              className="px-3 py-1 border border-white rounded-md text-white text-sm hover:bg-white hover:text-[#e32017] transition"
-            >
-              Privacy
-            </button>
-            <button
-              id="eula-btn"
-              className="px-3 py-1 border border-white rounded-md text-white text-sm hover:bg-white hover:text-[#e32017] transition"
-            >
-              EULA
-            </button>
-          </div>
-        </header>
-
         {/* Always-render the modals, but hidden by default */}
         <PolicyModal />
         <EulaModal />
@@ -121,6 +91,37 @@ export default function RootLayout({
             </p>
           </div>
         </footer>
+
+
+        <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center gap-1">
+          <CityOfLondonLogo />
+          <h1 className="text-4xl tracking-widest uppercase mt-2">
+            ORCHESTR
+            <br />
+            EUROPE LTD.
+          </h1>
+          <div className="bg-white h-2 w-36 my-2" />
+          <p className="text-sm uppercase tracking-wide">
+            A SOFTWARE COMPANY BASED IN
+            <br />
+            LONDON UK 15387031
+          </p>
+
+          <div className="mt-4 flex gap-3">
+            <button
+              id="privacy-btn"
+              className="px-3 py-1 border border-white rounded-md text-white text-sm hover:bg-white hover:text-[#e32017] transition"
+            >
+              Privacy
+            </button>
+            <button
+              id="eula-btn"
+              className="px-3 py-1 border border-white rounded-md text-white text-sm hover:bg-white hover:text-[#e32017] transition"
+            >
+              EULA
+            </button>
+          </div>
+        </header>
       </body>
     </html>
   );
