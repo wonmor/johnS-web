@@ -54,7 +54,7 @@ export default function RootLayout({
           "flex flex-col min-h-screen bg-[#f5f5f5] text-[#003688]",
         ].join(" ")}
       >
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow mb-10">{children}</main>
 
         {/* Always-render the modals, but hidden by default */}
         <PolicyModal />
