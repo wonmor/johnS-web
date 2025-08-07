@@ -376,7 +376,7 @@ export default function Portfolio() {
           className="text-3xl uppercase border-b-4 mb-4"
           style={{ borderColor: tubeBlue }}
         >
-          OpticALLY – Bespoke 3D Face Scanner
+          OpticALLY – Portable 3D Face Scanner
         </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
           <li>
