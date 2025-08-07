@@ -56,7 +56,7 @@ export default function RootLayout({
       >
         {/* Thin gray bar at the very top */}
         <div className="w-full bg-gray-200 text-center text-xs text-gray-700 py-1">
-          NO COOKIES COLLECTED
+          NO COOKIES COLLECTED &copy; {new Date().getFullYear()} JOHN SEONG
         </div>
 
         <main className="flex-grow mb-10">{children}</main>
