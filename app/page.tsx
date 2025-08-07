@@ -164,6 +164,7 @@ export default function Portfolio() {
       >
         <TubeRoundel />
         <p className="text-xl mt-2">SOFTWARE ARCHITECT. FILMMAKER. PILOT.</p>
+        <span className="text-gray-500">wonmor@gmail.com</span>
         {/* Awards & Visa */}
         <div className="flex justify-center items-center gap-6 mt-4">
           <div
@@ -210,8 +211,44 @@ export default function Portfolio() {
         </div>
       </div>
 
+          {/* Navigation bar */}
+        <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-[#003688]">
+          <a
+            className="hover:underline hover:text-[#e32017] transition-all"
+            href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube
+          </a>
+          <a
+            className="hover:underline hover:text-[#e32017] transition-all"
+            href="https://github.com/wonmor"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          <a
+            className="hover:underline hover:text-[#e32017] transition-all"
+            href="https://www.linkedin.com/in/john-seong-9194321a9/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+          <a
+            className="hover:underline hover:text-[#e32017] transition-all"
+            href="https://www.flickr.com/photos/johnseongemini8/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Flickr
+          </a>
+        </nav>
+
       {/* Gadolinium 4f⁷ Shell GLTF Model */}
-      <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg mt-6">
+      <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg">
         <Suspense
           fallback={
             <div className="p-20 text-center text-white font-thin text-3xl">
