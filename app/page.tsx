@@ -157,16 +157,16 @@ export default function Portfolio() {
   const gadoliniumRef = useRef<HTMLDivElement>(null);
 
   // Scroll-based tab switching
-useEffect(() => {
+  useEffect(() => {
     const onScroll = () => {
       const benzeneTop = benzeneRef.current?.offsetTop || 0;
       const gadTop = gadoliniumRef.current?.offsetTop || 0;
       const scrollY = window.scrollY + window.innerHeight / 2;
-      if (scrollY < gadTop) setActiveTab('benzene');
-      else if (scrollY >= gadTop) setActiveTab('gadolinium');
+      if (scrollY < gadTop) setActiveTab("benzene");
+      else if (scrollY >= gadTop) setActiveTab("gadolinium");
     };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -307,7 +307,7 @@ useEffect(() => {
                 <p className="mt-2 text-gray-300">
                   Electron density calculated using DFT, with molecular orbital
                   visualization generated via Hartree–Fock methods. By John
-                  Seong, 2023.
+                  Wonmo Seong, 2023.
                 </p>
               </div>
             </div>
@@ -339,7 +339,8 @@ useEffect(() => {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   A custom-made 3D electron density visualization of
-                  Gadolinium’s outermost electron configuration, modeled using spherical harmonics. By John Seong, 2024.
+                  Gadolinium’s outermost electron configuration, modeled using
+                  spherical harmonics. By John Wonmo Seong, 2024.
                 </p>
               </div>
             </div>
