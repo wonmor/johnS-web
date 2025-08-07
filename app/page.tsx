@@ -8,6 +8,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 import { Box3, Vector3, MathUtils } from "three";
+import Link from "next/link";
 
 const tubeFont = localFont({
   src: "../public/LondonTube.ttf",
@@ -162,7 +163,9 @@ export default function Portfolio() {
         className="text-center py-8 bg-white border-b-8"
         style={{ borderColor: tubeBlue }}
       >
-        <TubeRoundel />
+        <Link href="/" className="block w-fit mx-auto">
+          <TubeRoundel />
+        </Link>
         <p className="text-xl mt-2">SOFTWARE ARCHITECT. FILMMAKER. PILOT.</p>
         <span className="text-gray-500">wonmor@gmail.com</span>
         {/* Awards & Visa */}
@@ -211,41 +214,41 @@ export default function Portfolio() {
         </div>
       </div>
 
-          {/* Navigation bar */}
-        <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-[#003688]">
-          <a
-            className="hover:underline hover:text-[#e32017] transition-all"
-            href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            YouTube
-          </a>
-          <a
-            className="hover:underline hover:text-[#e32017] transition-all"
-            href="https://github.com/wonmor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-          <a
-            className="hover:underline hover:text-[#e32017] transition-all"
-            href="https://www.linkedin.com/in/john-seong-9194321a9/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-          <a
-            className="hover:underline hover:text-[#e32017] transition-all"
-            href="https://www.flickr.com/photos/johnseongemini8/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Flickr
-          </a>
-        </nav>
+      {/* Navigation bar */}
+      <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-[#003688]">
+        <a
+          className="hover:underline hover:text-[#e32017] transition-all"
+          href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          YouTube
+        </a>
+        <a
+          className="hover:underline hover:text-[#e32017] transition-all"
+          href="https://github.com/wonmor"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+        <a
+          className="hover:underline hover:text-[#e32017] transition-all"
+          href="https://www.linkedin.com/in/john-seong-9194321a9/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+        <a
+          className="hover:underline hover:text-[#e32017] transition-all"
+          href="https://www.flickr.com/photos/johnseongemini8/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Flickr
+        </a>
+      </nav>
 
       {/* Gadolinium 4f⁷ Shell GLTF Model */}
       <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg">
