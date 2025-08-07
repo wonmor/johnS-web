@@ -66,23 +66,7 @@ export default function RootLayout({
         <EulaModal />
 
         <footer className="text-center py-6 mt-auto border-t-4 border-[#003688] bg-[#f5f5f5] text-[#003688] text-md font-light">
-
-    <div className="mt-6 flex flex-col items-center">
-         <iframe
-  width="500"
-  height="250"
-  src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
-  title="YouTube video player"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  referrerPolicy="strict-origin-when-cross-origin"
-  allowFullScreen
-></iframe>
-   <p className="italic text-sm mt-2">
-              Microsoft Flight Simulator with brain-computer interface (BCI) control
-            </p>
-</div>
-
-    <div className="mt-6 flex flex-col items-center">
+          <div className="mt-6 flex flex-col items-center">
             <Image
               src="/IMG_3505.jpg"
               alt="With iJustine"
@@ -104,6 +88,21 @@ export default function RootLayout({
             />
             <p className="italic text-sm mt-2">
               with my flight instructor at John Wayne Airport
+            </p>
+          </div>
+          <div className="mt-6 flex flex-col items-center">
+            <iframe
+              width="500"
+              height="250"
+              src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+            <p className="italic text-sm mt-2">
+              Microsoft Flight Simulator with brain-computer interface (BCI)
+              control
             </p>
           </div>
         </footer>
