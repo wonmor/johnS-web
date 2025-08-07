@@ -289,7 +289,7 @@ export default function Portfolio() {
             }`}
             onClick={() => setActiveTab("gadolinium")}
           >
-            Gadolinium
+            Atom
           </button>
           <button
             className={`px-4 py-2 rounded ${
@@ -299,7 +299,7 @@ export default function Portfolio() {
             }`}
             onClick={() => setActiveTab("benzene")}
           >
-            Benzene
+            Molecule
           </button>
         </div>
 
