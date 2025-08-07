@@ -359,7 +359,7 @@ export default function Portfolio() {
         <ul className="list-disc pl-6 text-lg space-y-2">
           <li>
             Quantum Mechanics Visualizer that uses DFT, across Web (Three.js),
-            iOS, macOS, visionOS via Atomizer AR (10 K downloads)
+            iOS, macOS, visionOS via Atomizer AR (10 K downloads). The very project that handed me the 2023 Apple WWDC Swift Student Challenge Award.
           </li>
           <li>
             Tech stack: Three.js, React, Redux, WebXR; Back-end: RDKit, SciPy,
@@ -373,11 +373,11 @@ export default function Portfolio() {
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              Sir David Clary’s Book
+              Professor Sir David Clary’s Book
             </a>
             ,{" "}
             <i className="text-sm">
-              former President of Magdalen College, Oxford
+              Walter Kohn (https://doi.org/10.1142/13806)
             </i>
           </li>
           <li>
