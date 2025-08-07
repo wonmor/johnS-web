@@ -118,7 +118,7 @@ function Model({ modelPath }: { modelPath: string }) {
   return <primitive object={obj} ref={objRef} />;
 }
 
-function GLTFModel({ modelPath }: { modelPath: string }) {
+function GLTFModel({ modelPath, size }: { modelPath: string; size?: number }) {
   const gltf = useLoader(GLTFLoader, modelPath);
   const objRef = useRef<THREE.Object3D>(null);
 
@@ -128,33 +128,43 @@ function GLTFModel({ modelPath }: { modelPath: string }) {
       if ((child as THREE.Mesh).isMesh) {
         const mesh = child as THREE.Mesh;
         if (Array.isArray(mesh.material)) {
-          mesh.material.forEach((mat) => {
-            mat.side = THREE.DoubleSide;
-          });
+          mesh.material.forEach((mat) => (mat.side = THREE.DoubleSide));
         } else {
           mesh.material.side = THREE.DoubleSide;
         }
       }
     });
-
-    objRef.current.scale.setScalar(1);
+    const scale = size || 1;
+    objRef.current.scale.setScalar(scale);
     const bbox = new Box3().setFromObject(objRef.current);
     const center = new Vector3();
     bbox.getCenter(center);
     objRef.current.position.copy(center.negate());
-  }, [gltf]);
+  }, [gltf, size]);
 
   useFrame(() => {
-    if (objRef.current) {
-      objRef.current.rotation.y += 0.002;
-    }
+    if (objRef.current) objRef.current.rotation.y += 0.002;
   });
 
   return <primitive object={gltf.scene} ref={objRef} />;
 }
 
 export default function Portfolio() {
-  const [activeTab, setActiveTab] = useState<'gadolinium' | 'benzene'>('gadolinium');
+  const [activeTab, setActiveTab] = useState<'benzene' | 'gadolinium'>('benzene');
+  const benzeneRef = useRef<HTMLDivElement>(null);
+  const gadoliniumRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const benzeneTop = benzeneRef.current?.offsetTop || 0;
+      const gadTop = gadoliniumRef.current?.offsetTop || 0;
+      const scrollY = window.scrollY + window.innerHeight / 2;
+      if (scrollY < gadTop) setActiveTab('benzene');
+      else if (scrollY >= gadTop) setActiveTab('gadolinium');
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
     <div
@@ -243,88 +253,76 @@ export default function Portfolio() {
           Flickr
         </a>
       </nav>
-{/* Gadolinium / Benzene Tabs */}
-<div className="max-w-4xl mx-auto bg-white rounded-md p-4 shadow-md">
-  <div className="flex justify-center gap-4 mb-4">
-    <button
-      className={`px-4 py-2 rounded ${
-        activeTab === 'gadolinium'
-          ? 'bg-[#003688] text-white'
-          : 'bg-white text-[#003688] border border-[#003688]'
-      }`}
-      onClick={() => setActiveTab('gadolinium')}
-    >
-      Gadolinium
-    </button>
-    <button
-      className={`px-4 py-2 rounded ${
-        activeTab === 'benzene'
-          ? 'bg-[#003688] text-white'
-          : 'bg-white text-[#003688] border border-[#003688]'
-      }`}
-      onClick={() => setActiveTab('benzene')}
-    >
-      Benzene
-    </button>
-  </div>
+   {/* Gadolinium / Benzene Tabs */}
+      <div className="max-w-4xl mx-auto bg-white rounded-md p-4 shadow-md">
+        <div className="flex justify-center gap-4 mb-4">
+          <button
+            className={`px-4 py-2 rounded ${
+              activeTab === 'gadolinium'
+                ? 'bg-[#003688] text-white'
+                : 'bg-white text-[#003688] border border-[#003688]'
+            }`}
+            onClick={() => setActiveTab('gadolinium')}
+          >
+            Gadolinium
+          </button>
+          <button
+            className={`px-4 py-2 rounded ${
+              activeTab === 'benzene'
+                ? 'bg-[#003688] text-white'
+                : 'bg-white text-[#003688] border border-[#003688]'
+            }`}
+            onClick={() => setActiveTab('benzene')}
+          >
+            Benzene
+          </button>
+        </div>
 
-  {activeTab === 'gadolinium' && (
-    <div className="bg-black rounded-md p-6 shadow-lg">
-      <Suspense
-        fallback={
-          <div className="p-20 text-center text-white font-thin text-3xl">
-            Loading Gadolinium Atom...
-          </div>
-        }
-      >
-        <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
-          <ambientLight intensity={2} />
-          <GLTFModel modelPath="/model-4.gltf" />
-          <OrbitControls enablePan enableZoom enableRotate />
-        </Canvas>
-      </Suspense>
-      <div className="text-center p-6 bg-gray-900 text-white">
-        <h4 className="text-2xl tracking-wide">
-          Gadolinium Atom – 4f⁷ Electron Shell
-        </h4>
-        <p className="mt-2 text-gray-300">
-          A custom-made 3D electron density visualization of Gadolinium’s
-          outermost electron configuration, modeled from its 4f⁷ shell.
-          Generated using my own tool: ElectronVisualized. You can view it
-          on my iOS app Atomizer AR as well.
-        </p>
-      </div>
-    </div>
-  )}
+        <div ref={benzeneRef}>
+          {activeTab === 'benzene' && (
+            <div className="bg-black rounded-md p-6 shadow-lg">
+              <Suspense
+                fallback={<div className="p-20 text-center text-white font-thin text-3xl">Loading Benzene Model...</div>}
+              >
+                <Canvas style={{ height: 300 }} camera={{ position: [0, 0, 5] }}>
+                  <ambientLight intensity={2} />
+                  <GLTFModel modelPath="/model-6.gltf" size={0.3} />
+                  <OrbitControls enablePan enableZoom enableRotate />
+                </Canvas>
+              </Suspense>
+              <div className="text-center p-6 bg-gray-900 text-white">
+                <h4 className="text-2xl tracking-wide">Benzene Molecule – C₆H₆</h4>
+                <p className="mt-2 text-gray-300">
+                  Electron density calculated using DFT, with molecular orbital visualization generated via Hartree–Fock methods. Ideal for educational demonstrations and computational chemistry insights.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
 
-  {activeTab === 'benzene' && (
-    <div className="bg-black rounded-md p-6 shadow-lg">
-      <Suspense
-        fallback={
-          <div className="p-20 text-center text-white font-thin text-3xl">
-            Loading Benzene Model...
-          </div>
-        }
-      >
-        <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
-          <ambientLight intensity={2} />
-          <GLTFModel modelPath="/model-6.gltf" />
-          <OrbitControls enablePan enableZoom enableRotate />
-        </Canvas>
-      </Suspense>
-      <div className="text-center p-6 bg-gray-900 text-white">
-        <h4 className="text-2xl tracking-wide">
-          Benzene Molecule – C₆H₆
-        </h4>
-        <p className="mt-2 text-gray-300">
-          Electron density calculated using DFT, with molecular orbital
-          visualization generated via Hartree–Fock methods. Ideal for
-          educational demonstrations and computational chemistry insights.
-        </p>
+        <div ref={gadoliniumRef}>
+          {activeTab === 'gadolinium' && (
+            <div className="bg-black rounded-md p-6 shadow-lg">
+              <Suspense
+                fallback={<div className="p-20 text-center text-white font-thin text-3xl">Loading Gadolinium Atom...</div>}
+              >
+                <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
+                  <ambientLight intensity={2} />
+                  <GLTFModel modelPath="/model-4.gltf" />
+                  <OrbitControls enablePan enableZoom enableRotate />
+                </Canvas>
+              </Suspense>
+              <div className="text-center p-6 bg-gray-900 text-white">
+                <h4 className="text-2xl tracking-wide">Gadolinium Atom – 4f⁷ Electron Shell</h4>
+                <p className="mt-2 text-gray-300">
+                  A custom-made 3D electron density visualization of Gadolinium’s outermost electron configuration, modeled from its 4f⁷ shell. Generated using my own tool: ElectronVisualized.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  )}
-</div>
+
 
 
       {/* ElectronVisual Section */}
