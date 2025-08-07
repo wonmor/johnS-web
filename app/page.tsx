@@ -155,41 +155,19 @@ export default function Portfolio() {
   );
   const benzeneRef = useRef<HTMLDivElement>(null);
   const gadoliniumRef = useRef<HTMLDivElement>(null);
-  const scrollTimeout = useRef<number | null>(null);
-  const autoSwitchInterval = useRef<number | null>(null);
 
-  // Scroll-based switching
-  useEffect(() => {
+  // Scroll-based tab switching
+useEffect(() => {
     const onScroll = () => {
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      // Pause auto-switch when scrolling
-      if (autoSwitchInterval.current) clearInterval(autoSwitchInterval.current);
-      // Restart auto-switch after 5s of no scroll
-      scrollTimeout.current = window.setTimeout(() => {
-        startAutoSwitch();
-      }, 5000);
-
+      const benzeneTop = benzeneRef.current?.offsetTop || 0;
       const gadTop = gadoliniumRef.current?.offsetTop || 0;
-      const threshold = window.innerHeight / 2; // Trigger point at half the viewport height
-      const triggerPoint = window.scrollY + threshold;
-      setActiveTab(triggerPoint >= gadTop ? "gadolinium" : "benzene");
+      const scrollY = window.scrollY + window.innerHeight / 2;
+      if (scrollY < gadTop) setActiveTab('benzene');
+      else if (scrollY >= gadTop) setActiveTab('gadolinium');
     };
-    window.addEventListener("scroll", onScroll);
-    // start auto-switch initially
-    startAutoSwitch();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      if (autoSwitchInterval.current) clearInterval(autoSwitchInterval.current);
-    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const startAutoSwitch = () => {
-    if (autoSwitchInterval.current) clearInterval(autoSwitchInterval.current);
-    autoSwitchInterval.current = window.setInterval(() => {
-      setActiveTab((prev) => (prev === "benzene" ? "gadolinium" : "benzene"));
-    }, 5000);
-  };
 
   return (
     <div
@@ -361,7 +339,7 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   A custom-made 3D electron density visualization of
-                  Gadolinium’s outermost electron configuration, modeled using spherical harmonics on ElectronVisualized.
+                  Gadolinium’s outermost electron configuration, modeled using spherical harmonics. By John Seong, 2024.
                 </p>
               </div>
             </div>
