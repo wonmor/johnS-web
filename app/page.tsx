@@ -150,21 +150,46 @@ function GLTFModel({ modelPath, size }: { modelPath: string; size?: number }) {
 }
 
 export default function Portfolio() {
-  const [activeTab, setActiveTab] = useState<'benzene' | 'gadolinium'>('benzene');
+  const [activeTab, setActiveTab] = useState<"benzene" | "gadolinium">(
+    "benzene"
+  );
   const benzeneRef = useRef<HTMLDivElement>(null);
   const gadoliniumRef = useRef<HTMLDivElement>(null);
+  const scrollTimeout = useRef<number | null>(null);
+  const autoSwitchInterval = useRef<number | null>(null);
 
+  // Scroll-based switching
   useEffect(() => {
     const onScroll = () => {
-      const benzeneTop = benzeneRef.current?.offsetTop || 0;
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      // Pause auto-switch when scrolling
+      if (autoSwitchInterval.current) clearInterval(autoSwitchInterval.current);
+      // Restart auto-switch after 3s of no scroll
+      scrollTimeout.current = window.setTimeout(() => {
+        startAutoSwitch();
+      }, 3000);
+
       const gadTop = gadoliniumRef.current?.offsetTop || 0;
-      const scrollY = window.scrollY + window.innerHeight / 2;
-      if (scrollY < gadTop) setActiveTab('benzene');
-      else if (scrollY >= gadTop) setActiveTab('gadolinium');
+      const threshold = window.innerHeight / 2; // Trigger point at half the viewport height
+      const triggerPoint = window.scrollY + threshold;
+      setActiveTab(triggerPoint >= gadTop ? "gadolinium" : "benzene");
     };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
+    // start auto-switch initially
+    startAutoSwitch();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      if (autoSwitchInterval.current) clearInterval(autoSwitchInterval.current);
+    };
   }, []);
+
+  const startAutoSwitch = () => {
+    if (autoSwitchInterval.current) clearInterval(autoSwitchInterval.current);
+    autoSwitchInterval.current = window.setInterval(() => {
+      setActiveTab((prev) => (prev === "benzene" ? "gadolinium" : "benzene"));
+    }, 3000);
+  };
 
   return (
     <div
@@ -253,47 +278,58 @@ export default function Portfolio() {
           Flickr
         </a>
       </nav>
-   {/* Gadolinium / Benzene Tabs */}
+      {/* Gadolinium / Benzene Tabs */}
       <div className="max-w-4xl mx-auto bg-white rounded-md p-4 shadow-md">
         <div className="flex justify-center gap-4 mb-4">
           <button
             className={`px-4 py-2 rounded ${
-              activeTab === 'gadolinium'
-                ? 'bg-[#003688] text-white'
-                : 'bg-white text-[#003688] border border-[#003688]'
+              activeTab === "gadolinium"
+                ? "bg-[#003688] text-white"
+                : "bg-white text-[#003688] border border-[#003688]"
             }`}
-            onClick={() => setActiveTab('gadolinium')}
+            onClick={() => setActiveTab("gadolinium")}
           >
             Gadolinium
           </button>
           <button
             className={`px-4 py-2 rounded ${
-              activeTab === 'benzene'
-                ? 'bg-[#003688] text-white'
-                : 'bg-white text-[#003688] border border-[#003688]'
+              activeTab === "benzene"
+                ? "bg-[#003688] text-white"
+                : "bg-white text-[#003688] border border-[#003688]"
             }`}
-            onClick={() => setActiveTab('benzene')}
+            onClick={() => setActiveTab("benzene")}
           >
             Benzene
           </button>
         </div>
 
         <div ref={benzeneRef}>
-          {activeTab === 'benzene' && (
+          {activeTab === "benzene" && (
             <div className="bg-black rounded-md p-6 shadow-lg">
               <Suspense
-                fallback={<div className="p-20 text-center text-white font-thin text-3xl">Loading Benzene Model...</div>}
+                fallback={
+                  <div className="p-20 text-center text-white font-thin text-3xl">
+                    Loading Benzene Model...
+                  </div>
+                }
               >
-                <Canvas style={{ height: 300 }} camera={{ position: [0, 0, 5] }}>
+                <Canvas
+                  style={{ height: 300 }}
+                  camera={{ position: [0, 0, 5] }}
+                >
                   <ambientLight intensity={2} />
                   <GLTFModel modelPath="/model-6.gltf" size={0.3} />
                   <OrbitControls enablePan enableZoom enableRotate />
                 </Canvas>
               </Suspense>
               <div className="text-center p-6 bg-gray-900 text-white">
-                <h4 className="text-2xl tracking-wide">Benzene Molecule – C₆H₆</h4>
+                <h4 className="text-2xl tracking-wide">
+                  Benzene Molecule – C₆H₆
+                </h4>
                 <p className="mt-2 text-gray-300">
-                  Electron density calculated using DFT, with molecular orbital visualization generated via Hartree–Fock methods. By John Seong, 2023.
+                  Electron density calculated using DFT, with molecular orbital
+                  visualization generated via Hartree–Fock methods. By John
+                  Seong, 2023.
                 </p>
               </div>
             </div>
@@ -301,29 +337,39 @@ export default function Portfolio() {
         </div>
 
         <div ref={gadoliniumRef}>
-          {activeTab === 'gadolinium' && (
+          {activeTab === "gadolinium" && (
             <div className="bg-black rounded-md p-6 shadow-lg">
               <Suspense
-                fallback={<div className="p-20 text-center text-white font-thin text-3xl">Loading Gadolinium Atom...</div>}
+                fallback={
+                  <div className="p-20 text-center text-white font-thin text-3xl">
+                    Loading Gadolinium Atom...
+                  </div>
+                }
               >
-                <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
+                <Canvas
+                  style={{ height: 400 }}
+                  camera={{ position: [0, 0, 5] }}
+                >
                   <ambientLight intensity={2} />
                   <GLTFModel modelPath="/model-4.gltf" />
                   <OrbitControls enablePan enableZoom enableRotate />
                 </Canvas>
               </Suspense>
               <div className="text-center p-6 bg-gray-900 text-white">
-                <h4 className="text-2xl tracking-wide">Gadolinium Atom – 4f⁷ Electron Shell</h4>
+                <h4 className="text-2xl tracking-wide">
+                  Gadolinium Atom – 4f⁷ Electron Shell
+                </h4>
                 <p className="mt-2 text-gray-300">
-                  A custom-made 3D electron density visualization of Gadolinium’s outermost electron configuration, modeled from its 4f⁷ shell. Generated using my own tool: ElectronVisualized.
+                  A custom-made 3D electron density visualization of
+                  Gadolinium’s outermost electron configuration, modeled from
+                  its 4f⁷ shell. Generated using my own tool:
+                  ElectronVisualized.
                 </p>
               </div>
             </div>
           )}
         </div>
       </div>
-
-
 
       {/* ElectronVisual Section */}
       <section className="max-w-4xl mx-auto bg-white rounded-md shadow-lg p-6">
@@ -343,7 +389,7 @@ export default function Portfolio() {
             ASE, GPAW, Celery, Redis, Docker, AWS
           </li>
           <li>
-            Featured on{' '}
+            Featured on{" "}
             <a
               href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
               target="_blank"
@@ -352,18 +398,18 @@ export default function Portfolio() {
             >
               Sir David Clary’s Book
             </a>
-            ,{' '}
+            ,{" "}
             <i className="text-sm">
               former President of Magdalen College, Oxford
             </i>
           </li>
           <li>
-            Watch demo walkthrough:{' '}
+            Watch demo walkthrough:{" "}
             <a
               href="https://www.youtube.com/watch?v=kHcdvyaqslU"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
+              className="text-pink-600 hover:underline"
             >
               YouTube
             </a>
@@ -420,7 +466,8 @@ export default function Portfolio() {
             3D Face Scan of Myself, using an iPhone
           </h4>
           <p className="mt-2 text-gray-300">
-            Portable, real‑time 3D face scanning app I developed for medical (vision and dental) applications.
+            Portable, real‑time 3D face scanning app I developed for medical
+            (vision and dental) applications and custom-fitted BCI headsets.
           </p>
         </div>
       </div>
@@ -435,24 +482,22 @@ export default function Portfolio() {
         </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
           <li>
-            iOS app using Swift & Objective‑C++ with C++ back‑end
+            Product demo:{" "}
+            <a
+              href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-pink-600 hover:underline"
+            >
+              YouTube
+            </a>
           </li>
+          <li>iOS app using Swift & Objective‑C++ with C++ back‑end</li>
           <li>
             TrueDepth face scan with full point cloud processing using ICP,
             feature-based pose estimation, meshing, and point-cloud registration
           </li>
           <li>U.S. Provisional Patent pending (No. 63/727,879)</li>
-          <li>
-            Product walkthrough demo:{' '}
-            <a
-              href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              YouTube
-            </a>
-          </li>
         </ul>
       </section>
 
