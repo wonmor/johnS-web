@@ -306,7 +306,7 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   Electron density calculated using DFT, with molecular orbital
-                  visualisation. You can clearly see the p-orbitals overlapping to form the π bond. By John Wonmo Seong, 2023. 
+                  visualisation. You can clearly see the p-orbitals overlapping to form the π bonding orbitals. By John Wonmo Seong, 2023. 
                 </p>
               </div>
             </div>
