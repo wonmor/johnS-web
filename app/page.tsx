@@ -213,6 +213,10 @@ export default function Portfolio() {
             <p className="font-semibold">
               Apple WWDC23 Swift Student Challenge Winner
             </p>
+             <p className="flex items-center gap-1 mt-2">
+              <Image src="/american-flag.png" alt="American Flag" width={24} height={16} />
+              <span>US O-1A Extraordinary Ability Visa</span>
+            </p>
             <p className="flex items-center gap-1 mt-2">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
               <span>UK Global Talent Visa Holder</span>
