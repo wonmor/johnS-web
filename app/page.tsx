@@ -338,7 +338,7 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   A 3D electron density plot of Gadolinium’s outermost electron
-                  configuration, modeled using spherical harmonics. By John
+                  configuration (f-orbital), modeled using spherical harmonics. By John
                   Wonmo Seong, 2024.
                 </p>
               </div>
