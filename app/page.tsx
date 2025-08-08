@@ -306,8 +306,7 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   Electron density calculated using DFT, with molecular orbital
-                  visualisation generated via Hartree–Fock method. By John
-                  Wonmo Seong, 2023.
+                  visualisation. By John Wonmo Seong, 2023.
                 </p>
               </div>
             </div>
@@ -338,9 +337,9 @@ export default function Portfolio() {
                   Gadolinium Atom – 4f⁷ Electron Shell
                 </h4>
                 <p className="mt-2 text-gray-300">
-                  A 3D electron density plot of
-                  Gadolinium’s outermost electron configuration, modeled using
-                  spherical harmonics. By John Wonmo Seong, 2024.
+                  A 3D electron density plot of Gadolinium’s outermost electron
+                  configuration, modeled using spherical harmonics. By John
+                  Wonmo Seong, 2024.
                 </p>
               </div>
             </div>
@@ -359,7 +358,9 @@ export default function Portfolio() {
         <ul className="list-disc pl-6 text-lg space-y-2">
           <li>
             Quantum Mechanics Visualizer that uses DFT, across Web (Three.js),
-            iOS, macOS, visionOS via Atomizer AR (10 K downloads). The very project that handed me the 2023 Apple WWDC Swift Student Challenge Award.
+            iOS, macOS, visionOS via Atomizer AR (10 K downloads). The very
+            project that handed me the 2023 Apple WWDC Swift Student Challenge
+            Award.
           </li>
           <li>
             Tech stack: Three.js, React, Redux, WebXR; Back-end: RDKit, SciPy,
@@ -474,7 +475,11 @@ export default function Portfolio() {
             TrueDepth face scan with full point cloud processing using ICP,
             feature-based pose estimation, meshing, and point-cloud registration
           </li>
-          <li>U.S. Provisional Patent pending (No. 63/727,879) for the method of rough point cloud alignment only using yaw, pitch, and roll values from the head pose estimation</li>
+          <li>
+            U.S. Provisional Patent pending (No. 63/727,879) for the method of
+            rough point cloud alignment only using yaw, pitch, and roll values
+            from the head pose estimation
+          </li>
         </ul>
       </section>
 
