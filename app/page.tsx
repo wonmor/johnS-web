@@ -306,7 +306,7 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   Electron density calculated using DFT, with molecular orbital
-                  visualization generated via Hartree–Fock methods. By John
+                  visualisation generated via Hartree–Fock methods. By John
                   Wonmo Seong, 2023.
                 </p>
               </div>
@@ -338,7 +338,7 @@ export default function Portfolio() {
                   Gadolinium Atom – 4f⁷ Electron Shell
                 </h4>
                 <p className="mt-2 text-gray-300">
-                  A custom-made 3D electron density visualization of
+                  A custom-made 3D electron density plot of
                   Gadolinium’s outermost electron configuration, modeled using
                   spherical harmonics. By John Wonmo Seong, 2024.
                 </p>
