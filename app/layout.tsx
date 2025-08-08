@@ -26,7 +26,7 @@ export default function RootLayout({
         <meta name="apple-itunes-app" content="app-id=6449015706" />
       </Head>
 
-        {/* This Script wires up your “Privacy” and “EULA” buttons to show/hide modals */}
+      {/* This Script wires up your “Privacy” and “EULA” buttons to show/hide modals */}
       <Script id="modal-toggle" strategy="afterInteractive">
         {`
           const toggle = (btnId, modalId, closeId) => {
@@ -42,20 +42,20 @@ export default function RootLayout({
         `}
       </Script>
 
-      {/* Fixed thin gray bar at the very top */}
-      <div className="fixed top-0 left-0 w-full bg-gray-200 text-center text-xs text-gray-700 py-1 z-50">
-        NO COOKIES COLLECTED &copy; {new Date().getFullYear()} JOHN SEONG
-      </div>
-
       <body
         className={[
           tubeFont.className,
           "flex flex-col min-h-screen bg-[#f5f5f5] text-[#003688] pt-6", // Add pt-6 to offset the height of the fixed bar
         ].join(" ")}
       >
-        <main className="flex-grow mb-10">
-          {children}
-        </main>
+        {/* Fixed thin gray bar at the very top */}
+        <div className="fixed top-0 left-0 w-full bg-gray-200 text-center text-xs text-gray-700 py-1 z-50">
+          <p>
+            NO COOKIES COLLECTED &copy; {new Date().getFullYear()} JOHN SEONG
+          </p>
+        </div>
+
+        <main className="flex-grow mb-10">{children}</main>
 
         {/* Always-render the modals, but hidden by default */}
         <PolicyModal />
@@ -88,7 +88,7 @@ export default function RootLayout({
           </div>
           <div className="mt-6 flex flex-col items-center">
             <iframe
-            className="m-auto overflow-hidden rounded-lg shadow-lg"
+              className="m-auto overflow-hidden rounded-lg shadow-lg"
               width="350"
               height="250"
               src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
