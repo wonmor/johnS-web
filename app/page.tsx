@@ -310,7 +310,7 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   Electron density calculated using DFT, with molecular orbital
-                  visualisation. You can clearly see the p-orbitals overlapping to form the π bonding orbitals. By John Wonmo Seong, 2023. 
+                  visualisation. You can clearly see the p-orbitals overlapping to form the π bonding orbitals. Generated using my tool ElectronVisual.org.
                 </p>
               </div>
             </div>
@@ -342,8 +342,7 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   A 3D electron density plot of Gadolinium’s outermost electron
-                  configuration (f-orbital), modeled using spherical harmonics. By John
-                  Wonmo Seong, 2024.
+                  configuration (f-orbital), modeled using spherical harmonics. Generated using my iOS app Atomizer AR.
                 </p>
               </div>
             </div>
