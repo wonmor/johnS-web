@@ -235,6 +235,14 @@ export default function Portfolio() {
 
       {/* Navigation bar */}
       <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-[#003688]">
+              <a
+          className="hover:underline hover:text-[#e32017] transition-all"
+          href="https://medium.com/@wonmor"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Blog
+        </a>
         <a
           className="hover:underline hover:text-[#e32017] transition-all"
           href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
@@ -258,14 +266,6 @@ export default function Portfolio() {
           rel="noopener noreferrer"
         >
           LinkedIn
-        </a>
-        <a
-          className="hover:underline hover:text-[#e32017] transition-all"
-          href="https://www.flickr.com/photos/johnseongemini8/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Flickr
         </a>
       </nav>
       {/* Featured Media */}
