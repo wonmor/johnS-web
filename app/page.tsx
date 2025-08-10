@@ -499,6 +499,12 @@ export default function Portfolio() {
             Portable, real‑time 3D face scanning app I developed for medical
             (vision and dental) applications and custom-fitted BCI headsets.
           </p>
+            <a
+          href="https://github.com/wonmor/OpticALLY-iOS"
+          className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
+        >
+          Source on GitHub
+        </a>
         </div>
       </div>
 
