@@ -70,7 +70,7 @@ function TubeRoundel() {
             fontWeight: "bold",
             fontFamily: tubeFont.style.fontFamily,
             letterSpacing: "0.05em",
-            fontSize: 18,
+            fontSize: 16,
             textTransform: "uppercase",
           }}
         >
