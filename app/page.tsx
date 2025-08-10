@@ -268,7 +268,7 @@ export default function Portfolio() {
       {/* Featured Media */}
       <div className="mt-4 text-center">
         <p className="text-xs text-gray-500 tracking-wider uppercase mb-2">
-          Featured in the Media
+          Featured in these Media
         </p>
         <div className="flex justify-center gap-4">
           <a
