@@ -51,7 +51,7 @@ export default function RootLayout({
         {/* Fixed thin gray bar at the very top */}
         <div className="fixed top-0 left-0 w-full bg-gray-200 text-center text-xs text-gray-700 py-1 z-50">
           <p>
-            NO COOKIES COLLECTED &copy; {new Date().getFullYear()} JOHN SEONG
+            NO COOKIES COLLECTED &copy; {new Date().getFullYear()} WONMO SEONG
           </p>
         </div>
 
