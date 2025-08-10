@@ -220,7 +220,7 @@ export default function Portfolio() {
                 width={24}
                 height={16}
               />
-              <span>US O-1A Extraordinary Ability <i className="text-gray-400">(In Progress)</i></span>
+              <span>US O-1 Extraordinary Ability <i className="text-gray-400">(In Progress)</i></span>
             </p>
             <p className="flex items-center gap-1 mt-2">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
