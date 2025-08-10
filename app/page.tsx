@@ -213,8 +213,13 @@ export default function Portfolio() {
             <p className="font-semibold">
               Apple WWDC23 Swift Student Challenge Winner
             </p>
-             <p className="flex items-center gap-1 mt-2">
-              <Image src="/american-flag.png" alt="American Flag" width={24} height={16} />
+            <p className="flex items-center gap-1 mt-2">
+              <Image
+                src="/american-flag.png"
+                alt="American Flag"
+                width={24}
+                height={16}
+              />
               <span>US O-1A Extraordinary Ability Visa</span>
             </p>
             <p className="flex items-center gap-1 mt-2">
@@ -260,6 +265,47 @@ export default function Portfolio() {
           Flickr
         </a>
       </nav>
+      {/* Featured Media */}
+      <div className="mt-4 text-center">
+        <p className="text-xs text-gray-500 tracking-wider uppercase mb-2">
+          Featured Media
+        </p>
+        <div className="flex justify-center gap-4">
+          <a
+            href="https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center bg-white border border-gray-300 rounded-md p-2 hover:shadow-lg transition-all"
+          >
+            <Image
+              src="/hdsb.svg"
+              alt="HDSB"
+              width={100}
+              height={40}
+              style={{
+                objectFit: "contain",
+                filter: "invert(1)", // inverts colors
+              }}
+            />
+          </a>
+
+          <a
+            href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center bg-white border border-gray-300 rounded-md p-2 hover:shadow-lg transition-all"
+          >
+            <Image
+              src="/mobilesyrup.png"
+              alt="MobileSyrup"
+              width={100}
+              height={40}
+              style={{ objectFit: "contain" }}
+            />
+          </a>
+        </div>
+      </div>
+
       {/* Gadolinium / Benzene Tabs */}
       <div className="max-w-4xl mx-auto bg-white rounded-md p-4 shadow-md">
         <div className="flex justify-center gap-4 mb-4">
@@ -310,7 +356,9 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   Electron density calculated using DFT, with molecular orbital
-                  visualisation. You can clearly see the p-orbitals overlapping to form the π bonding orbitals. Generated using my tool ElectronVisual.org.
+                  visualisation. You can clearly see the p-orbitals overlapping
+                  to form the π bonding orbitals. Generated using my tool
+                  ElectronVisual.org.
                 </p>
               </div>
             </div>
@@ -342,7 +390,8 @@ export default function Portfolio() {
                 </h4>
                 <p className="mt-2 text-gray-300">
                   A 3D electron density plot of Gadolinium’s outermost electron
-                  configuration (f-orbital), modeled using spherical harmonics. Generated using my iOS app Atomizer AR.
+                  configuration (f-orbital), modeled using spherical harmonics.
+                  Generated using my iOS app Atomizer AR.
                 </p>
               </div>
             </div>
