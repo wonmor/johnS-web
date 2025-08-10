@@ -74,7 +74,7 @@ function TubeRoundel() {
             textTransform: "uppercase",
           }}
         >
-          JOHN SEONG
+          WONMO SEONG
         </span>
       </div>
     </div>
