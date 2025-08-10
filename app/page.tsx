@@ -220,7 +220,10 @@ export default function Portfolio() {
                 width={24}
                 height={16}
               />
-              <span>US O-1A Extraordinary Ability <i className="text-gray-400">(In Progress)</i></span>
+              <span>
+                US O-1A Extraordinary Ability{" "}
+                <i className="text-gray-400">(In Progress)</i>
+              </span>
             </p>
             <p className="flex items-center gap-1 mt-2">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
@@ -357,7 +360,8 @@ export default function Portfolio() {
                 <p className="mt-2 text-gray-300">
                   Electron density calculated using DFT, with molecular orbital
                   visualisation. You can clearly see the p-orbitals overlapping
-                  to form the π bonding orbitals. Generated using a tool I developed: <code>ElectronVisual.org</code>.
+                  to form the π bonding orbitals. Generated using a tool I
+                  developed: <code>ElectronVisual.org</code>.
                 </p>
               </div>
             </div>
@@ -444,7 +448,7 @@ export default function Portfolio() {
             </a>
           </li>
         </ul>
-           {/* App Store badge */}
+        {/* App Store badge */}
         <div className="mt-6 flex justify-left">
           <a
             href="https://apps.apple.com/us/app/atomizer-ar/id6449015706"
@@ -472,8 +476,6 @@ export default function Portfolio() {
         >
           Source on GitHub
         </a>
-
-    
       </section>
 
       {/* 3D Face Model */}
@@ -499,12 +501,12 @@ export default function Portfolio() {
             Portable, real‑time 3D face scanning app I developed for medical
             (vision and dental) applications and custom-fitted BCI headsets.
           </p>
-            <a
-          href="https://github.com/wonmor/OpticALLY-iOS"
-          className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
-        >
-          Source on GitHub
-        </a>
+          <a
+            href="https://github.com/wonmor/OpticALLY-iOS"
+            className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
+          >
+            Source on GitHub
+          </a>
         </div>
       </div>
 
