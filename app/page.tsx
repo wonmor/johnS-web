@@ -363,6 +363,12 @@ export default function Portfolio() {
                   to form the π bonding orbitals. Generated using a tool I
                   developed: <code>ElectronVisual.org</code>.
                 </p>
+                <a
+                  href="https://www.patreon.com/johnseong"
+                  className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
+                >
+                  Donate on Patreon
+                </a>
               </div>
             </div>
           )}
@@ -396,6 +402,12 @@ export default function Portfolio() {
                   configuration (f-orbital), modeled using spherical harmonics.
                   Generated using my iOS app Atomizer AR.
                 </p>
+                <a
+                  href="https://github.com/wonmor/ElectronVisualized"
+                  className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
+                >
+                  Source on GitHub
+                </a>
               </div>
             </div>
           )}
