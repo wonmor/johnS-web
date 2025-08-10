@@ -241,7 +241,7 @@ export default function Portfolio() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Medium
+          Blog
         </a>
         <a
           className="hover:underline hover:text-[#e32017] transition-all"
