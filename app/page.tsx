@@ -357,8 +357,7 @@ export default function Portfolio() {
                 <p className="mt-2 text-gray-300">
                   Electron density calculated using DFT, with molecular orbital
                   visualisation. You can clearly see the p-orbitals overlapping
-                  to form the π bonding orbitals. Generated using my tool
-                  ElectronVisual.org.
+                  to form the π bonding orbitals. Generated using a tool I developed: <code>ElectronVisual.org</code>.
                 </p>
               </div>
             </div>
