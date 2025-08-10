@@ -444,20 +444,7 @@ export default function Portfolio() {
             </a>
           </li>
         </ul>
-        <a
-          href="https://www.electronvisual.org"
-          className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2"
-        >
-          Visit ElectronVisual.org
-        </a>
-        <a
-          href="https://github.com/wonmor/ElectronVisualized"
-          className="inline-block mt-2 px-4 py-2 text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
-        >
-          Source on GitHub
-        </a>
-
-        {/* App Store badge */}
+           {/* App Store badge */}
         <div className="mt-6 flex justify-left">
           <a
             href="https://apps.apple.com/us/app/atomizer-ar/id6449015706"
@@ -473,6 +460,20 @@ export default function Portfolio() {
             />
           </a>
         </div>
+        <a
+          href="https://www.electronvisual.org"
+          className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2"
+        >
+          Visit <code>ElectronVisual.org</code>
+        </a>
+        <a
+          href="https://github.com/wonmor/ElectronVisualized"
+          className="inline-block mt-2 px-4 py-2 text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
+        >
+          Source on GitHub
+        </a>
+
+    
       </section>
 
       {/* 3D Face Model */}
