@@ -244,24 +244,18 @@ export default function Portfolio() {
         <a
           className="hover:underline hover:text-[#e32017] transition-all"
           href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           YouTube
         </a>
         <a
           className="hover:underline hover:text-[#e32017] transition-all"
           href="https://github.com/wonmor"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           GitHub
         </a>
         <a
           className="hover:underline hover:text-[#e32017] transition-all"
           href="https://www.linkedin.com/in/john-seong-9194321a9/"
-          target="_blank"
-          rel="noopener noreferrer"
         >
           LinkedIn
         </a>
@@ -274,8 +268,6 @@ export default function Portfolio() {
         <div className="flex justify-center gap-4">
           <a
             href="https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
-            target="_blank"
-            rel="noopener noreferrer"
             className="flex items-center justify-center bg-white border border-gray-300 rounded-md p-2 hover:shadow-lg transition-all"
           >
             <Image
@@ -292,8 +284,6 @@ export default function Portfolio() {
 
           <a
             href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
-            target="_blank"
-            rel="noopener noreferrer"
             className="flex items-center justify-center bg-white border border-gray-300 rounded-md p-2 hover:shadow-lg transition-all"
           >
             <Image
