@@ -365,7 +365,7 @@ export default function Portfolio() {
                   href="https://www.patreon.com/johnseong"
                   className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
                 >
-                  Donate on Patreon
+                  Support me on Patreon
                 </a>
               </div>
             </div>
