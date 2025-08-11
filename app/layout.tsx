@@ -50,9 +50,7 @@ export default function RootLayout({
       >
         {/* Fixed thin gray bar at the very top */}
         <div className="fixed top-0 left-0 w-full bg-gray-200 text-center text-xs text-gray-700 py-1 z-50">
-          <p>
-            NO COOKIES &copy; {new Date().getFullYear()} JOHN WONMO SEONG
-          </p>
+          <p>NO COOKIES &copy; {new Date().getFullYear()} JOHN WONMO SEONG</p>
         </div>
 
         <main className="flex-grow mb-10">{children}</main>
@@ -104,35 +102,28 @@ export default function RootLayout({
           </div>
         </footer>
 
-        <header className="bg-[#e32017] text-white p-6 text-center flex flex-col items-center gap-1">
-          <CityOfLondonLogo />
-          <h1 className="text-4xl tracking-widest uppercase mt-2">
-            ORCHESTR
-            <br />
-            EUROPE LTD.
-          </h1>
-          <div className="bg-white h-2 w-36 my-2" />
-          <p className="text-sm uppercase tracking-wide">
-            MY SOFTWARE COMPANY BASED IN
-            <br />
-            LONDON UK 15387031
-          </p>
-
-          <div className="mt-4 flex gap-3">
-            <button
-              id="privacy-btn"
-              className="px-3 py-1 border border-white rounded-md text-white text-sm hover:bg-white hover:text-[#e32017] transition"
-            >
-              Privacy
-            </button>
-            <button
-              id="eula-btn"
-              className="px-3 py-1 border border-white rounded-md text-white text-sm hover:bg-white hover:text-[#e32017] transition"
-            >
-              EULA
-            </button>
-          </div>
-        </header>
+        <div className="bg-gradient-to-b from-black via-gray-900 to-black text-cyan-300 font-mono selection:bg-cyan-600 selection:text-black">
+          {/* Header */}
+          <header className="pt-12 pb-10 text-center max-w-4xl mx-auto px-6">
+            <h1 className="text-5xl font-extralight tracking-widest drop-shadow-md mb-2">
+              ORCHESTR <br /> SIMULATIONS
+            </h1>
+            <p className="text-xl text-gray-400 max-w-md mx-auto">
+              Next-Gen Pilot Helmet for 6th Gen Fighter Jets — blending mixed
+              reality and brain-computer interface.
+            </p>
+            <div className="mt-6 flex justify-center gap-6">
+              <a
+                href="https://orchestrsim.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2 border border-cyan-500 rounded-md text-cyan-400 hover:text-white hover:border-cyan-400 transition"
+              >
+                Visit the Website
+              </a>
+            </div>
+          </header>
+        </div>
       </body>
     </html>
   );
