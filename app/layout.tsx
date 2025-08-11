@@ -105,15 +105,14 @@ export default function RootLayout({
         <div className="bg-gradient-to-b from-black via-gray-900 to-black text-cyan-300 font-mono selection:bg-cyan-600 selection:text-black">
           {/* Header */}
           <header className="pt-12 pb-10 text-center max-w-4xl mx-auto px-6">
-            <p>
-              CHECK OUT MY COMPANY
-            </p>
-            <h1 className="text-5xl font-extralight tracking-widest drop-shadow-md mb-2">
-              ORCHESTR <br /> SIMULATIONS
+            <p>CHECK OUT MY COMPANY</p>
+            <h1 className="text-5xl font-extralight tracking-widest drop-shadow-md">
+              ORCHESTR
             </h1>
+            <span className="text-xl tracking-widest">SIMULATIONS</span>
             <p className="text-xl text-gray-400 max-w-md mx-auto">
-              Next-Gen FPV Pilot Helmet for Drones and 6th Gen Unmanned Fighter Jets — blending mixed
-              reality and brain-computer interface.
+              Next-Gen FPV Pilot Helmet for Drones and 6th Gen Unmanned Fighter
+              Jets — blending mixed reality and brain-computer interface.
             </p>
             <div className="mt-6 flex justify-center gap-6">
               <a
