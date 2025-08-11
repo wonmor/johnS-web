@@ -243,7 +243,7 @@ export default function Portfolio() {
           className="hover:underline hover:text-[#e32017] transition-all"
           href="https://medium.com/@wonmor"
         >
-          My Blog
+          My Articles
         </a>
         <a
           className="hover:underline hover:text-[#e32017] transition-all"
