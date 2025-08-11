@@ -105,6 +105,9 @@ export default function RootLayout({
         <div className="bg-gradient-to-b from-black via-gray-900 to-black text-cyan-300 font-mono selection:bg-cyan-600 selection:text-black">
           {/* Header */}
           <header className="pt-12 pb-10 text-center max-w-4xl mx-auto px-6">
+            <p>
+              CHECK OUT MY COMPANY
+            </p>
             <h1 className="text-5xl font-extralight tracking-widest drop-shadow-md mb-2">
               ORCHESTR <br /> SIMULATIONS
             </h1>
