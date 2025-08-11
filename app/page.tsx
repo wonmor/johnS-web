@@ -229,6 +229,10 @@ export default function Portfolio() {
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
               <span>UK Global Talent Visa Holder</span>
             </p>
+             <p className="flex items-center gap-1 mt-2">
+              <Image src="/canada-flag.svg" alt="Canadian Flag" width={24} height={16} />
+              <span>Grew up in Canada</span>
+            </p>
           </div>
         </div>
       </div>
