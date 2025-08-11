@@ -109,7 +109,7 @@ export default function RootLayout({
               ORCHESTR <br /> SIMULATIONS
             </h1>
             <p className="text-xl text-gray-400 max-w-md mx-auto">
-              Next-Gen Drone Pilot Helmet for 6th Gen Unmanned Fighter Jets — blending mixed
+              Next-Gen FPV Pilot Helmet for Drones and 6th Gen Unmanned Fighter Jets — blending mixed
               reality and brain-computer interface.
             </p>
             <div className="mt-6 flex justify-center gap-6">
