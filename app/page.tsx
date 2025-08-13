@@ -220,8 +220,7 @@ export default function Portfolio() {
                 height={16}
               />
               <span>
-                US O-1A Extraordinary Ability{" "}
-                <i className="text-gray-400">(In Progress)</i>
+                US O-1A Extraordinary Ability Visa Holder
               </span>
             </p>
             <p className="flex items-center gap-1 mt-2">
