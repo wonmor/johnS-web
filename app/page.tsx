@@ -276,8 +276,22 @@ export default function Portfolio() {
           Featured in these Media
         </p>
         <div className="flex justify-center gap-4">
+            <a
+            href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center bg-white border border-gray-300 rounded-md p-2 hover:shadow-lg transition-all"
+          >
+            <Image
+              src="/mobilesyrup.png"
+              alt="MobileSyrup"
+              width={100}
+              height={40}
+              style={{ objectFit: "contain" }}
+            />
+          </a>
           <a
-            href="https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
+            href="https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center bg-white border border-gray-300 rounded-md p-2 hover:shadow-lg transition-all"
@@ -291,21 +305,6 @@ export default function Portfolio() {
                 objectFit: "contain",
                 filter: "invert(1)", // inverts colors
               }}
-            />
-          </a>
-
-          <a
-            href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center bg-white border border-gray-300 rounded-md p-2 hover:shadow-lg transition-all"
-          >
-            <Image
-              src="/mobilesyrup.png"
-              alt="MobileSyrup"
-              width={100}
-              height={40}
-              style={{ objectFit: "contain" }}
             />
           </a>
         </div>
