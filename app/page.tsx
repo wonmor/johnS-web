@@ -220,7 +220,7 @@ export default function Portfolio() {
                 height={16}
               />
               <span>
-                US O-1 Extraordinary Ability
+                US O-1A Extraordinary Ability
               </span>
             </p>
             <p className="flex items-center gap-1 mt-2">
