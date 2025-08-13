@@ -6,7 +6,7 @@ import Image from "next/image";
 import "./globals.css";
 
 const tubeFont = localFont({
-  src: "../public/LondonTube.ttf",
+  src: "../public/toronto-subway.otf",
   display: "swap",
 });
 

@@ -12,7 +12,7 @@ import Link from "next/link";
 import { OrbitControls } from "@react-three/drei";
 
 const tubeFont = localFont({
-  src: "../public/LondonTube.ttf",
+  src: "../public/toronto-subway.otf",
   display: "swap",
 });
 
