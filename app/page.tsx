@@ -12,7 +12,7 @@ import Link from "next/link";
 import { OrbitControls } from "@react-three/drei";
 
 const tubeFont = localFont({
-  src: "../public/toronto-subway.otf",
+  src: "../public/Outfit.ttf",
   display: "swap",
 });
 
@@ -67,7 +67,6 @@ function TubeRoundel() {
         <span
           style={{
             color: "white",
-            fontWeight: "bold",
             fontFamily: tubeFont.style.fontFamily,
             letterSpacing: "0.05em",
             fontSize: 18,
@@ -210,7 +209,7 @@ export default function Portfolio() {
           </div>
 
           <div className="text-left">
-            <p className="font-semibold">
+            <p>
               Apple WWDC23 Swift Student Challenge Winner
             </p>
             <p className="flex items-center gap-1 mt-2">
@@ -566,7 +565,7 @@ export default function Portfolio() {
         </h3>
         <div className="space-y-6 text-lg">
           <div>
-            <h4 className="text-2xl font-semibold">
+            <h4 className="text-2xl">
               Reach Media Group – Senior Software Engineer (2025–)
             </h4>
             <p>
@@ -576,7 +575,7 @@ export default function Portfolio() {
             </p>
           </div>
           <div>
-            <h4 className="text-2xl font-semibold">
+            <h4 className="text-2xl">
               Seoul National University – Research Intern (Jul 2023)
             </h4>
             <p>

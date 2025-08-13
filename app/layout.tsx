@@ -6,7 +6,7 @@ import Image from "next/image";
 import "./globals.css";
 
 const tubeFont = localFont({
-  src: "../public/toronto-subway.otf",
+  src: "../public/Outfit.ttf",
   display: "swap",
 });
 
@@ -139,7 +139,7 @@ function PolicyModal() {
       className="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
     >
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
-        <h2 className="text-lg font-bold mb-2">Privacy Policy</h2>
+        <h2 className="text-lg mb-2">Privacy Policy</h2>
         <p className="text-sm mb-4">
           We do not collect any usage of cookie data. Your rights under UK GDPR
           apply.
@@ -162,7 +162,7 @@ function EulaModal() {
       className="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
     >
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
-        <h2 className="text-lg font-bold mb-2">EULA</h2>
+        <h2 className="text-lg mb-2">EULA</h2>
         <p className="text-sm mb-4">
           Any software made by this company is licensed (UK law): no reverse
           engineering or redistribution.
