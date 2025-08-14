@@ -209,9 +209,7 @@ export default function Portfolio() {
           </div>
 
           <div className="text-left">
-            <p>
-              Apple WWDC23 Swift Student Challenge Winner
-            </p>
+            <p>Apple WWDC23 Swift Student Challenge Winner</p>
             <p className="flex items-center gap-1 mt-2">
               <Image
                 src="/american-flag.png"
@@ -219,17 +217,26 @@ export default function Portfolio() {
                 width={24}
                 height={16}
               />
-              <span>
-                US O-1A Extraordinary Ability
-              </span>
+              <span>US O-1A Extraordinary Ability</span>
             </p>
             <p className="flex items-center gap-1 mt-2">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
               <span>UK Global Talent Visa Holder</span>
             </p>
-             <p className="flex flex-row items-center gap-1 mt-2">
-                     <Image src="/south-korea-flag.svg" alt="Canadian Flag" width={24} height={16} />
-              <Image src="/canada-flag.svg" alt="Canadian Flag" width={24} height={16} />
+            <p className="flex flex-row items-center gap-1 mt-2">
+              <Image
+                src="/south-korea-flag.svg"
+                alt="Canadian Flag"
+                width={24}
+                height={16}
+              />
+              <Image
+                src="/canada-flag.svg"
+                alt="Canadian Flag"
+                width={24}
+                height={16}
+              />
+               <span>Raised in Canada</span>
             </p>
           </div>
         </div>
@@ -237,7 +244,7 @@ export default function Portfolio() {
 
       {/* Navigation bar */}
       <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-[#003688]">
-              <a
+        <a
           className="hover:underline hover:text-[#e32017] transition-all"
           href="https://medium.com/@wonmor"
         >
@@ -274,7 +281,7 @@ export default function Portfolio() {
           Featured in these Media
         </p>
         <div className="flex justify-center gap-4">
-            <a
+          <a
             href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
             target="_blank"
             rel="noopener noreferrer"
