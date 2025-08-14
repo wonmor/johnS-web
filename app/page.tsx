@@ -236,7 +236,7 @@ export default function Portfolio() {
                 width={24}
                 height={16}
               />
-               <span>Raised in Canada</span>
+               <span>IEC Open Work Permit</span>
             </p>
           </div>
         </div>
