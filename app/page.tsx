@@ -52,16 +52,21 @@ function TubeRoundel() {
           zIndex: 0,
         }}
       >
-        {/* Bridge towers */}
-        <line x1="30" y1="30" x2="30" y2="70" />
-        <line x1="70" y1="30" x2="70" y2="70" />
-        {/* Suspension cables */}
-        <line x1="30" y1="30" x2="50" y2="50" />
-        <line x1="70" y1="30" x2="50" y2="50" />
-        <line x1="30" y1="70" x2="50" y2="50" />
-        <line x1="70" y1="70" x2="50" y2="50" />
-        {/* Base */}
-        <line x1="20" y1="70" x2="80" y2="70" />
+   
+ {/* Bridge towers */}
+<line x1="30" y1="30" x2="30" y2="70" />
+<line x1="70" y1="30" x2="70" y2="70" />
+<line x1="30" y1="30" x2="50" y2="50" opacity={0.3}/>
+<line x1="70" y1="30" x2="50" y2="50"opacity={0.3} />
+<line x1="30" y1="30" x2="0" y2="50" opacity={0.3}/>
+<line x1="70" y1="30" x2="100" y2="50"opacity={0.3} />
+
+
+
+
+
+
+
       </svg>
 
       {/* Hollow center */}
