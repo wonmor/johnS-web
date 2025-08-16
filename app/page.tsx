@@ -20,22 +20,50 @@ const tubeRed = "#e32017";
 const tubeBlue = "#003688";
 const tubeGreyBg = "#f5f5f5";
 const tubeText = tubeBlue;
-
 function TubeRoundel() {
   return (
     <div
       style={{
         position: "relative",
-        width: 120,
-        height: 120,
+        width: 140,
+        height: 140,
         borderRadius: "50%",
         backgroundColor: tubeRed,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         margin: "0 auto",
+        overflow: "hidden",
       }}
     >
+      {/* Golden Gate Bridge minimal SVG */}
+      <svg
+        viewBox="0 0 100 100"
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          width: "120%",
+          height: "120%",
+          transform: "translate(-50%, -50%)",
+          fill: "none",
+          stroke: "#003688",
+          strokeWidth: 2,
+          zIndex: 0,
+        }}
+      >
+        {/* Bridge towers */}
+        <line x1="30" y1="30" x2="30" y2="70" />
+        <line x1="70" y1="30" x2="70" y2="70" />
+        {/* Suspension cables */}
+        <line x1="30" y1="30" x2="50" y2="50" />
+        <line x1="70" y1="30" x2="50" y2="50" />
+        <line x1="30" y1="70" x2="50" y2="50" />
+        <line x1="70" y1="70" x2="50" y2="50" />
+        {/* Base */}
+        <line x1="20" y1="70" x2="80" y2="70" />
+      </svg>
+
       {/* Hollow center */}
       <div
         style={{
@@ -48,7 +76,7 @@ function TubeRoundel() {
         }}
       />
 
-      {/* Blue bar across the circle */}
+      {/* Name bar */}
       <div
         style={{
           position: "absolute",
