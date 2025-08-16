@@ -52,20 +52,35 @@ function TubeRoundel() {
           zIndex: 0,
         }}
       >
-   
- {/* Bridge towers */}
-<line x1="30" y1="30" x2="30" y2="70" />
-<line x1="70" y1="30" x2="70" y2="70" />
-<line x1="30" y1="30" x2="50" y2="50" opacity={0.3}/>
-<line x1="70" y1="30" x2="50" y2="50"opacity={0.3} />
-<line x1="30" y1="30" x2="0" y2="50" opacity={0.3}/>
-<line x1="70" y1="30" x2="100" y2="50"opacity={0.3} />
+        {/* Bridge towers */}
+        <line x1="30" y1="30" x2="30" y2="50" />
+        <line x1="70" y1="30" x2="70" y2="50" />
+        <line x1="30" y1="30" x2="50" y2="50" opacity={0.3} />
+        <line x1="70" y1="30" x2="50" y2="50" opacity={0.3} />
+        <line x1="30" y1="30" x2="0" y2="50" opacity={0.3} />
+        <line x1="70" y1="30" x2="100" y2="50" opacity={0.3} />
 
+  {/* Base */}
+<line x1="0" y1="70" x2="100" y2="70" opacity={0.2} />
 
-
-
-
-
+{/* Sea / wavy base under bridge */}
+{Array.from({ length: 30 }).map((_, i) => {
+  const x = 10 + Math.random() * 80;        // horizontal spread
+  const y = 72 + Math.random() * 18;       // start 2px below base, spread 18px down
+  const length = 2 + Math.random() * 5;     // small random streak length
+  return (
+    <line
+      key={i}
+      x1={x}
+      y1={y}
+      x2={x + length}
+      y2={y}
+      stroke="#003688"
+      strokeOpacity={0.2}
+      strokeWidth={1.2}
+    />
+  );
+})}
 
       </svg>
 
