@@ -20,7 +20,36 @@ const tubeRed = "#f77f6b"; // washed-out, Overground-inspired red
 const tubeBlue = "#003688";
 const tubeGreyBg = "#f5f5f5";
 const tubeText = tubeBlue;
+
 function TubeRoundel() {
+  const [waves, setWaves] = useState(
+    Array.from({ length: 30 }).map(() => ({
+      x: 10 + Math.random() * 80,
+      y: 72 + Math.random() * 18,
+      length: 2 + Math.random() * 5,
+    }))
+  );
+
+  useEffect(() => {
+    const speed = 0.3; // how fast the waves move per frame
+    const interval = setInterval(() => {
+      setWaves((prev) =>
+        prev
+          .map((wave) => ({ ...wave, x: wave.x + speed })) // move right
+          .filter((wave) => wave.x <= 100) // remove if out of view
+          .concat(
+            Array.from({ length: 1 }).map(() => ({
+              // generate new wave on left
+              x: -5 + Math.random() * 5,
+              y: 72 + Math.random() * 18,
+              length: 2 + Math.random() * 5,
+            }))
+          )
+      );
+    }, 16); // ~60fps
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       style={{
@@ -36,7 +65,6 @@ function TubeRoundel() {
         overflow: "hidden",
       }}
     >
-      {/* Golden Gate Bridge minimal SVG */}
       <svg
         viewBox="0 0 100 100"
         style={{
@@ -60,28 +88,21 @@ function TubeRoundel() {
         <line x1="30" y1="30" x2="0" y2="50" opacity={0.3} />
         <line x1="70" y1="30" x2="100" y2="50" opacity={0.3} />
 
-  {/* Base */}
-<line x1="0" y1="70" x2="100" y2="70" opacity={0.2} />
-
-{/* Sea / wavy base under bridge */}
-{Array.from({ length: 30 }).map((_, i) => {
-  const x = 10 + Math.random() * 80;        // horizontal spread
-  const y = 72 + Math.random() * 18;       // start 2px below base, spread 18px down
-  const length = 2 + Math.random() * 5;     // small random streak length
-  return (
-    <line
-      key={i}
-      x1={x}
-      y1={y}
-      x2={x + length}
-      y2={y}
-      stroke="#003688"
-      strokeOpacity={0.2}
-      strokeWidth={1.2}
-    />
-  );
-})}
-
+        {/* Base */}
+        <line x1="0" y1="70" x2="100" y2="70" opacity={0.2} />
+        {/* Waves */}
+        {waves.map((wave, i) => (
+          <line
+            key={i}
+            x1={wave.x}
+            y1={wave.y}
+            x2={wave.x + wave.length}
+            y2={wave.y}
+            stroke="#003688"
+            strokeOpacity={0.2}
+            strokeWidth={1.2}
+          />
+        ))}
       </svg>
 
       {/* Hollow center */}
