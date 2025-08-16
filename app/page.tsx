@@ -16,7 +16,7 @@ const tubeFont = localFont({
   display: "swap",
 });
 
-const tubeRed = "#e32017";
+const tubeRed = "#f77f6b"; // washed-out, Overground-inspired red
 const tubeBlue = "#003688";
 const tubeGreyBg = "#f5f5f5";
 const tubeText = tubeBlue;
