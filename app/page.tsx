@@ -257,7 +257,7 @@ export default function Portfolio() {
           </div>
 
           <div className="text-left">
-            <p>Apple WWDC23 Swift Student Challenge Winner</p>
+            <p>Apple WWDC23 Swift Challenge Winner</p>
             <p className="text-xs text-gray-500 tracking-wider uppercase mb-2">
               AT APPLE PARK, CUPERTINO
             </p>
