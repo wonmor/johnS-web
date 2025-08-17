@@ -508,7 +508,16 @@ export default function Portfolio() {
             </a>
             ,{" "}
             <i className="text-sm">
-              Walter Kohn (https://doi.org/10.1142/13806)
+              Walter Kohn (
+              <a
+                href="https://doi.org/10.1142/13806"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                https://doi.org/10.1142/13806
+              </a>
+              )
             </i>
           </li>
           <li>
