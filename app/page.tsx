@@ -504,7 +504,7 @@ export default function Portfolio() {
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              Professor Sir David Clary’s Book
+              Oxford Professor Sir David Clary’s Book
             </a>
             ,{" "}
             <i className="text-sm">
