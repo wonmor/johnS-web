@@ -586,10 +586,12 @@ export default function Portfolio() {
             (vision and dental) applications and custom-fitted BCI headsets.
           </p>
           <a
-            href="https://github.com/wonmor/OpticALLY-iOS"
+            href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
+              target="_blank"
+              rel="noopener noreferrer"
             className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
           >
-            Source on GitHub
+            View the Demo
           </a>
         </div>
       </div>
@@ -603,17 +605,6 @@ export default function Portfolio() {
           OpticALLY – Portable 3D Head Scanner
         </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
-          <li>
-            Product demo:{" "}
-            <a
-              href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-pink-600 hover:underline"
-            >
-              YouTube
-            </a>
-          </li>
           <li>iOS app using Swift & Objective‑C++ with C++ back‑end</li>
           <li>
             TrueDepth face scan with full point cloud processing using ICP,
