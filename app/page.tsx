@@ -645,7 +645,7 @@ export default function Portfolio() {
         <div className="space-y-6 text-lg">
           <div>
             <h4 className="text-2xl">
-              Reach.Me – Senior Software Engineer (2025–)
+              Reach.Me – Computer Vision Software Engineer (2025–)
             </h4>
             <p>
               Developing computer vision pipelines in C++ & Python (OpenCV,
