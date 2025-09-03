@@ -424,7 +424,8 @@ export default function Portfolio() {
                   Electron density calculated using DFT, with molecular orbital
                   visualisation. You can clearly see the p-orbitals overlapping
                   to form the π bonding orbitals. Generated using a tool I
-                  developed: <code>ElectronVisual.org</code>.
+                  developed:     <a
+                  href="https://electronvisual.org" className="hover:underline"><code>ElectronVisual.org</code></a>.
                 </p>
                 <a
                   href="https://www.patreon.com/johnseong"
@@ -602,7 +603,7 @@ export default function Portfolio() {
           className="text-3xl uppercase border-b-4 mb-4"
           style={{ borderColor: tubeBlue }}
         >
-          OpticALLY – Portable 3D Head Scanner
+          Orch 3D Head & Face Scan for iPhone
         </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
           <li>iOS app using Swift & Objective‑C++ with C++ back‑end</li>
@@ -615,6 +616,21 @@ export default function Portfolio() {
             rough point cloud alignment only using yaw, pitch, and roll values
             from the head pose estimation
           </li>
+        <div className="mt-6 flex justify-left">
+          <a
+            href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://apps.apple.com/bj/app/orch-3d-head-face-scan/id6468313142&ved=2ahUKEwj6r4XErruPAxWlDjQIHZQ5OhgQFnoECBsQAQ&usg=AOvVaw3DnwsFFuRSjo5L9x6z3-PF"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Orch 3D Scan on the App Store"
+          >
+            <img
+              src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
+              alt="Orch 3D Scan on the App Store"
+              height={50}
+              style={{ height: 50, cursor: "pointer" }}
+            />
+          </a>
+        </div>
         </ul>
       </section>
 
