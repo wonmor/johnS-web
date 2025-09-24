@@ -295,6 +295,10 @@ export default function Portfolio() {
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
               <span>UK Global Talent Visa Holder</span>
             </p>
+            <div className="flex items-center gap-1 mt-2">
+            <Image src="/south-korea-flag.svg" alt="South Korean Flag" width={24} height={16} />
+            <Image src="/canada-flag.svg" alt="Canadian Flag" width={24} height={16} />
+            </div>
           </div>
         </div>
       </div>
