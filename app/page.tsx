@@ -289,7 +289,7 @@ export default function Portfolio() {
                 width={24}
                 height={16}
               />
-              <span>US O-1A Extraordinary Ability</span>
+              <span>US O-1A Extraordinary Alien</span>
             </p>
             <p className="flex items-center gap-1 mt-2">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
