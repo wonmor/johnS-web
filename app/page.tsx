@@ -251,7 +251,7 @@ export default function Portfolio() {
           <TubeRoundel />
         </Link>
         <p className="text-xl mt-2">SOFTWARE ARCHITECT. FILMMAKER. PILOT.</p>
-        <span className="text-gray-500">wonmor@gmail.com</span>
+        <span className="text-gray-500">johnseong@havit.space</span>
         {/* Awards & Visa */}
         <div className="flex justify-center items-center gap-6 mt-4">
           <div
