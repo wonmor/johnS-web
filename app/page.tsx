@@ -246,12 +246,27 @@ function TubeRoundelWith787({
           <path d={`M 102 78 Q 145 66 225 45 Q 170 58 130 70 Z`} />
         </g>
 
-           {/* Engines — full circles, faint to match wings */}
+             {/* Engines — full circles with faint fanblades */}
         <g stroke={wingColor} strokeWidth="2" fill="none" opacity="0.25">
-          {/* Left engine */}
+          {/* Left engine outer circle */}
           <circle cx="-5" cy="96" r="14" />
-          {/* Right engine */}
+          {/* Right engine outer circle */}
           <circle cx="145" cy="96" r="14" />
+        </g>
+
+        {/* Fanblade details (faint radial lines inside engines) */}
+        <g stroke={wingColor} strokeWidth="1" opacity="0.15">
+          {/* Left engine fanblades */}
+          <line x1="-5" y1="96" x2="-5" y2="82" />
+          <line x1="-5" y1="96" x2="-5" y2="110" />
+          <line x1="-5" y1="96" x2="7" y2="96" />
+          <line x1="-5" y1="96" x2="-17" y2="96" />
+
+          {/* Right engine fanblades */}
+          <line x1="145" y1="96" x2="145" y2="82" />
+          <line x1="145" y1="96" x2="145" y2="110" />
+          <line x1="145" y1="96" x2="157" y2="96" />
+          <line x1="145" y1="96" x2="133" y2="96" />
         </g>
 
       </svg>
@@ -604,7 +619,7 @@ export default function Portfolio() {
           className="text-3xl uppercase border-b-4 mb-4"
           style={{ borderColor: tubeBlue }}
         >
-          ElectronVisual / Atomizer AR (Sept 2022 – Apr 2025)
+          ElectronVisualized, Atomizer AR (Sept 2022 – Apr 2025)
         </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
           <li>
