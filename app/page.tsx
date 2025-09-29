@@ -50,6 +50,14 @@ function TubeRoundel() {
     return () => clearInterval(interval);
   }, []);
 
+    const vw = 300;   // logical width of the SVG viewBox
+  const vh = 160;   // logical height
+  const cx = 150;   // center x
+  const cy = 80;    // center y
+  const outerR = 70; // outer radius of red circle
+  const innerR = 35; // inner (white) hole radius
+  const barH = 30;   // blue name bar height
+
   return (
     <div
       style={{
@@ -148,6 +156,114 @@ function TubeRoundel() {
     </div>
   );
 }
+
+function TubeRoundelWith787({
+  size = 140,
+  wingColor = tubeBlue,
+}: {
+  size?: number;
+  wingColor?: string;
+}) {
+  // scale relative to your TubeRoundel's base 140×140
+  const base = 140;
+  const s = size / base;
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: size,
+        height: size,
+        margin: "0 auto",
+      }}
+    >
+      {/* Long, thin 787-style wings behind the roundel */}
+      <svg
+        viewBox="0 0 140 140"
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: `translate(-50%, -50%) scale(${s})`,
+          overflow: "visible",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+        aria-hidden
+      >
+        {/* Wings: thin stroked Bézier curves with raked tips */}
+              {/* Wings: faint, thin, semi-transparent */}
+        <g fill="none" stroke={wingColor} strokeOpacity="0.25" strokeLinecap="round">
+          {/* Leading edge (left) */}
+          <path
+            d={`
+              M 38 78
+              C  10 70  -30 58  -85 45
+            `}
+            strokeWidth="2"
+          />
+          {/* Trailing edge (left) */}
+          <path
+            d={`
+              M 40 82
+              C  12 74  -28 63  -80 52
+            `}
+            strokeWidth="1.5"
+          />
+          {/* Raked tip (left) */}
+          <path d={`M -85 45 L -92 42`} strokeWidth="1.5" />
+
+          {/* Leading edge (right) */}
+          <path
+            d={`
+              M 102 78
+              C 130 70  170 58  225 45
+            `}
+            strokeWidth="2"
+          />
+          {/* Trailing edge (right) */}
+          <path
+            d={`
+              M 100 82
+              C 128 74  168 63  220 52
+            `}
+            strokeWidth="1.5"
+          />
+          {/* Raked tip (right) */}
+          <path d={`M 225 45 L 232 42`} strokeWidth="1.5" />
+        </g>
+
+        {/* Very faint fill between edges */}
+        <g fill={wingColor} opacity="0.05">
+          <path d={`M 38 78 Q -5 66 -85 45 Q -30 58 10 70 Z`} />
+          <path d={`M 102 78 Q 145 66 225 45 Q 170 58 130 70 Z`} />
+        </g>
+
+
+        {/* Subtle wing fill (kept ultra-thin) */}
+        <g fill={wingColor} opacity="0.06">
+          <path d={`M 38 78 Q -5 66 -85 45 Q -30 58 10 70 Z`} />
+          <path d={`M 102 78 Q 145 66 225 45 Q 170 58 130 70 Z`} />
+        </g>
+
+           {/* Engines — full circles, faint to match wings */}
+        <g stroke={wingColor} strokeWidth="2" fill="none" opacity="0.25">
+          {/* Left engine */}
+          <circle cx="-5" cy="96" r="14" />
+          {/* Right engine */}
+          <circle cx="145" cy="96" r="14" />
+        </g>
+
+      </svg>
+
+      {/* Your original roundel, unchanged, on top */}
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <TubeRoundel />
+      </div>
+    </div>
+  );
+}
+
 
 function Model({ modelPath }: { modelPath: string }) {
   const obj = useLoader(OBJLoader, modelPath);
@@ -248,7 +364,7 @@ export default function Portfolio() {
         style={{ borderColor: tubeBlue }}
       >
         <Link href="/" className="block w-fit mx-auto">
-          <TubeRoundel />
+          <TubeRoundelWith787 />
         </Link>
         <p className="text-xl mt-2">SOFTWARE ARCHITECT. FILMMAKER. PILOT.</p>
         <span className="text-gray-500">johnseong@havit.space</span>

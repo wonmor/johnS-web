@@ -100,6 +100,23 @@ export default function RootLayout({
               control
             </p>
           </div>
+
+          <div className="mt-6 flex flex-col items-center">
+            <iframe
+              className="m-auto overflow-hidden rounded-lg shadow-lg"
+              width="350"
+              height="700"
+              src="https://www.youtube.com/watch?v=LqiZKoXhtDA"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+            <p className="italic text-sm mt-2">
+              3D Head Scan Only Using an iPhone — for Pilot Helmet Design
+              control
+            </p>
+          </div>
         </footer>
 
         <div className="bg-gradient-to-b from-black via-gray-900 to-black text-cyan-300 font-mono selection:bg-cyan-600 selection:text-black">
