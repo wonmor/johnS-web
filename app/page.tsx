@@ -618,7 +618,7 @@ export default function Portfolio() {
             ASE, GPAW, Celery, Redis, Docker, AWS
           </li>
           <li>
-            Featured on{" "}
+            Featured on the front cover of{" "}
             <a
               href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
               target="_blank"
