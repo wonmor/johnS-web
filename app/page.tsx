@@ -684,7 +684,7 @@ export default function Portfolio() {
       </section>
 
       {/* 3D Face Model */}
-      <div className="max-w-4xl mx-auto bg-black rounded-md p-6 shadow-lg">
+      <div className="max-w-4xl mx-auto bg-white rounded-md p-6 shadow-lg">
         <Suspense
           fallback={
             <div className="p-20 text-center text-white font-thin text-3xl">
@@ -700,7 +700,7 @@ export default function Portfolio() {
         </Suspense>
         <div className="text-center p-6 bg-gray-900 text-white">
           <h4 className="text-2xl tracking-wide">
-            3D Face Scan of Me, using an iPhone
+            3D Face Scan of Myself, using iPhone's TrueDepth
           </h4>
           <p className="mt-2 text-gray-300">
             Portable, real‑time 3D face scanning app I developed for medical
