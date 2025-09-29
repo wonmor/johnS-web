@@ -703,8 +703,7 @@ export default function Portfolio() {
             3D Face Scan of Myself, using iPhone's TrueDepth
           </h4>
           <p className="mt-2 text-gray-300">
-            3D Meshing Algorithm and Registration Method I developed for medical
-            (vision and dental) applications and custom-fitted BCI headsets. Available on the iOS.
+            3D Meshing Algorithm and Registration Method I developed for human-computer interfaces (calculating IPD and head dimensions) and custom-fitted BCI headsets. Available on the iOS.
           </p>
           <a
             href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
