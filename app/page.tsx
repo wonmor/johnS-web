@@ -451,6 +451,14 @@ export default function Portfolio() {
         >
           LinkedIn
         </a>
+          <a
+          className="hover:underline hover:text-[#e32017] transition-all"
+          href="https://flickr.com/photos/johnseongemini8"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Flickr
+        </a>
       </nav>
       {/* Featured Media */}
       <div className="mt-4 text-center">
