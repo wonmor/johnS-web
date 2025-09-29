@@ -421,12 +421,12 @@ export default function Portfolio() {
 
       {/* Navigation bar */}
       <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-[#003688]">
-        <a
+        {/* <a
           className="hover:underline hover:text-[#e32017] transition-all"
           href="https://medium.com/@wonmor"
         >
           Articles
-        </a>
+        </a> */}
         <a
           className="hover:underline hover:text-[#e32017] transition-all"
           href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
