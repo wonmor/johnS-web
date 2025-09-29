@@ -105,8 +105,8 @@ export default function RootLayout({
             <iframe
               className="m-auto overflow-hidden rounded-lg shadow-lg"
               width="350"
-              height="700"
-              src="https://www.youtube.com/watch?v=LqiZKoXhtDA"
+              height="250"
+              src="https://www.youtube.com/embed/LqiZKoXhtDA?si=T8ZAd0P-vh_x1XaY"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
