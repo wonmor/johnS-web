@@ -700,7 +700,7 @@ export default function Portfolio() {
         </Suspense>
         <div className="text-center p-6 bg-gray-900 text-white">
           <h4 className="text-2xl tracking-wide">
-            3D Face Scan of Myself, using iPhone's TrueDepth
+            3D Facial Scan of Myself, using iPhone's TrueDepth
           </h4>
           <p className="mt-2 text-gray-300">
             3D Meshing Algorithm and Registration Method I developed for human-computer interfaces (calculating IPD and head dimensions) and custom-fitted BCI headsets. Available on the iOS.
