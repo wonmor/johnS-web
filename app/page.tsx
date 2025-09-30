@@ -366,7 +366,7 @@ export default function Portfolio() {
         <Link href="/" className="block w-fit mx-auto">
           <TubeRoundelWith787 />
         </Link>
-        <p className="text-xl mt-2">SOFTWARE, FILM, AVIATION</p>
+        <p className="text-xl mt-2">SOFTWARE, HARDWARE, AVIATION</p>
         <span className="text-gray-500">johnseong@havit.space</span>
         {/* Awards & Visa */}
         <div className="flex justify-center items-center gap-6 mt-4">
