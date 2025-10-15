@@ -556,10 +556,10 @@ export default function Portfolio() {
                   href="https://electronvisual.org" className="hover:underline"><code>ElectronVisual.org</code></a>.
                 </p>
                 <a
-                  href="https://www.patreon.com/johnseong"
+                  href="https://electronvisual.org"
                   className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
                 >
-                  Support me on Patreon
+                  Try out on <code>ElectronVisual.org</code>
                 </a>
               </div>
             </div>
