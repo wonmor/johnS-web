@@ -121,13 +121,18 @@ export default function RootLayout({
 
         <div className="bg-gradient-to-b from-black via-gray-900 to-black text-cyan-300 font-mono selection:bg-cyan-600 selection:text-black">
           {/* Header */}
-          <header className="pt-12 pb-10 text-center max-w-4xl mx-auto px-6">
-            <h1 className="text-5xl font-extralight tracking-widest drop-shadow-md mb-2">
-              ORCHESTR <br /> <p className="text-sm">AVIONICS</p>
-            </h1>
-            <p className="text-xl text-gray-400 max-w-md mx-auto">
-               We Bring Automation and AI to the Skies — through Fly-by-Large-Action-Model (LAM) System and Brain Computer Interface (BCI) Technology
-            </p>
+      <header className="pt-12 pb-10 text-center max-w-4xl mx-auto px-6">
+        <h1 className="text-5xl font-extralight tracking-widest drop-shadow-md  w-fit mx-auto">
+          ORCHESTR
+        </h1>
+        <span className="text-xl tracking-widest bg-cyan-300 text-black">
+          AVIONICS / DEEPBCI
+        </span>
+
+        <p className="text-xl text-gray-400 max-w-md mx-auto mt-5">
+          Human-Computer Interface for Pilot Headsets and FPV Goggles. BCI
+          Interface for General Aviation and Drone Aircrafts.
+        </p>
             <div className="mt-6 flex justify-center gap-6">
               <a
                 href="https://orchestrsim.com"
