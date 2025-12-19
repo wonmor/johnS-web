@@ -372,7 +372,7 @@ export default function Portfolio() {
     fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
   }}
 >
-  CREATIVE WORK<br />SOFTWARE & HARDWARE<br />AVIATION
+  CREATIVE WORK<br />SOFTWARE & HARDWARE<br />AEROSPACE
 </p>
 
         <span className="text-gray-500">john@orchestrsim.com</span>
