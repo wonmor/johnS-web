@@ -359,22 +359,16 @@ export default function Portfolio() {
       style={{ background: tubeGreyBg, color: tubeText }}
     >
       {/* Header banner */}
-      <div className="text-center py-8 border-b border-black/10 bg-[#f5f0e6] text-black">
+      <div className="text-center py-8 border-b border-black/10 bg-gradient-to-b from-[#f5f0e6] via-[#f5f0e6] to-[#020824] text-black">
         <Link href="/" className="block w-fit mx-auto">
           <TubeRoundelWith787 />
         </Link>
-      <p
-        className="mt-4 text-2xl font-bold tracking-[0.25em] lowercase"
-        style={{
-          fontFamily:
-            "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-        }}
-      >
-        creative work
+      <p className="mt-4 text-2xl font-bold tracking-[0.25em] uppercase">
+        CREATIVE WORK
         <br />
-        software &amp; hardware
+        SOFTWARE &amp; HARDWARE
         <br />
-        aerospace
+        AEROSPACE
       </p>
 
         <span className="text-gray-500">john@orchestrsim.com</span>
@@ -439,7 +433,7 @@ export default function Portfolio() {
             href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center bg-[#020824] border border-white/10 rounded-md p-2 hover:bg-black transition-all"
+            className="flex items-center justify-center bg-black border border-white/10 rounded-md p-2 hover:bg-gray-900 transition-all"
           >
             <Image
               src="/mobilesyrup.png"

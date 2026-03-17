@@ -122,7 +122,7 @@ export default function RootLayout({
           </div>
         </footer>
 
-        <div className="bg-[#f5f0e6] text-black font-mono selection:bg-black selection:text-[#f5f0e6]">
+        <div className="bg-gradient-to-b from-[#f5f0e6] via-[#f5f0e6] to-[#020824] text-black font-mono selection:bg-black selection:text-[#f5f0e6]">
           {/* Orchestr section */}
           <header className="pt-12 pb-10 max-w-4xl mx-auto px-6">
             <div className="flex items-start justify-between gap-4">
