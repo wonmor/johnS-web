@@ -359,9 +359,7 @@ export default function Portfolio() {
       style={{ background: tubeGreyBg, color: tubeText }}
     >
       {/* Header banner */}
-      <div
-        className="text-center py-8 border-b border-white/10 bg-[#020824]"
-      >
+      <div className="text-center py-8 border-b border-black/10 bg-[#f5f0e6] text-black">
         <Link href="/" className="block w-fit mx-auto">
           <TubeRoundelWith787 />
         </Link>
@@ -489,7 +487,10 @@ export default function Portfolio() {
               alt="MobileSyrup"
               width={100}
               height={40}
-              style={{ objectFit: "contain" }}
+              style={{
+                objectFit: "contain",
+                filter: "invert(1)",
+              }}
             />
           </a>
           <a
@@ -505,7 +506,7 @@ export default function Portfolio() {
               height={40}
               style={{
                 objectFit: "contain",
-                filter: "invert(1)", // inverts colors
+                filter: "invert(1)", // inverts colors for dark theme
               }}
             />
           </a>
