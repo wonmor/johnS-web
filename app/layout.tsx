@@ -122,7 +122,7 @@ export default function RootLayout({
           </div>
         </footer>
 
-        <div className="bg-gradient-to-b from-black via-gray-900 to-black text-cyan-300 font-mono selection:bg-cyan-600 selection:text-black">
+        <div className="bg-black text-white font-mono selection:bg-white selection:text-black">
           {/* Orchestr section */}
           <header className="pt-12 pb-10 max-w-4xl mx-auto px-6">
             <div className="flex items-start justify-between gap-4">
@@ -130,11 +130,11 @@ export default function RootLayout({
                 <h1 className="text-5xl font-extralight tracking-widest drop-shadow-md">
                   ORCHESTR
                 </h1>
-                <span className="inline-block mt-1 text-xs tracking-[0.35em] text-cyan-300/80">
-                  AVIONICS
+                <span className="inline-block mt-1 text-xs tracking-[0.35em] text-gray-300">
+                  AEROSPACE
                 </span>
               </div>
-              <div className="text-[11px] tracking-[0.35em] uppercase text-cyan-300/70">
+              <div className="text-[11px] tracking-[0.35em] uppercase text-gray-400">
                 MY&nbsp;STARTUP
               </div>
             </div>
@@ -164,7 +164,7 @@ export default function RootLayout({
                 href="https://orchestrsim.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2 border border-cyan-500 rounded-md text-cyan-300 hover:text-black hover:bg-cyan-300 hover:border-cyan-300 transition"
+                className="px-6 py-2 border border-white/60 rounded-md text-white hover:text-black hover:bg-white hover:border-white transition"
               >
                 Check it out
               </a>

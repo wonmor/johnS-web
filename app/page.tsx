@@ -16,10 +16,10 @@ const tubeFont = localFont({
   display: "swap",
 });
 
-const tubeRed = "#f77f6b"; // washed-out, Overground-inspired red
+const tubeRed = "#f77f6b"; // legacy accent red (kept for logos)
 const tubeBlue = "#003688";
-const tubeGreyBg = "#f5f5f5";
-const tubeText = tubeBlue;
+const tubeGreyBg = "#020824"; // dark navy background to match layout
+const tubeText = "#f9fafb"; // light text on dark
 
 function TubeRoundel() {
   const [waves, setWaves] = useState(
@@ -360,8 +360,7 @@ export default function Portfolio() {
     >
       {/* Header banner */}
       <div
-        className="text-center py-8 bg-white border-b-8"
-        style={{ borderColor: tubeBlue }}
+        className="text-center py-8 border-b border-white/10 bg-[#020824]"
       >
         <Link href="/" className="block w-fit mx-auto">
           <TubeRoundelWith787 />
@@ -433,7 +432,7 @@ export default function Portfolio() {
       </div>
 
       {/* Navigation bar */}
-      <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-[#003688]">
+      <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-gray-300">
         {/* <a
           className="hover:underline hover:text-[#e32017] transition-all"
           href="https://medium.com/@wonmor"
@@ -441,7 +440,7 @@ export default function Portfolio() {
           Articles
         </a> */}
         <a
-          className="hover:underline hover:text-[#e32017] transition-all"
+          className="hover:underline hover:text-white transition-all"
           href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
           target="_blank"
           rel="noopener noreferrer"
@@ -449,7 +448,7 @@ export default function Portfolio() {
           YouTube
         </a>
         <a
-          className="hover:underline hover:text-[#e32017] transition-all"
+          className="hover:underline hover:text-white transition-all"
           href="https://github.com/wonmor"
           target="_blank"
           rel="noopener noreferrer"
@@ -457,7 +456,7 @@ export default function Portfolio() {
           GitHub
         </a>
         <a
-          className="hover:underline hover:text-[#e32017] transition-all"
+          className="hover:underline hover:text-white transition-all"
           href="https://www.linkedin.com/in/john-seong-9194321a9/"
           target="_blank"
           rel="noopener noreferrer"
@@ -465,7 +464,7 @@ export default function Portfolio() {
           LinkedIn
         </a>
           <a
-          className="hover:underline hover:text-[#e32017] transition-all"
+          className="hover:underline hover:text-white transition-all"
           href="https://flickr.com/photos/johnseongemini8"
           target="_blank"
           rel="noopener noreferrer"
@@ -475,7 +474,7 @@ export default function Portfolio() {
       </nav>
       {/* Featured Media */}
       <div className="mt-4 text-center">
-        <p className="text-xs text-gray-500 tracking-wider uppercase mb-2">
+        <p className="text-xs text-gray-400 tracking-wider uppercase mb-2">
           Featured in these Media
         </p>
         <div className="flex justify-center gap-4">
@@ -483,7 +482,7 @@ export default function Portfolio() {
             href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center bg-white border border-gray-300 rounded-md p-2 hover:shadow-lg transition-all"
+            className="flex items-center justify-center bg-[#020824] border border-white/10 rounded-md p-2 hover:bg-black transition-all"
           >
             <Image
               src="/mobilesyrup.png"
@@ -497,7 +496,7 @@ export default function Portfolio() {
             href="https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center bg-white border border-gray-300 rounded-md p-2 hover:shadow-lg transition-all"
+            className="flex items-center justify-center bg-[#020824] border border-white/10 rounded-md p-2 hover:bg-black transition-all"
           >
             <Image
               src="/hdsb.svg"
@@ -514,13 +513,13 @@ export default function Portfolio() {
       </div>
 
       {/* Gadolinium / Benzene Tabs */}
-      <div className="max-w-4xl mx-auto bg-white rounded-md p-4 shadow-md">
+      <div className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md p-4 shadow-md">
         <div className="flex justify-center gap-4 mb-4">
           <button
             className={`px-4 py-2 rounded ${
               activeTab === "gadolinium"
-                ? "bg-[#003688] text-white"
-                : "bg-white text-[#003688] border border-[#003688]"
+                ? "bg-white text-black"
+                : "bg-transparent text-white border border-white/60"
             }`}
             onClick={() => setActiveTab("gadolinium")}
           >
@@ -529,8 +528,8 @@ export default function Portfolio() {
           <button
             className={`px-4 py-2 rounded ${
               activeTab === "benzene"
-                ? "bg-[#003688] text-white"
-                : "bg-white text-[#003688] border border-[#003688]"
+                ? "bg-white text-black"
+                : "bg-transparent text-white border border-white/60"
             }`}
             onClick={() => setActiveTab("benzene")}
           >
@@ -620,7 +619,7 @@ export default function Portfolio() {
       </div>
 
       {/* ElectronVisual Section */}
-      <section className="max-w-4xl mx-auto bg-white rounded-md shadow-lg p-6">
+      <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-lg p-6">
         <h3
           className="text-3xl uppercase border-b-4 mb-4"
           style={{ borderColor: tubeBlue }}
@@ -644,7 +643,7 @@ export default function Portfolio() {
               href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
+              className="text-cyan-300 hover:underline"
             >
               University of Oxford Professor Sir David Clary’s Book
             </a>
@@ -655,7 +654,7 @@ export default function Portfolio() {
                 href="https://doi.org/10.1142/13806"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
+                className="text-cyan-300 hover:underline"
               >
                 https://doi.org/10.1142/13806
               </a>
@@ -692,20 +691,20 @@ export default function Portfolio() {
         </div>
         <a
           href="https://www.electronvisual.org"
-          className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2"
+            className="inline-block mt-4 px-4 py-2 bg-white text-black rounded hover:bg-gray-200 mr-2"
         >
           Visit <code>ElectronVisual.org</code>
         </a>
         <a
           href="https://github.com/wonmor/ElectronVisualized"
-          className="inline-block mt-2 px-4 py-2 text-blue-600 border border-blue-600 rounded hover:bg-blue-50"
+          className="inline-block mt-2 px-4 py-2 text-white border border-white/70 rounded hover:bg-white hover:text-black"
         >
           Source on GitHub
         </a>
       </section>
 
       {/* 3D Face Model */}
-      <div className="max-w-4xl mx-auto bg-white rounded-md p-6 shadow-lg">
+      <div className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md p-6 shadow-lg">
         <Suspense
           fallback={
             <div className="p-20 text-center text-white font-thin text-3xl">
@@ -730,7 +729,7 @@ export default function Portfolio() {
             href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
               target="_blank"
               rel="noopener noreferrer"
-            className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
+            className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-black transition"
           >
             View the Demo on YouTube
           </a>
@@ -738,7 +737,7 @@ export default function Portfolio() {
       </div>
 
       {/* OpticALLY Section */}
-      <section className="max-w-4xl mx-auto bg-white rounded-md shadow-md p-6">
+      <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-md p-6">
         <h3
           className="text-3xl uppercase border-b-4 mb-4"
           style={{ borderColor: tubeBlue }}
@@ -775,7 +774,7 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section className="max-w-4xl mx-auto bg-white rounded-md shadow-md p-6">
+      <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-md p-6">
         <h3
           className="text-3xl uppercase border-b-4 mb-4"
           style={{ borderColor: tubeBlue }}
