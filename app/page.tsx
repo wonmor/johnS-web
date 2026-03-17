@@ -363,7 +363,7 @@ export default function Portfolio() {
         <Link href="/" className="block w-fit mx-auto">
           <TubeRoundelWith787 />
         </Link>
-      <p className="mt-4 text-2xl font-bold tracking-[0.25em] uppercase">
+      <p className="mt-4 text-2xl tracking-[0.25em] uppercase">
         CREATIVE WORK
         <br />
         SOFTWARE &amp; HARDWARE
@@ -371,7 +371,7 @@ export default function Portfolio() {
         AEROSPACE
       </p>
 
-        <span className="text-gray-500">john@orchestrsim.com</span>
+        <span className="text-white">john@orchestrsim.com</span>
         {/* Awards & Visa */}
         <div className="flex justify-center items-center gap-6 mt-4">
           <div
@@ -397,14 +397,14 @@ export default function Portfolio() {
             />
           </div>
 
-          <div className="text-left">
+          <div className="text-left text-white">
             <p>Apple WWDC23 Swift Challenge Winner</p>
-            <p className="text-xs text-gray-500 tracking-wider uppercase mb-2">
+            <p className="text-xs text-gray-200 tracking-wider uppercase mb-2">
               AT APPLE PARK, CUPERTINO
             </p>
             <p className="flex items-center gap-1 mt-2">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
-              <span>UK Global Talent Visa Holder</span>
+              <span className="text-white">UK Global Talent Visa Holder</span>
             </p>
             <p className="flex items-center gap-1 mt-2">
               <Image
@@ -413,7 +413,7 @@ export default function Portfolio() {
                 width={24}
                 height={16}
               />
-              <span>US O-1A Extraordinary Alien</span>
+              <span className="text-white">US O-1A Extraordinary Alien</span>
             </p>
             <div className="flex items-center gap-1 mt-2">
             <Image src="/south-korea-flag.svg" alt="South Korean Flag" width={24} height={16} />
