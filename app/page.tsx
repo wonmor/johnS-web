@@ -364,17 +364,17 @@ export default function Portfolio() {
           <TubeRoundelWith787 />
         </Link>
       <p
-        className="mt-2 text-lg uppercase"
+        className="mt-4 text-2xl font-bold tracking-[0.25em] lowercase"
         style={{
           fontFamily:
             "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
         }}
       >
-        CREATIVE WORK
+        creative work
         <br />
-        SOFTWARE &amp; HARDWARE
+        software &amp; hardware
         <br />
-        AEROSPACE
+        aerospace
       </p>
 
         <span className="text-gray-500">john@orchestrsim.com</span>
