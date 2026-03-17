@@ -131,7 +131,7 @@ export default function RootLayout({
                   ORCHESTR
                 </h1>
                 <span className="inline-block mt-1 text-xs tracking-[0.35em] text-cyan-300/80">
-                  AVIONICS / DEEPBCI
+                  AVIONICS
                 </span>
               </div>
               <div className="text-[11px] tracking-[0.35em] uppercase text-cyan-300/70">
