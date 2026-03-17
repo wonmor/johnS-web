@@ -258,21 +258,72 @@ function WestminsterSilhouette() {
             <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
           </linearGradient>
         </defs>
-        <path
-          fill="url(#westminsterGradient)"
-          d="
-            M0,260
-            L80,260 L80,210 L110,210 L110,180 L140,180 L140,210 L170,210 L170,190 L200,190 L200,210 L230,210 L230,170 L260,170 L260,210 L300,210
-            L320,210 L320,160 L340,160 L340,140 L360,140 L360,160 L380,160 L380,210 L420,210 L420,150 L430,150 L430,100 L440,100 L440,70
-            L445,70 L445,40 L450,40 L450,70 L455,70 L455,100 L465,100 L465,150 L475,150 L475,210 L520,210
-            L540,210 L540,170 L560,170 L560,150 L580,150 L580,170 L600,170 L600,210 L640,210
-            L660,210 L660,120 L670,120 L670,80 L680,80 L680,50 L685,50 L685,30 L690,30 L690,50 L695,50 L695,80 L705,80 L705,120 L715,120 L715,210 L760,210
-            L780,210 L780,180 L800,180 L800,160 L820,160 L820,180 L840,180 L840,210 L880,210
-            L900,210 L900,170 L920,170 L920,150 L940,150 L940,170 L960,170 L960,210 L1000,210
-            L1020,210 L1020,190 L1040,190 L1040,210 L1080,210 L1080,230 L1120,230 L1120,260 L1200,260
-            L1200,300 L0,300 Z
-          "
-        />
+        {/* Simplified but recognisable London skyline:
+            left: Tower Bridge / City,
+            center: Palace of Westminster + Big Ben,
+            right: London Eye */}
+        <g fill="url(#westminsterGradient)">
+          {/* Ground base */}
+          <rect x="0" y="250" width="1200" height="50" />
+
+          {/* Tower Bridge (left) */}
+          <g>
+            {/* Towers */}
+            <rect x="70" y="190" width="30" height="60" />
+            <rect x="170" y="190" width="30" height="60" />
+            {/* Tower tops */}
+            <polygon points="70,190 85,160 100,190" />
+            <polygon points="170,190 185,160 200,190" />
+            {/* Road deck */}
+            <rect x="80" y="220" width="110" height="8" />
+            {/* Suspension hint */}
+            <path d="M90 220 C 120 190 150 190 180 220" fill="none" stroke="#ffffff" strokeWidth="3" strokeOpacity="0.35" />
+          </g>
+
+          {/* City of London skyline (low blocks) */}
+          <g>
+            <rect x="10" y="220" width="40" height="30" />
+            <rect x="40" y="210" width="35" height="40" />
+            {/* The Gherkin-ish */}
+            <ellipse cx="135" cy="205" rx="18" ry="35" />
+          </g>
+
+          {/* Palace of Westminster + Big Ben (center) */}
+          <g>
+            {/* Palace block */}
+            <rect x="420" y="200" width="260" height="50" />
+            {/* Palace turrets */}
+            <rect x="430" y="180" width="12" height="20" />
+            <rect x="455" y="185" width="10" height="15" />
+            <rect x="480" y="178" width="12" height="22" />
+            <rect x="505" y="185" width="10" height="15" />
+
+            {/* Big Ben tower */}
+            <rect x="560" y="130" width="40" height="120" />
+            {/* Clock face */}
+            <circle cx="580" cy="160" r="12" fill="none" stroke="#ffffff" strokeWidth="3" />
+            {/* Spire */}
+            <polygon points="560,130 580,95 600,130" />
+          </g>
+
+          {/* London Eye (right) */}
+          <g>
+            {/* Wheel */}
+            <circle cx="920" cy="195" r="60" fill="none" stroke="#ffffff" strokeWidth="4" strokeOpacity="0.35" />
+            {/* Pods */}
+            {Array.from({ length: 12 }).map((_, i) => {
+              const angle = (Math.PI * 2 * i) / 12;
+              const cx = 920 + 60 * Math.cos(angle);
+              const cy = 195 + 60 * Math.sin(angle);
+              return (
+                <circle key={i} cx={cx} cy={cy} r="4" />
+              );
+            })}
+            {/* Support legs */}
+            <rect x="910" y="195" width="6" height="70" />
+            <rect x="924" y="195" width="6" height="70" />
+          </g>
+        </g>
       </svg>
     </div>
   );
