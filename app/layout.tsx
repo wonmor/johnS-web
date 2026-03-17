@@ -123,27 +123,50 @@ export default function RootLayout({
         </footer>
 
         <div className="bg-gradient-to-b from-black via-gray-900 to-black text-cyan-300 font-mono selection:bg-cyan-600 selection:text-black">
-          {/* Header */}
-      <header className="pt-12 pb-10 text-center max-w-4xl mx-auto px-6">
-        <h1 className="text-5xl font-extralight tracking-widest drop-shadow-md  w-fit mx-auto">
-          ORCHESTR
-        </h1>
-        <span className="text-xl tracking-widest bg-cyan-300 text-black">
-          AVIONICS / DEEPBCI
-        </span>
+          {/* Orchestr section */}
+          <header className="pt-12 pb-10 max-w-4xl mx-auto px-6">
+            <div className="flex items-start justify-between gap-4">
+              <div className="text-left">
+                <h1 className="text-5xl font-extralight tracking-widest drop-shadow-md">
+                  ORCHESTR
+                </h1>
+                <span className="inline-block mt-1 text-xs tracking-[0.35em] text-cyan-300/80">
+                  AVIONICS / DEEPBCI
+                </span>
+              </div>
+              <div className="text-[11px] tracking-[0.35em] uppercase text-cyan-300/70">
+                MY&nbsp;STARTUP
+              </div>
+            </div>
 
-        <p className="text-xl text-gray-400 max-w-md mx-auto mt-5">
-          Human-Computer Interface for Pilot Headsets and FPV Goggles. BCI
-          Interface for General Aviation and Drone Aircrafts.
-        </p>
-            <div className="mt-6 flex justify-center gap-6">
+            <div className="mt-8 max-w-2xl text-left space-y-3 text-gray-200">
+              <p className="text-sm font-semibold text-red-400 tracking-[0.25em] uppercase">
+                Introducing Orch Avionic 1 EFB.
+                <span className="ml-2 inline-block rounded-full border border-red-400/60 px-2 py-[2px] text-[10px] tracking-[0.25em]">
+                  NEW
+                </span>
+              </p>
+              <p className="text-xl leading-relaxed">
+                Your Predictive* Copilot in GA Flying.
+                <br />
+                <span className="italic">
+                  Votre copilote prédictif* en aviation générale.
+                </span>
+              </p>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                ADS-B, GPS, handheld radio, fuel calculation and Jeppesen* charts.
+                All in one form factor.
+              </p>
+            </div>
+
+            <div className="mt-6 flex justify-start gap-6">
               <a
                 href="https://orchestrsim.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2 border border-cyan-500 rounded-md text-cyan-400 hover:text-white hover:border-cyan-400 transition"
+                className="px-6 py-2 border border-cyan-500 rounded-md text-cyan-300 hover:text-black hover:bg-cyan-300 hover:border-cyan-300 transition"
               >
-                Visit the Website
+                Check it out
               </a>
             </div>
           </header>

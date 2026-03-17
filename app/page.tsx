@@ -367,7 +367,7 @@ export default function Portfolio() {
           <TubeRoundelWith787 />
         </Link>
       <p
-        className="mt-2 text-lg uppercase font-bold text-red-600"
+        className="mt-2 text-lg uppercase"
         style={{
           fontFamily:
             "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
@@ -412,6 +412,10 @@ export default function Portfolio() {
               AT APPLE PARK, CUPERTINO
             </p>
             <p className="flex items-center gap-1 mt-2">
+              <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
+              <span>UK Global Talent Visa Holder</span>
+            </p>
+            <p className="flex items-center gap-1 mt-2">
               <Image
                 src="/american-flag.png"
                 alt="American Flag"
@@ -419,10 +423,6 @@ export default function Portfolio() {
                 height={16}
               />
               <span>US O-1A Extraordinary Alien</span>
-            </p>
-            <p className="flex items-center gap-1 mt-2">
-              <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
-              <span>UK Global Talent Visa Holder</span>
             </p>
             <div className="flex items-center gap-1 mt-2">
             <Image src="/south-korea-flag.svg" alt="South Korean Flag" width={24} height={16} />
