@@ -366,9 +366,11 @@ export default function Portfolio() {
       <p className="mt-4 text-2xl tracking-[0.25em] uppercase">
         CREATIVE WORK
         <br />
-        SOFTWARE &amp; HARDWARE
+        TRAVAUX CREATIFS
         <br />
         AEROSPACE
+        <br />
+        AEROSPATIALE
       </p>
 
         <span className="text-black">john@orchestrsim.com</span>
