@@ -45,11 +45,14 @@ export default function RootLayout({
       <body
         className={[
           tubeFont.className,
-          "flex flex-col min-h-screen bg-[#f5f5f5] text-[#003688] pt-6", // Add pt-6 to offset the height of the fixed bar
+          // Minimal, typography‑centric dark navy theme
+          "flex flex-col min-h-screen bg-[#020824] text-white pt-6 antialiased",
         ].join(" ")}
       >
-        {/* Fixed thin gray bar at the very top */}
-        <div className="fixed top-0 left-0 w-full bg-gray-200 text-center text-xs text-gray-700 py-1 z-50">
+        {/* Subtle Westminster silhouette in the background */}
+        <WestminsterSilhouette />
+        {/* Fixed minimal bar at the very top */}
+        <div className="fixed top-0 left-0 w-full border-b border-white/10 bg-[#020824]/95 backdrop-blur text-center text-[11px] tracking-[0.22em] uppercase text-gray-300 py-1 z-50">
           <p>NO COOKIES &copy; {new Date().getFullYear()} JOHN WONMO SEONG</p>
         </div>
 
@@ -59,7 +62,7 @@ export default function RootLayout({
         <PolicyModal />
         <EulaModal />
 
-        <footer className="text-center py-6 mt-auto border-t-4 border-[#003688] bg-[#f5f5f5] text-[#003688] text-md font-light">
+        <footer className="text-center py-10 mt-auto border-t border-white/10 bg-[#020824] text-white text-md font-light">
           <div className="mt-6 flex flex-col items-center">
             <Image
               src="/IMG_3505.jpg"
@@ -156,15 +159,15 @@ function PolicyModal() {
       id="privacy-modal"
       className="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
     >
-      <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
-        <h2 className="text-lg mb-2">Privacy Policy</h2>
-        <p className="text-sm mb-4">
+      <div className="bg-[#020824] border border-white/10 rounded-lg shadow-lg max-w-md w-full p-6 text-white">
+        <h2 className="text-lg mb-2 tracking-wide">Privacy Policy</h2>
+        <p className="text-sm mb-4 text-gray-300">
           We do not collect any usage of cookie data. Your rights under UK GDPR
           apply.
         </p>
         <button
           id="privacy-close"
-          className="mt-2 px-3 py-1 border border-[#003688] rounded-md text-[#003688] text-sm hover:bg-[#003688] hover:text-white transition"
+          className="mt-2 px-3 py-1 border border-white/40 rounded-md text-white text-sm hover:bg-white hover:text-black transition"
         >
           Close
         </button>
@@ -179,15 +182,15 @@ function EulaModal() {
       id="eula-modal"
       className="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
     >
-      <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
-        <h2 className="text-lg mb-2">EULA</h2>
-        <p className="text-sm mb-4">
+      <div className="bg-[#020824] border border-white/10 rounded-lg shadow-lg max-w-md w-full p-6 text-white">
+        <h2 className="text-lg mb-2 tracking-wide">EULA</h2>
+        <p className="text-sm mb-4 text-gray-300">
           Any software made by this company is licensed (UK law): no reverse
           engineering or redistribution.
         </p>
         <button
           id="eula-close"
-          className="mt-2 px-3 py-1 border border-[#003688] rounded-md text-[#003688] text-sm hover:bg-[#003688] hover:text-white transition"
+          className="mt-2 px-3 py-1 border border-white/40 rounded-md text-white text-sm hover:bg-white hover:text-black transition"
         >
           Close
         </button>
@@ -215,5 +218,39 @@ function CityOfLondonLogo() {
         strokeWidth="8"
       />
     </svg>
+  );
+}
+
+function WestminsterSilhouette() {
+  return (
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 h-40 md:h-56 lg:h-64 opacity-20 md:opacity-25">
+      <svg
+        viewBox="0 0 1200 300"
+        preserveAspectRatio="xMidYMax slice"
+        className="w-full h-full"
+      >
+        <defs>
+          <linearGradient id="westminsterGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <path
+          fill="url(#westminsterGradient)"
+          d="
+            M0,260
+            L80,260 L80,210 L110,210 L110,180 L140,180 L140,210 L170,210 L170,190 L200,190 L200,210 L230,210 L230,170 L260,170 L260,210 L300,210
+            L320,210 L320,160 L340,160 L340,140 L360,140 L360,160 L380,160 L380,210 L420,210 L420,150 L430,150 L430,100 L440,100 L440,70
+            L445,70 L445,40 L450,40 L450,70 L455,70 L455,100 L465,100 L465,150 L475,150 L475,210 L520,210
+            L540,210 L540,170 L560,170 L560,150 L580,150 L580,170 L600,170 L600,210 L640,210
+            L660,210 L660,120 L670,120 L670,80 L680,80 L680,50 L685,50 L685,30 L690,30 L690,50 L695,50 L695,80 L705,80 L705,120 L715,120 L715,210 L760,210
+            L780,210 L780,180 L800,180 L800,160 L820,160 L820,180 L840,180 L840,210 L880,210
+            L900,210 L900,170 L920,170 L920,150 L940,150 L940,170 L960,170 L960,210 L1000,210
+            L1020,210 L1020,190 L1040,190 L1040,210 L1080,210 L1080,230 L1120,230 L1120,260 L1200,260
+            L1200,300 L0,300 Z
+          "
+        />
+      </svg>
+    </div>
   );
 }
