@@ -429,6 +429,47 @@ export default function Portfolio() {
         </div>
       </div>
 
+      {/* Featured Media */}
+      <div className="mt-4 text-center">
+        <p className="text-xs text-gray-400 tracking-wider uppercase mb-2">
+          Featured in these Media
+        </p>
+        <div className="flex justify-center gap-4">
+          <a
+            href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center bg-[#020824] border border-white/10 rounded-md p-2 hover:bg-black transition-all"
+          >
+            <Image
+              src="/mobilesyrup.png"
+              alt="MobileSyrup"
+              width={100}
+              height={40}
+              style={{
+                objectFit: "contain",
+              }}
+            />
+          </a>
+          <a
+            href="https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center bg-[#020824] border border-white/10 rounded-md p-2 hover:bg-black transition-all"
+          >
+            <Image
+              src="/hdsb.svg"
+              alt="HDSB"
+              width={100}
+              height={40}
+              style={{
+                objectFit: "contain",
+              }}
+            />
+          </a>
+        </div>
+      </div>
+
       {/* Navigation bar */}
       <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-gray-300">
         {/* <a
@@ -461,7 +502,7 @@ export default function Portfolio() {
         >
           LinkedIn
         </a>
-          <a
+        <a
           className="hover:underline hover:text-white transition-all"
           href="https://flickr.com/photos/johnseongemini8"
           target="_blank"
@@ -470,48 +511,6 @@ export default function Portfolio() {
           Flickr
         </a>
       </nav>
-      {/* Featured Media */}
-      <div className="mt-4 text-center">
-        <p className="text-xs text-gray-400 tracking-wider uppercase mb-2">
-          Featured in these Media
-        </p>
-        <div className="flex justify-center gap-4">
-          <a
-            href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center bg-[#020824] border border-white/10 rounded-md p-2 hover:bg-black transition-all"
-          >
-            <Image
-              src="/mobilesyrup.png"
-              alt="MobileSyrup"
-              width={100}
-              height={40}
-              style={{
-                objectFit: "contain",
-                filter: "invert(1)",
-              }}
-            />
-          </a>
-          <a
-            href="https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center bg-[#020824] border border-white/10 rounded-md p-2 hover:bg-black transition-all"
-          >
-            <Image
-              src="/hdsb.svg"
-              alt="HDSB"
-              width={100}
-              height={40}
-              style={{
-                objectFit: "contain",
-                filter: "invert(1)", // inverts colors for dark theme
-              }}
-            />
-          </a>
-        </div>
-      </div>
 
       {/* Gadolinium / Benzene Tabs */}
       <div className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md p-4 shadow-md">
