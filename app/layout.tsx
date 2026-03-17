@@ -68,7 +68,7 @@ export default function RootLayout({
               height={192}
               style={{ objectFit: "contain" }}
             />
-            <p className="italic text-sm mt-2">with iJustine, at Apple’s HQ</p>
+            <p className="italic text-sm mt-2">with iJustine, at Apple Park during WWDC23</p>
           </div>
 
           {/* Second image with caption */}
