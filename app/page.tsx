@@ -359,7 +359,7 @@ export default function Portfolio() {
       style={{ background: tubeGreyBg, color: tubeText }}
     >
       {/* Header banner */}
-      <div className="text-center py-8 border-b border-black/10 bg-gradient-to-b from-[#f5f0e6] via-[#f5f0e6] to-[#020824] text-black">
+      <div className="text-center py-8 bg-gradient-to-b from-[#f5f0e6] via-[#f5f0e6] to-[#020824] text-black">
         <Link href="/" className="block w-fit mx-auto">
           <TubeRoundelWith787 />
         </Link>
@@ -371,7 +371,7 @@ export default function Portfolio() {
         AEROSPACE
       </p>
 
-        <span className="text-white">john@orchestrsim.com</span>
+        <span className="text-black">john@orchestrsim.com</span>
         {/* Awards & Visa */}
         <div className="flex justify-center items-center gap-6 mt-4">
           <div
@@ -433,7 +433,7 @@ export default function Portfolio() {
             href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center bg-black border border-white/10 rounded-md p-2 hover:bg-gray-900 transition-all"
+            className="flex items-center justify-center bg-gray-900 border border-white/10 rounded-md p-2 hover:bg-black transition-all"
           >
             <Image
               src="/mobilesyrup.png"
@@ -449,7 +449,7 @@ export default function Portfolio() {
             href="https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center bg-[#020824] border border-white/10 rounded-md p-2 hover:bg-black transition-all"
+            className="flex items-center justify-center bg-gray-900 border border-white/10 rounded-md p-2 hover:bg-black transition-all"
           >
             <Image
               src="/hdsb.svg"
@@ -614,10 +614,7 @@ export default function Portfolio() {
 
       {/* ElectronVisual Section */}
       <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-lg p-6">
-        <h3
-          className="text-3xl uppercase border-b-4 mb-4"
-          style={{ borderColor: tubeBlue }}
-        >
+        <h3 className="text-3xl uppercase mb-4">
           ElectronVisualized, Atomizer AR (Sept 2022 – Apr 2025)
         </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
@@ -732,10 +729,7 @@ export default function Portfolio() {
 
       {/* OpticALLY Section */}
       <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-md p-6">
-        <h3
-          className="text-3xl uppercase border-b-4 mb-4"
-          style={{ borderColor: tubeBlue }}
-        >
+        <h3 className="text-3xl uppercase mb-4">
           Orch 3D Head & Face Scan for iPhone
         </h3>
         <ul className="list-disc pl-6 text-lg space-y-2">
@@ -769,10 +763,7 @@ export default function Portfolio() {
 
       {/* Experience Section */}
       <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-md p-6">
-        <h3
-          className="text-3xl uppercase border-b-4 mb-4"
-          style={{ borderColor: tubeBlue }}
-        >
+        <h3 className="text-3xl uppercase mb-4">
           Experience
         </h3>
         <div className="space-y-6 text-lg">
