@@ -153,7 +153,7 @@ export default function RootLayout({
                   Votre copilote prédictif* en aviation générale.
                 </span>
               </p>
-              <p className="text-sm text-gray-700 leading-relaxed">
+              <p className="text-sm text-white leading-relaxed">
                 ADS-B, GPS, handheld radio, fuel calculation and Jeppesen* charts.
                 All in one form factor.
               </p>
@@ -164,7 +164,7 @@ export default function RootLayout({
                 href="https://orchestrsim.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2 border border-black rounded-md text-black hover:text-[#f5f0e6] hover:bg-black hover:border-black transition"
+                className="px-6 py-2 border border-white rounded-md bg-white text-black hover:bg-transparent hover:text-white transition"
               >
                 Check it out
               </a>
