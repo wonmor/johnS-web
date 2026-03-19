@@ -386,7 +386,7 @@ export default function Portfolio() {
             }}
           >
             <Image
-              src="/IMG_7336_profile.png"
+              src="/reach-logo.jpg"
               alt="WWDC23 Scholar"
               width={100}
               height={100}
