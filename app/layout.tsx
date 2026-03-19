@@ -12,7 +12,7 @@ const tubeFont = localFont({
 
 export const metadata = {
   title: "John Seong",
-  description: "Hi, I’m John. I Love Engineering.",
+  description: "Hi, I’m John. I love aerospace, software, and design. Welcome to my personal website.",
 };
 
 export default function RootLayout({
