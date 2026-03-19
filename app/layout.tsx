@@ -127,6 +127,51 @@ export default function RootLayout({
           <header className="pt-12 pb-10 max-w-4xl mx-auto px-6">
             <div className="flex items-start justify-between gap-4">
               <div className="text-left">
+                <span className="mb-1 inline-block -ml-2 opacity-95" aria-hidden="true">
+                  <svg
+                    width="46"
+                    height="20"
+                    viewBox="0 0 56 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-gray-600"
+                  >
+                    <path
+                      d="M2 8.5H22"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeDasharray="2.6 2.8"
+                      opacity="0.9"
+                    />
+                    <path
+                      d="M2 13.5H20"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeDasharray="2.6 2.8"
+                      opacity="0.8"
+                    />
+                    <path
+                      d="M23 12L34 10.6L45 12L34 13.4L23 12Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M31.5 12L27 7.6H29.8L34 10.6L31.5 12Z"
+                      fill="currentColor"
+                      opacity="0.9"
+                    />
+                    <path
+                      d="M31.5 12L27 16.4H29.8L34 13.4L31.5 12Z"
+                      fill="currentColor"
+                      opacity="0.9"
+                    />
+                    <path
+                      d="M45 12L49.2 11.5L54 12L49.2 12.5L45 12Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
                 <h1 className="text-5xl font-extralight tracking-widest">
                   ORCHESTR
                 </h1>
