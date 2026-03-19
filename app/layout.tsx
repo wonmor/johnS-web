@@ -164,7 +164,7 @@ export default function RootLayout({
                 href="https://orchestrsim.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2 border border-white rounded-md bg-white text-black hover:bg-transparent hover:text-white transition"
+                className="px-6 py-2 border border-white rounded-md bg-transparent text-white hover:bg-white hover:text-black active:bg-white active:text-black transition focus:outline-none focus:ring-2 focus:ring-white/60"
               >
                 Check it out
               </a>
