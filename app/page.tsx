@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import localFont from "next/font/local";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
@@ -10,11 +9,7 @@ import * as THREE from "three";
 import { Box3, Vector3, MathUtils } from "three";
 import Link from "next/link";
 import { OrbitControls } from "@react-three/drei";
-
-const tubeFont = localFont({
-  src: "../public/Outfit.ttf",
-  display: "swap",
-});
+import { tubeFont } from "./fonts";
 
 const tubeRed = "#f77f6b"; // legacy accent red (kept for logos)
 const tubeBlue = "#003688";

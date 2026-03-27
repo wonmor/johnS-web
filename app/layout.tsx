@@ -1,14 +1,9 @@
 import Script from "next/script";
-import localFont from "next/font/local";
 import Head from "next/head";
 import React from "react";
 import Image from "next/image";
+import { tubeFont } from "./fonts";
 import "./globals.css";
-
-const tubeFont = localFont({
-  src: "../public/Outfit.ttf",
-  display: "swap",
-});
 
 export const metadata = {
   title: "John Seong",
