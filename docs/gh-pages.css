@@ -35,6 +35,8 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: Barlow, system-ui, sans-serif;
   background: var(--tube-bg);
   color: var(--tube-text);
@@ -87,23 +89,6 @@ a {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-}
-
-.ghp-chrome__copy {
-  margin: 0;
-  text-align: center;
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1.25;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
-}
-
-@media (min-width: 640px) {
-  .ghp-chrome__copy {
-    font-size: 0.875rem;
-    letter-spacing: 0.2em;
-  }
 }
 
 .ghp-chrome__links {
@@ -393,6 +378,33 @@ a {
   gap: 1.5rem;
 }
 
+.ghp-awards-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.ghp-awards-static-note {
+  margin: 0;
+  max-width: 12rem;
+  text-align: center;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: #d1d5db;
+}
+
+@media (min-width: 640px) {
+  .ghp-awards-static-note {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    max-width: 14rem;
+  }
+}
+
 .ghp-avatar-ring {
   border-radius: 50%;
   border: 4px solid var(--roundel-ring);
@@ -456,10 +468,11 @@ a {
 
 /* —— Main column —— */
 .ghp-main {
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding-bottom: 5rem;
+  padding-bottom: 1.5rem;
 }
 
 .ghp-stack {
@@ -825,9 +838,26 @@ a {
   color: #9ca3af;
 }
 
+.ghp-site-footer {
+  margin-top: auto;
+  padding: 1.25rem 1rem calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(1, 6, 19, 0.65);
+}
+
+.ghp-site-footer__copy {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
 .ghp-footer-note {
   text-align: center;
-  padding: 1rem 1rem 2rem;
+  padding: 1rem 1rem 1.25rem;
   font-size: 0.8rem;
   color: #6b7280;
 }
