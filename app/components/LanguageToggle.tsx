@@ -22,7 +22,7 @@ export function LanguageToggle({
 
   const shell = lightChrome
     ? "border-black/15 bg-black/[0.06]"
-    : "border-white/25 bg-black/35";
+    : "border-white/35 bg-white/10";
 
   return (
     <div
@@ -46,7 +46,7 @@ export function LanguageToggle({
                 : "bg-white text-black"
               : lightChrome
                 ? "text-gray-600 hover:text-gray-900"
-                : "text-gray-400 hover:text-white"
+                : "text-white/85 hover:bg-white/15 hover:text-white"
           } ${isTransitioning ? "cursor-wait" : ""}`}
           aria-pressed={locale === code}
         >

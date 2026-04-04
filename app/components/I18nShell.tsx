@@ -36,7 +36,7 @@ export function I18nShell({ children }: { children: React.ReactNode }) {
     <>
       <FloatingLocaleHeader />
       <div
-        className={`locale-tx-root ${fontClass} ${txClass} flex min-h-screen flex-col bg-[#020824] pt-6 text-white antialiased`}
+        className={`locale-tx-root ${fontClass} ${txClass} flex min-h-screen flex-col bg-[#020824] text-white antialiased`}
       >
         <BodyContent>{children}</BodyContent>
       </div>

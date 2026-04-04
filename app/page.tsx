@@ -471,19 +471,22 @@ export default function Portfolio() {
   return (
     <div
       data-chrome-surface="dark"
-      className="flex flex-col gap-6 pb-28 sm:pb-32"
+      className="flex flex-col gap-6 pb-14 sm:pb-16"
       style={{ background: tubeGreyBg, color: tubeText }}
     >
       {/* Header banner */}
       <div id="section-hero" className="scroll-mt-20 text-center">
         <div
           data-chrome-surface="light"
-          className="bg-[#f5f0e6] py-8 text-black"
+          className="bg-[#f5f0e6] pb-8 pt-[calc(3.5rem+env(safe-area-inset-top)+3rem)] text-black sm:pt-[calc(4rem+env(safe-area-inset-top)+3.5rem)]"
         >
           <Link href="/" className="mx-auto block w-fit">
             <TubeRoundelWith787 />
           </Link>
-          <p className="mt-4 text-2xl uppercase tracking-[0.25em]">
+          <p className="mt-4 text-[0.625rem] font-medium uppercase tracking-[0.22em] text-gray-600 sm:text-[0.7rem] sm:tracking-[0.26em]">
+            {t("hero.landmark")}
+          </p>
+          <p className="mt-2 text-2xl uppercase tracking-[0.25em]">
             {t("hero.line1")}
             <br />
             {t("hero.line2")}

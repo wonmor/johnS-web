@@ -45,6 +45,7 @@ export const messages = {
 
     "hero.line1": "CREATIVE WORK",
     "hero.line2": "AEROSPACE",
+    "hero.landmark": "LONDON TOWER BRIDGE",
     "hero.email": "john@orchestrsim.com",
     "awards.wwdc": "Apple WWDC23 Swift Challenge Winner",
     "awards.wwdcVenue": "AT APPLE PARK, CUPERTINO",
@@ -170,6 +171,7 @@ export const messages = {
 
     "hero.line1": "TRAVAUX CRÉATIFS",
     "hero.line2": "AÉROSPATIALE",
+    "hero.landmark": "JACQUES-CARTIER BRIDGE IN MONTREAL",
     "hero.email": "john@orchestrsim.com",
     "awards.wwdc": "Lauréat du Swift Challenge Apple WWDC23",
     "awards.wwdcVenue": "À L’APPLE PARK, CUPERTINO",
@@ -295,8 +297,9 @@ export const messages = {
 
     "hero.line1": "창작 활동",
     "hero.line2": "항공우주",
+    "hero.landmark": "N SEOUL TOWER",
     "hero.email": "john@orchestrsim.com",
-    "awards.wwdc": "Apple WWDC23 Swift Student Challenge 수상",
+    "awards.wwdc": "Apple WWDC23 Scholar Award 수상",
     "awards.wwdcVenue": "캘리포니아 쿠퍼티노 애플 파크에서",
     "awards.ukVisa": "영국 글로벌 탤런트 비자 보유",
     "awards.usVisa": "미국 O-1A 비자(특별능력)",
@@ -329,7 +332,7 @@ export const messages = {
     "electron.title":
       "ElectronVisualized, Atomizer AR (2022년 9월 – 2025년 4월)",
     "electron.li1":
-      "DFT를 쓰는 양자역학 시각화 도구로, 웹(Three.js)·iOS·macOS·visionOS의 Atomizer AR로 서비스합니다(다운로드 약 1만 회). 2023년 Apple WWDC Swift Student Challenge 수상으로 이어진 프로젝트입니다.",
+      "DFT를 쓰는 양자역학 시각화 도구로, 웹(Three.js)·iOS·macOS·visionOS의 Atomizer AR로 서비스합니다(다운로드 약 1만 회). Apple WWDC23 Scholar Award 수상으로 이어진 프로젝트입니다.",
     "electron.li2":
       "기술 스택: Three.js, React, Redux, WebXR · 백엔드: RDKit, SciPy, ASE, GPAW, Celery, Redis, Docker, AWS",
     "electron.li3Before": "표지에 실린 책:",
