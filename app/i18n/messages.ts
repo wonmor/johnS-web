@@ -5,7 +5,8 @@ export const messages = {
     "meta.title": "John Seong",
     "meta.description":
       "Hi, I'm John. I love aerospace, software, and design. Welcome to my personal website.",
-    "topBar.copyright": "NO COOKIES © {year} JOHN WONMO SEONG",
+    "topBar.copyright":
+      "NO TRACKING · GDPR (EU) © {year} JOHN WONMO SEONG",
     "langToggle.en": "EN",
     "langToggle.fr": "FR",
     "langToggle.ko": "KO",
@@ -24,9 +25,16 @@ export const messages = {
     "localeOffer.decline": "No, keep current language",
     "localeOffer.closeOverlay": "Dismiss and keep current language",
 
+    "cookieConsent.barLabel": "Cookies",
+    "cookieConsent.title": "ESSENTIAL COOKIES",
+    "cookieConsent.body":
+      "This site uses only strictly necessary storage (language cookie and local storage) as described in the Privacy Policy. No tracking or ads.",
+    "cookieConsent.accept": "OK",
+    "cookieConsent.closeOverlay": "Dismiss cookie notice",
+
     "privacy.title": "Privacy Policy",
     "privacy.body":
-      "We do not collect any usage of cookie data. Your rights under UK GDPR apply.",
+      "We apply the same transparency and data-protection standards as under the EU GDPR and ePrivacy rules for every visitor, wherever you are. We do not use analytics, advertising, or non-essential cookies. We only use strictly necessary storage—a small first-party cookie and your browser’s local storage—to remember your language choice and related display preferences. We do not profile you or track you across other sites. You can delete this data in your browser at any time. You have GDPR-style rights (e.g. access, erasure, portability, objection, restriction), including the right to lodge a complaint with an EU data protection authority.",
     "privacy.close": "Close",
 
     "eula.title": "EULA",
@@ -148,7 +156,8 @@ export const messages = {
     "meta.title": "John Seong",
     "meta.description":
       "Bonjour, je suis John. J’aime l’aérospatiale, le logiciel et le design. Bienvenue sur mon site personnel.",
-    "topBar.copyright": "PAS DE COOKIES © {year} JOHN WONMO SEONG",
+    "topBar.copyright":
+      "PAS DE SUIVI · RGPD (UE) © {year} JOHN WONMO SEONG",
     "langToggle.en": "EN",
     "langToggle.fr": "FR",
     "langToggle.ko": "KO",
@@ -167,9 +176,16 @@ export const messages = {
     "localeOffer.decline": "Non, garder la langue actuelle",
     "localeOffer.closeOverlay": "Fermer et garder la langue actuelle",
 
+    "cookieConsent.barLabel": "Cookies",
+    "cookieConsent.title": "COOKIES INDISPENSABLES",
+    "cookieConsent.body":
+      "Ce site utilise uniquement un stockage strictement nécessaire (cookie de langue et stockage local), comme indiqué dans la politique de confidentialité. Pas de suivi publicitaire.",
+    "cookieConsent.accept": "OK",
+    "cookieConsent.closeOverlay": "Fermer l’avis cookies",
+
     "privacy.title": "Politique de confidentialité",
     "privacy.body":
-      "Nous ne collectons aucune donnée via des cookies. Vos droits au titre du RGPD britannique s’appliquent.",
+      "Nous appliquons les mêmes exigences de transparence et de protection des données que sous le RGPD et le cadre ePrivacy de l’UE à chaque visiteur, partout dans le monde. Nous n’utilisons pas de cookies d’analyse, de publicité ou non indispensables. Nous n’employons que des moyens strictement nécessaires — un petit cookie propriétaire et le stockage local du navigateur — pour mémoriser votre langue et des préférences d’affichage connexes. Nous ne vous profilons pas et ne vous suivons pas sur d’autres sites. Vous pouvez supprimer ces données dans les réglages du navigateur à tout moment. Vous disposez des droits prévus par le RGPD (accès, effacement, portabilité, opposition, limitation, etc.), y compris le droit d’introduire une réclamation auprès d’une autorité de protection des données de l’UE.",
     "privacy.close": "Fermer",
 
     "eula.title": "CLUF",
@@ -288,7 +304,8 @@ export const messages = {
     "meta.title": "John Seong",
     "meta.description":
       "안녕하세요, 존입니다. 항공·우주, 소프트웨어, 디자인을 사랑합니다. 제 개인 웹사이트에 오신 것을 환영합니다.",
-    "topBar.copyright": "쿠키 미사용 © {year} JOHN WONMO SEONG",
+    "topBar.copyright":
+      "추적 없음 · EU GDPR © {year} JOHN WONMO SEONG",
     "langToggle.en": "EN",
     "langToggle.fr": "FR",
     "langToggle.ko": "KO",
@@ -307,9 +324,16 @@ export const messages = {
     "localeOffer.decline": "아니요, 지금 언어 유지",
     "localeOffer.closeOverlay": "닫고 지금 언어 유지",
 
+    "cookieConsent.barLabel": "쿠키",
+    "cookieConsent.title": "필수 쿠키 안내",
+    "cookieConsent.body":
+      "이 사이트는 개인정보 처리방침에 설명된 대로 언어 쿠키와 로컬 저장소 등 필수 저장만 사용합니다. 추적·광고 쿠키는 없습니다.",
+    "cookieConsent.accept": "확인",
+    "cookieConsent.closeOverlay": "쿠키 안내 닫기",
+
     "privacy.title": "개인정보 처리방침",
     "privacy.body":
-      "당사는 쿠키를 통해 이용 데이터를 수집하지 않습니다. 영국 GDPR에 따른 사용자 권리가 적용됩니다.",
+      "EU GDPR 및 ePrivacy 수준의 투명성·데이터 보호 기준을 방문 지역과 관계없이 모든 방문자에게 동일하게 적용합니다. 분석·광고 또는 필수가 아닌 쿠키는 사용하지 않습니다. 언어 선택 및 관련 표시 설정을 위해 반드시 필요한 저장소(자사 쿠키 1종, 브라우저 로컬 스토리지)만 사용합니다. 광고 프로필을 만들거나 다른 사이트에서의 교차 추적은 하지 않습니다. 언제든지 브라우저 설정에서 해당 데이터를 삭제할 수 있습니다. 접근·삭제·이동·이의·처리 제한 등 GDPR상 권리가 있으며, EU 데이터 보호 감독 기관에 이의를 제기할 수 있습니다.",
     "privacy.close": "닫기",
 
     "eula.title": "최종 사용자 라이선스 계약(EULA)",

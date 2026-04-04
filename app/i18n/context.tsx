@@ -10,6 +10,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { CookieConsentDialog } from "../components/CookieConsentDialog";
 import { LocaleOfferDialog } from "../components/LocaleOfferDialog";
 import {
   type Locale,
@@ -178,6 +179,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   return (
     <I18nContext.Provider value={value}>
       {children}
+      <CookieConsentDialog />
       {localeOfferTarget ? (
         <LocaleOfferDialog
           target={localeOfferTarget}
