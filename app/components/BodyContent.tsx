@@ -33,110 +33,121 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
       <PolicyModal />
       <EulaModal />
 
-      <div
-        id="site-light-footer"
-        data-chrome-surface="light"
-        className={`bg-gradient-to-b from-[#f5f0e6] via-[#f5f0e6] to-[#020824] text-black selection:bg-black selection:text-[#f5f0e6] ${
-          locale === "ko" ? "" : "font-mono"
-        }`}
-      >
-        <header className="mx-auto max-w-4xl px-6 pb-20 pt-12 sm:pb-24">
-          <div className="flex items-start justify-between gap-4">
-            <div className="text-left">
-              <span
-                className="-ml-2 mb-1 inline-block opacity-95"
-                aria-hidden="true"
-              >
-                <svg
-                  width="46"
-                  height="20"
-                  viewBox="0 0 56 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="text-gray-600"
+      <div id="site-light-footer">
+        <div
+          data-chrome-surface="light"
+          className={`bg-[#f5f0e6] text-black selection:bg-black selection:text-[#f5f0e6] ${
+            locale === "ko" ? "" : "font-mono"
+          }`}
+        >
+          <header className="mx-auto max-w-4xl px-6 pb-20 pt-12 sm:pb-24">
+            <div className="flex items-start justify-between gap-4">
+              <div className="text-left">
+                <span
+                  className="-ml-2 mb-1 inline-block opacity-95"
+                  aria-hidden="true"
                 >
-                  <path
-                    d="M2 8.5H22"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeDasharray="2.6 2.8"
-                    opacity="0.9"
-                  />
-                  <path
-                    d="M2 13.5H20"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeDasharray="2.6 2.8"
-                    opacity="0.8"
-                  />
-                  <path
-                    d="M23 12L34 10.6L45 12L34 13.4L23 12Z"
-                    fill="currentColor"
-                  />
-                  <path
-                    d="M31.5 12L27 7.6H29.8L34 10.6L31.5 12Z"
-                    fill="currentColor"
-                    opacity="0.9"
-                  />
-                  <path
-                    d="M31.5 12L27 16.4H29.8L34 13.4L31.5 12Z"
-                    fill="currentColor"
-                    opacity="0.9"
-                  />
-                  <path
-                    d="M45 12L49.2 11.5L54 12L49.2 12.5L45 12Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-              <h1 className="text-5xl font-extralight tracking-widest">
-                {t("orchestr.title")}
-              </h1>
-              <span className="mt-1 inline-block text-xs tracking-[0.35em] text-gray-700">
-                {t("orchestr.subtitle")}
-              </span>
+                  <svg
+                    width="46"
+                    height="20"
+                    viewBox="0 0 56 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-gray-600"
+                  >
+                    <path
+                      d="M2 8.5H22"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeDasharray="2.6 2.8"
+                      opacity="0.9"
+                    />
+                    <path
+                      d="M2 13.5H20"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeDasharray="2.6 2.8"
+                      opacity="0.8"
+                    />
+                    <path
+                      d="M23 12L34 10.6L45 12L34 13.4L23 12Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M31.5 12L27 7.6H29.8L34 10.6L31.5 12Z"
+                      fill="currentColor"
+                      opacity="0.9"
+                    />
+                    <path
+                      d="M31.5 12L27 16.4H29.8L34 13.4L31.5 12Z"
+                      fill="currentColor"
+                      opacity="0.9"
+                    />
+                    <path
+                      d="M45 12L49.2 11.5L54 12L49.2 12.5L45 12Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <h1 className="text-5xl font-extralight tracking-widest">
+                  {t("orchestr.title")}
+                </h1>
+                <span className="mt-1 inline-block text-xs tracking-[0.35em] text-gray-700">
+                  {t("orchestr.subtitle")}
+                </span>
+              </div>
+              <div className="text-[11px] uppercase tracking-[0.35em] text-gray-500">
+                {t("orchestr.badge")}
+              </div>
             </div>
-            <div className="text-[11px] uppercase tracking-[0.35em] text-gray-500">
-              {t("orchestr.badge")}
+
+            <div className="mt-8 max-w-2xl space-y-3 text-left text-gray-800">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
+                {t("orchestr.intro")}
+                <span className="ml-2 inline-block rounded-full border border-red-500/60 px-2 py-[2px] text-[10px] tracking-[0.25em]">
+                  {t("orchestr.new")}
+                </span>
+              </p>
+              <p className="text-xl leading-relaxed">
+                {t("orchestr.tagline")}
+                {t("orchestr.taglineFrNote") ? (
+                  <>
+                    <br />
+                    <span className="italic text-gray-700">
+                      {t("orchestr.taglineFrNote")}
+                    </span>
+                  </>
+                ) : null}
+              </p>
+              <p className="text-sm leading-relaxed text-gray-900">
+                {t("orchestr.features")}
+              </p>
             </div>
-          </div>
 
-          <div className="mt-8 max-w-2xl space-y-3 text-left text-gray-800">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
-              {t("orchestr.intro")}
-              <span className="ml-2 inline-block rounded-full border border-red-500/60 px-2 py-[2px] text-[10px] tracking-[0.25em]">
-                {t("orchestr.new")}
-              </span>
-            </p>
-            <p className="text-xl leading-relaxed">
-              {t("orchestr.tagline")}
-              {t("orchestr.taglineFrNote") ? (
-                <>
-                  <br />
-                  <span className="italic text-gray-700">
-                    {t("orchestr.taglineFrNote")}
-                  </span>
-                </>
-              ) : null}
-            </p>
-            <p className="text-sm leading-relaxed text-white">
-              {t("orchestr.features")}
-            </p>
-          </div>
-
-          <div className="mt-6 flex justify-start gap-6">
-            <a
-              href="https://orchestrsim.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md border border-white bg-transparent px-6 py-2 text-white transition hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-white/60 active:bg-white active:text-black"
-            >
-              {t("orchestr.cta")}
-            </a>
-          </div>
-        </header>
+            <div className="mt-6 flex justify-start gap-6">
+              <a
+                href="https://orchestrsim.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md border border-black/75 bg-transparent px-6 py-2 text-black transition hover:bg-black hover:text-[#f5f0e6] focus:outline-none focus:ring-2 focus:ring-black/30 active:bg-black active:text-[#f5f0e6]"
+              >
+                {t("orchestr.cta")}
+              </a>
+            </div>
+          </header>
+        </div>
+        <div
+          data-chrome-surface="dark"
+          className="relative isolate min-h-[min(40vh,26rem)] bg-[#020824] pb-16 pt-8"
+        >
+          <div
+            className="pointer-events-none absolute inset-x-0 -top-24 z-0 h-24 bg-gradient-to-b from-[#f5f0e6] to-transparent"
+            aria-hidden
+          />
+          <LiftingBodyFooterSilhouette />
+        </div>
       </div>
     </>
   );
@@ -179,6 +190,30 @@ function EulaModal() {
         >
           {t("eula.close")}
         </button>
+      </div>
+    </div>
+  );
+}
+
+/** Original decorative silhouette; lifting-body vehicle inspired by Dream Chaser / NASA HL-20. */
+function LiftingBodyFooterSilhouette() {
+  return (
+    <div
+      data-chrome-probe-skip
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-0 flex h-[min(26vh,15rem)] justify-center md:h-[min(30vh,17rem)]"
+      aria-hidden
+    >
+      <span className="sr-only">
+        Decorative lifting-body spacecraft silhouette in the page background.
+      </span>
+      <div className="relative h-full w-full max-w-6xl opacity-[0.2] sm:opacity-[0.28]">
+        <Image
+          src="/decorative/dream-chaser-silhouette.svg"
+          alt=""
+          fill
+          className="object-contain object-bottom [filter:brightness(0)_invert(1)] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.65)_0%,rgba(0,0,0,0.2)_55%,transparent_95%)]"
+          sizes="(max-width:768px)100vw,72rem"
+        />
       </div>
     </div>
   );
