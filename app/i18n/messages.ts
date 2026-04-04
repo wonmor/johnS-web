@@ -348,7 +348,7 @@ export const messages = {
     "edu.sunrise.title": "Sunrise Aviation (2024.10 – 2024.12)",
     "edu.sunrise.detail":
       "경량스포츠기(Evektor SportStar) 훈련.",
-    "edu.uci": "UC Irvine — 중퇴, 전공 미선택",
+    "edu.uci": "UC Irvine — dropout, 전공 미선택",
   },
 } as const satisfies Record<Locale, Record<string, string>>;
 

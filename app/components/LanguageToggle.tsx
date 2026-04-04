@@ -16,7 +16,7 @@ export function LanguageToggle() {
 
   return (
     <div
-      className="inline-flex max-w-[100vw] flex-wrap items-center justify-center gap-0.5 rounded-md border border-white/20 bg-black/30 p-0.5"
+      className="inline-flex max-w-[100vw] flex-wrap items-center justify-center gap-0.5 rounded-md border border-white/25 bg-black/35 p-0.5 sm:gap-1 sm:p-1"
       role="group"
       aria-label={t("langToggle.label")}
     >
@@ -25,7 +25,7 @@ export function LanguageToggle() {
           key={code}
           type="button"
           onClick={() => setLocale(code)}
-          className={`rounded px-1.5 py-0.5 text-[9px] font-medium tracking-wider transition sm:px-2 sm:text-[10px] ${
+          className={`rounded px-2 py-0.5 text-xs font-medium leading-none tracking-wider transition sm:px-2.5 sm:py-1 sm:text-sm ${
             locale === code
               ? "bg-white text-black"
               : "text-gray-400 hover:text-white"

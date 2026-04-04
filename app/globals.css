@@ -60,8 +60,8 @@
   animation: flicker 1.5s infinite alternate;  
 }
 
-.font-nanum-gothic {
-  font-family: "Nanum Gothic", sans-serif;
+.font-ibm-plex-sans-kr {
+  font-family: "IBM Plex Sans KR", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {

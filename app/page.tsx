@@ -9,7 +9,7 @@ import * as THREE from "three";
 import { Box3, Vector3, MathUtils } from "three";
 import Link from "next/link";
 import { OrbitControls } from "@react-three/drei";
-import { nanumGothicFontStack, tubeFont } from "./fonts";
+import { ibmPlexSansKRFontStack, tubeFont } from "./fonts";
 import { useI18n } from "./i18n/context";
 
 const tubeRed = "#f77f6b"; // legacy accent red (kept for logos)
@@ -20,7 +20,7 @@ const tubeText = "#f9fafb"; // light text on dark
 function TubeRoundel() {
   const { locale } = useI18n();
   const nameFontFamily =
-    locale === "ko" ? nanumGothicFontStack : tubeFont.style.fontFamily;
+    locale === "ko" ? ibmPlexSansKRFontStack : tubeFont.style.fontFamily;
 
   const [waves, setWaves] = useState(
     Array.from({ length: 30 }).map(() => ({
@@ -505,8 +505,9 @@ export default function Portfolio() {
         </a>
       </nav>
 
+      <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 sm:px-6">
       {/* Gadolinium / Benzene Tabs */}
-      <div className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md p-4 shadow-md">
+      <div className="w-full bg-black/60 border border-white/10 rounded-md p-4 shadow-md">
         <div className="flex justify-center gap-4 mb-4">
           <button
             className={`px-4 py-2 rounded ${
@@ -609,7 +610,7 @@ export default function Portfolio() {
       </div>
 
       {/* ElectronVisual Section */}
-      <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-lg p-6">
+      <section className="w-full bg-black/60 border border-white/10 rounded-md shadow-lg p-6">
         <h3 className="mb-4 text-3xl uppercase">
           {t("electron.title")}
         </h3>
@@ -683,7 +684,7 @@ export default function Portfolio() {
       </section>
 
       {/* 3D Face Model */}
-      <div className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md p-6 shadow-lg">
+      <div className="w-full bg-black/60 border border-white/10 rounded-md p-6 shadow-lg">
         <Suspense
           fallback={
             <div className="p-20 text-center text-3xl font-thin text-white">
@@ -712,7 +713,7 @@ export default function Portfolio() {
       </div>
 
       {/* OpticALLY Section */}
-      <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-md p-6">
+      <section className="w-full bg-black/60 border border-white/10 rounded-md shadow-md p-6">
         <h3 className="mb-4 text-3xl uppercase">{t("orch.title")}</h3>
         <ul className="list-disc space-y-2 pl-6 text-lg">
           <li>{t("orch.li1")}</li>
@@ -737,7 +738,7 @@ export default function Portfolio() {
       </section>
 
       {/* Experience Section */}
-      <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-md p-6">
+      <section className="w-full bg-black/60 border border-white/10 rounded-md shadow-md p-6">
         <h3 className="mb-4 text-3xl uppercase">{t("exp.title")}</h3>
         <div className="space-y-6 text-lg">
           <div>
@@ -765,7 +766,7 @@ export default function Portfolio() {
       </section>
 
       {/* Education */}
-      <section className="mx-auto max-w-4xl rounded-md border border-white/10 bg-black/60 p-6 shadow-md">
+      <section className="w-full rounded-md border border-white/10 bg-black/60 p-6 shadow-md">
         <h3 className="mb-4 text-3xl uppercase">{t("edu.title")}</h3>
         <ol className="list-decimal space-y-6 pl-6 text-lg marker:text-gray-400">
           <li>
@@ -785,6 +786,7 @@ export default function Portfolio() {
           </li>
         </ol>
       </section>
+      </div>
     </div>
   );
 }

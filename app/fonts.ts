@@ -6,5 +6,5 @@ export const tubeFont = Barlow({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
 });
 
-/** Stack name must match Google Fonts family loaded in `I18nShell` when locale is Korean. */
-export const nanumGothicFontStack = '"Nanum Gothic", sans-serif';
+/** Must match the IBM Plex Sans KR family loaded in `I18nShell` when locale is Korean. */
+export const ibmPlexSansKRFontStack = '"IBM Plex Sans KR", sans-serif';
