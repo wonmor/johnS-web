@@ -142,8 +142,9 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
           data-chrome-surface="dark"
           className="relative isolate min-h-[min(40vh,26rem)] bg-[#020824] pb-16 pt-8"
         >
+          {/* Blend cream → navy only inside this block so nothing overlaps the Orchestr section above the CTA on mobile */}
           <div
-            className="pointer-events-none absolute inset-x-0 -top-24 z-0 h-24 bg-gradient-to-b from-[#f5f0e6] to-transparent"
+            className="pointer-events-none absolute inset-x-0 top-0 z-0 h-12 bg-gradient-to-b from-[#f5f0e6] to-[#020824] sm:h-14"
             aria-hidden
           />
           <AirshipFooterSilhouette />
