@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { tubeFont } from "../fonts";
 import { useI18n } from "../i18n/context";
@@ -81,7 +82,8 @@ export function CookieConsentDialog() {
     setVisible(false);
   }, []);
 
-  const showSheet = visible && !localeOfferActive;
+  const showSheet =
+    visible && !localeOfferActive && pathname !== "/privacy";
 
   useEffect(() => {
     if (!showSheet) return;
@@ -141,7 +143,14 @@ export function CookieConsentDialog() {
             id="cookie-consent-desc"
             className="mt-2 text-center text-[12px] leading-snug text-[#6e6e73] sm:mt-2 sm:text-[13px]"
           >
-            {t("cookieConsent.body")}
+            {t("cookieConsent.bodyBefore")}
+            <Link
+              href="/privacy"
+              className="font-semibold text-[#007aff] underline decoration-[#007aff]/40 underline-offset-[3px] transition hover:decoration-[#007aff]"
+            >
+              {t("privacy.title")}
+            </Link>
+            {t("cookieConsent.bodyAfter")}
           </p>
           <div className="mt-4 flex flex-col gap-1.5 sm:mt-4 sm:flex-row sm:justify-end sm:gap-2">
             <button

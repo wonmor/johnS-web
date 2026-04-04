@@ -27,8 +27,10 @@ export const messages = {
 
     "cookieConsent.barLabel": "Cookies",
     "cookieConsent.title": "ESSENTIAL COOKIES",
-    "cookieConsent.body":
-      "This site uses only strictly necessary storage (language cookie and local storage) as described in the Privacy Policy. No tracking or advertising.",
+    "cookieConsent.bodyBefore":
+      "This site uses only strictly necessary storage (language cookie and local storage) as described in the ",
+    "cookieConsent.bodyAfter":
+      ". No tracking or advertising.",
     "cookieConsent.accept": "OK",
     "cookieConsent.noToAll": "No to all",
     "cookieConsent.closeOverlay": "Dismiss cookie notice",
@@ -185,8 +187,9 @@ export const messages = {
 
     "cookieConsent.barLabel": "Cookies",
     "cookieConsent.title": "COOKIES INDISPENSABLES",
-    "cookieConsent.body":
-      "Ce site utilise uniquement un stockage strictement nécessaire (cookie de langue et stockage local), comme indiqué dans la politique de confidentialité. Pas de suivi publicitaire.",
+    "cookieConsent.bodyBefore":
+      "Ce site utilise uniquement un stockage strictement nécessaire (cookie de langue et stockage local), comme indiqué dans la ",
+    "cookieConsent.bodyAfter": ". Pas de suivi publicitaire.",
     "cookieConsent.accept": "Compris",
     "cookieConsent.noToAll": "Tout refuser",
     "cookieConsent.closeOverlay": "Fermer l’avis cookies",
@@ -340,8 +343,9 @@ export const messages = {
 
     "cookieConsent.barLabel": "쿠키",
     "cookieConsent.title": "필수 쿠키 안내",
-    "cookieConsent.body":
-      "이 사이트는 개인정보 처리방침에 설명된 대로 언어 쿠키와 로컬 저장소 등 필수 저장만 사용합니다. 추적·광고 쿠키는 없습니다.",
+    "cookieConsent.bodyBefore": "이 사이트는 ",
+    "cookieConsent.bodyAfter":
+      "에 설명된 대로 언어 쿠키와 로컬 저장소 등 필수 저장만 사용합니다. 추적·광고 쿠키는 없습니다.",
     "cookieConsent.accept": "확인",
     "cookieConsent.noToAll": "모두 거부",
     "cookieConsent.closeOverlay": "쿠키 안내 닫기",
