@@ -14,8 +14,35 @@ import {
   type MessageKey,
   messages,
 } from "./messages";
+import {
+  DEFAULT_LOCALE,
+  LOCALE_HINT_COOKIE,
+  localeFromNavigator,
+  parseLocaleCookieValue,
+} from "./localeDetect";
 
 const STORAGE_KEY = "johnS-web-locale";
+
+function readStoredLocale(): Locale | null {
+  if (typeof window === "undefined") return null;
+  const raw = window.localStorage.getItem(STORAGE_KEY);
+  return parseLocaleCookieValue(raw);
+}
+
+function readHintFromDocumentCookie(): Locale | null {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie.match(
+    new RegExp(`(?:^|;\\s*)${LOCALE_HINT_COOKIE}=([^;]*)`)
+  );
+  return parseLocaleCookieValue(
+    match?.[1] ? decodeURIComponent(match[1]) : null
+  );
+}
+
+function persistLocaleHintCookie(locale: Locale) {
+  if (typeof document === "undefined") return;
+  document.cookie = `${LOCALE_HINT_COOKIE}=${encodeURIComponent(locale)}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
+}
 
 /** Let CSS filter transition reach the inverted state before swapping strings */
 const INVERT_RAMP_MS = 520;
@@ -33,8 +60,17 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("fr");
+export function LanguageProvider({
+  children,
+  serverHint,
+}: {
+  children: React.ReactNode;
+  /** From `Accept-Language` cookie (middleware); improves first paint when repeat-visiting. */
+  serverHint?: Locale | null;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(
+    () => serverHint ?? DEFAULT_LOCALE
+  );
   const [localeTransitionPhase, setLocaleTransitionPhase] =
     useState<LocaleTransitionPhase>("idle");
   const timeoutIdsRef = useRef<number[]>([]);
@@ -45,10 +81,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
-    if (stored === "fr" || stored === "en" || stored === "ko") {
+    const stored = readStoredLocale();
+    if (stored) {
       setLocaleState(stored);
+      return;
     }
+    const docHint = readHintFromDocumentCookie();
+    if (docHint) {
+      setLocaleState(docHint);
+      return;
+    }
+    setLocaleState(localeFromNavigator());
   }, []);
 
   useEffect(() => {
@@ -71,6 +114,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         const t1 = window.setTimeout(() => {
           setLocaleState(next);
           window.localStorage.setItem(STORAGE_KEY, next);
+          persistLocaleHintCookie(next);
 
           const t2 = window.setTimeout(() => {
             setLocaleTransitionPhase("idle");
