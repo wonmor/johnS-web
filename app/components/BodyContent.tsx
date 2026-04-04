@@ -146,7 +146,7 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
             className="pointer-events-none absolute inset-x-0 -top-24 z-0 h-24 bg-gradient-to-b from-[#f5f0e6] to-transparent"
             aria-hidden
           />
-          <LiftingBodyFooterSilhouette />
+          <AirshipFooterSilhouette />
         </div>
       </div>
     </>
@@ -195,8 +195,8 @@ function EulaModal() {
   );
 }
 
-/** Original decorative silhouette; lifting-body vehicle inspired by Dream Chaser / NASA HL-20. */
-function LiftingBodyFooterSilhouette() {
+/** Decorative airship (blimp) silhouette; artwork from Open Clip Art Library (CC0). */
+function AirshipFooterSilhouette() {
   return (
     <div
       data-chrome-probe-skip
@@ -204,11 +204,11 @@ function LiftingBodyFooterSilhouette() {
       aria-hidden
     >
       <span className="sr-only">
-        Decorative lifting-body spacecraft silhouette in the page background.
+        Decorative airship silhouette in the page background.
       </span>
       <div className="relative h-full w-full max-w-6xl opacity-[0.2] sm:opacity-[0.28]">
         <Image
-          src="/decorative/dream-chaser-silhouette.svg"
+          src="/decorative/airship-blimp.svg"
           alt=""
           fill
           className="object-contain object-bottom [filter:brightness(0)_invert(1)] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.65)_0%,rgba(0,0,0,0.2)_55%,transparent_95%)]"

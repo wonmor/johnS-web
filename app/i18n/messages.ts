@@ -11,6 +11,16 @@ export const messages = {
     "langToggle.ko": "KO",
     "langToggle.label": "Language",
 
+    "localeOffer.titleEn": "DISPLAY IN ENGLISH?",
+    "localeOffer.titleKo": "DISPLAY IN KOREAN?",
+    "localeOffer.bodyEn":
+      "Your browser prefers English. Would you like to view the site in English?",
+    "localeOffer.bodyKo":
+      "Your browser prefers Korean. Would you like to view the site in Korean?",
+    "localeOffer.accept": "Yes, switch",
+    "localeOffer.decline": "No, keep French",
+    "localeOffer.closeOverlay": "Dismiss and keep French",
+
     "privacy.title": "Privacy Policy",
     "privacy.body":
       "We do not collect any usage of cookie data. Your rights under UK GDPR apply.",
@@ -51,6 +61,7 @@ export const messages = {
     "awards.wwdcVenue": "AT APPLE PARK, CUPERTINO",
     "awards.ukVisa": "UK Global Talent Visa Holder",
     "awards.usVisa": "US O-1A Extraordinary Ability",
+    "awards.madeInQuebec": "MADE IN QUEBEC",
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "Featured in these Media",
@@ -140,6 +151,16 @@ export const messages = {
     "langToggle.ko": "KO",
     "langToggle.label": "Langue",
 
+    "localeOffer.titleEn": "DISPLAY IN ENGLISH?",
+    "localeOffer.titleKo": "DISPLAY IN KOREAN?",
+    "localeOffer.bodyEn":
+      "Nous avons détecté l’anglais comme langue préférée de votre navigateur.",
+    "localeOffer.bodyKo":
+      "Nous avons détecté le coréen comme langue préférée de votre navigateur.",
+    "localeOffer.accept": "Oui, changer",
+    "localeOffer.decline": "Non, rester en français",
+    "localeOffer.closeOverlay": "Fermer et garder le français",
+
     "privacy.title": "Politique de confidentialité",
     "privacy.body":
       "Nous ne collectons aucune donnée via des cookies. Vos droits au titre du RGPD britannique s’appliquent.",
@@ -177,6 +198,7 @@ export const messages = {
     "awards.wwdcVenue": "À L’APPLE PARK, CUPERTINO",
     "awards.ukVisa": "Titulaire du visa « Global Talent » (R.-U.)",
     "awards.usVisa": "O-1A États-Unis — capacités d’exception",
+    "awards.madeInQuebec": "FABRIQUÉ AU QUÉBEC",
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "Vu dans ces médias",
@@ -266,6 +288,16 @@ export const messages = {
     "langToggle.ko": "KO",
     "langToggle.label": "언어",
 
+    "localeOffer.titleEn": "DISPLAY IN ENGLISH?",
+    "localeOffer.titleKo": "DISPLAY IN KOREAN?",
+    "localeOffer.bodyEn":
+      "브라우저 기본 언어가 영어입니다. 영어로 볼까요?",
+    "localeOffer.bodyKo":
+      "브라우저 기본 언어가 한국어입니다. 한국어로 볼까요?",
+    "localeOffer.accept": "네, 바꿀게요",
+    "localeOffer.decline": "아니요, 프랑스어 유지",
+    "localeOffer.closeOverlay": "닫고 프랑스어 유지",
+
     "privacy.title": "개인정보 처리방침",
     "privacy.body":
       "당사는 쿠키를 통해 이용 데이터를 수집하지 않습니다. 영국 GDPR에 따른 사용자 권리가 적용됩니다.",
@@ -303,6 +335,7 @@ export const messages = {
     "awards.wwdcVenue": "캘리포니아 쿠퍼티노 애플 파크에서",
     "awards.ukVisa": "영국 글로벌 탤런트 비자 보유",
     "awards.usVisa": "미국 O-1A 비자(특별능력)",
+    "awards.madeInQuebec": "퀘벡에서 제작",
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "다음 매체에 소개되었습니다",

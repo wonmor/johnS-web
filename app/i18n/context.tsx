@@ -9,6 +9,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { LocaleOfferDialog } from "../components/LocaleOfferDialog";
 import {
   type Locale,
   type MessageKey,
@@ -27,16 +28,6 @@ function readStoredLocale(): Locale | null {
   if (typeof window === "undefined") return null;
   const raw = window.localStorage.getItem(STORAGE_KEY);
   return parseLocaleCookieValue(raw);
-}
-
-function readHintFromDocumentCookie(): Locale | null {
-  if (typeof document === "undefined") return null;
-  const match = document.cookie.match(
-    new RegExp(`(?:^|;\\s*)${LOCALE_HINT_COOKIE}=([^;]*)`)
-  );
-  return parseLocaleCookieValue(
-    match?.[1] ? decodeURIComponent(match[1]) : null
-  );
 }
 
 function persistLocaleHintCookie(locale: Locale) {
@@ -60,17 +51,11 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-export function LanguageProvider({
-  children,
-  serverHint,
-}: {
-  children: React.ReactNode;
-  /** From `Accept-Language` cookie (middleware); improves first paint when repeat-visiting. */
-  serverHint?: Locale | null;
-}) {
-  const [locale, setLocaleState] = useState<Locale>(
-    () => serverHint ?? DEFAULT_LOCALE
-  );
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
+  const [localeOfferTarget, setLocaleOfferTarget] = useState<
+    null | "en" | "ko"
+  >(null);
   const [localeTransitionPhase, setLocaleTransitionPhase] =
     useState<LocaleTransitionPhase>("idle");
   const timeoutIdsRef = useRef<number[]>([]);
@@ -86,12 +71,11 @@ export function LanguageProvider({
       setLocaleState(stored);
       return;
     }
-    const docHint = readHintFromDocumentCookie();
-    if (docHint) {
-      setLocaleState(docHint);
-      return;
+    setLocaleState(DEFAULT_LOCALE);
+    const detected = localeFromNavigator();
+    if (detected === "en" || detected === "ko") {
+      setLocaleOfferTarget(detected);
     }
-    setLocaleState(localeFromNavigator());
   }, []);
 
   useEffect(() => {
@@ -100,6 +84,13 @@ export function LanguageProvider({
   }, [locale]);
 
   useEffect(() => () => clearTransitionTimeouts(), [clearTransitionTimeouts]);
+
+  const dismissLocaleOffer = useCallback(() => {
+    setLocaleOfferTarget(null);
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem(STORAGE_KEY, DEFAULT_LOCALE);
+    persistLocaleHintCookie(DEFAULT_LOCALE);
+  }, []);
 
   const setLocale = useCallback(
     (next: Locale) => {
@@ -158,7 +149,22 @@ export function LanguageProvider({
   );
 
   return (
-    <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
+    <I18nContext.Provider value={value}>
+      {children}
+      {localeOfferTarget ? (
+        <LocaleOfferDialog
+          target={localeOfferTarget}
+          onAccept={() => {
+            const next = localeOfferTarget;
+            setLocaleOfferTarget(null);
+            if (next === "en" || next === "ko") {
+              setLocale(next);
+            }
+          }}
+          onDecline={dismissLocaleOffer}
+        />
+      ) : null}
+    </I18nContext.Provider>
   );
 }
 

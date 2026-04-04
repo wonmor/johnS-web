@@ -620,7 +620,7 @@ export default function Portfolio() {
               />
               <span className="text-white">{t("awards.usVisa")}</span>
             </p>
-            <div className="mt-2 flex flex-wrap items-center gap-1">
+            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
               <Image
                 src="/south-korea-flag.svg"
                 alt="South Korean Flag"
@@ -633,12 +633,17 @@ export default function Portfolio() {
                 width={24}
                 height={16}
               />
-              <Image
-                src="/quebec-flag.svg"
-                alt="Quebec Flag"
-                width={24}
-                height={16}
-              />
+              <span className="inline-flex items-center gap-1.5">
+                <Image
+                  src="/quebec-flag.svg"
+                  alt="Quebec Flag"
+                  width={24}
+                  height={16}
+                />
+                <span className="text-xs uppercase tracking-wide text-white sm:text-sm">
+                  {t("awards.madeInQuebec")}
+                </span>
+              </span>
             </div>
           </div>
         </div>
