@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>John Seong — GitHub Pages</title>
+    <meta
+      name="description"
+      content="Hi, I'm John. I love aerospace, software, and design. Static mirror of my portfolio; full interactive site is on johnseong.com."
+    />
+    <link rel="stylesheet" href="gh-pages.css" />
+  </head>
+  <body>
+    <a class="ghp-skip" href="#section-hero">Skip to content</a>
+
+    <header class="ghp-chrome" aria-label="Site notice">
+      <p class="ghp-chrome__copy">
+        Static mirror · No tracking · GDPR · © <span id="ghp-year">2026</span>
+        John Wonmo Seong
+      </p>
+      <div class="ghp-chrome__links">
+        <a href="https://johnseong.com/">Full site (Next.js)</a>
+        <a href="https://johnseong.com/privacy">Privacy</a>
+        <a href="https://github.com/wonmor">GitHub</a>
+      </div>
+    </header>
+
+    <nav
+      class="ghp-section-nav"
+      id="ghp-section-nav"
+      aria-label="Page sections"
+    >
+      <span aria-hidden="true">Sections</span>
+      <a href="#section-hero">Intro</a>
+      <a href="#section-atoms">Atoms</a>
+      <a href="#section-electron">Electron</a>
+      <a href="#section-face">Face</a>
+      <a href="#section-orch">Orch</a>
+      <a href="#section-exp">Experience</a>
+      <a href="#section-edu">Education</a>
+    </nav>
+
+    <main class="ghp-main">
+      <div id="section-hero">
+        <div class="ghp-hero-light">
+          <div class="ghp-roundel-wrap">
+            <a href="https://johnseong.com/" aria-label="John Seong — home">
+              <svg
+                class="ghp-wings"
+                viewBox="0 0 140 140"
+                aria-hidden="true"
+              >
+                <g
+                  fill="none"
+                  stroke="var(--roundel-bar)"
+                  stroke-opacity="0.25"
+                  stroke-linecap="round"
+                >
+                  <path
+                    d="M 38 78 C 10 70 -30 58 -85 45"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M 40 82 C 12 74 -28 63 -80 52"
+                    stroke-width="1.5"
+                  />
+                  <path d="M -85 45 L -92 42" stroke-width="1.5" />
+                  <path
+                    d="M 102 78 C 130 70 170 58 225 45"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M 100 82 C 128 74 168 63 220 52"
+                    stroke-width="1.5"
+                  />
+                  <path d="M 225 45 L 232 42" stroke-width="1.5" />
+                </g>
+                <g fill="var(--roundel-bar)" opacity="0.06">
+                  <path d="M 38 78 Q -5 66 -85 45 Q -30 58 10 70 Z" />
+                  <path d="M 102 78 Q 145 66 225 45 Q 170 58 130 70 Z" />
+                </g>
+                <g
+                  stroke="var(--roundel-bar)"
+                  stroke-width="2"
+                  fill="none"
+                  opacity="0.25"
+                >
+                  <circle cx="-5" cy="96" r="14" />
+                  <circle cx="145" cy="96" r="14" />
+                </g>
+              </svg>
+              <div class="ghp-roundel">
+                <div class="ghp-roundel__landmark" aria-hidden="true"></div>
+                <svg
+                  class="ghp-roundel__waves"
+                  viewBox="0 0 100 100"
+                  aria-hidden="true"
+                >
+                  <line x1="0" y1="70" x2="100" y2="70" opacity="0.2" />
+                  <g class="ghp-wave-lines"></g>
+                </svg>
+                <div class="ghp-roundel__hole" aria-hidden="true"></div>
+                <div class="ghp-roundel__bar">
+                  <span>John Seong</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <p class="ghp-landmark-label">London Tower Bridge</p>
+          <p class="ghp-hero-lines">
+            Creative work<br />
+            Aerospace
+          </p>
+          <a class="ghp-email" href="mailto:john@orchestrsim.com"
+            >john@orchestrsim.com</a
+          >
+        </div>
+        <div class="ghp-awards">
+          <div class="ghp-awards-inner">
+            <div class="ghp-avatar-ring">
+              <img
+                src="https://johnseong.com/reach-logo.jpg"
+                width="100"
+                height="100"
+                alt="Reach Media Group"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="ghp-awards-copy">
+              <p>Apple WWDC23 Swift Challenge Winner</p>
+              <p class="ghp-muted">At Apple Park, Cupertino</p>
+              <p class="ghp-flag-row">
+                <img src="https://flagcdn.com/w40/gb.png" alt="" width="24" height="16" />
+                <span>UK Global Talent Visa Holder</span>
+              </p>
+              <p class="ghp-flag-row">
+                <img src="https://flagcdn.com/w40/us.png" alt="" width="24" height="16" />
+                <span>US O-1A Extraordinary Ability</span>
+              </p>
+              <div class="ghp-flag-row">
+                <img src="assets/south-korea-flag.svg" alt="" width="24" height="16" />
+                <img src="assets/canada-flag.svg" alt="" width="24" height="16" />
+                <span class="ghp-made-qc">
+                  <img src="assets/quebec-flag.svg" alt="" width="24" height="16" />
+                  Made in Quebec
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ghp-media-row">
+        <p>As featured in the following outlets</p>
+        <div class="ghp-media-badges">
+          <a
+            href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://johnseong.com/mobilesyrup.png"
+              alt="MobileSyrup"
+              width="100"
+              height="40"
+              loading="lazy"
+            />
+          </a>
+          <a
+            href="https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="assets/hdsb.svg" alt="HDSB" width="100" height="40" />
+          </a>
+        </div>
+      </div>
+
+      <nav class="ghp-nav-links" aria-label="Social links">
+        <a
+          href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
+          target="_blank"
+          rel="noopener noreferrer"
+          >YouTube</a
+        >
+        <a href="https://github.com/wonmor" target="_blank" rel="noopener noreferrer"
+          >GitHub</a
+        >
+        <a
+          href="https://www.linkedin.com/in/john-seong-9194321a9/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn</a
+        >
+        <a
+          href="https://flickr.com/photos/johnseongemini8"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Flickr</a
+        >
+      </nav>
+
+      <div class="ghp-stack">
+        <section class="ghp-card" id="section-atoms">
+          <div
+            class="ghp-tabs"
+            role="tablist"
+            aria-label="3D molecule and atom"
+          >
+            <button
+              type="button"
+              class="ghp-tab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="panel-benzene"
+              id="tab-benzene"
+              data-panel="benzene"
+              aria-pressed="true"
+            >
+              Molecule (C₆H₆)
+            </button>
+            <button
+              type="button"
+              class="ghp-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-gd"
+              id="tab-gd"
+              data-panel="gd"
+              aria-pressed="false"
+            >
+              Atom (Gd)
+            </button>
+          </div>
+          <div
+            id="panel-gd"
+            class="ghp-panel"
+            role="tabpanel"
+            aria-labelledby="tab-gd"
+            hidden
+          >
+            <div class="ghp-subpanel-dark">
+              <div class="ghp-canvas-placeholder ghp-canvas-placeholder--tall">
+                WebGL viewer
+                <p>
+                  Interactive gadolinium electron density runs on the full
+                  Next.js site.
+                </p>
+                <a class="ghp-live-site-cta" href="https://johnseong.com/#section-atoms"
+                  >Launch interactive site →</a
+                >
+              </div>
+              <div class="ghp-gray-band">
+                <h4>Gadolinium atom — 4f⁷ electron shell</h4>
+                <p class="muted">
+                  A 3D electron density plot of Gadolinium’s outermost electron
+                  configuration (f-orbital), modelled using spherical harmonics.
+                  Generated using my iOS app Atomizer AR.
+                </p>
+                <a
+                  class="ghp-btn-outline"
+                  href="https://github.com/wonmor/ElectronVisualized"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Source on GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            id="panel-benzene"
+            class="ghp-panel is-open"
+            role="tabpanel"
+            aria-labelledby="tab-benzene"
+          >
+            <div class="ghp-subpanel-dark">
+              <div class="ghp-canvas-placeholder">
+                WebGL viewer
+                <p>
+                  Interactive benzene orbitals run on the full Next.js site.
+                </p>
+                <a class="ghp-live-site-cta" href="https://johnseong.com/#section-atoms"
+                  >Launch interactive site →</a
+                >
+              </div>
+              <div class="ghp-gray-band">
+                <h4>Benzene molecule — C₆H₆</h4>
+                <p class="muted">
+                  Electron density calculated using DFT, with molecular orbital
+                  visualisation. Generated using a tool I developed:
+                  <a href="https://electronvisual.org" class="ghp-link-cyan"
+                    ><span class="ghp-code">ElectronVisual.org</span></a
+                  >.
+                </p>
+                <a
+                  class="ghp-btn-outline"
+                  href="https://electronvisual.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Try it on <span class="ghp-code">ElectronVisual.org</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="ghp-card" id="section-electron">
+          <h3>ElectronVisualized, Atomizer AR (Sep 2022 – Apr 2025)</h3>
+          <ul class="ghp-list">
+            <li>
+              Quantum mechanics visualiser that uses DFT, across Web
+              (Three.js), iOS, macOS, and visionOS via Atomizer AR (10K
+              downloads). The project that won me the 2023 Apple WWDC Swift
+              Student Challenge award.
+            </li>
+            <li>
+              Tech stack: Three.js, React, Redux, WebXR; back end: RDKit,
+              SciPy, ASE, GPAW, Celery, Redis, Docker, AWS
+            </li>
+            <li>
+              Featured on the front cover of
+              <a
+                href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
+                class="ghp-link-cyan"
+                target="_blank"
+                rel="noopener noreferrer"
+                >University of Oxford Professor Sir David Clary’s book</a
+              >,
+              <i style="font-size: 0.9rem"
+                >Walter Kohn (<a
+                  href="https://doi.org/10.1142/13806"
+                  class="ghp-link-cyan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >https://doi.org/10.1142/13806</a
+                >)</i
+              >
+            </li>
+            <li>
+              Watch the demo walkthrough:
+              <a
+                href="https://www.youtube.com/watch?v=kHcdvyaqslU"
+                class="ghp-link-pink"
+                target="_blank"
+                rel="noopener noreferrer"
+                >YouTube</a
+              >
+            </li>
+          </ul>
+          <div style="margin-top: 1rem">
+            <a
+              href="https://apps.apple.com/us/app/atomizer-ar/id6449015706"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Atomizer AR on the App Store"
+            >
+              <img
+                src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
+                alt="Download Atomizer AR on the App Store"
+                height="50"
+                loading="lazy"
+                style="height: 50px; cursor: pointer"
+              />
+            </a>
+          </div>
+          <a
+            class="ghp-btn-primary"
+            href="https://www.electronvisual.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Visit <span class="ghp-code">ElectronVisual.org</span></a
+          >
+          <a
+            class="ghp-btn-ghost"
+            href="https://github.com/wonmor/ElectronVisualized"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Source on GitHub</a
+          >
+        </section>
+
+        <section class="ghp-card" id="section-face">
+          <div class="ghp-subpanel-dark">
+            <div class="ghp-canvas-placeholder ghp-canvas-placeholder--tall">
+              Face scan WebGL
+              <p>TrueDepth mesh viewer is available on the full site.</p>
+              <a class="ghp-live-site-cta" href="https://johnseong.com/#section-face"
+                >Launch interactive site →</a
+              >
+            </div>
+            <div class="ghp-gray-band">
+              <h4>3D facial scan (iPhone TrueDepth)</h4>
+              <p class="muted">
+                3D meshing and registration method I developed for human–computer
+                interfaces (computing IPD and head dimensions) and custom-fitted
+                BCI headsets. Available on iOS.
+              </p>
+              <a
+                class="ghp-btn-outline"
+                href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Watch the demo on YouTube</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="ghp-card" id="section-orch">
+          <h3>Orch 3D head &amp; face scan for iPhone</h3>
+          <ul class="ghp-list">
+            <li>
+              iOS app using Swift and Objective-C++ with a C++ back end
+            </li>
+            <li>
+              TrueDepth face scan with full point-cloud processing: ICP,
+              feature-based pose estimation, meshing, and registration
+            </li>
+            <li>
+              US provisional patent pending (No. 63/727,879) for aligning rough
+              point clouds using only yaw, pitch, and roll from head pose
+              estimation
+            </li>
+          </ul>
+          <div style="margin-top: 1rem">
+            <a
+              href="https://apps.apple.com/bj/app/orch-3d-head-face-scan/id6468313142"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Orch 3D Scan on the App Store"
+            >
+              <img
+                src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
+                alt="Orch 3D Scan on the App Store"
+                height="50"
+                loading="lazy"
+                style="height: 50px; cursor: pointer"
+              />
+            </a>
+          </div>
+          <iframe
+            class="ghp-yt"
+            width="350"
+            height="250"
+            src="https://www.youtube.com/embed/LqiZKoXhtDA?si=T8ZAd0P-vh_x1XaY"
+            title="YouTube video player"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <p class="ghp-caption">
+            3D head scan using only an iPhone — for pilot helmet design
+          </p>
+        </section>
+
+        <section class="ghp-card" id="section-exp">
+          <iframe
+            class="ghp-yt"
+            width="350"
+            height="250"
+            src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
+            title="YouTube video player"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <p class="ghp-caption">
+            Microsoft Flight Simulator with brain-computer interface (BCI)
+            control
+          </p>
+          <h3 style="margin-top: 2rem">Experience</h3>
+          <div class="ghp-exp-block">
+            <h4>Start-up co-founder for Orchestr Inc (2026)</h4>
+            <p>
+              <a
+                href="https://orchestrsim.com"
+                class="ghp-link-cyan"
+                target="_blank"
+                rel="noopener noreferrer"
+                >https://orchestrsim.com</a
+              >
+            </p>
+          </div>
+          <div class="ghp-exp-block">
+            <h4>
+              Reach Media Group — computer vision software engineer (2025)
+            </h4>
+            <p class="muted">
+              Developing computer vision pipelines in C++ and Python (OpenCV,
+              linear algebra), full-stack iOS, Objective-C, Swift, and Vue-based
+              systems.
+            </p>
+          </div>
+          <div class="ghp-exp-block">
+            <h4>Seoul National University — research intern (July 2023)</h4>
+            <p class="muted">
+              Improved a molecular visualiser using Python (SciPy, RDKit); GUI
+              for AutoDock Vina; experience with Docker and server orchestration
+              under Prof. Juyong Lee.
+            </p>
+          </div>
+        </section>
+
+        <section class="ghp-card" id="section-photos">
+          <div class="ghp-photo-block">
+            <img
+              src="https://johnseong.com/IMG_3505.jpg"
+              alt="With iJustine"
+              width="320"
+              height="192"
+              loading="lazy"
+            />
+            <p class="ghp-caption">
+              with iJustine, at Apple Park during WWDC23
+            </p>
+          </div>
+          <div class="ghp-photo-block">
+            <img
+              src="https://johnseong.com/IMG_0629.jpeg"
+              alt="With flight instructor"
+              width="320"
+              height="192"
+              loading="lazy"
+            />
+            <p class="ghp-caption">
+              with my flight instructor at John Wayne Airport
+            </p>
+          </div>
+        </section>
+
+        <section class="ghp-card" id="section-edu">
+          <h3>Education</h3>
+          <ol class="ghp-edu-ol mark-gray">
+            <li>
+              <h4>École de pilotage Saint-Hubert (2026)</h4>
+              <p class="muted">
+                Private pilot licence (PPL); steam gauge (six-pack); 1979 Cessna
+                152.
+              </p>
+            </li>
+            <li>
+              <h4>Orange County Flight Center (2025)</h4>
+              <p class="muted">Training on Cessna 172 with Garmin G1000.</p>
+            </li>
+            <li>
+              <h4>Sunrise Aviation (2024)</h4>
+              <p class="muted">
+                Training on Evektor SportStar light-sport aircraft.
+              </p>
+            </li>
+            <li>
+              <p class="muted" style="font-size: 1.35rem">
+                University of California, Irvine — withdrew before completing a
+                degree; major undeclared (2023)
+              </p>
+            </li>
+          </ol>
+        </section>
+      </div>
+
+      <p class="ghp-footer-note">
+        <a href="https://johnseong.com/">johnseong.com</a>
+        — full portfolio with WebGL, i18n, and privacy policy. This folder is
+        meant for
+        <a href="https://docs.github.com/pages">GitHub Pages</a>
+        (<code>docs/</code> branch publishing).
+      </p>
+    </main>
+
+    <script>
+      (function () {
+        document.getElementById("ghp-year").textContent = String(
+          new Date().getFullYear()
+        );
+
+        var waveHost = document.querySelector(".ghp-wave-lines");
+        if (waveHost) {
+          for (var w = 0; w < 30; w++) {
+            var line = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "line"
+            );
+            line.setAttribute("x1", String(10 + Math.random() * 80));
+            line.setAttribute("y1", String(72 + Math.random() * 18));
+            line.setAttribute("x2", String(12 + Math.random() * 80));
+            line.setAttribute("y2", String(72 + Math.random() * 18));
+            line.setAttribute("stroke-opacity", "0.2");
+            waveHost.appendChild(line);
+          }
+          setInterval(function () {
+            var lines = waveHost.querySelectorAll("line");
+            lines.forEach(function (ln) {
+              var x1 = parseFloat(ln.getAttribute("x1")) + 0.3;
+              if (x1 > 100) x1 = -5 + Math.random() * 5;
+              ln.setAttribute("x1", String(x1));
+              var x2 = parseFloat(ln.getAttribute("x2")) + 0.3;
+              if (x2 > 105) x2 = -3 + Math.random() * 5;
+              ln.setAttribute("x2", String(x2));
+            });
+          }, 16);
+        }
+
+        var tabs = document.querySelectorAll(".ghp-tab");
+        var panels = {
+          benzene: document.getElementById("panel-benzene"),
+          gd: document.getElementById("panel-gd"),
+        };
+        function activate(name) {
+          Object.keys(panels).forEach(function (key) {
+            var p = panels[key];
+            if (!p) return;
+            var open = key === name;
+            p.classList.toggle("is-open", open);
+            p.hidden = !open;
+          });
+          tabs.forEach(function (btn) {
+            var on = btn.dataset.panel === name;
+            btn.setAttribute("aria-selected", on ? "true" : "false");
+            btn.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+        }
+        tabs.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            activate(btn.dataset.panel);
+          });
+        });
+        activate("benzene");
+
+        var nav = document.getElementById("ghp-section-nav");
+        var sectionIds = [
+          "section-hero",
+          "section-atoms",
+          "section-electron",
+          "section-face",
+          "section-orch",
+          "section-exp",
+          "section-edu",
+        ];
+        function scrollSpy() {
+          var h = window.innerHeight;
+          var line = window.scrollY + Math.min(130, Math.max(48, h * 0.18));
+          var best = sectionIds[0];
+          sectionIds.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var top = el.getBoundingClientRect().top + window.scrollY;
+            if (top - 20 <= line) best = id;
+          });
+          nav.querySelectorAll("a").forEach(function (a) {
+            var on = a.getAttribute("href") === "#" + best;
+            a.classList.toggle("is-active", on);
+          });
+          var doc = document.documentElement;
+          var nearBottom =
+            doc.scrollHeight > window.innerHeight + 64 &&
+            doc.scrollHeight - (window.scrollY + window.innerHeight) <
+              Math.max(140, Math.min(300, Math.round(window.innerHeight * 0.22)));
+          nav.classList.toggle("is-hidden", nearBottom);
+        }
+        window.addEventListener("scroll", scrollSpy, { passive: true });
+        window.addEventListener("resize", scrollSpy);
+        scrollSpy();
+      })();
+    </script>
+  </body>
+</html>

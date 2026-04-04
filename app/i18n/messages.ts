@@ -317,7 +317,7 @@ export const messages = {
     "meta.description":
       "안녕하세요, 존입니다. 항공·우주, 소프트웨어, 디자인을 사랑합니다. 제 개인 웹사이트에 오신 것을 환영합니다.",
     "topBar.copyright":
-      "추적 없음 · EU GDPR © {year} JOHN WONMO SEONG",
+      "트래킹 없음 · EU GDPR © {year} JOHN WONMO SEONG",
     "langToggle.en": "EN",
     "langToggle.fr": "FR",
     "langToggle.ko": "KO",

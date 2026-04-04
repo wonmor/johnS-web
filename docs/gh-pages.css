@@ -1,0 +1,793 @@
+/* GitHub Pages static mirror — aligned with Next app (tube navy, cream hero, roundel) */
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --tube-bg: #020824;
+  --tube-text: #f9fafb;
+  --tube-hero: #f5f0e6;
+  --roundel-ring: #9364cc;
+  --roundel-bar: #5e2f88;
+  --roundel-decor: #4a2565;
+  --accent-red: #f77f6b;
+  --accent-blue: #003688;
+  --maxw: 56rem;
+  --header-h: 3.25rem;
+  --chrome-border: rgba(255, 255, 255, 0.22);
+  --chrome-bg: linear-gradient(
+    180deg,
+    #010613 0%,
+    #050b22 45%,
+    #0d1733 100%
+  );
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Barlow, system-ui, sans-serif;
+  background: var(--tube-bg);
+  color: var(--tube-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+.ghp-skip {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.ghp-skip:focus {
+  position: fixed;
+  left: 0.5rem;
+  top: 0.5rem;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: #000;
+}
+
+/* —— Floating chrome header (matches I18nShell / FloatingLocaleHeader dark) —— */
+.ghp-chrome {
+  position: fixed;
+  left: 50%;
+  top: 0.75rem;
+  z-index: 50;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.75rem;
+  max-width: calc(100vw - 1.25rem);
+  padding: 0.45rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--chrome-border);
+  background: var(--chrome-bg);
+  color: #fff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ghp-chrome__copy {
+  margin: 0;
+  text-align: center;
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 640px) {
+  .ghp-chrome__copy {
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+.ghp-chrome__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  justify-content: center;
+}
+
+.ghp-chrome__links a {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ghp-chrome__links a:hover {
+  text-decoration: underline;
+}
+
+/* —— Section nav (bottom float, scroll spy) —— */
+.ghp-section-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 0.75rem;
+  z-index: 40;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  max-width: calc(100vw - 1rem);
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(1, 6, 19, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.ghp-section-nav.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.ghp-section-nav span[aria-hidden] {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.1rem;
+}
+
+.ghp-section-nav a {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 0.25rem 0.45rem;
+  border-radius: 999px;
+  line-height: 1;
+}
+
+.ghp-section-nav a:hover {
+  color: #fff;
+}
+
+.ghp-section-nav a.is-active {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+@media (min-width: 640px) {
+  .ghp-section-nav a {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.55rem;
+  }
+}
+
+/* —— Hero —— */
+.ghp-hero-light {
+  background: var(--tube-hero);
+  color: #000;
+  text-align: center;
+  padding-top: calc(3.5rem + env(safe-area-inset-top, 0) + 2.75rem);
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .ghp-hero-light {
+    padding-top: calc(4rem + env(safe-area-inset-top, 0) + 3rem);
+    padding-bottom: 2rem;
+  }
+}
+
+.ghp-hero-light .ghp-landmark-label {
+  margin: 1rem 0 0;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4b5563;
+}
+
+@media (min-width: 640px) {
+  .ghp-hero-light .ghp-landmark-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.26em;
+  }
+}
+
+.ghp-hero-light .ghp-hero-lines {
+  margin: 0.5rem 0 0;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+@media (min-width: 640px) {
+  .ghp-hero-light .ghp-hero-lines {
+    font-size: 1.75rem;
+  }
+}
+
+.ghp-hero-light .ghp-email {
+  display: block;
+  margin-top: 0.5rem;
+  color: #000;
+  text-decoration: none;
+}
+
+.ghp-hero-light .ghp-email:hover {
+  text-decoration: underline;
+}
+
+/* —— Roundel + 787 wings —— */
+.ghp-roundel-wrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+}
+
+.ghp-roundel-wrap a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.ghp-wings {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ghp-roundel {
+  position: relative;
+  z-index: 1;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: var(--roundel-ring);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ghp-roundel__waves {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  clip-path: inset(54% -10% -5% -10%);
+  -webkit-clip-path: inset(54% -10% -5% -10%);
+  pointer-events: none;
+}
+
+.ghp-roundel__waves line {
+  stroke: var(--roundel-decor);
+  stroke-width: 1.2;
+  fill: none;
+}
+
+.ghp-roundel__landmark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 128%;
+  height: 128%;
+  transform: translate(-50%, -50%);
+  background-color: var(--roundel-decor);
+  opacity: 0.48;
+  z-index: 0;
+  -webkit-mask-image: url("assets/tower-bridge-roundel.svg");
+  mask-image: url("assets/tower-bridge-roundel.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.ghp-roundel__hole {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 2;
+}
+
+.ghp-roundel__bar {
+  position: absolute;
+  top: 50%;
+  left: -15%;
+  width: 130%;
+  height: 30px;
+  transform: translateY(-50%);
+  background: var(--roundel-bar);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.ghp-roundel__bar span {
+  color: #fff;
+  font-family: Barlow, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* —— Awards stripe —— */
+.ghp-awards {
+  background: var(--tube-bg);
+  color: var(--tube-text);
+  padding: 2rem 1rem;
+}
+
+.ghp-awards-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.ghp-avatar-ring {
+  border-radius: 50%;
+  border: 4px solid var(--roundel-ring);
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.ghp-avatar-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ghp-awards-copy {
+  text-align: left;
+  max-width: 28rem;
+}
+
+.ghp-awards-copy p {
+  margin: 0 0 0.35rem;
+}
+
+.ghp-awards-copy .ghp-muted {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #e5e7eb;
+  margin-bottom: 0.5rem;
+}
+
+.ghp-flag-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.ghp-flag-row img {
+  width: 24px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+.ghp-made-qc {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@media (min-width: 640px) {
+  .ghp-made-qc {
+    font-size: 0.875rem;
+  }
+}
+
+/* —— Main column —— */
+.ghp-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 5rem;
+}
+
+.ghp-stack {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .ghp-stack {
+    padding: 0 1.5rem;
+  }
+}
+
+.ghp-media-row {
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.ghp-media-row > p {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+}
+
+.ghp-media-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ghp-media-badges a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.375rem;
+  transition: background 0.15s;
+}
+
+.ghp-media-badges a:hover {
+  background: #000;
+}
+
+.ghp-media-badges img {
+  width: 100px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.ghp-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #d1d5db;
+}
+
+.ghp-nav-links a {
+  text-decoration: none;
+}
+
+.ghp-nav-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* —— Cards / sections —— */
+.ghp-card {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  padding: 1rem 1.25rem 1.25rem;
+  scroll-margin-top: 6rem;
+}
+
+.ghp-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.ghp-card h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.ghp-card .ghp-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.ghp-card .ghp-list li + li {
+  margin-top: 0.5rem;
+}
+
+.ghp-link-cyan {
+  color: #67e8f9;
+}
+
+.ghp-link-cyan:hover {
+  text-decoration: underline;
+}
+
+.ghp-link-pink {
+  color: #db2777;
+}
+
+.ghp-link-pink:hover {
+  text-decoration: underline;
+}
+
+/* —— Atom tabs —— */
+.ghp-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.ghp-tab {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  color: #fff;
+}
+
+.ghp-tab[aria-pressed="true"] {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.ghp-panel {
+  display: none;
+}
+
+.ghp-panel.is-open {
+  display: block;
+}
+
+.ghp-subpanel-dark {
+  background: #000;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.ghp-canvas-placeholder {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  margin: 1rem;
+  border-radius: 0.25rem;
+}
+
+.ghp-canvas-placeholder--tall {
+  min-height: 400px;
+}
+
+.ghp-canvas-placeholder p {
+  margin: 0;
+  max-width: 20rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.ghp-live-site-cta {
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.25rem;
+  background: var(--roundel-bar);
+  color: #fff !important;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+}
+
+.ghp-live-site-cta:hover {
+  filter: brightness(1.08);
+}
+
+.ghp-gray-band {
+  background: #111827;
+  padding: 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.ghp-btn-outline {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #fff;
+  border-radius: 0.25rem;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ghp-btn-outline:hover {
+  background: #fff;
+  color: #000;
+}
+
+.ghp-btn-primary {
+  display: inline-block;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+}
+
+.ghp-btn-primary:hover {
+  background: #e5e7eb;
+}
+
+.ghp-btn-ghost {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: #fff;
+  text-decoration: none;
+}
+
+.ghp-btn-ghost:hover {
+  background: #fff;
+  color: #000;
+}
+
+.ghp-code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.95em;
+}
+
+.ghp-yt {
+  display: block;
+  margin: 1rem auto 0;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  border: 0;
+}
+
+.ghp-caption {
+  margin: 0.5rem 0 0;
+  text-align: center;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: #d1d5db;
+}
+
+.ghp-photo-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ghp-photo-block + .ghp-photo-block {
+  margin-top: 2rem;
+}
+
+.ghp-photo-block img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+}
+
+.ghp-exp-block + .ghp-exp-block {
+  margin-top: 1.5rem;
+}
+
+.ghp-edu-ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1.45;
+}
+
+.ghp-edu-ol li + li {
+  margin-top: 1.5rem;
+}
+
+.ghp-edu-ol .muted {
+  color: #d1d5db;
+}
+
+.mark-gray::marker {
+  color: #9ca3af;
+}
+
+.ghp-footer-note {
+  text-align: center;
+  padding: 1rem 1rem 2rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.ghp-footer-note a {
+  color: #9ca3af;
+}
+
+.ghp-footer-note a:hover {
+  color: #fff;
+}
+
+.muted {
+  color: #d1d5db;
+}
