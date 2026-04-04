@@ -1,10 +1,37 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
+  COOKIE_LAW_SCOPE_COOKIE,
+  countryRequiresCookieConsent,
+} from "./app/i18n/cookieLawRegion";
+import {
   LOCALE_HINT_COOKIE,
   localeFromAcceptLanguageHeader,
 } from "./app/i18n/localeDetect";
 
 const PUBLIC_FILE = /\.(.*)$/;
+
+function detectCountry(req: NextRequest): string | undefined {
+  const fromGeo = req.geo?.country;
+  if (fromGeo) return fromGeo;
+  const vercel = req.headers.get("x-vercel-ip-country");
+  if (vercel) return vercel;
+  const cf = req.headers.get("cf-ipcountry");
+  if (cf && cf !== "XX") return cf;
+  return undefined;
+}
+
+function withCookieLawScopeCookie(req: NextRequest, res: NextResponse) {
+  let required = countryRequiresCookieConsent(detectCountry(req));
+  if (process.env.COOKIE_CONSENT_DEBUG === "1") {
+    required = true;
+  }
+  res.cookies.set(COOKIE_LAW_SCOPE_COOKIE, required ? "1" : "0", {
+    path: "/",
+    maxAge: 60 * 60 * 24,
+    sameSite: "lax",
+  });
+  return res;
+}
 
 function withLocaleHintCookie(req: NextRequest, res: NextResponse) {
   if (!req.cookies.get(LOCALE_HINT_COOKIE)) {
@@ -15,6 +42,10 @@ function withLocaleHintCookie(req: NextRequest, res: NextResponse) {
     );
   }
   return res;
+}
+
+function sealResponse(req: NextRequest, res: NextResponse) {
+  return withLocaleHintCookie(req, withCookieLawScopeCookie(req, res));
 }
 
 export function middleware(req: NextRequest) {
@@ -31,8 +62,8 @@ export function middleware(req: NextRequest) {
     const res = NextResponse.redirect(
       new URL(`/${locale}${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
     );
-    return withLocaleHintCookie(req, res);
+    return sealResponse(req, res);
   }
 
-  return withLocaleHintCookie(req, NextResponse.next());
+  return sealResponse(req, NextResponse.next());
 }

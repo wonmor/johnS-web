@@ -4,11 +4,26 @@ import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { tubeFont } from "../fonts";
+import { COOKIE_LAW_SCOPE_COOKIE } from "../i18n/cookieLawRegion";
 import { useI18n } from "../i18n/context";
 
 export const COOKIE_CONSENT_STORAGE_KEY = "john-cookie-consent-v1";
 
 const STATIC_MIRROR_ORIGIN = "https://static.johnseong.com";
+
+function readCookieLawScopeRequired(): boolean {
+  if (typeof document === "undefined") return false;
+  const chunk = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(`${COOKIE_LAW_SCOPE_COOKIE}=`));
+  if (!chunk) return false;
+  const value = chunk.slice(COOKIE_LAW_SCOPE_COOKIE.length + 1);
+  try {
+    return decodeURIComponent(value) === "1";
+  } catch {
+    return value === "1";
+  }
+}
 
 function bottomOffsetPx(pathname: string): string {
   if (pathname === "/") {
@@ -54,9 +69,16 @@ export function CookieConsentDialog() {
     locale === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;
 
   const [visible, setVisible] = useState(false);
+  const [scopeRequired, setScopeRequired] = useState(false);
 
   useLayoutEffect(() => {
     const sync = () => {
+      const inScope = readCookieLawScopeRequired();
+      setScopeRequired(inScope);
+      if (!inScope) {
+        setVisible(false);
+        return;
+      }
       try {
         const done =
           window.localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY) === "1";
@@ -83,7 +105,10 @@ export function CookieConsentDialog() {
   }, []);
 
   const showSheet =
-    visible && !localeOfferActive && pathname !== "/privacy";
+    scopeRequired &&
+    visible &&
+    !localeOfferActive &&
+    pathname !== "/privacy";
 
   useEffect(() => {
     if (!showSheet) return;
