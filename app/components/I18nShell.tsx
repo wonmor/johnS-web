@@ -26,13 +26,7 @@ export function I18nShell({ children }: { children: React.ReactNode }) {
     locale === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;
 
   const txClass =
-    localeTransitionPhase === "fade-out"
-      ? "locale-tx-root--fade-out"
-      : localeTransitionPhase === "invert"
-        ? "locale-tx-root--invert"
-        : localeTransitionPhase === "fade-in"
-          ? "locale-tx-root--fade-in"
-          : "";
+    localeTransitionPhase === "invert" ? "locale-tx-root--invert" : "";
 
   return (
     <div

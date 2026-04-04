@@ -17,15 +17,12 @@ import {
 
 const STORAGE_KEY = "johnS-web-locale";
 
-const FADE_OUT_MS = 340;
-const INVERT_HOLD_MS = 200;
-const FADE_IN_CLEANUP_MS = 420;
+/** Let CSS filter transition reach the inverted state before swapping strings */
+const INVERT_RAMP_MS = 520;
+/** Keep inverted look briefly after locale change */
+const INVERT_HOLD_MS = 420;
 
-export type LocaleTransitionPhase =
-  | "idle"
-  | "fade-out"
-  | "invert"
-  | "fade-in";
+export type LocaleTransitionPhase = "idle" | "invert";
 
 type I18nContextValue = {
   locale: Locale;
@@ -69,25 +66,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       setLocaleTransitionPhase("idle");
 
       const run = () => {
-        setLocaleTransitionPhase("fade-out");
+        setLocaleTransitionPhase("invert");
 
         const t1 = window.setTimeout(() => {
           setLocaleState(next);
           window.localStorage.setItem(STORAGE_KEY, next);
-          setLocaleTransitionPhase("invert");
 
           const t2 = window.setTimeout(() => {
-            setLocaleTransitionPhase("fade-in");
-
-            const t3 = window.setTimeout(() => {
-              setLocaleTransitionPhase("idle");
-            }, FADE_IN_CLEANUP_MS);
-
-            timeoutIdsRef.current.push(t3);
+            setLocaleTransitionPhase("idle");
           }, INVERT_HOLD_MS);
 
           timeoutIdsRef.current.push(t2);
-        }, FADE_OUT_MS);
+        }, INVERT_RAMP_MS);
 
         timeoutIdsRef.current.push(t1);
       };
