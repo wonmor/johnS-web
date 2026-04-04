@@ -112,9 +112,9 @@ export const messages = {
     "edu.hub.title": "École de pilotage Saint-Hubert (2026)",
     "edu.hub.detail":
       "Private pilot licence (PPL); steam gauge (six-pack); 1979 Cessna 152.",
-    "edu.ocfc.title": "Orange County Flight Center (2025.10 – 12)",
+    "edu.ocfc.title": "Orange County Flight Center (2025)",
     "edu.ocfc.detail": "Training on Cessna 172 with Garmin G1000.",
-    "edu.sunrise.title": "Sunrise Aviation (2024.10 – 2024.12)",
+    "edu.sunrise.title": "Sunrise Aviation (2024)",
     "edu.sunrise.detail":
       "Training on Evektor SportStar light-sport aircraft.",
     "edu.uci":
@@ -227,10 +227,10 @@ export const messages = {
     "edu.hub.title": "École de pilotage Saint-Hubert (2026)",
     "edu.hub.detail":
       "Licence de pilote privé (PPL) ; instrumentation « six pack » (volets à aiguilles) ; Cessna 152 de 1979.",
-    "edu.ocfc.title": "Orange County Flight Center (2025.10 – 12)",
+    "edu.ocfc.title": "Orange County Flight Center (2025)",
     "edu.ocfc.detail":
       "Formation sur Cessna 172 équipé du Garmin G1000.",
-    "edu.sunrise.title": "Sunrise Aviation (2024.10 – 2024.12)",
+    "edu.sunrise.title": "Sunrise Aviation (2024)",
     "edu.sunrise.detail":
       "Formation sur Evektor SportStar, avion ultra-léger motorisé (LSA).",
     "edu.uci":
@@ -345,9 +345,9 @@ export const messages = {
     "edu.hub.title": "École de pilotage Saint-Hubert (2026)",
     "edu.hub.detail":
       "사설조종사면허(PPL); 아날로그 계기(six-pack); 1979년식 Cessna 152.",
-    "edu.ocfc.title": "Orange County Flight Center (2025.10 – 12)",
+    "edu.ocfc.title": "Orange County Flight Center (2025)",
     "edu.ocfc.detail": "Garmin G1000 장비 Cessna 172 훈련.",
-    "edu.sunrise.title": "Sunrise Aviation (2024.10 – 2024.12)",
+    "edu.sunrise.title": "Sunrise Aviation (2024)",
     "edu.sunrise.detail":
       "경량스포츠기(Evektor SportStar) 훈련.",
     "edu.uci":
