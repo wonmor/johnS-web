@@ -41,7 +41,7 @@ function MacCloseIcon() {
   );
 }
 
-/** macOS-style sheet like `LocaleOfferDialog`, dark chrome; only shown when OS prefers dark. */
+/** macOS-style sheet, light chrome; shown until dismissed (after locale offer if any). */
 export function CookieConsentDialog() {
   const { t, locale, localeOfferActive } = useI18n();
   const pathname = usePathname() ?? "/";
@@ -55,23 +55,17 @@ export function CookieConsentDialog() {
   useLayoutEffect(() => {
     const sync = () => {
       try {
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
         const done =
           window.localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY) === "1";
-        setVisible(prefersDark && !done);
+        setVisible(!done);
       } catch {
         setVisible(false);
       }
     };
 
     sync();
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    mq.addEventListener("change", sync);
     window.addEventListener("storage", sync);
     return () => {
-      mq.removeEventListener("change", sync);
       window.removeEventListener("storage", sync);
     };
   }, []);
@@ -112,15 +106,15 @@ export function CookieConsentDialog() {
         aria-modal="true"
         aria-labelledby="cookie-consent-title"
         aria-describedby="cookie-consent-desc"
-        className={`pointer-events-auto fixed left-1/2 z-[47] w-[min(100%-1.5rem,28rem)] motion-reduce:animate-none animate-locale-offer-float overflow-hidden rounded-[10px] border border-white/[0.12] bg-[#2c2c2e] shadow-[0_28px_90px_rgba(0,0,0,0.55),0_14px_40px_rgba(0,0,0,0.35),0_0_0_0.5px_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.08)] antialiased ${fontClass}`}
+        className={`pointer-events-auto fixed left-1/2 z-[47] w-[min(100%-1.5rem,28rem)] motion-reduce:animate-none animate-locale-offer-float overflow-hidden rounded-[10px] border border-black/[0.12] bg-[#ededed] shadow-[0_28px_90px_rgba(0,0,0,0.32),0_14px_40px_rgba(0,0,0,0.2),0_0_0_0.5px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.85)] antialiased ${fontClass}`}
         style={{ bottom: cardBottom }}
       >
-        <div className="relative flex h-8 select-none items-center border-b border-white/[0.08] bg-gradient-to-b from-[#3d3d3f] to-[#2e2e30] pt-px">
+        <div className="relative flex h-8 select-none items-center border-b border-black/[0.06] bg-gradient-to-b from-[#fafafa] to-[#ececec] pt-px">
           <button
             type="button"
             aria-label={t("cookieConsent.closeOverlay")}
             onClick={dismiss}
-            className="absolute left-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md hover:bg-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0a84ff]"
+            className="absolute left-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md hover:bg-black/[0.05] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007aff]"
           >
             <span
               className="flex h-[11px] w-[11px] items-center justify-center rounded-full border border-[#d9362f] bg-[#ff5f57] shadow-[inset_0_-0.5px_1px_rgba(0,0,0,0.12)]"
@@ -129,21 +123,21 @@ export function CookieConsentDialog() {
               <MacCloseIcon />
             </span>
           </button>
-          <p className="w-full truncate px-12 text-center text-[11px] font-semibold text-[#d1d1d6]">
+          <p className="w-full truncate px-12 text-center text-[11px] font-semibold text-[#4a4a4a]">
             {t("cookieConsent.barLabel")}
           </p>
         </div>
 
-        <div className="bg-[#242426] px-4 pb-3.5 pt-3 sm:px-5 sm:pb-4 sm:pt-3.5">
+        <div className="bg-[#fbfbfb] px-4 pb-3.5 pt-3 sm:px-5 sm:pb-4 sm:pt-3.5">
           <p
             id="cookie-consent-title"
-            className="text-center text-sm font-semibold tracking-[0.1em] text-[#f5f5f7] sm:text-base"
+            className="text-center text-sm font-semibold tracking-[0.1em] text-[#1d1d1f] sm:text-base"
           >
             {t("cookieConsent.title")}
           </p>
           <p
             id="cookie-consent-desc"
-            className="mt-2 text-center text-[12px] leading-snug text-[#aeaeb2] sm:mt-2 sm:text-[13px]"
+            className="mt-2 text-center text-[12px] leading-snug text-[#6e6e73] sm:mt-2 sm:text-[13px]"
           >
             {t("cookieConsent.body")}
           </p>
@@ -151,7 +145,7 @@ export function CookieConsentDialog() {
             <button
               type="button"
               onClick={dismiss}
-              className="rounded-md border border-[#007aff] bg-[#007aff] px-3.5 py-1.5 text-[12px] font-semibold text-white shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.15)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0a84ff] active:brightness-95 sm:min-w-[7rem] sm:text-[13px]"
+              className="rounded-md border border-[#0051d0] bg-[#007aff] px-3.5 py-1.5 text-[12px] font-semibold text-white shadow-[0_1px_0_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.2)] transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007aff] active:brightness-95 sm:min-w-[7rem] sm:text-[13px]"
             >
               {t("cookieConsent.accept")}
             </button>

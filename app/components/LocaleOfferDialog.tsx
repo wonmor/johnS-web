@@ -92,15 +92,15 @@ export function LocaleOfferDialog({
         aria-modal="true"
         aria-labelledby="locale-offer-title"
         aria-describedby="locale-offer-desc"
-        className={`pointer-events-auto fixed left-1/2 z-[45] w-[min(100%-1.5rem,28rem)] motion-reduce:animate-none animate-locale-offer-float overflow-hidden rounded-[10px] border border-black/[0.12] bg-[#ededed] shadow-[0_28px_90px_rgba(0,0,0,0.32),0_14px_40px_rgba(0,0,0,0.2),0_0_0_0.5px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.85)] antialiased ${fontClass}`}
+        className={`pointer-events-auto fixed left-1/2 z-[45] w-[min(100%-1.5rem,28rem)] motion-reduce:animate-none animate-locale-offer-float overflow-hidden rounded-[10px] border border-white/[0.12] bg-[#2c2c2e] shadow-[0_28px_90px_rgba(0,0,0,0.55),0_14px_40px_rgba(0,0,0,0.35),0_0_0_0.5px_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.08)] antialiased ${fontClass}`}
         style={{ bottom: cardBottom }}
       >
-        <div className="relative flex h-8 select-none items-center border-b border-black/[0.06] bg-gradient-to-b from-[#fafafa] to-[#ececec] pt-px">
+        <div className="relative flex h-8 select-none items-center border-b border-white/[0.08] bg-gradient-to-b from-[#3d3d3f] to-[#2e2e30] pt-px">
           <button
             type="button"
             aria-label={mt("localeOffer.closeOverlay")}
             onClick={onDecline}
-            className="absolute left-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md hover:bg-black/[0.05] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007aff]"
+            className="absolute left-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md hover:bg-white/[0.08] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0a84ff]"
           >
             <span
               className="flex h-[11px] w-[11px] items-center justify-center rounded-full border border-[#d9362f] bg-[#ff5f57] shadow-[inset_0_-0.5px_1px_rgba(0,0,0,0.12)]"
@@ -109,21 +109,21 @@ export function LocaleOfferDialog({
               <MacCloseIcon />
             </span>
           </button>
-          <p className="w-full truncate px-12 text-center text-[11px] font-semibold text-[#4a4a4a]">
+          <p className="w-full truncate px-12 text-center text-[11px] font-semibold text-[#d1d1d6]">
             {mt("langToggle.label")}
           </p>
         </div>
 
-        <div className="bg-[#fbfbfb] px-4 pb-3.5 pt-3 sm:px-5 sm:pb-4 sm:pt-3.5">
+        <div className="bg-[#242426] px-4 pb-3.5 pt-3 sm:px-5 sm:pb-4 sm:pt-3.5">
           <p
             id="locale-offer-title"
-            className="text-center text-sm font-semibold tracking-[0.1em] text-[#1d1d1f] sm:text-base"
+            className="text-center text-sm font-semibold tracking-[0.1em] text-[#f5f5f7] sm:text-base"
           >
             {mt(titleKey)}
           </p>
           <p
             id="locale-offer-desc"
-            className="mt-2 text-center text-[12px] leading-snug text-[#6e6e73] sm:mt-2 sm:text-[13px]"
+            className="mt-2 text-center text-[12px] leading-snug text-[#aeaeb2] sm:mt-2 sm:text-[13px]"
           >
             {mt(bodyKey)}
           </p>
@@ -131,14 +131,14 @@ export function LocaleOfferDialog({
             <button
               type="button"
               onClick={onDecline}
-              className="rounded-md border border-black/[0.08] bg-white px-3.5 py-1.5 text-[12px] font-medium text-[#1d1d1f] shadow-[0_1px_0_rgba(0,0,0,0.04)] transition hover:bg-[#f5f5f7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007aff] sm:min-w-[7rem] sm:text-[13px]"
+              className="rounded-md border border-white/[0.18] bg-white/[0.08] px-3.5 py-1.5 text-[12px] font-medium text-[#e8e8ed] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition hover:bg-white/[0.12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0a84ff] sm:min-w-[7rem] sm:text-[13px]"
             >
               {mt("localeOffer.decline")}
             </button>
             <button
               type="button"
               onClick={onAccept}
-              className="rounded-md border border-[#0051d0] bg-[#007aff] px-3.5 py-1.5 text-[12px] font-semibold text-white shadow-[0_1px_0_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.2)] transition hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007aff] active:brightness-95 sm:min-w-[7rem] sm:text-[13px]"
+              className="rounded-md border border-[#007aff] bg-[#007aff] px-3.5 py-1.5 text-[12px] font-semibold text-white shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.15)] transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0a84ff] active:brightness-95 sm:min-w-[7rem] sm:text-[13px]"
             >
               {mt("localeOffer.accept")}
             </button>
