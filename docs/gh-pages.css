@@ -80,9 +80,9 @@ a {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
+  gap: 0.28rem;
   max-width: calc(100vw - 1.25rem);
-  padding: 0.5rem 1rem 0.55rem;
+  padding: 0.28rem 0.75rem 0.32rem;
   border-radius: 1rem;
   border: 1px solid var(--chrome-border);
   background: var(--chrome-bg);
@@ -94,23 +94,23 @@ a {
 
 .ghp-chrome__mirror {
   margin: 0;
+  padding: 0 0 0.18rem;
   width: 100%;
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  line-height: 1.2;
+  letter-spacing: 0.2em;
+  line-height: 1;
   color: rgba(255, 255, 255, 0.72);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-  padding-bottom: 0.1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 @media (min-width: 640px) {
   .ghp-chrome__mirror {
-    font-size: 0.68rem;
-    letter-spacing: 0.22em;
+    font-size: 0.65rem;
+    letter-spacing: 0.24em;
+    padding-bottom: 0.2rem;
   }
 }
 
@@ -847,7 +847,6 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
-  margin-bottom: 0.85rem;
 }
 
 .ghp-site-footer__links a {
@@ -871,15 +870,6 @@ a {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.35);
   color: #fff;
-}
-
-.ghp-site-footer__copy {
-  margin: 0;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #9ca3af;
 }
 
 .ghp-footer-note {

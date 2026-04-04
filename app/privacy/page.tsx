@@ -8,7 +8,8 @@ import { messages } from "../i18n/messages";
 const SECTION_IDS = { en: "privacy-en", fr: "privacy-fr", ko: "privacy-ko" } as const;
 
 export default function PrivacyPolicyPage() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const year = new Date().getFullYear();
 
   return (
     <div
@@ -114,7 +115,7 @@ export default function PrivacyPolicyPage() {
           </a>
         </div>
 
-        <div className="pt-20 pb-10 sm:pt-28 sm:pb-14">
+        <div className="pt-20 sm:pt-28">
           <Link
             href="/"
             className="inline-block text-sm text-white/65 transition hover:text-white"
@@ -122,6 +123,17 @@ export default function PrivacyPolicyPage() {
             {t("privacy.backHome")}
           </Link>
         </div>
+
+        <footer
+          className={`mt-12 border-t border-white/10 pt-10 pb-10 text-center sm:mt-14 sm:pb-14 ${locale === "ko" ? "font-ibm-plex-sans-kr" : ""}`}
+          aria-label="Copyright"
+        >
+          <p
+            className="text-[0.625rem] font-medium uppercase leading-tight tracking-[0.14em] text-white/55 sm:text-sm sm:tracking-[0.2em]"
+          >
+            {t("topBar.copyright", { year })}
+          </p>
+        </footer>
       </div>
     </div>
   );
