@@ -114,8 +114,9 @@ function initialKoCloudPuffs(): KoCloudPuff[] {
   return Array.from({ length: 38 }, () => ({
     cx: -40 + Math.random() * 185,
     baseCy: 4 + Math.random() * 92,
-    rx: 1.8 + Math.random() * 9.5,
-    ry: 1.2 + Math.random() * 5.8,
+    /* Wide, shallow puffs — mostly flat / stratiform layers */
+    rx: 3.5 + Math.random() * 13,
+    ry: 0.22 + Math.random() * 1.05,
     opacity: 0.2 + Math.random() * 0.52,
   }));
 }
@@ -158,7 +159,7 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
           width="190%"
           height="190%"
         >
-          <feGaussianBlur in="SourceGraphic" stdDeviation="0.55" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.85 0.28" />
         </filter>
       </defs>
       <g filter="url(#ko-roundel-cloud-soft)">
