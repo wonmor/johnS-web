@@ -64,6 +64,38 @@
   font-family: "IBM Plex Sans KR", sans-serif;
 }
 
+/* Locale switch: light → dark (fade) → inverted midpoint → light again */
+.locale-tx-root {
+  opacity: 1;
+  transition: opacity 340ms ease-in-out, filter 200ms ease-in-out;
+  will-change: opacity, filter;
+}
+
+.locale-tx-root--fade-out {
+  opacity: 0;
+  filter: none;
+}
+
+.locale-tx-root--invert {
+  opacity: 0.48;
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.locale-tx-root--fade-in {
+  opacity: 0;
+  filter: none;
+  animation: localeTxFadeIn 400ms ease-out forwards;
+}
+
+@keyframes localeTxFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

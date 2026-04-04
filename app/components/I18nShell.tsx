@@ -10,7 +10,7 @@ const IBM_PLEX_SANS_KR_HREF =
   "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap";
 
 export function I18nShell({ children }: { children: React.ReactNode }) {
-  const { locale } = useI18n();
+  const { locale, localeTransitionPhase } = useI18n();
 
   useEffect(() => {
     if (locale !== "ko") return;
@@ -25,9 +25,18 @@ export function I18nShell({ children }: { children: React.ReactNode }) {
   const fontClass =
     locale === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;
 
+  const txClass =
+    localeTransitionPhase === "fade-out"
+      ? "locale-tx-root--fade-out"
+      : localeTransitionPhase === "invert"
+        ? "locale-tx-root--invert"
+        : localeTransitionPhase === "fade-in"
+          ? "locale-tx-root--fade-in"
+          : "";
+
   return (
     <div
-      className={`${fontClass} flex min-h-screen flex-col bg-[#020824] pt-6 text-white antialiased`}
+      className={`locale-tx-root ${fontClass} ${txClass} flex min-h-screen flex-col bg-[#020824] pt-6 text-white antialiased`}
     >
       <BodyContent>{children}</BodyContent>
     </div>

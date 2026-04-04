@@ -12,24 +12,29 @@ const toggleLabelKey: Record<Locale, MessageKey> = {
 };
 
 export function LanguageToggle() {
-  const { locale, setLocale, t } = useI18n();
+  const { locale, setLocale, t, localeTransitionPhase } = useI18n();
+  const isTransitioning = localeTransitionPhase !== "idle";
 
   return (
     <div
-      className="inline-flex max-w-[100vw] flex-wrap items-center justify-center gap-0.5 rounded-md border border-white/25 bg-black/35 p-0.5 sm:gap-1 sm:p-1"
+      className={`inline-flex max-w-[100vw] flex-wrap items-center justify-center gap-0.5 rounded-md border border-white/25 bg-black/35 p-0.5 sm:gap-1 sm:p-1 ${
+        isTransitioning ? "pointer-events-none opacity-70" : ""
+      }`}
       role="group"
       aria-label={t("langToggle.label")}
+      aria-busy={isTransitioning}
     >
       {locales.map((code) => (
         <button
           key={code}
           type="button"
+          disabled={isTransitioning}
           onClick={() => setLocale(code)}
           className={`rounded px-2 py-0.5 text-xs font-medium leading-none tracking-wider transition sm:px-2.5 sm:py-1 sm:text-sm ${
             locale === code
               ? "bg-white text-black"
               : "text-gray-400 hover:text-white"
-          }`}
+          } ${isTransitioning ? "cursor-wait" : ""}`}
           aria-pressed={locale === code}
         >
           {t(toggleLabelKey[code])}

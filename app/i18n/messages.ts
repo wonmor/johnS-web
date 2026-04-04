@@ -280,7 +280,7 @@ export const messages = {
     "hero.email": "john@orchestrsim.com",
     "awards.wwdc": "Apple WWDC23 Swift Student Challenge 수상",
     "awards.wwdcVenue": "캘리포니아 쿠퍼티노 애플 파크에서",
-    "awards.ukVisa": "영국 글로벌 탈런트 비자 보유",
+    "awards.ukVisa": "영국 글로벌 탤런트 비자 보유",
     "awards.usVisa": "미국 O-1A 비자(특별능력)",
     "awards.reachAlt": "Reach Media Group",
 

@@ -6,6 +6,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import {
@@ -16,16 +17,35 @@ import {
 
 const STORAGE_KEY = "johnS-web-locale";
 
+const FADE_OUT_MS = 340;
+const INVERT_HOLD_MS = 200;
+const FADE_IN_CLEANUP_MS = 420;
+
+export type LocaleTransitionPhase =
+  | "idle"
+  | "fade-out"
+  | "invert"
+  | "fade-in";
+
 type I18nContextValue = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: MessageKey, vars?: Record<string, string | number>) => string;
+  localeTransitionPhase: LocaleTransitionPhase;
 };
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("fr");
+  const [localeTransitionPhase, setLocaleTransitionPhase] =
+    useState<LocaleTransitionPhase>("idle");
+  const timeoutIdsRef = useRef<number[]>([]);
+
+  const clearTransitionTimeouts = useCallback(() => {
+    timeoutIdsRef.current.forEach((id) => window.clearTimeout(id));
+    timeoutIdsRef.current = [];
+  }, []);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
@@ -39,10 +59,45 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       locale === "fr" ? "fr" : locale === "ko" ? "ko" : "en";
   }, [locale]);
 
-  const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next);
-    window.localStorage.setItem(STORAGE_KEY, next);
-  }, []);
+  useEffect(() => () => clearTransitionTimeouts(), [clearTransitionTimeouts]);
+
+  const setLocale = useCallback(
+    (next: Locale) => {
+      if (next === locale) return;
+
+      clearTransitionTimeouts();
+      setLocaleTransitionPhase("idle");
+
+      const run = () => {
+        setLocaleTransitionPhase("fade-out");
+
+        const t1 = window.setTimeout(() => {
+          setLocaleState(next);
+          window.localStorage.setItem(STORAGE_KEY, next);
+          setLocaleTransitionPhase("invert");
+
+          const t2 = window.setTimeout(() => {
+            setLocaleTransitionPhase("fade-in");
+
+            const t3 = window.setTimeout(() => {
+              setLocaleTransitionPhase("idle");
+            }, FADE_IN_CLEANUP_MS);
+
+            timeoutIdsRef.current.push(t3);
+          }, INVERT_HOLD_MS);
+
+          timeoutIdsRef.current.push(t2);
+        }, FADE_OUT_MS);
+
+        timeoutIdsRef.current.push(t1);
+      };
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(run);
+      });
+    },
+    [locale, clearTransitionTimeouts]
+  );
 
   const t = useCallback(
     (key: MessageKey, vars?: Record<string, string | number>) => {
@@ -59,8 +114,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   );
 
   const value = useMemo(
-    () => ({ locale, setLocale, t }),
-    [locale, setLocale, t]
+    () => ({
+      locale,
+      setLocale,
+      t,
+      localeTransitionPhase,
+    }),
+    [locale, setLocale, t, localeTransitionPhase]
   );
 
   return (
