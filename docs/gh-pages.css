@@ -80,9 +80,9 @@ a {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 0.28rem;
+  gap: 0.22rem;
   max-width: calc(100vw - 1.25rem);
-  padding: 0.28rem 0.75rem 0.32rem;
+  padding: 0.3rem 0.85rem 0.34rem;
   border-radius: 1rem;
   border: 1px solid var(--chrome-border);
   background: var(--chrome-bg);
@@ -92,25 +92,25 @@ a {
   -webkit-backdrop-filter: blur(12px);
 }
 
+/* Matches earlier floating chrome copy (compact caption, not a section title). */
 .ghp-chrome__mirror {
   margin: 0;
-  padding: 0 0 0.18rem;
+  padding: 0;
   width: 100%;
   text-align: center;
-  font-size: 0.58rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.72);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
 
 @media (min-width: 640px) {
   .ghp-chrome__mirror {
-    font-size: 0.65rem;
-    letter-spacing: 0.24em;
-    padding-bottom: 0.2rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
   }
 }
 
@@ -125,8 +125,8 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4rem 0.65rem;
-  font-size: 0.65rem;
+  padding: 0.32rem 0.55rem;
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -834,47 +834,9 @@ a {
   color: #9ca3af;
 }
 
-.ghp-site-footer {
-  margin-top: auto;
-  padding: 1.25rem 1rem calc(4.5rem + env(safe-area-inset-bottom, 0px));
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(1, 6, 19, 0.65);
-}
-
-.ghp-site-footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.ghp-site-footer__links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #e5e7eb;
-  border-radius: var(--ghp-pill-radius);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.06);
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-
-.ghp-site-footer__links a:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #fff;
-}
-
 .ghp-footer-note {
   text-align: center;
-  padding: 1rem 1rem 1.25rem;
+  padding: 1rem 1rem calc(4.5rem + env(safe-area-inset-bottom, 0px));
   font-size: 0.8rem;
   color: #6b7280;
 }
