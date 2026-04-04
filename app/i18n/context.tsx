@@ -5,6 +5,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -18,9 +19,13 @@ import {
 import {
   DEFAULT_LOCALE,
   LOCALE_HINT_COOKIE,
+  LOCALE_OFFER_DISMISSED_KEY,
   localeFromNavigator,
   parseLocaleCookieValue,
 } from "./localeDetect";
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const STORAGE_KEY = "johnS-web-locale";
 
@@ -51,11 +56,17 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
+function dismissedOfferFingerprint(): string | null {
+  if (typeof window === "undefined") return null;
+  return window.localStorage.getItem(LOCALE_OFFER_DISMISSED_KEY);
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
-  const [localeOfferTarget, setLocaleOfferTarget] = useState<
-    null | "en" | "ko"
-  >(null);
+  const [navLocaleTick, setNavLocaleTick] = useState(0);
+  const [localeOfferTarget, setLocaleOfferTarget] = useState<Locale | null>(
+    null
+  );
   const [localeTransitionPhase, setLocaleTransitionPhase] =
     useState<LocaleTransitionPhase>("idle");
   const timeoutIdsRef = useRef<number[]>([]);
@@ -65,18 +76,29 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     timeoutIdsRef.current = [];
   }, []);
 
+  useIsomorphicLayoutEffect(() => {
+    setLocaleState(readStoredLocale() ?? DEFAULT_LOCALE);
+  }, []);
+
   useEffect(() => {
-    const stored = readStoredLocale();
-    if (stored) {
-      setLocaleState(stored);
+    const onLang = () => setNavLocaleTick((n) => n + 1);
+    window.addEventListener("languagechange", onLang);
+    return () => window.removeEventListener("languagechange", onLang);
+  }, []);
+
+  useEffect(() => {
+    const detected = localeFromNavigator();
+    if (detected === locale) {
+      setLocaleOfferTarget(null);
       return;
     }
-    setLocaleState(DEFAULT_LOCALE);
-    const detected = localeFromNavigator();
-    if (detected === "en" || detected === "ko") {
-      setLocaleOfferTarget(detected);
+    const fingerprint = `${locale}|${detected}`;
+    if (dismissedOfferFingerprint() === fingerprint) {
+      setLocaleOfferTarget(null);
+      return;
     }
-  }, []);
+    setLocaleOfferTarget(detected);
+  }, [locale, navLocaleTick]);
 
   useEffect(() => {
     document.documentElement.lang =
@@ -86,11 +108,16 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => () => clearTransitionTimeouts(), [clearTransitionTimeouts]);
 
   const dismissLocaleOffer = useCallback(() => {
-    setLocaleOfferTarget(null);
     if (typeof window === "undefined") return;
-    window.localStorage.setItem(STORAGE_KEY, DEFAULT_LOCALE);
-    persistLocaleHintCookie(DEFAULT_LOCALE);
-  }, []);
+    const detected = localeFromNavigator();
+    if (detected !== locale) {
+      window.localStorage.setItem(
+        LOCALE_OFFER_DISMISSED_KEY,
+        `${locale}|${detected}`
+      );
+    }
+    setLocaleOfferTarget(null);
+  }, [locale]);
 
   const setLocale = useCallback(
     (next: Locale) => {
@@ -157,7 +184,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
           onAccept={() => {
             const next = localeOfferTarget;
             setLocaleOfferTarget(null);
-            if (next === "en" || next === "ko") {
+            if (typeof window !== "undefined") {
+              window.localStorage.removeItem(LOCALE_OFFER_DISMISSED_KEY);
+            }
+            if (next && next !== locale) {
               setLocale(next);
             }
           }}

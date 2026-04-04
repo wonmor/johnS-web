@@ -3,6 +3,9 @@ import type { Locale } from "./messages";
 /** Same-site cookie: set from `Accept-Language` in middleware; updated when the user picks a language. */
 export const LOCALE_HINT_COOKIE = "john-locale-hint";
 
+/** `currentLocale|browserPreferredLocale` — user dismissed the locale offer for this pair. */
+export const LOCALE_OFFER_DISMISSED_KEY = "john-locale-offer-dismissed";
+
 /** When no `en` / `fr` / `ko` match (and no saved choice), site defaults to French. */
 export const DEFAULT_LOCALE: Locale = "fr";
 

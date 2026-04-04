@@ -12,14 +12,17 @@ export const messages = {
     "langToggle.label": "Language",
 
     "localeOffer.titleEn": "DISPLAY IN ENGLISH?",
+    "localeOffer.titleFr": "DISPLAY IN FRENCH?",
     "localeOffer.titleKo": "DISPLAY IN KOREAN?",
     "localeOffer.bodyEn":
-      "Your browser prefers English. Would you like to view the site in English?",
+      "Your browser language does not match the language shown. View the site in English?",
+    "localeOffer.bodyFr":
+      "Your browser language does not match the language shown. View the site in French?",
     "localeOffer.bodyKo":
-      "Your browser prefers Korean. Would you like to view the site in Korean?",
+      "Your browser language does not match the language shown. View the site in Korean?",
     "localeOffer.accept": "Yes, switch",
-    "localeOffer.decline": "No, keep French",
-    "localeOffer.closeOverlay": "Dismiss and keep French",
+    "localeOffer.decline": "No, keep current language",
+    "localeOffer.closeOverlay": "Dismiss and keep current language",
 
     "privacy.title": "Privacy Policy",
     "privacy.body":
@@ -152,14 +155,17 @@ export const messages = {
     "langToggle.label": "Langue",
 
     "localeOffer.titleEn": "DISPLAY IN ENGLISH?",
+    "localeOffer.titleFr": "AFFICHER EN FRANÇAIS ?",
     "localeOffer.titleKo": "DISPLAY IN KOREAN?",
     "localeOffer.bodyEn":
-      "Nous avons détecté l’anglais comme langue préférée de votre navigateur.",
+      "La langue de votre navigateur ne correspond pas à celle affichée. Afficher en anglais ?",
+    "localeOffer.bodyFr":
+      "La langue de votre navigateur ne correspond pas à celle affichée. Afficher en français ?",
     "localeOffer.bodyKo":
-      "Nous avons détecté le coréen comme langue préférée de votre navigateur.",
+      "La langue de votre navigateur ne correspond pas à celle affichée. Afficher en coréen ?",
     "localeOffer.accept": "Oui, changer",
-    "localeOffer.decline": "Non, rester en français",
-    "localeOffer.closeOverlay": "Fermer et garder le français",
+    "localeOffer.decline": "Non, garder la langue actuelle",
+    "localeOffer.closeOverlay": "Fermer et garder la langue actuelle",
 
     "privacy.title": "Politique de confidentialité",
     "privacy.body":
@@ -289,14 +295,17 @@ export const messages = {
     "langToggle.label": "언어",
 
     "localeOffer.titleEn": "DISPLAY IN ENGLISH?",
-    "localeOffer.titleKo": "DISPLAY IN KOREAN?",
+    "localeOffer.titleFr": "DISPLAY IN FRENCH?",
+    "localeOffer.titleKo": "한국어로 표시할까요?",
     "localeOffer.bodyEn":
-      "브라우저 기본 언어가 영어입니다. 영어로 볼까요?",
+      "브라우저 언어와 현재 표시 언어가 다릅니다. 영어로 볼까요?",
+    "localeOffer.bodyFr":
+      "브라우저 언어와 현재 표시 언어가 다릅니다. 프랑스어로 볼까요?",
     "localeOffer.bodyKo":
-      "브라우저 기본 언어가 한국어입니다. 한국어로 볼까요?",
+      "브라우저 언어와 현재 표시 언어가 다릅니다. 한국어로 볼까요?",
     "localeOffer.accept": "네, 바꿀게요",
-    "localeOffer.decline": "아니요, 프랑스어 유지",
-    "localeOffer.closeOverlay": "닫고 프랑스어 유지",
+    "localeOffer.decline": "아니요, 지금 언어 유지",
+    "localeOffer.closeOverlay": "닫고 지금 언어 유지",
 
     "privacy.title": "개인정보 처리방침",
     "privacy.body":
