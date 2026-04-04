@@ -5,8 +5,7 @@ export const messages = {
     "meta.title": "John Seong",
     "meta.description":
       "Hi, I'm John. I love aerospace, software, and design. Welcome to my personal website.",
-    "topBar.copyright":
-      "NO TRACKING · GDPR (EU) © {year} JOHN WONMO SEONG",
+    "topBar.copyright": "© {year} JOHN WONMO SEONG",
     "langToggle.en": "EN",
     "langToggle.fr": "FR",
     "langToggle.ko": "KO",
@@ -165,8 +164,7 @@ export const messages = {
     "meta.title": "John Seong",
     "meta.description":
       "Bonjour, je suis John. J’aime l’aérospatiale, le logiciel et le design. Bienvenue sur mon site personnel.",
-    "topBar.copyright":
-      "PAS DE SUIVI · RGPD (UE) © {year} JOHN WONMO SEONG",
+    "topBar.copyright": "© {year} JOHN WONMO SEONG",
     "langToggle.en": "EN",
     "langToggle.fr": "FR",
     "langToggle.ko": "KO",
@@ -321,8 +319,7 @@ export const messages = {
     "meta.title": "John Seong",
     "meta.description":
       "안녕하세요, 존입니다. 항공·우주, 소프트웨어, 디자인을 사랑합니다. 제 개인 웹사이트에 오신 것을 환영합니다.",
-    "topBar.copyright":
-      "트래킹 없음 · EU GDPR © {year} JOHN WONMO SEONG",
+    "topBar.copyright": "© {year} JOHN WONMO SEONG",
     "langToggle.en": "EN",
     "langToggle.fr": "FR",
     "langToggle.ko": "KO",

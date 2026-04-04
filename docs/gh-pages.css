@@ -76,12 +76,13 @@ a {
   z-index: 50;
   transform: translateX(-50%);
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem 0.75rem;
+  gap: 0.45rem;
   max-width: calc(100vw - 1.25rem);
-  padding: 0.45rem 1rem;
+  padding: 0.5rem 1rem 0.55rem;
   border-radius: 1rem;
   border: 1px solid var(--chrome-border);
   background: var(--chrome-bg);
@@ -89,6 +90,28 @@ a {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+.ghp-chrome__mirror {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  padding-bottom: 0.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@media (min-width: 640px) {
+  .ghp-chrome__mirror {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+  }
 }
 
 .ghp-chrome__links {
@@ -376,33 +399,6 @@ a {
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-}
-
-.ghp-awards-visual {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-.ghp-awards-static-note {
-  margin: 0;
-  max-width: 12rem;
-  text-align: center;
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.35;
-  text-transform: uppercase;
-  color: #d1d5db;
-}
-
-@media (min-width: 640px) {
-  .ghp-awards-static-note {
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
-    max-width: 14rem;
-  }
 }
 
 .ghp-avatar-ring {
@@ -844,6 +840,37 @@ a {
   text-align: center;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(1, 6, 19, 0.65);
+}
+
+.ghp-site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.ghp-site-footer__links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #e5e7eb;
+  border-radius: var(--ghp-pill-radius);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.ghp-site-footer__links a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
 }
 
 .ghp-site-footer__copy {
