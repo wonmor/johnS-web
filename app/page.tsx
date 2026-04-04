@@ -11,14 +11,50 @@ import Link from "next/link";
 import { OrbitControls } from "@react-three/drei";
 import { ibmPlexSansKRFontStack, tubeFont } from "./fonts";
 import { useI18n } from "./i18n/context";
+import type { Locale } from "./i18n/messages";
 
 const tubeRed = "#f77f6b"; // legacy accent red (kept for logos)
 const tubeBlue = "#003688";
 const tubeGreyBg = "#020824"; // dark navy background to match layout
 const tubeText = "#f9fafb"; // light text on dark
 
+type RoundelTheme = {
+  ring: string;
+  bar: string;
+  decorStroke: string;
+  /** Bridge + waves (FR classic tube only); hidden for EN/KO */
+  showBridgeAndWaves: boolean;
+};
+
+function getRoundelTheme(locale: Locale): RoundelTheme {
+  switch (locale) {
+    case "fr":
+      return {
+        ring: tubeRed,
+        bar: tubeBlue,
+        decorStroke: tubeBlue,
+        showBridgeAndWaves: true,
+      };
+    case "ko":
+      return {
+        ring: "#00B2A9",
+        bar: "#007A8C",
+        decorStroke: "#005A66",
+        showBridgeAndWaves: false,
+      };
+    default:
+      return {
+        ring: "#9364CC",
+        bar: "#5E2F88",
+        decorStroke: "#4A2565",
+        showBridgeAndWaves: false,
+      };
+  }
+}
+
 function TubeRoundel() {
   const { locale } = useI18n();
+  const theme = getRoundelTheme(locale);
   const nameFontFamily =
     locale === "ko" ? ibmPlexSansKRFontStack : tubeFont.style.fontFamily;
 
@@ -31,32 +67,24 @@ function TubeRoundel() {
   );
 
   useEffect(() => {
-    const speed = 0.3; // how fast the waves move per frame
+    if (!getRoundelTheme(locale).showBridgeAndWaves) return;
+    const speed = 0.3;
     const interval = setInterval(() => {
       setWaves((prev) =>
         prev
-          .map((wave) => ({ ...wave, x: wave.x + speed })) // move right
-          .filter((wave) => wave.x <= 100) // remove if out of view
+          .map((wave) => ({ ...wave, x: wave.x + speed }))
+          .filter((wave) => wave.x <= 100)
           .concat(
             Array.from({ length: 1 }).map(() => ({
-              // generate new wave on left
               x: -5 + Math.random() * 5,
               y: 72 + Math.random() * 18,
               length: 2 + Math.random() * 5,
             }))
           )
       );
-    }, 16); // ~60fps
+    }, 16);
     return () => clearInterval(interval);
-  }, []);
-
-    const vw = 300;   // logical width of the SVG viewBox
-  const vh = 160;   // logical height
-  const cx = 150;   // center x
-  const cy = 80;    // center y
-  const outerR = 70; // outer radius of red circle
-  const innerR = 35; // inner (white) hole radius
-  const barH = 30;   // blue name bar height
+  }, [locale]);
 
   return (
     <div
@@ -65,7 +93,7 @@ function TubeRoundel() {
         width: 140,
         height: 140,
         borderRadius: "50%",
-        backgroundColor: tubeRed,
+        backgroundColor: theme.ring,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -73,45 +101,44 @@ function TubeRoundel() {
         overflow: "hidden",
       }}
     >
-      <svg
-        viewBox="0 0 100 100"
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          width: "120%",
-          height: "120%",
-          transform: "translate(-50%, -50%)",
-          fill: "none",
-          stroke: "#003688",
-          strokeWidth: 2,
-          zIndex: 0,
-        }}
-      >
-        {/* Bridge towers */}
-        <line x1="30" y1="30" x2="30" y2="50" />
-        <line x1="70" y1="30" x2="70" y2="50" />
-        <line x1="30" y1="30" x2="50" y2="50" opacity={0.3} />
-        <line x1="70" y1="30" x2="50" y2="50" opacity={0.3} />
-        <line x1="30" y1="30" x2="0" y2="50" opacity={0.3} />
-        <line x1="70" y1="30" x2="100" y2="50" opacity={0.3} />
-
-        {/* Base */}
-        <line x1="0" y1="70" x2="100" y2="70" opacity={0.2} />
-        {/* Waves */}
-        {waves.map((wave, i) => (
-          <line
-            key={i}
-            x1={wave.x}
-            y1={wave.y}
-            x2={wave.x + wave.length}
-            y2={wave.y}
-            stroke="#003688"
-            strokeOpacity={0.2}
-            strokeWidth={1.2}
-          />
-        ))}
-      </svg>
+      {theme.showBridgeAndWaves ? (
+        <svg
+          viewBox="0 0 100 100"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: "120%",
+            height: "120%",
+            transform: "translate(-50%, -50%)",
+            fill: "none",
+            stroke: theme.decorStroke,
+            strokeWidth: 2,
+            zIndex: 0,
+          }}
+          aria-hidden
+        >
+          <line x1="30" y1="30" x2="30" y2="50" />
+          <line x1="70" y1="30" x2="70" y2="50" />
+          <line x1="30" y1="30" x2="50" y2="50" opacity={0.3} />
+          <line x1="70" y1="30" x2="50" y2="50" opacity={0.3} />
+          <line x1="30" y1="30" x2="0" y2="50" opacity={0.3} />
+          <line x1="70" y1="30" x2="100" y2="50" opacity={0.3} />
+          <line x1="0" y1="70" x2="100" y2="70" opacity={0.2} />
+          {waves.map((wave, i) => (
+            <line
+              key={i}
+              x1={wave.x}
+              y1={wave.y}
+              x2={wave.x + wave.length}
+              y2={wave.y}
+              stroke={theme.decorStroke}
+              strokeOpacity={0.2}
+              strokeWidth={1.2}
+            />
+          ))}
+        </svg>
+      ) : null}
 
       {/* Hollow center */}
       <div
@@ -133,7 +160,7 @@ function TubeRoundel() {
           left: "-15%",
           width: "130%",
           height: 30,
-          backgroundColor: tubeBlue,
+          backgroundColor: theme.bar,
           transform: "translateY(-50%)",
           display: "flex",
           alignItems: "center",
@@ -159,11 +186,11 @@ function TubeRoundel() {
 
 function TubeRoundelWith787({
   size = 140,
-  wingColor = tubeBlue,
 }: {
   size?: number;
-  wingColor?: string;
 }) {
+  const { locale } = useI18n();
+  const wingColor = getRoundelTheme(locale).bar;
   // scale relative to your TubeRoundel's base 140×140
   const base = 140;
   const s = size / base;
@@ -334,7 +361,8 @@ function GLTFModel({ modelPath, size }: { modelPath: string; size?: number }) {
 }
 
 export default function Portfolio() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const headerRoundelTheme = getRoundelTheme(locale);
   const [activeTab, setActiveTab] = useState<"benzene" | "gadolinium">(
     "benzene"
   );
@@ -376,7 +404,7 @@ export default function Portfolio() {
           <div
             className="rounded-full border-4 overflow-hidden"
             style={{
-              borderColor: tubeRed,
+              borderColor: headerRoundelTheme.ring,
               width: 100,
               height: 100,
               boxSizing: "border-box",
@@ -414,9 +442,25 @@ export default function Portfolio() {
               />
               <span className="text-white">{t("awards.usVisa")}</span>
             </p>
-            <div className="flex items-center gap-1 mt-2">
-            <Image src="/south-korea-flag.svg" alt="South Korean Flag" width={24} height={16} />
-            <Image src="/canada-flag.svg" alt="Canadian Flag" width={24} height={16} />
+            <div className="mt-2 flex flex-wrap items-center gap-1">
+              <Image
+                src="/south-korea-flag.svg"
+                alt="South Korean Flag"
+                width={24}
+                height={16}
+              />
+              <Image
+                src="/canada-flag.svg"
+                alt="Canadian Flag"
+                width={24}
+                height={16}
+              />
+              <Image
+                src="/quebec-flag.svg"
+                alt="Quebec Flag"
+                width={24}
+                height={16}
+              />
             </div>
           </div>
         </div>
