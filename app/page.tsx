@@ -104,10 +104,11 @@ type KoCloudPuff = {
   baseCy: number;
   rx: number;
   ry: number;
-  vx: number;
   opacity: number;
-  phase: number;
 };
+
+/** Single drift speed (L→R, viewBox units per tick) — slower, uniform like wind. */
+const KO_CLOUD_DRIFT_PER_TICK = 0.11;
 
 function initialKoCloudPuffs(): KoCloudPuff[] {
   return Array.from({ length: 38 }, () => ({
@@ -115,13 +116,11 @@ function initialKoCloudPuffs(): KoCloudPuff[] {
     baseCy: 4 + Math.random() * 92,
     rx: 1.8 + Math.random() * 9.5,
     ry: 1.2 + Math.random() * 5.8,
-    vx: 0.32 + Math.random() * 0.58,
     opacity: 0.2 + Math.random() * 0.52,
-    phase: Math.random() * Math.PI * 2,
   }));
 }
 
-/** Korean roundel: many puffs stream L→R on ~60fps like wave lines; scattered + light vertical bob. */
+/** Korean roundel: puffs drift slowly in one direction (left → right). */
 function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
   const cloudStyle: React.CSSProperties = {
     position: "absolute",
@@ -134,26 +133,20 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
     pointerEvents: "none",
   };
 
-  const [{ frame, puffs }, setAnim] = useState(() => ({
-    frame: 0,
-    puffs: initialKoCloudPuffs(),
-  }));
+  const [puffs, setPuffs] = useState(() => initialKoCloudPuffs());
 
   useEffect(() => {
     const id = setInterval(() => {
-      setAnim((a) => ({
-        frame: a.frame + 1,
-        puffs: a.puffs.map((p) => {
-          let nx = p.cx + p.vx;
+      setPuffs((prev) =>
+        prev.map((p) => {
+          let nx = p.cx + KO_CLOUD_DRIFT_PER_TICK;
           if (nx > 122) nx = -32 - Math.random() * 28;
           return { ...p, cx: nx };
-        }),
-      }));
+        })
+      );
     }, 16);
     return () => clearInterval(id);
   }, []);
-
-  const t = frame * 0.11;
 
   return (
     <svg viewBox="0 0 100 100" style={cloudStyle} aria-hidden>
@@ -173,7 +166,7 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
           <ellipse
             key={i}
             cx={p.cx}
-            cy={p.baseCy + Math.sin(t + p.phase) * 1.35}
+            cy={p.baseCy}
             rx={p.rx}
             ry={p.ry}
             fill={decorStroke}
