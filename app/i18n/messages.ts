@@ -98,7 +98,7 @@ export const messages = {
     "orch.appStoreAlt": "Orch 3D Scan on the App Store",
 
     "exp.title": "Experience",
-    "exp.orchestr": "Startup co-founder for Orchestr Inc",
+    "exp.orchestr": "Startup co-founder for Orchestr Inc (2026)",
     "exp.orchestrSite": "https://orchestrsim.com",
     "exp.reach":
       "Reach Media Group — computer vision software engineer (2025)",
@@ -212,7 +212,7 @@ export const messages = {
     "orch.appStoreAlt": "Orch 3D Scan sur l’App Store",
 
     "exp.title": "Expérience",
-    "exp.orchestr": "Cofondateur de start-up — Orchestr Inc",
+    "exp.orchestr": "Cofondateur de start-up — Orchestr Inc (2026)",
     "exp.orchestrSite": "https://orchestrsim.com",
     "exp.reach":
       "Reach Media Group — ingénieur logiciel vision par ordinateur (2025)",
@@ -232,7 +232,7 @@ export const messages = {
     "edu.sunrise.title": "Sunrise Aviation (2024.10 – 2024.12)",
     "edu.sunrise.detail":
       "Formation sur Evektor SportStar, avion ultra-léger motorisé (LSA).",
-    "edu.uci": "UC Irvine — abandon d’études, majeure non déclarée",
+    "edu.uci": "UC Irvine — dropout, majeure non déclarée",
   },
   ko: {
     "meta.title": "John Seong",
@@ -329,7 +329,7 @@ export const messages = {
     "orch.appStoreAlt": "App Store의 Orch 3D 스캔",
 
     "exp.title": "경력",
-    "exp.orchestr": "스타트업 공동창업자 — Orchestr Inc",
+    "exp.orchestr": "스타트업 공동창업자 — Orchestr Inc (2026)",
     "exp.orchestrSite": "https://orchestrsim.com",
     "exp.reach":
       "Reach Media Group — 컴퓨터 비전 소프트웨어 엔지니어 (2025)",
