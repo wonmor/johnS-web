@@ -64,7 +64,7 @@ export const messages = {
     "orchestr.taglineFrNote":
       "Votre copilote prédictif* en aviation générale.",
     "orchestr.features":
-      "ADS-B, GPS, handheld radio, fuel calculation and Jeppesen* charts. All in one form factor.",
+      "ADS-B, GPS, handheld radio, fuel calculation and flight charts. All in one form factor.",
     "orchestr.cta": "Check it out",
 
     "hero.line1": "CREATIVE WORK",
@@ -215,7 +215,7 @@ export const messages = {
     "orchestr.tagline": "Votre copilote prédictif* en aviation générale.",
     "orchestr.taglineFrNote": "",
     "orchestr.features":
-      "ADS-B, GPS, radio portable, calcul de carburant et cartes Jeppesen*. Tout dans un seul format.",
+      "ADS-B, GPS, radio portable, calcul de carburant et cartes de vol. Tout dans un seul format.",
     "orchestr.cta": "Découvrir",
 
     "hero.line1": "TRAVAUX CRÉATIFS",
@@ -365,7 +365,7 @@ export const messages = {
       "일반항공(GA) 비행을 위한 예측형* 보조 조종사.",
     "orchestr.taglineFrNote": "",
     "orchestr.features":
-      "ADS-B, GPS, 휴대용 무전기, 연료 계산, Jeppesen* 항공 도면까지. 하나의 폼 팩터에 담았습니다.",
+      "ADS-B, GPS, 휴대용 무전기, 연료 계산, 비행 차트까지. 하나의 폼 팩터에 담았습니다.",
     "orchestr.cta": "둘러보기",
 
     "hero.line1": "창작 활동",
