@@ -117,7 +117,8 @@ export const messages = {
     "edu.sunrise.title": "Sunrise Aviation (2024.10 – 2024.12)",
     "edu.sunrise.detail":
       "Training on Evektor SportStar light-sport aircraft.",
-    "edu.uci": "UC Irvine — dropout, undeclared major",
+    "edu.uci":
+      "University of California, Irvine — dropout, undeclared major",
   },
   fr: {
     "meta.title": "John Seong",
@@ -232,7 +233,8 @@ export const messages = {
     "edu.sunrise.title": "Sunrise Aviation (2024.10 – 2024.12)",
     "edu.sunrise.detail":
       "Formation sur Evektor SportStar, avion ultra-léger motorisé (LSA).",
-    "edu.uci": "UC Irvine — dropout, majeure non déclarée",
+    "edu.uci":
+      "University of California, Irvine — dropout, majeure non déclarée",
   },
   ko: {
     "meta.title": "John Seong",
@@ -348,7 +350,8 @@ export const messages = {
     "edu.sunrise.title": "Sunrise Aviation (2024.10 – 2024.12)",
     "edu.sunrise.detail":
       "경량스포츠기(Evektor SportStar) 훈련.",
-    "edu.uci": "UC Irvine — dropout, 전공 미선택",
+    "edu.uci":
+      "University of California, Irvine — dropout, 전공 미선택",
   },
 } as const satisfies Record<Locale, Record<string, string>>;
 
