@@ -54,6 +54,10 @@ type I18nContextValue = {
   setLocale: (locale: Locale) => void;
   t: (key: MessageKey, vars?: Record<string, string | number>) => string;
   localeTransitionPhase: LocaleTransitionPhase;
+  /** One-shot invert while entering `/privacy` (not locale switch). */
+  privacyEntranceInvert: boolean;
+  /** Locale switch offer is open — cookie consent should wait. */
+  localeOfferActive: boolean;
 };
 
 const I18nContext = createContext<I18nContextValue | null>(null);
@@ -72,6 +76,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   );
   const [localeTransitionPhase, setLocaleTransitionPhase] =
     useState<LocaleTransitionPhase>("idle");
+  const [privacyEntranceInvert, setPrivacyEntranceInvert] = useState(false);
+  const prevPathnameRef = useRef<string | null>(null);
   const timeoutIdsRef = useRef<number[]>([]);
 
   const clearTransitionTimeouts = useCallback(() => {
@@ -115,6 +121,34 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       setLocaleTransitionPhase("idle");
     }
   }, [pathname, localeTransitionPhase]);
+
+  useEffect(() => {
+    if (pathname !== "/privacy") {
+      prevPathnameRef.current = pathname;
+      setPrivacyEntranceInvert(false);
+      return;
+    }
+
+    const enteredFromOutside = prevPathnameRef.current !== "/privacy";
+    prevPathnameRef.current = pathname;
+
+    if (!enteredFromOutside) return;
+
+    setPrivacyEntranceInvert(true);
+    let innerId: number | undefined;
+
+    const outerId = window.setTimeout(() => {
+      innerId = window.setTimeout(() => {
+        setPrivacyEntranceInvert(false);
+      }, INVERT_HOLD_MS);
+    }, INVERT_RAMP_MS);
+
+    return () => {
+      window.clearTimeout(outerId);
+      if (innerId !== undefined) window.clearTimeout(innerId);
+      setPrivacyEntranceInvert(false);
+    };
+  }, [pathname]);
 
   const dismissLocaleOffer = useCallback(() => {
     if (typeof window === "undefined") return;
@@ -191,14 +225,15 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       setLocale,
       t,
       localeTransitionPhase,
+      privacyEntranceInvert,
+      localeOfferActive: localeOfferTarget !== null,
     }),
-    [locale, setLocale, t, localeTransitionPhase]
+    [locale, setLocale, t, localeTransitionPhase, privacyEntranceInvert, localeOfferTarget]
   );
 
   return (
     <I18nContext.Provider value={value}>
       {children}
-      <CookieConsentDialog />
       {localeOfferTarget ? (
         <LocaleOfferDialog
           target={localeOfferTarget}
@@ -215,6 +250,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
           onDecline={dismissLocaleOffer}
         />
       ) : null}
+      <CookieConsentDialog />
     </I18nContext.Provider>
   );
 }

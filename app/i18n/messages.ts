@@ -38,7 +38,7 @@ export const messages = {
       "The complete policy text in each language we offer:",
     "privacy.body":
       "We apply the same transparency and data-protection standards as under the EU GDPR and ePrivacy rules for every visitor, wherever you are. We do not use analytics, advertising, or non-essential cookies. We only use strictly necessary storage—a small first-party cookie and your browser’s local storage—to remember your language choice and related display preferences. We do not profile you or track you across other sites. You can delete this data in your browser at any time. You have GDPR-style rights (e.g. access, erasure, portability, objection, restriction), including the right to lodge a complaint with an EU data protection authority.",
-    "privacy.github": "GitHub",
+    "privacy.github": "Website source code",
     "privacy.githubAria":
       "Open this website’s source code on GitHub (opens in a new tab)",
     "privacy.close": "Close",
@@ -195,7 +195,7 @@ export const messages = {
       "Texte intégral dans chaque langue proposée :",
     "privacy.body":
       "Nous appliquons les mêmes exigences de transparence et de protection des données que sous le RGPD et le cadre ePrivacy de l’UE à chaque visiteur, partout dans le monde. Nous n’utilisons pas de cookies d’analyse, de publicité ou non indispensables. Nous n’employons que des moyens strictement nécessaires — un petit cookie propriétaire et le stockage local du navigateur — pour mémoriser votre langue et des préférences d’affichage connexes. Nous ne vous profilons pas et ne vous suivons pas sur d’autres sites. Vous pouvez supprimer ces données dans les réglages du navigateur à tout moment. Vous disposez des droits prévus par le RGPD (accès, effacement, portabilité, opposition, limitation, etc.), y compris le droit d’introduire une réclamation auprès d’une autorité de protection des données de l’UE.",
-    "privacy.github": "GitHub",
+    "privacy.github": "Code source du site",
     "privacy.githubAria":
       "Ouvrir le code source de ce site sur GitHub (nouvel onglet)",
     "privacy.close": "Fermer",
@@ -348,7 +348,7 @@ export const messages = {
     "privacy.allVersions": "제공하는 각 언어의 전체 처리방침:",
     "privacy.body":
       "EU GDPR 및 ePrivacy 수준의 투명성·데이터 보호 기준을 방문 지역과 관계없이 모든 방문자에게 동일하게 적용합니다. 분석·광고 또는 필수가 아닌 쿠키는 사용하지 않습니다. 언어 선택 및 관련 표시 설정을 위해 반드시 필요한 저장소(자사 쿠키 1종, 브라우저 로컬 스토리지)만 사용합니다. 광고 프로필을 만들거나 다른 사이트에서의 교차 추적은 하지 않습니다. 언제든지 브라우저 설정에서 해당 데이터를 삭제할 수 있습니다. 접근·삭제·이동·이의·처리 제한 등 GDPR상 권리가 있으며, EU 데이터 보호 감독 기관에 이의를 제기할 수 있습니다.",
-    "privacy.github": "GitHub",
+    "privacy.github": "웹사이트 소스 코드",
     "privacy.githubAria":
       "이 웹사이트 소스 코드를 GitHub에서 열기(새 탭)",
     "privacy.close": "닫기",

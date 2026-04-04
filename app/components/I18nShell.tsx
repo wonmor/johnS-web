@@ -14,7 +14,7 @@ const IBM_PLEX_SANS_KR_HREF =
 
 export function I18nShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { locale, localeTransitionPhase } = useI18n();
+  const { locale, localeTransitionPhase, privacyEntranceInvert } = useI18n();
 
   useEffect(() => {
     const needIbm = locale === "ko" || pathname === "/privacy";
@@ -31,7 +31,8 @@ export function I18nShell({ children }: { children: React.ReactNode }) {
     locale === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;
 
   const txClass =
-    localeTransitionPhase === "invert" && pathname === "/privacy"
+    pathname === "/privacy" &&
+    (localeTransitionPhase === "invert" || privacyEntranceInvert)
       ? "locale-tx-root--invert"
       : "";
 

@@ -8,11 +8,12 @@ import { useI18n } from "../i18n/context";
 /** Outside `locale-tx-root` so `position: fixed` stays viewport-anchored while scrolling (and during invert). */
 export function FloatingLocaleHeader() {
   const pathname = usePathname();
-  const { t, localeTransitionPhase } = useI18n();
+  const { t, localeTransitionPhase, privacyEntranceInvert } = useI18n();
   const { topUseLightChrome } = useChromeBackdropProbes();
   const year = new Date().getFullYear();
   const invert =
-    localeTransitionPhase === "invert" && pathname === "/privacy";
+    pathname === "/privacy" &&
+    (localeTransitionPhase === "invert" || privacyEntranceInvert);
 
   const chrome = topUseLightChrome
     ? "border-black/12 bg-white/78 text-[#0c1220] shadow-xl shadow-black/12 backdrop-blur-md"

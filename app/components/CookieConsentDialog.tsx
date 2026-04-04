@@ -43,7 +43,7 @@ function MacCloseIcon() {
 
 /** macOS-style sheet like `LocaleOfferDialog`, dark chrome; only shown when OS prefers dark. */
 export function CookieConsentDialog() {
-  const { t, locale } = useI18n();
+  const { t, locale, localeOfferActive } = useI18n();
   const pathname = usePathname() ?? "/";
   const cardBottom = bottomOffsetPx(pathname);
   const dimBottom = backdropBottom(pathname);
@@ -85,16 +85,18 @@ export function CookieConsentDialog() {
     setVisible(false);
   }, []);
 
+  const showSheet = visible && !localeOfferActive;
+
   useEffect(() => {
-    if (!visible) return;
+    if (!showSheet) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") dismiss();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [visible, dismiss]);
+  }, [showSheet, dismiss]);
 
-  if (!visible) return null;
+  if (!showSheet) return null;
 
   return (
     <>
