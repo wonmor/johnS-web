@@ -118,7 +118,7 @@ export const messages = {
     "edu.sunrise.detail":
       "Training on Evektor SportStar light-sport aircraft.",
     "edu.uci":
-      "University of California, Irvine — dropout, undeclared major",
+      "University of California, Irvine — dropout, undeclared major (2023)",
   },
   fr: {
     "meta.title": "John Seong",
@@ -234,7 +234,7 @@ export const messages = {
     "edu.sunrise.detail":
       "Formation sur Evektor SportStar, avion ultra-léger motorisé (LSA).",
     "edu.uci":
-      "University of California, Irvine — dropout, majeure non déclarée",
+      "University of California, Irvine — dropout, majeure non déclarée (2023)",
   },
   ko: {
     "meta.title": "John Seong",
@@ -351,7 +351,7 @@ export const messages = {
     "edu.sunrise.detail":
       "경량스포츠기(Evektor SportStar) 훈련.",
     "edu.uci":
-      "University of California, Irvine — dropout, 전공 미선택",
+      "University of California, Irvine — dropout, 전공 미선택 (2023)",
   },
 } as const satisfies Record<Locale, Record<string, string>>;
 
