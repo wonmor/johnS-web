@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Script from "next/script";
 import React from "react";
 import { useI18n } from "../i18n/context";
@@ -8,6 +10,8 @@ import type { Locale } from "../i18n/messages";
 
 export function BodyContent({ children }: { children: React.ReactNode }) {
   const { t, locale } = useI18n();
+  const pathname = usePathname();
+  const showSiteFooter = pathname !== "/privacy";
 
   return (
     <>
@@ -26,13 +30,20 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
         `}
       </Script>
 
-      <WestminsterSilhouette />
+      {showSiteFooter ? <WestminsterSilhouette /> : null}
 
-      <main className="mb-10 flex-grow">{children}</main>
+      <main
+        className={
+          showSiteFooter ? "mb-10 flex-grow" : "min-h-[calc(100vh-5rem)] flex-grow"
+        }
+      >
+        {children}
+      </main>
 
       <PolicyModal />
       <EulaModal />
 
+      {showSiteFooter ? (
       <div id="site-light-footer">
         <div
           data-chrome-surface="light"
@@ -140,7 +151,7 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
         </div>
         <div
           data-chrome-surface="dark"
-          className="relative isolate min-h-[min(40vh,26rem)] bg-[#020824] pb-16 pt-8"
+          className="relative isolate flex min-h-[min(40vh,26rem)] flex-col bg-[#020824] pb-4 pt-8"
         >
           {/* Blend cream → navy only inside this block so nothing overlaps the Orchestr section above the CTA on mobile */}
           <div
@@ -148,8 +159,17 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
             aria-hidden
           />
           <AirshipFooterSilhouette />
+          <div className="relative z-10 mt-auto flex justify-center px-4 pb-8 pt-6 sm:pb-10">
+            <Link
+              href="/privacy"
+              className="pointer-events-auto text-center text-[11px] font-medium uppercase tracking-[0.2em] text-white/80 underline decoration-white/35 underline-offset-4 transition hover:text-white hover:decoration-white/60 sm:text-xs sm:tracking-[0.26em]"
+            >
+              {t("privacy.title")}
+            </Link>
+          </div>
         </div>
       </div>
+      ) : null}
     </>
   );
 }
