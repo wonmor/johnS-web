@@ -221,18 +221,18 @@ function AirshipFooterSilhouette() {
   return (
     <div
       data-chrome-probe-skip
-      className="pointer-events-none absolute inset-x-0 bottom-0 z-0 flex h-[min(26vh,15rem)] justify-center md:h-[min(30vh,17rem)]"
+      className="pointer-events-none absolute inset-x-0 bottom-0 z-0 flex h-[min(30vh,17rem)] justify-center md:h-[min(34vh,20rem)]"
       aria-hidden
     >
       <span className="sr-only">
         Decorative airship silhouette in the page background.
       </span>
-      <div className="relative h-full w-full max-w-6xl opacity-[0.2] sm:opacity-[0.28]">
+      <div className="relative h-full w-full max-w-6xl opacity-[0.42] sm:opacity-[0.52]">
         <Image
           src="/decorative/airship-blimp.svg"
           alt=""
           fill
-          className="object-contain object-bottom [filter:brightness(0)_invert(1)] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.65)_0%,rgba(0,0,0,0.2)_55%,transparent_95%)]"
+          className="object-contain object-bottom [filter:brightness(0)_invert(1)] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.55)_40%,rgba(0,0,0,0.22)_72%,transparent_100%)]"
           sizes="(max-width:768px)100vw,72rem"
         />
       </div>

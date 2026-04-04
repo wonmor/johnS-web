@@ -48,10 +48,47 @@ function useActiveSectionTab() {
   return { activeId, setActiveId };
 }
 
+/** Fade the bar out completely in the last ~20% of scroll range so the footer can breathe. */
+function useHideTabBarNearDocumentBottom() {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    const MIN_EXTRA_SCROLL = 64;
+
+    const tick = () => {
+      const doc = document.documentElement;
+      const scrollH = doc.scrollHeight;
+      const vh = window.innerHeight;
+      const scrollY = window.scrollY;
+
+      if (scrollH <= vh + MIN_EXTRA_SCROLL) {
+        setHidden((h) => (h ? false : h));
+        return;
+      }
+
+      const distanceFromBottom = scrollH - (scrollY + vh);
+      const fadeZone = Math.max(140, Math.min(300, Math.round(vh * 0.22)));
+      const nextHidden = distanceFromBottom < fadeZone;
+      setHidden((h) => (h === nextHidden ? h : nextHidden));
+    };
+
+    tick();
+    window.addEventListener("scroll", tick, { passive: true });
+    window.addEventListener("resize", tick);
+    return () => {
+      window.removeEventListener("scroll", tick);
+      window.removeEventListener("resize", tick);
+    };
+  }, []);
+
+  return hidden;
+}
+
 export function FloatingSectionTabs() {
   const { t, locale, localeTransitionPhase } = useI18n();
   const { bottomUseLightChrome } = useChromeBackdropProbes();
   const { activeId, setActiveId } = useActiveSectionTab();
+  const hiddenNearBottom = useHideTabBarNearDocumentBottom();
   const invert = localeTransitionPhase === "invert";
 
   const fontClass =
@@ -83,11 +120,16 @@ export function FloatingSectionTabs() {
   return (
     <nav
       aria-label={t("navTab.label")}
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 antialiased"
+      aria-hidden={hiddenNearBottom}
+      className={`pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 antialiased motion-safe:transition-[opacity,transform] motion-safe:duration-300 motion-safe:ease-out ${
+        hiddenNearBottom
+          ? "translate-y-4 opacity-0 motion-reduce:translate-y-0"
+          : "translate-y-0 opacity-100"
+      }`}
     >
       <div
         data-chrome-hit-skip
-        className={`locale-tx-root pointer-events-auto flex max-w-full items-stretch gap-0.5 overflow-x-auto rounded-[2.25rem] border-solid px-1 py-1 backdrop-blur-2xl backdrop-saturate-[1.8] transition-[background,background-color,box-shadow,border-color,color] duration-300 ease-out [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:max-w-[min(100%,44rem)] sm:gap-1 sm:px-1.5 sm:py-1.5 ${pill} ${invert ? "locale-tx-root--invert" : ""}`}
+        className={`locale-tx-root flex max-w-full items-stretch gap-0.5 overflow-x-auto rounded-[2.25rem] border-solid px-1 py-1 backdrop-blur-2xl backdrop-saturate-[1.8] transition-[background,background-color,box-shadow,border-color,color] duration-300 ease-out [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:max-w-[min(100%,44rem)] sm:gap-1 sm:px-1.5 sm:py-1.5 ${hiddenNearBottom ? "pointer-events-none" : "pointer-events-auto"} ${pill} ${invert ? "locale-tx-root--invert" : ""}`}
       >
         {SECTIONS.map(({ id, labelKey }) => {
           const on = activeId === id;
