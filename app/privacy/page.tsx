@@ -35,19 +35,19 @@ export default function PrivacyPolicyPage() {
           className="mb-14 flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-white/10 pb-6 text-sm"
         >
           <a
-            href={`#${SECTION_IDS.en}`}
+            href={`#${SECTION_IDS.fr}`}
             className="rounded-sm text-white/85 ring-offset-[#020824] transition hover:text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40"
           >
-            English
+            Français
           </a>
           <span className="text-white/25" aria-hidden>
             ·
           </span>
           <a
-            href={`#${SECTION_IDS.fr}`}
+            href={`#${SECTION_IDS.en}`}
             className="rounded-sm text-white/85 ring-offset-[#020824] transition hover:text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40"
           >
-            Français
+            English
           </a>
           <span className="text-white/25" aria-hidden>
             ·
@@ -60,15 +60,6 @@ export default function PrivacyPolicyPage() {
           </a>
         </nav>
 
-        <section id={SECTION_IDS.en} className="mb-20 scroll-mt-28">
-          <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
-            English — {messages.en["privacy.title"]}
-          </h2>
-          <p className="text-[15px] leading-[1.65] text-white/82 sm:text-base">
-            {messages.en["privacy.body"]}
-          </p>
-        </section>
-
         <section id={SECTION_IDS.fr} className="mb-20 scroll-mt-28">
           <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
             Français — {messages.fr["privacy.title"]}
@@ -78,9 +69,18 @@ export default function PrivacyPolicyPage() {
           </p>
         </section>
 
+        <section id={SECTION_IDS.en} className="mb-20 scroll-mt-28">
+          <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
+            English — {messages.en["privacy.title"]}
+          </h2>
+          <p className="text-[15px] leading-[1.65] text-white/82 sm:text-base">
+            {messages.en["privacy.body"]}
+          </p>
+        </section>
+
         <section
           id={SECTION_IDS.ko}
-          className="font-ibm-plex-sans-kr scroll-mt-28 pb-12"
+          className="font-ibm-plex-sans-kr mb-20 scroll-mt-28"
         >
           <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
             한국어 — {messages.ko["privacy.title"]}
