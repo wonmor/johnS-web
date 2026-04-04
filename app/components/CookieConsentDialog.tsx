@@ -7,6 +7,8 @@ import { useI18n } from "../i18n/context";
 
 export const COOKIE_CONSENT_STORAGE_KEY = "john-cookie-consent-v1";
 
+const STATIC_MIRROR_ORIGIN = "https://static.johnseong.com";
+
 function bottomOffsetPx(pathname: string): string {
   if (pathname === "/") {
     return "calc(5rem + env(safe-area-inset-bottom, 0px))";
@@ -141,7 +143,16 @@ export function CookieConsentDialog() {
           >
             {t("cookieConsent.body")}
           </p>
-          <div className="mt-4 flex flex-col-reverse gap-1.5 sm:mt-4 sm:flex-row sm:justify-end">
+          <div className="mt-4 flex flex-col gap-1.5 sm:mt-4 sm:flex-row sm:justify-end sm:gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                window.location.assign(STATIC_MIRROR_ORIGIN);
+              }}
+              className="rounded-md border border-black/[0.18] bg-white px-3.5 py-1.5 text-[12px] font-semibold text-[#1d1d1f] shadow-[0_1px_0_rgba(0,0,0,0.06)] transition hover:bg-black/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007aff] active:bg-black/[0.07] sm:min-w-[7rem] sm:text-[13px]"
+            >
+              {t("cookieConsent.noToAll")}
+            </button>
             <button
               type="button"
               onClick={dismiss}

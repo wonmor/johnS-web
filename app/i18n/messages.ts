@@ -30,6 +30,7 @@ export const messages = {
     "cookieConsent.body":
       "This site uses only strictly necessary storage (language cookie and local storage) as described in the Privacy Policy. No tracking or advertising.",
     "cookieConsent.accept": "OK",
+    "cookieConsent.noToAll": "No to all",
     "cookieConsent.closeOverlay": "Dismiss cookie notice",
 
     "privacy.title": "Privacy Policy",
@@ -187,6 +188,7 @@ export const messages = {
     "cookieConsent.body":
       "Ce site utilise uniquement un stockage strictement nécessaire (cookie de langue et stockage local), comme indiqué dans la politique de confidentialité. Pas de suivi publicitaire.",
     "cookieConsent.accept": "Compris",
+    "cookieConsent.noToAll": "Tout refuser",
     "cookieConsent.closeOverlay": "Fermer l’avis cookies",
 
     "privacy.title": "Politique de confidentialité",
@@ -341,6 +343,7 @@ export const messages = {
     "cookieConsent.body":
       "이 사이트는 개인정보 처리방침에 설명된 대로 언어 쿠키와 로컬 저장소 등 필수 저장만 사용합니다. 추적·광고 쿠키는 없습니다.",
     "cookieConsent.accept": "확인",
+    "cookieConsent.noToAll": "모두 거부",
     "cookieConsent.closeOverlay": "쿠키 안내 닫기",
 
     "privacy.title": "개인정보 처리방침",
