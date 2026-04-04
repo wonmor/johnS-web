@@ -22,7 +22,7 @@ type RoundelTheme = {
   ring: string;
   bar: string;
   decorStroke: string;
-  /** Bridge + waves (FR classic tube); EN gets waves only behind Tower Bridge mask; KO off */
+  /** Bridge + waves (FR); EN waves behind Tower Bridge mask; KO uses animated clouds in roundel */
   showBridgeAndWaves: boolean;
 };
 
@@ -96,6 +96,92 @@ function RoundelLandmarkFill({
         zIndex: 0,
       }}
     />
+  );
+}
+
+type KoCloudPuff = {
+  cx: number;
+  baseCy: number;
+  rx: number;
+  ry: number;
+  vx: number;
+  opacity: number;
+  phase: number;
+};
+
+function initialKoCloudPuffs(): KoCloudPuff[] {
+  return Array.from({ length: 38 }, () => ({
+    cx: -40 + Math.random() * 185,
+    baseCy: 4 + Math.random() * 92,
+    rx: 1.8 + Math.random() * 9.5,
+    ry: 1.2 + Math.random() * 5.8,
+    vx: 0.32 + Math.random() * 0.58,
+    opacity: 0.2 + Math.random() * 0.52,
+    phase: Math.random() * Math.PI * 2,
+  }));
+}
+
+/** Korean roundel: many puffs stream L→R on ~60fps like wave lines; scattered + light vertical bob. */
+function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
+  const cloudStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: "120%",
+    height: "120%",
+    transform: "translate(-50%, -50%)",
+    zIndex: 0,
+    pointerEvents: "none",
+  };
+
+  const [{ frame, puffs }, setAnim] = useState(() => ({
+    frame: 0,
+    puffs: initialKoCloudPuffs(),
+  }));
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setAnim((a) => ({
+        frame: a.frame + 1,
+        puffs: a.puffs.map((p) => {
+          let nx = p.cx + p.vx;
+          if (nx > 122) nx = -32 - Math.random() * 28;
+          return { ...p, cx: nx };
+        }),
+      }));
+    }, 16);
+    return () => clearInterval(id);
+  }, []);
+
+  const t = frame * 0.11;
+
+  return (
+    <svg viewBox="0 0 100 100" style={cloudStyle} aria-hidden>
+      <defs>
+        <filter
+          id="ko-roundel-cloud-soft"
+          x="-45%"
+          y="-45%"
+          width="190%"
+          height="190%"
+        >
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.55" />
+        </filter>
+      </defs>
+      <g filter="url(#ko-roundel-cloud-soft)">
+        {puffs.map((p, i) => (
+          <ellipse
+            key={i}
+            cx={p.cx}
+            cy={p.baseCy + Math.sin(t + p.phase) * 1.35}
+            rx={p.rx}
+            ry={p.ry}
+            fill={decorStroke}
+            opacity={p.opacity * 0.52}
+          />
+        ))}
+      </g>
+    </svg>
   );
 }
 
@@ -220,6 +306,10 @@ function TubeRoundel() {
             ))}
           </svg>
         </>
+      ) : null}
+
+      {locale === "ko" ? (
+        <KoreanRoundelCloudDecor decorStroke={theme.decorStroke} />
       ) : null}
 
       {!showFrBridge && !showEnWater ? (
