@@ -54,6 +54,15 @@ export const messages = {
 
     "media.featured": "Featured in these Media",
 
+    "navTab.label": "Page sections",
+    "navTab.hero": "Intro",
+    "navTab.atoms": "Atoms",
+    "navTab.electron": "Electron",
+    "navTab.face": "Face scan",
+    "navTab.orch": "Orch",
+    "navTab.exp": "Experience",
+    "navTab.edu": "Education",
+
     "gltf.tabGd": "Atom (Gd)",
     "gltf.tabBenzene": "Molecule (C₆H₆)",
     "gltf.loadingBenzene": "Loading benzene model…",
@@ -170,6 +179,15 @@ export const messages = {
 
     "media.featured": "Vu dans ces médias",
 
+    "navTab.label": "Sections de la page",
+    "navTab.hero": "Intro",
+    "navTab.atoms": "Atomes",
+    "navTab.electron": "Électron",
+    "navTab.face": "Scan visage",
+    "navTab.orch": "Orch",
+    "navTab.exp": "Expérience",
+    "navTab.edu": "Formation",
+
     "gltf.tabGd": "Atome (Gd)",
     "gltf.tabBenzene": "Molécule (C₆H₆)",
     "gltf.loadingBenzene": "Chargement du modèle de benzène…",
@@ -285,6 +303,15 @@ export const messages = {
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "다음 매체에 소개되었습니다",
+
+    "navTab.label": "페이지 섹션",
+    "navTab.hero": "소개",
+    "navTab.atoms": "원자·분자",
+    "navTab.electron": "일렉트론",
+    "navTab.face": "얼굴 스캔",
+    "navTab.orch": "Orch",
+    "navTab.exp": "경력",
+    "navTab.edu": "교육",
 
     "gltf.tabGd": "원자 (Gd)",
     "gltf.tabBenzene": "분자 (C₆H₆)",

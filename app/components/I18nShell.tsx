@@ -1,9 +1,11 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { tubeFont } from "../fonts";
 import { useI18n } from "../i18n/context";
 import { BodyContent } from "./BodyContent";
+import { FloatingSectionTabs } from "./FloatingSectionTabs";
 import { FloatingLocaleHeader } from "./FloatingLocaleHeader";
 
 const IBM_PLEX_SANS_KR_LINK_ID = "font-ibm-plex-sans-kr-css";
@@ -11,6 +13,7 @@ const IBM_PLEX_SANS_KR_HREF =
   "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap";
 
 export function I18nShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const { locale, localeTransitionPhase } = useI18n();
 
   useEffect(() => {
@@ -37,6 +40,7 @@ export function I18nShell({ children }: { children: React.ReactNode }) {
       >
         <BodyContent>{children}</BodyContent>
       </div>
+      {pathname === "/" ? <FloatingSectionTabs /> : null}
     </>
   );
 }

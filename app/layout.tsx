@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React from "react";
+import { ChromeBackdropProvider } from "./components/ChromeBackdropProvider";
 import { LanguageProvider } from "./i18n/context";
 import { I18nShell } from "./components/I18nShell";
 import { messages } from "./i18n/messages";
@@ -23,7 +24,9 @@ export default function RootLayout({
 
       <body className="min-h-screen">
         <LanguageProvider>
-          <I18nShell>{children}</I18nShell>
+          <ChromeBackdropProvider>
+            <I18nShell>{children}</I18nShell>
+          </ChromeBackdropProvider>
         </LanguageProvider>
       </body>
     </html>

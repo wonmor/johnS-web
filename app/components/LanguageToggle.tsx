@@ -11,13 +11,22 @@ const toggleLabelKey: Record<Locale, MessageKey> = {
   ko: "langToggle.ko",
 };
 
-export function LanguageToggle() {
+export function LanguageToggle({
+  lightChrome = false,
+}: {
+  /** Sitting on light frosted chrome (dark page behind) — higher contrast controls. */
+  lightChrome?: boolean;
+}) {
   const { locale, setLocale, t, localeTransitionPhase } = useI18n();
   const isTransitioning = localeTransitionPhase !== "idle";
 
+  const shell = lightChrome
+    ? "border-black/15 bg-black/[0.06]"
+    : "border-white/25 bg-black/35";
+
   return (
     <div
-      className={`inline-flex max-w-[100vw] flex-wrap items-center justify-center gap-0.5 rounded-md border border-white/25 bg-black/35 p-0.5 sm:gap-1 sm:p-1 ${
+      className={`inline-flex max-w-[100vw] flex-wrap items-center justify-center gap-0.5 rounded-md border p-0.5 sm:gap-1 sm:p-1 ${shell} ${
         isTransitioning ? "pointer-events-none opacity-70" : ""
       }`}
       role="group"
@@ -32,8 +41,12 @@ export function LanguageToggle() {
           onClick={() => setLocale(code)}
           className={`rounded px-2 py-0.5 text-xs font-medium leading-none tracking-wider transition sm:px-2.5 sm:py-1 sm:text-sm ${
             locale === code
-              ? "bg-white text-black"
-              : "text-gray-400 hover:text-white"
+              ? lightChrome
+                ? "bg-[#020824] text-white"
+                : "bg-white text-black"
+              : lightChrome
+                ? "text-gray-600 hover:text-gray-900"
+                : "text-gray-400 hover:text-white"
           } ${isTransitioning ? "cursor-wait" : ""}`}
           aria-pressed={locale === code}
         >

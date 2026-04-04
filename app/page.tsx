@@ -22,7 +22,7 @@ type RoundelTheme = {
   ring: string;
   bar: string;
   decorStroke: string;
-  /** Bridge + waves (FR classic tube only); hidden for EN/KO */
+  /** Bridge + waves (FR classic tube); EN gets waves only behind Tower Bridge mask; KO off */
   showBridgeAndWaves: boolean;
 };
 
@@ -52,11 +52,62 @@ function getRoundelTheme(locale: Locale): RoundelTheme {
   }
 }
 
+function roundelLandmarkSvg(locale: Locale): string | null {
+  switch (locale) {
+    case "en":
+      return "/tower-bridge-roundel.svg";
+    case "ko":
+      return "/n-seoul-tower-roundel.svg";
+    default:
+      return null;
+  }
+}
+
+function RoundelLandmarkFill({
+  locale,
+  color,
+}: {
+  locale: Locale;
+  color: string;
+}) {
+  const src = roundelLandmarkSvg(locale);
+  if (!src) return null;
+
+  return (
+    <div
+      aria-hidden
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        width: "128%",
+        height: "128%",
+        transform: "translate(-50%, -50%)",
+        WebkitMaskImage: `url(${src})`,
+        maskImage: `url(${src})`,
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+        backgroundColor: color,
+        opacity: 0.48,
+        zIndex: 0,
+      }}
+    />
+  );
+}
+
 function TubeRoundel() {
   const { locale } = useI18n();
   const theme = getRoundelTheme(locale);
   const nameFontFamily =
     locale === "ko" ? ibmPlexSansKRFontStack : tubeFont.style.fontFamily;
+
+  const showFrBridge = theme.showBridgeAndWaves;
+  const showEnWater = locale === "en";
+  const animateWaves = showFrBridge || showEnWater;
 
   const [waves, setWaves] = useState(
     Array.from({ length: 30 }).map(() => ({
@@ -67,7 +118,7 @@ function TubeRoundel() {
   );
 
   useEffect(() => {
-    if (!getRoundelTheme(locale).showBridgeAndWaves) return;
+    if (!animateWaves) return;
     const speed = 0.3;
     const interval = setInterval(() => {
       setWaves((prev) =>
@@ -84,7 +135,19 @@ function TubeRoundel() {
       );
     }, 16);
     return () => clearInterval(interval);
-  }, [locale]);
+  }, [animateWaves]);
+
+  const waveDecorStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    width: "120%",
+    height: "120%",
+    transform: "translate(-50%, -50%)",
+    fill: "none",
+    stroke: theme.decorStroke,
+    strokeWidth: 2,
+  };
 
   return (
     <div
@@ -101,21 +164,10 @@ function TubeRoundel() {
         overflow: "hidden",
       }}
     >
-      {theme.showBridgeAndWaves ? (
+      {showFrBridge ? (
         <svg
           viewBox="0 0 100 100"
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            width: "120%",
-            height: "120%",
-            transform: "translate(-50%, -50%)",
-            fill: "none",
-            stroke: theme.decorStroke,
-            strokeWidth: 2,
-            zIndex: 0,
-          }}
+          style={{ ...waveDecorStyle, zIndex: 0 }}
           aria-hidden
         >
           <line x1="30" y1="30" x2="30" y2="50" />
@@ -140,6 +192,40 @@ function TubeRoundel() {
         </svg>
       ) : null}
 
+      {showEnWater ? (
+        <>
+          <RoundelLandmarkFill locale={locale} color={theme.decorStroke} />
+          <svg
+            viewBox="0 0 100 100"
+            style={{
+              ...waveDecorStyle,
+              zIndex: 1,
+              clipPath: "inset(54% -10% -5% -10%)",
+              WebkitClipPath: "inset(54% -10% -5% -10%)",
+            }}
+            aria-hidden
+          >
+            <line x1="0" y1="70" x2="100" y2="70" opacity={0.2} />
+            {waves.map((wave, i) => (
+              <line
+                key={i}
+                x1={wave.x}
+                y1={wave.y}
+                x2={wave.x + wave.length}
+                y2={wave.y}
+                stroke={theme.decorStroke}
+                strokeOpacity={0.2}
+                strokeWidth={1.2}
+              />
+            ))}
+          </svg>
+        </>
+      ) : null}
+
+      {!showFrBridge && !showEnWater ? (
+        <RoundelLandmarkFill locale={locale} color={theme.decorStroke} />
+      ) : null}
+
       {/* Hollow center */}
       <div
         style={{
@@ -148,7 +234,7 @@ function TubeRoundel() {
           height: 70,
           borderRadius: "50%",
           backgroundColor: "white",
-          zIndex: 1,
+          zIndex: 2,
         }}
       />
 
@@ -165,7 +251,7 @@ function TubeRoundel() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          zIndex: 2,
+          zIndex: 3,
         }}
       >
         <span
@@ -384,23 +470,28 @@ export default function Portfolio() {
 
   return (
     <div
-      className="flex flex-col gap-6"
+      data-chrome-surface="dark"
+      className="flex flex-col gap-6 pb-28 sm:pb-32"
       style={{ background: tubeGreyBg, color: tubeText }}
     >
       {/* Header banner */}
-      <div className="text-center py-8 bg-gradient-to-b from-[#f5f0e6] via-[#f5f0e6] to-[#020824] text-black">
-        <Link href="/" className="block w-fit mx-auto">
-          <TubeRoundelWith787 />
-        </Link>
-      <p className="mt-4 text-2xl tracking-[0.25em] uppercase">
-        {t("hero.line1")}
-        <br />
-        {t("hero.line2")}
-      </p>
-
-        <span className="text-black">{t("hero.email")}</span>
-        {/* Awards & Visa */}
-        <div className="flex justify-center items-center gap-6 mt-4">
+      <div id="section-hero" className="scroll-mt-20 text-center">
+        <div
+          data-chrome-surface="light"
+          className="bg-[#f5f0e6] py-8 text-black"
+        >
+          <Link href="/" className="mx-auto block w-fit">
+            <TubeRoundelWith787 />
+          </Link>
+          <p className="mt-4 text-2xl uppercase tracking-[0.25em]">
+            {t("hero.line1")}
+            <br />
+            {t("hero.line2")}
+          </p>
+          <span className="text-black">{t("hero.email")}</span>
+        </div>
+        <div data-chrome-surface="dark" className="bg-[#020824] py-8">
+          <div className="mt-0 flex items-center justify-center gap-6">
           <div
             className="rounded-full border-4 overflow-hidden"
             style={{
@@ -463,6 +554,7 @@ export default function Portfolio() {
               />
             </div>
           </div>
+        </div>
         </div>
       </div>
 
@@ -551,7 +643,10 @@ export default function Portfolio() {
 
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 sm:px-6">
       {/* Gadolinium / Benzene Tabs */}
-      <div className="w-full bg-black/60 border border-white/10 rounded-md p-4 shadow-md">
+      <div
+        id="section-atoms"
+        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-4 shadow-md"
+      >
         <div className="flex justify-center gap-4 mb-4">
           <button
             className={`px-4 py-2 rounded ${
@@ -654,7 +749,10 @@ export default function Portfolio() {
       </div>
 
       {/* ElectronVisual Section */}
-      <section className="w-full bg-black/60 border border-white/10 rounded-md shadow-lg p-6">
+      <section
+        id="section-electron"
+        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-lg"
+      >
         <h3 className="mb-4 text-3xl uppercase">
           {t("electron.title")}
         </h3>
@@ -728,7 +826,10 @@ export default function Portfolio() {
       </section>
 
       {/* 3D Face Model */}
-      <div className="w-full bg-black/60 border border-white/10 rounded-md p-6 shadow-lg">
+      <div
+        id="section-face"
+        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-lg"
+      >
         <Suspense
           fallback={
             <div className="p-20 text-center text-3xl font-thin text-white">
@@ -757,13 +858,17 @@ export default function Portfolio() {
       </div>
 
       {/* OpticALLY Section */}
-      <section className="w-full bg-black/60 border border-white/10 rounded-md shadow-md p-6">
+      <section
+        id="section-orch"
+        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-md"
+      >
         <h3 className="mb-4 text-3xl uppercase">{t("orch.title")}</h3>
         <ul className="list-disc space-y-2 pl-6 text-lg">
           <li>{t("orch.li1")}</li>
           <li>{t("orch.li2")}</li>
           <li>{t("orch.li3")}</li>
-        <div className="mt-6 flex justify-left">
+        </ul>
+        <div className="mt-6 flex justify-start">
           <a
             href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://apps.apple.com/bj/app/orch-3d-head-face-scan/id6468313142&ved=2ahUKEwj6r4XErruPAxWlDjQIHZQ5OhgQFnoECBsQAQ&usg=AOvVaw3DnwsFFuRSjo5L9x6z3-PF"
             target="_blank"
@@ -778,11 +883,43 @@ export default function Portfolio() {
             />
           </a>
         </div>
-        </ul>
+        <div className="mt-8 flex flex-col items-center">
+          <iframe
+            className="m-auto max-w-full overflow-hidden rounded-lg shadow-lg"
+            width="350"
+            height="250"
+            src="https://www.youtube.com/embed/LqiZKoXhtDA?si=T8ZAd0P-vh_x1XaY"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+          <p className="mt-2 text-center text-sm italic text-gray-300">
+            {t("footer.video2Caption")}
+          </p>
+        </div>
       </section>
 
       {/* Experience Section */}
-      <section className="w-full bg-black/60 border border-white/10 rounded-md shadow-md p-6">
+      <section
+        id="section-exp"
+        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-md"
+      >
+        <div className="mb-8 flex flex-col items-center">
+          <iframe
+            className="m-auto max-w-full overflow-hidden rounded-lg shadow-lg"
+            width="350"
+            height="250"
+            src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+          <p className="mt-2 text-center text-sm italic text-gray-300">
+            {t("footer.video1Caption")}
+          </p>
+        </div>
         <h3 className="mb-4 text-3xl uppercase">{t("exp.title")}</h3>
         <div className="space-y-6 text-lg">
           <div>
@@ -809,8 +946,40 @@ export default function Portfolio() {
         </div>
       </section>
 
+      <div
+        className="w-full scroll-mt-24 space-y-8 rounded-md border border-white/10 bg-black/60 p-6 shadow-md"
+      >
+        <div className="flex flex-col items-center text-center">
+          <Image
+            src="/IMG_3505.jpg"
+            alt="With iJustine"
+            width={320}
+            height={192}
+            style={{ objectFit: "contain" }}
+          />
+          <p className="mt-2 text-sm italic text-gray-300">
+            {t("footer.photo1Caption")}
+          </p>
+        </div>
+        <div className="flex flex-col items-center text-center">
+          <Image
+            src="/IMG_0629.jpeg"
+            alt="With flight instructor"
+            width={320}
+            height={192}
+            style={{ objectFit: "contain" }}
+          />
+          <p className="mt-2 text-sm italic text-gray-300">
+            {t("footer.photo2Caption")}
+          </p>
+        </div>
+      </div>
+
       {/* Education */}
-      <section className="w-full rounded-md border border-white/10 bg-black/60 p-6 shadow-md">
+      <section
+        id="section-edu"
+        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-md"
+      >
         <h3 className="mb-4 text-3xl uppercase">{t("edu.title")}</h3>
         <ol className="list-decimal space-y-6 pl-6 text-lg marker:text-gray-400">
           <li>
