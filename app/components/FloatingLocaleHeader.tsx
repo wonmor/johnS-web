@@ -21,7 +21,7 @@ export function FloatingLocaleHeader() {
 
   const copyrightSize =
     locale === "fr"
-      ? "text-[0.625rem] tracking-[0.14em] sm:text-[0.6875rem] sm:tracking-[0.16em]"
+      ? "text-[0.625rem] tracking-[0.14em] sm:text-sm sm:tracking-[0.2em]"
       : "text-xs tracking-[0.18em] sm:text-sm sm:tracking-[0.2em]";
 
   return (
