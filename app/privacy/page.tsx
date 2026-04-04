@@ -8,13 +8,11 @@ import { messages } from "../i18n/messages";
 const SECTION_IDS = { en: "privacy-en", fr: "privacy-fr", ko: "privacy-ko" } as const;
 
 export default function PrivacyPolicyPage() {
-  const { t, locale } = useI18n();
-  const fontClass =
-    locale === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;
+  const { t } = useI18n();
 
   return (
     <div
-      className={`${fontClass} bg-[#020824] px-6 py-10 text-white antialiased sm:px-10 sm:py-14`}
+      className={`${tubeFont.className} bg-[#020824] px-6 py-10 text-white antialiased sm:px-10 sm:py-14`}
     >
       <div className="mx-auto max-w-3xl">
         <Link
@@ -79,7 +77,10 @@ export default function PrivacyPolicyPage() {
           </p>
         </section>
 
-        <section id={SECTION_IDS.ko} className="scroll-mt-28 pb-12">
+        <section
+          id={SECTION_IDS.ko}
+          className="font-ibm-plex-sans-kr scroll-mt-28 pb-12"
+        >
           <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
             한국어 — {messages.ko["privacy.title"]}
           </h2>

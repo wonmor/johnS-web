@@ -17,14 +17,15 @@ export function I18nShell({ children }: { children: React.ReactNode }) {
   const { locale, localeTransitionPhase } = useI18n();
 
   useEffect(() => {
-    if (locale !== "ko") return;
+    const needIbm = locale === "ko" || pathname === "/privacy";
+    if (!needIbm) return;
     if (document.getElementById(IBM_PLEX_SANS_KR_LINK_ID)) return;
     const link = document.createElement("link");
     link.id = IBM_PLEX_SANS_KR_LINK_ID;
     link.rel = "stylesheet";
     link.href = IBM_PLEX_SANS_KR_HREF;
     document.head.appendChild(link);
-  }, [locale]);
+  }, [locale, pathname]);
 
   const fontClass =
     locale === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;
