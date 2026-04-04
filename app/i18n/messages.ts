@@ -180,7 +180,7 @@ export const messages = {
     "cookieConsent.title": "COOKIES INDISPENSABLES",
     "cookieConsent.body":
       "Ce site utilise uniquement un stockage strictement nécessaire (cookie de langue et stockage local), comme indiqué dans la politique de confidentialité. Pas de suivi publicitaire.",
-    "cookieConsent.accept": "OK",
+    "cookieConsent.accept": "Compris",
     "cookieConsent.closeOverlay": "Fermer l’avis cookies",
 
     "privacy.title": "Politique de confidentialité",

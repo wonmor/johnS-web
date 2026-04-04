@@ -6,7 +6,7 @@ import { useI18n } from "../i18n/context";
 
 /** Outside `locale-tx-root` so `position: fixed` stays viewport-anchored while scrolling (and during invert). */
 export function FloatingLocaleHeader() {
-  const { t, locale, localeTransitionPhase } = useI18n();
+  const { t, localeTransitionPhase } = useI18n();
   const { topUseLightChrome } = useChromeBackdropProbes();
   const year = new Date().getFullYear();
   const invert = localeTransitionPhase === "invert";
@@ -19,10 +19,9 @@ export function FloatingLocaleHeader() {
     ? "text-gray-600"
     : "text-white/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]";
 
+  /* Same compact mobile sizing previously used for French — all locales for consistency */
   const copyrightSize =
-    locale === "fr"
-      ? "text-[0.625rem] tracking-[0.14em] sm:text-sm sm:tracking-[0.2em]"
-      : "text-xs tracking-[0.18em] sm:text-sm sm:tracking-[0.2em]";
+    "text-[0.625rem] tracking-[0.14em] sm:text-sm sm:tracking-[0.2em]";
 
   return (
     <div
