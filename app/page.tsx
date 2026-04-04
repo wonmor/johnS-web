@@ -9,7 +9,8 @@ import * as THREE from "three";
 import { Box3, Vector3, MathUtils } from "three";
 import Link from "next/link";
 import { OrbitControls } from "@react-three/drei";
-import { tubeFont } from "./fonts";
+import { nanumGothicFontStack, tubeFont } from "./fonts";
+import { useI18n } from "./i18n/context";
 
 const tubeRed = "#f77f6b"; // legacy accent red (kept for logos)
 const tubeBlue = "#003688";
@@ -17,6 +18,10 @@ const tubeGreyBg = "#020824"; // dark navy background to match layout
 const tubeText = "#f9fafb"; // light text on dark
 
 function TubeRoundel() {
+  const { locale } = useI18n();
+  const nameFontFamily =
+    locale === "ko" ? nanumGothicFontStack : tubeFont.style.fontFamily;
+
   const [waves, setWaves] = useState(
     Array.from({ length: 30 }).map(() => ({
       x: 10 + Math.random() * 80,
@@ -139,7 +144,7 @@ function TubeRoundel() {
         <span
           style={{
             color: "white",
-            fontFamily: tubeFont.style.fontFamily,
+            fontFamily: nameFontFamily,
             letterSpacing: "0.05em",
             fontSize: 18,
             textTransform: "uppercase",
@@ -329,6 +334,7 @@ function GLTFModel({ modelPath, size }: { modelPath: string; size?: number }) {
 }
 
 export default function Portfolio() {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState<"benzene" | "gadolinium">(
     "benzene"
   );
@@ -359,16 +365,12 @@ export default function Portfolio() {
           <TubeRoundelWith787 />
         </Link>
       <p className="mt-4 text-2xl tracking-[0.25em] uppercase">
-        CREATIVE WORK
+        {t("hero.line1")}
         <br />
-        TRAVAUX CREATIFS
-        <br />
-        AEROSPACE
-        <br />
-        AEROSPATIALE
+        {t("hero.line2")}
       </p>
 
-        <span className="text-black">john@orchestrsim.com</span>
+        <span className="text-black">{t("hero.email")}</span>
         {/* Awards & Visa */}
         <div className="flex justify-center items-center gap-6 mt-4">
           <div
@@ -382,7 +384,7 @@ export default function Portfolio() {
           >
             <Image
               src="/reach-logo.jpg"
-              alt="WWDC23 Scholar"
+              alt={t("awards.reachAlt")}
               width={100}
               height={100}
               style={{
@@ -395,22 +397,22 @@ export default function Portfolio() {
           </div>
 
           <div className="text-left text-white">
-            <p>Apple WWDC23 Swift Challenge Winner</p>
-            <p className="text-xs text-gray-200 tracking-wider uppercase mb-2">
-              AT APPLE PARK, CUPERTINO
+            <p>{t("awards.wwdc")}</p>
+            <p className="mb-2 text-xs uppercase tracking-wider text-gray-200">
+              {t("awards.wwdcVenue")}
             </p>
-            <p className="flex items-center gap-1 mt-2">
+            <p className="mt-2 flex items-center gap-1">
               <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
-              <span className="text-white">UK Global Talent Visa Holder</span>
+              <span className="text-white">{t("awards.ukVisa")}</span>
             </p>
-            <p className="flex items-center gap-1 mt-2">
+            <p className="mt-2 flex items-center gap-1">
               <Image
                 src="/american-flag.png"
                 alt="American Flag"
                 width={24}
                 height={16}
               />
-              <span className="text-white">US O-1A Extraordinary Alien</span>
+              <span className="text-white">{t("awards.usVisa")}</span>
             </p>
             <div className="flex items-center gap-1 mt-2">
             <Image src="/south-korea-flag.svg" alt="South Korean Flag" width={24} height={16} />
@@ -422,8 +424,8 @@ export default function Portfolio() {
 
       {/* Featured Media */}
       <div className="mt-4 text-center">
-        <p className="text-xs text-gray-400 tracking-wider uppercase mb-2">
-          Featured in these Media
+        <p className="mb-2 text-xs uppercase tracking-wider text-gray-400">
+          {t("media.featured")}
         </p>
         <div className="flex justify-center gap-4">
           <a
@@ -514,7 +516,7 @@ export default function Portfolio() {
             }`}
             onClick={() => setActiveTab("gadolinium")}
           >
-            Atom (Gd)
+            {t("gltf.tabGd")}
           </button>
           <button
             className={`px-4 py-2 rounded ${
@@ -524,7 +526,7 @@ export default function Portfolio() {
             }`}
             onClick={() => setActiveTab("benzene")}
           >
-            Molecule (C₆H₆)
+            {t("gltf.tabBenzene")}
           </button>
         </div>
 
@@ -533,8 +535,8 @@ export default function Portfolio() {
             <div className="bg-black rounded-md p-6 shadow-lg">
               <Suspense
                 fallback={
-                  <div className="p-20 text-center text-white font-thin text-3xl">
-                    Loading Benzene Model...
+                  <div className="p-20 text-center text-3xl font-thin text-white">
+                    {t("gltf.loadingBenzene")}
                   </div>
                 }
               >
@@ -547,22 +549,25 @@ export default function Portfolio() {
                   <OrbitControls enablePan enableZoom enableRotate />
                 </Canvas>
               </Suspense>
-              <div className="text-center p-6 bg-gray-900 text-white">
+              <div className="bg-gray-900 p-6 text-center text-white">
                 <h4 className="text-2xl tracking-wide">
-                  Benzene Molecule – C₆H₆
+                  {t("gltf.benzeneTitle")}
                 </h4>
                 <p className="mt-2 text-gray-300">
-                  Electron density calculated using DFT, with molecular orbital
-                  visualisation. You can clearly see the p-orbitals overlapping
-                  to form the π bonding orbitals. Generated using a tool I
-                  developed:     <a
-                  href="https://electronvisual.org" className="hover:underline"><code>ElectronVisual.org</code></a>.
+                  {t("gltf.benzeneBody")}{" "}
+                  <a
+                    href="https://electronvisual.org"
+                    className="hover:underline"
+                  >
+                    <code>ElectronVisual.org</code>
+                  </a>
+                  .
                 </p>
                 <a
                   href="https://electronvisual.org"
-                  className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
+                  className="mt-4 inline-block rounded border border-white px-4 py-2 text-white transition hover:bg-white hover:text-[#003688]"
                 >
-                  Try out on <code>ElectronVisual.org</code>
+                  {t("gltf.benzeneCta")} <code>ElectronVisual.org</code>
                 </a>
               </div>
             </div>
@@ -574,8 +579,8 @@ export default function Portfolio() {
             <div className="bg-black rounded-md p-6 shadow-lg">
               <Suspense
                 fallback={
-                  <div className="p-20 text-center text-white font-thin text-3xl">
-                    Loading Gadolinium Atom...
+                  <div className="p-20 text-center text-3xl font-thin text-white">
+                    {t("gltf.loadingGd")}
                   </div>
                 }
               >
@@ -588,20 +593,14 @@ export default function Portfolio() {
                   <OrbitControls enablePan enableZoom enableRotate />
                 </Canvas>
               </Suspense>
-              <div className="text-center p-6 bg-gray-900 text-white">
-                <h4 className="text-2xl tracking-wide">
-                  Gadolinium Atom – 4f⁷ Electron Shell
-                </h4>
-                <p className="mt-2 text-gray-300">
-                  A 3D electron density plot of Gadolinium’s outermost electron
-                  configuration (f-orbital), modeled using spherical harmonics.
-                  Generated using my iOS app Atomizer AR.
-                </p>
+              <div className="bg-gray-900 p-6 text-center text-white">
+                <h4 className="text-2xl tracking-wide">{t("gltf.gdTitle")}</h4>
+                <p className="mt-2 text-gray-300">{t("gltf.gdBody")}</p>
                 <a
                   href="https://github.com/wonmor/ElectronVisualized"
-                  className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-[#003688] transition"
+                  className="mt-4 inline-block rounded border border-white px-4 py-2 text-white transition hover:bg-white hover:text-[#003688]"
                 >
-                  Source on GitHub
+                  {t("gltf.github")}
                 </a>
               </div>
             </div>
@@ -611,33 +610,25 @@ export default function Portfolio() {
 
       {/* ElectronVisual Section */}
       <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-lg p-6">
-        <h3 className="text-3xl uppercase mb-4">
-          ElectronVisualized, Atomizer AR (Sept 2022 – Apr 2025)
+        <h3 className="mb-4 text-3xl uppercase">
+          {t("electron.title")}
         </h3>
-        <ul className="list-disc pl-6 text-lg space-y-2">
+        <ul className="list-disc space-y-2 pl-6 text-lg">
+          <li>{t("electron.li1")}</li>
+          <li>{t("electron.li2")}</li>
           <li>
-            Quantum Mechanics Visualizer that uses DFT, across Web (Three.js),
-            iOS, macOS, visionOS via Atomizer AR (10 K downloads). The very
-            project that handed me the 2023 Apple WWDC Swift Student Challenge
-            Award.
-          </li>
-          <li>
-            Tech stack: Three.js, React, Redux, WebXR; Back-end: RDKit, SciPy,
-            ASE, GPAW, Celery, Redis, Docker, AWS
-          </li>
-          <li>
-            Featured on the front cover of{" "}
+            {t("electron.li3Before")}{" "}
             <a
               href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan-300 hover:underline"
             >
-              University of Oxford Professor Sir David Clary’s Book
+              {t("electron.li3Book")}
             </a>
-            ,{" "}
+            {t("electron.li3After")}{" "}
             <i className="text-sm">
-              Walter Kohn (
+              {t("electron.li3Title")} (
               <a
                 href="https://doi.org/10.1142/13806"
                 target="_blank"
@@ -650,7 +641,7 @@ export default function Portfolio() {
             </i>
           </li>
           <li>
-            Watch demo walkthrough:{" "}
+            {t("electron.li4")}{" "}
             <a
               href="https://www.youtube.com/watch?v=kHcdvyaqslU"
               target="_blank"
@@ -667,11 +658,11 @@ export default function Portfolio() {
             href="https://apps.apple.com/us/app/atomizer-ar/id6449015706"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Atomizer AR on the App Store"
+            aria-label={t("electron.appStoreAtomizer")}
           >
             <img
               src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
-              alt="Download Atomizer AR on the App Store"
+              alt={t("electron.appStoreBadgeAlt")}
               height={50}
               style={{ height: 50, cursor: "pointer" }}
             />
@@ -679,15 +670,15 @@ export default function Portfolio() {
         </div>
         <a
           href="https://www.electronvisual.org"
-            className="inline-block mt-4 px-4 py-2 bg-white text-black rounded hover:bg-gray-200 mr-2"
+            className="mr-2 mt-4 inline-block rounded bg-white px-4 py-2 text-black hover:bg-gray-200"
         >
-          Visit <code>ElectronVisual.org</code>
+          {t("electron.visit")} <code>ElectronVisual.org</code>
         </a>
         <a
           href="https://github.com/wonmor/ElectronVisualized"
-          className="inline-block mt-2 px-4 py-2 text-white border border-white/70 rounded hover:bg-white hover:text-black"
+          className="mt-2 inline-block rounded border border-white/70 px-4 py-2 text-white hover:bg-white hover:text-black"
         >
-          Source on GitHub
+          {t("gltf.github")}
         </a>
       </section>
 
@@ -695,8 +686,8 @@ export default function Portfolio() {
       <div className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md p-6 shadow-lg">
         <Suspense
           fallback={
-            <div className="p-20 text-center text-white font-thin text-3xl">
-              Loading 3D Model...
+            <div className="p-20 text-center text-3xl font-thin text-white">
+              {t("face.loading")}
             </div>
           }
         >
@@ -706,50 +697,37 @@ export default function Portfolio() {
             <OrbitControls enablePan enableZoom enableRotate />
           </Canvas>
         </Suspense>
-        <div className="text-center p-6 bg-gray-900 text-white">
-          <h4 className="text-2xl tracking-wide">
-            3D Facial Scan of Myself, using iPhone's TrueDepth
-          </h4>
-          <p className="mt-2 text-gray-300">
-            3D Meshing Algorithm and Registration Method I developed for human-computer interfaces (calculating IPD and head dimensions) and custom-fitted BCI headsets. Available on the iOS.
-          </p>
+        <div className="bg-gray-900 p-6 text-center text-white">
+          <h4 className="text-2xl tracking-wide">{t("face.title")}</h4>
+          <p className="mt-2 text-gray-300">{t("face.body")}</p>
           <a
             href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
-              target="_blank"
-              rel="noopener noreferrer"
-            className="inline-block mt-4 px-4 py-2 text-white border border-white rounded hover:bg-white hover:text-black transition"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block rounded border border-white px-4 py-2 text-white transition hover:bg-white hover:text-black"
           >
-            View the Demo on YouTube
+            {t("face.cta")}
           </a>
         </div>
       </div>
 
       {/* OpticALLY Section */}
       <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-md p-6">
-        <h3 className="text-3xl uppercase mb-4">
-          Orch 3D Head & Face Scan for iPhone
-        </h3>
-        <ul className="list-disc pl-6 text-lg space-y-2">
-          <li>iOS app using Swift & Objective‑C++ with C++ back‑end</li>
-          <li>
-            TrueDepth face scan with full point cloud processing using ICP,
-            feature-based pose estimation, meshing, and point-cloud registration
-          </li>
-          <li>
-            U.S. Provisional Patent pending (No. 63/727,879) for the method of
-            rough point cloud alignment only using yaw, pitch, and roll values
-            from the head pose estimation
-          </li>
+        <h3 className="mb-4 text-3xl uppercase">{t("orch.title")}</h3>
+        <ul className="list-disc space-y-2 pl-6 text-lg">
+          <li>{t("orch.li1")}</li>
+          <li>{t("orch.li2")}</li>
+          <li>{t("orch.li3")}</li>
         <div className="mt-6 flex justify-left">
           <a
             href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://apps.apple.com/bj/app/orch-3d-head-face-scan/id6468313142&ved=2ahUKEwj6r4XErruPAxWlDjQIHZQ5OhgQFnoECBsQAQ&usg=AOvVaw3DnwsFFuRSjo5L9x6z3-PF"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Orch 3D Scan on the App Store"
+            aria-label={t("orch.appStoreAlt")}
           >
             <img
               src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
-              alt="Orch 3D Scan on the App Store"
+              alt={t("orch.appStoreAlt")}
               height={50}
               style={{ height: 50, cursor: "pointer" }}
             />
@@ -760,31 +738,52 @@ export default function Portfolio() {
 
       {/* Experience Section */}
       <section className="max-w-4xl mx-auto bg-black/60 border border-white/10 rounded-md shadow-md p-6">
-        <h3 className="text-3xl uppercase mb-4">
-          Experience
-        </h3>
+        <h3 className="mb-4 text-3xl uppercase">{t("exp.title")}</h3>
         <div className="space-y-6 text-lg">
           <div>
-            <h4 className="text-2xl">
-              Reach.Me – Computer Vision Software Engineer (2025–)
-            </h4>
+            <h4 className="text-2xl">{t("exp.orchestr")}</h4>
             <p>
-              Developing computer vision pipelines in C++ & Python (OpenCV,
-              linear algebra), full-stack iOS, Objective-C, Swift, Vue based
-              systems.
+              <a
+                href={t("exp.orchestrSite")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-300 hover:underline"
+              >
+                {t("exp.orchestrSite")}
+              </a>
             </p>
           </div>
           <div>
-            <h4 className="text-2xl">
-              Seoul National University – Research Intern (Jul 2023)
-            </h4>
-            <p>
-              Improved molecular visualizer using Python (SciPy, RDKit); GUI for
-              AutoDock Vina; gained experience in Docker and server
-              orchestration under Prof. Juyong Lee.
-            </p>
+            <h4 className="text-2xl">{t("exp.reach")}</h4>
+            <p>{t("exp.reachBody")}</p>
+          </div>
+          <div>
+            <h4 className="text-2xl">{t("exp.snu")}</h4>
+            <p>{t("exp.snuBody")}</p>
           </div>
         </div>
+      </section>
+
+      {/* Education */}
+      <section className="mx-auto max-w-4xl rounded-md border border-white/10 bg-black/60 p-6 shadow-md">
+        <h3 className="mb-4 text-3xl uppercase">{t("edu.title")}</h3>
+        <ol className="list-decimal space-y-6 pl-6 text-lg marker:text-gray-400">
+          <li>
+            <h4 className="text-2xl">{t("edu.hub.title")}</h4>
+            <p className="text-gray-300">{t("edu.hub.detail")}</p>
+          </li>
+          <li>
+            <h4 className="text-2xl">{t("edu.ocfc.title")}</h4>
+            <p className="text-gray-300">{t("edu.ocfc.detail")}</p>
+          </li>
+          <li>
+            <h4 className="text-2xl">{t("edu.sunrise.title")}</h4>
+            <p className="text-gray-300">{t("edu.sunrise.detail")}</p>
+          </li>
+          <li>
+            <p className="text-2xl">{t("edu.uci")}</p>
+          </li>
+        </ol>
       </section>
     </div>
   );

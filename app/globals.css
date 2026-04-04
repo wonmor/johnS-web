@@ -60,6 +60,10 @@
   animation: flicker 1.5s infinite alternate;  
 }
 
+.font-nanum-gothic {
+  font-family: "Nanum Gothic", sans-serif;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
