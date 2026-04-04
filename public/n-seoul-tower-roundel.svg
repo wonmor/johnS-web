@@ -61,8 +61,25 @@
        id="g37117"
        transform="translate(0,12)">
       <g
-         transform="translate(1344.2857,-14.285714)"
+         transform="translate(1344.2857,-14.285714) translate(0,-72)"
          id="g37070">
+        <g
+           id="mountain-base-namsan"
+           transform="translate(-1344.2857,14.285714)"
+           aria-hidden="true">
+          <path
+             fill="#6e7379"
+             fill-opacity="0.52"
+             d="M 560 1935 760 1505 930 1695 1110 1405 1285 1620 1445 1485 1595 1680 1595 1980 560 1980 Z" />
+          <path
+             fill="#848990"
+             fill-opacity="0.38"
+             d="M 620 1945 820 1600 990 1760 1165 1530 1325 1705 1480 1610 1545 1735 1545 1980 620 1980 Z" />
+          <path
+             fill="#5c6066"
+             fill-opacity="0.28"
+             d="M 700 1960 910 1670 1085 1830 1240 1620 1395 1775 1495 1960 700 1960 Z" />
+        </g>
         <g
            id="g37135">
           <path

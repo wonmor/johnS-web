@@ -371,7 +371,7 @@ export const messages = {
     "orchestr.intro": "Orch Avionic 1 EFB를 소개합니다.",
     "orchestr.new": "NEW",
     "orchestr.tagline":
-      "일반항공(GA) 비행을 위한 예측형* 보조 조종사.",
+      "민간항공(GA) 비행을 위한 예측형* 보조 조종사.",
     "orchestr.taglineFrNote": "",
     "orchestr.features":
       "ADS-B, GPS, 휴대용 무전기, 연료 계산, 비행 차트까지. 하나의 폼 팩터에 담았습니다.",

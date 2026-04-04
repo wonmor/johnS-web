@@ -113,6 +113,15 @@ export default function PrivacyPolicyPage() {
             {t("privacy.github")}
           </a>
         </div>
+
+        <div className="pt-20 pb-10 sm:pt-28 sm:pb-14">
+          <Link
+            href="/"
+            className="inline-block text-sm text-white/65 transition hover:text-white"
+          >
+            {t("privacy.backHome")}
+          </Link>
+        </div>
       </div>
     </div>
   );
