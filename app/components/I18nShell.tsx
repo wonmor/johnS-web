@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { tubeFont } from "../fonts";
 import { useI18n } from "../i18n/context";
 import { BodyContent } from "./BodyContent";
+import { FloatingLocaleHeader } from "./FloatingLocaleHeader";
 
 const IBM_PLEX_SANS_KR_LINK_ID = "font-ibm-plex-sans-kr-css";
 const IBM_PLEX_SANS_KR_HREF =
@@ -29,10 +30,13 @@ export function I18nShell({ children }: { children: React.ReactNode }) {
     localeTransitionPhase === "invert" ? "locale-tx-root--invert" : "";
 
   return (
-    <div
-      className={`locale-tx-root ${fontClass} ${txClass} flex min-h-screen flex-col bg-[#020824] pt-6 text-white antialiased`}
-    >
-      <BodyContent>{children}</BodyContent>
-    </div>
+    <>
+      <FloatingLocaleHeader />
+      <div
+        className={`locale-tx-root ${fontClass} ${txClass} flex min-h-screen flex-col bg-[#020824] pt-6 text-white antialiased`}
+      >
+        <BodyContent>{children}</BodyContent>
+      </div>
+    </>
   );
 }

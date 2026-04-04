@@ -3,12 +3,10 @@
 import Image from "next/image";
 import Script from "next/script";
 import React from "react";
-import { LanguageToggle } from "./LanguageToggle";
 import { useI18n } from "../i18n/context";
 
 export function BodyContent({ children }: { children: React.ReactNode }) {
   const { t, locale } = useI18n();
-  const year = new Date().getFullYear();
 
   return (
     <>
@@ -29,16 +27,7 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
 
       <WestminsterSilhouette />
 
-      <div className="fixed inset-x-0 top-0 z-50 flex flex-wrap items-center justify-center gap-x-2 gap-y-0 border-b border-white/10 bg-[#020824]/95 px-3 py-1 backdrop-blur sm:gap-x-3 sm:px-4 sm:py-1">
-        <p className="text-center text-xs uppercase leading-tight tracking-[0.18em] text-gray-300 sm:text-sm sm:tracking-[0.2em]">
-          {t("topBar.copyright", { year })}
-        </p>
-        <div className="flex shrink-0 items-center">
-          <LanguageToggle />
-        </div>
-      </div>
-
-      <main className="mb-10 flex-grow pt-10 sm:pt-11">{children}</main>
+      <main className="mb-10 flex-grow pt-14 sm:pt-16">{children}</main>
 
       <PolicyModal />
       <EulaModal />

@@ -74,6 +74,14 @@
   filter: invert(1) hue-rotate(180deg);
 }
 
+/* Cancel root invert on replaced content so photos/logos stay natural */
+.locale-tx-root--invert img,
+.locale-tx-root--invert video,
+.locale-tx-root--invert canvas {
+  filter: invert(1) hue-rotate(180deg);
+  transition: filter 520ms ease-in-out;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
