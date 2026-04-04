@@ -22,13 +22,13 @@ export const messages = {
     "localeOffer.bodyKo":
       "Your browser language does not match the language shown. View the site in Korean?",
     "localeOffer.accept": "Yes, switch",
-    "localeOffer.decline": "No, keep current language",
-    "localeOffer.closeOverlay": "Dismiss and keep current language",
+    "localeOffer.decline": "No, keep the current language",
+    "localeOffer.closeOverlay": "Dismiss and keep the current language",
 
     "cookieConsent.barLabel": "Cookies",
     "cookieConsent.title": "ESSENTIAL COOKIES",
     "cookieConsent.body":
-      "This site uses only strictly necessary storage (language cookie and local storage) as described in the Privacy Policy. No tracking or ads.",
+      "This site uses only strictly necessary storage (language cookie and local storage) as described in the Privacy Policy. No tracking or advertising.",
     "cookieConsent.accept": "OK",
     "cookieConsent.closeOverlay": "Dismiss cookie notice",
 
@@ -38,11 +38,14 @@ export const messages = {
       "The complete policy text in each language we offer:",
     "privacy.body":
       "We apply the same transparency and data-protection standards as under the EU GDPR and ePrivacy rules for every visitor, wherever you are. We do not use analytics, advertising, or non-essential cookies. We only use strictly necessary storage—a small first-party cookie and your browser’s local storage—to remember your language choice and related display preferences. We do not profile you or track you across other sites. You can delete this data in your browser at any time. You have GDPR-style rights (e.g. access, erasure, portability, objection, restriction), including the right to lodge a complaint with an EU data protection authority.",
+    "privacy.github": "GitHub",
+    "privacy.githubAria":
+      "Open this website’s source code on GitHub (opens in a new tab)",
     "privacy.close": "Close",
 
     "eula.title": "EULA",
     "eula.body":
-      "Any software made by this company is licensed (UK law): no reverse engineering or redistribution.",
+      "Any software published by this entity is licensed (UK law): no reverse engineering or redistribution.",
     "eula.close": "Close",
 
     "footer.photo1Caption": "with iJustine, at Apple Park during WWDC23",
@@ -65,7 +68,7 @@ export const messages = {
       "Votre copilote prédictif* en aviation générale.",
     "orchestr.features":
       "ADS-B, GPS, handheld radio, fuel calculation and flight charts. All in one form factor.",
-    "orchestr.cta": "Check it out",
+    "orchestr.cta": "Have a look",
 
     "hero.line1": "CREATIVE WORK",
     "hero.line2": "AEROSPACE",
@@ -78,7 +81,7 @@ export const messages = {
     "awards.madeInQuebec": "MADE IN QUEBEC",
     "awards.reachAlt": "Reach Media Group",
 
-    "media.featured": "Featured in these Media",
+    "media.featured": "As featured in the following outlets",
 
     "navTab.label": "Page sections",
     "navTab.hero": "Intro",
@@ -99,13 +102,13 @@ export const messages = {
     "gltf.benzeneCta": "Try it on",
     "gltf.gdTitle": "Gadolinium atom — 4f⁷ electron shell",
     "gltf.gdBody":
-      "A 3D electron density plot of Gadolinium’s outermost electron configuration (f-orbital), modeled using spherical harmonics. Generated using my iOS app Atomizer AR.",
+      "A 3D electron density plot of Gadolinium’s outermost electron configuration (f-orbital), modelled using spherical harmonics. Generated using my iOS app Atomizer AR.",
     "gltf.github": "Source on GitHub",
 
     "electron.title":
-      "ElectronVisualized, Atomizer AR (Sept 2022 – Apr 2025)",
+      "ElectronVisualized, Atomizer AR (September 2022 – April 2025)",
     "electron.li1":
-      "Quantum mechanics visualiser that uses DFT, across Web (Three.js), iOS, macOS, and visionOS via Atomizer AR (10K downloads). The project that earned me the 2023 Apple WWDC Swift Student Challenge award.",
+      "Quantum mechanics visualiser that uses DFT, across Web (Three.js), iOS, macOS, and visionOS via Atomizer AR (10K downloads). The project that won me the 2023 Apple WWDC Swift Student Challenge award.",
     "electron.li2":
       "Tech stack: Three.js, React, Redux, WebXR; back end: RDKit, SciPy, ASE, GPAW, Celery, Redis, Docker, AWS",
     "electron.li3Before": "Featured on the front cover of",
@@ -129,17 +132,17 @@ export const messages = {
     "orch.li2":
       "TrueDepth face scan with full point-cloud processing: ICP, feature-based pose estimation, meshing, and registration",
     "orch.li3":
-      "U.S. provisional patent pending (No. 63/727,879) for aligning rough point clouds using only yaw, pitch, and roll from head pose estimation",
+      "US provisional patent pending (No. 63/727,879) for aligning rough point clouds using only yaw, pitch, and roll from head pose estimation",
     "orch.appStoreAlt": "Orch 3D Scan on the App Store",
 
     "exp.title": "Experience",
-    "exp.orchestr": "Startup co-founder for Orchestr Inc (2026)",
+    "exp.orchestr": "Start-up co-founder for Orchestr Inc (2026)",
     "exp.orchestrSite": "https://orchestrsim.com",
     "exp.reach":
       "Reach Media Group — computer vision software engineer (2025)",
     "exp.reachBody":
       "Developing computer vision pipelines in C++ and Python (OpenCV, linear algebra), full-stack iOS, Objective-C, Swift, and Vue-based systems.",
-    "exp.snu": "Seoul National University — research intern (Jul 2023)",
+    "exp.snu": "Seoul National University — research intern (July 2023)",
     "exp.snuBody":
       "Improved a molecular visualiser using Python (SciPy, RDKit); GUI for AutoDock Vina; experience with Docker and server orchestration under Prof. Juyong Lee.",
 
@@ -153,7 +156,7 @@ export const messages = {
     "edu.sunrise.detail":
       "Training on Evektor SportStar light-sport aircraft.",
     "edu.uci":
-      "University of California, Irvine — dropout, undeclared major (2023)",
+      "University of California, Irvine — withdrew before completing a degree; major undeclared (2023)",
   },
   fr: {
     "meta.title": "John Seong",
@@ -192,6 +195,9 @@ export const messages = {
       "Texte intégral dans chaque langue proposée :",
     "privacy.body":
       "Nous appliquons les mêmes exigences de transparence et de protection des données que sous le RGPD et le cadre ePrivacy de l’UE à chaque visiteur, partout dans le monde. Nous n’utilisons pas de cookies d’analyse, de publicité ou non indispensables. Nous n’employons que des moyens strictement nécessaires — un petit cookie propriétaire et le stockage local du navigateur — pour mémoriser votre langue et des préférences d’affichage connexes. Nous ne vous profilons pas et ne vous suivons pas sur d’autres sites. Vous pouvez supprimer ces données dans les réglages du navigateur à tout moment. Vous disposez des droits prévus par le RGPD (accès, effacement, portabilité, opposition, limitation, etc.), y compris le droit d’introduire une réclamation auprès d’une autorité de protection des données de l’UE.",
+    "privacy.github": "GitHub",
+    "privacy.githubAria":
+      "Ouvrir le code source de ce site sur GitHub (nouvel onglet)",
     "privacy.close": "Fermer",
 
     "eula.title": "CLUF",
@@ -342,6 +348,9 @@ export const messages = {
     "privacy.allVersions": "제공하는 각 언어의 전체 처리방침:",
     "privacy.body":
       "EU GDPR 및 ePrivacy 수준의 투명성·데이터 보호 기준을 방문 지역과 관계없이 모든 방문자에게 동일하게 적용합니다. 분석·광고 또는 필수가 아닌 쿠키는 사용하지 않습니다. 언어 선택 및 관련 표시 설정을 위해 반드시 필요한 저장소(자사 쿠키 1종, 브라우저 로컬 스토리지)만 사용합니다. 광고 프로필을 만들거나 다른 사이트에서의 교차 추적은 하지 않습니다. 언제든지 브라우저 설정에서 해당 데이터를 삭제할 수 있습니다. 접근·삭제·이동·이의·처리 제한 등 GDPR상 권리가 있으며, EU 데이터 보호 감독 기관에 이의를 제기할 수 있습니다.",
+    "privacy.github": "GitHub",
+    "privacy.githubAria":
+      "이 웹사이트 소스 코드를 GitHub에서 열기(새 탭)",
     "privacy.close": "닫기",
 
     "eula.title": "최종 사용자 라이선스 계약(EULA)",
