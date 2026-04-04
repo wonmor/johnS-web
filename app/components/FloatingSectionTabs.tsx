@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useChromeBackdropProbes } from "./ChromeBackdropProvider";
 import { tubeFont } from "../fonts";
@@ -85,11 +86,13 @@ function useHideTabBarNearDocumentBottom() {
 }
 
 export function FloatingSectionTabs() {
+  const pathname = usePathname();
   const { t, locale, localeTransitionPhase } = useI18n();
   const { bottomUseLightChrome } = useChromeBackdropProbes();
   const { activeId, setActiveId } = useActiveSectionTab();
   const hiddenNearBottom = useHideTabBarNearDocumentBottom();
-  const invert = localeTransitionPhase === "invert";
+  const invert =
+    localeTransitionPhase === "invert" && pathname === "/privacy";
 
   const fontClass =
     locale === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;

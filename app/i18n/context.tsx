@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import React, {
   createContext,
   useCallback,
@@ -63,6 +64,7 @@ function dismissedOfferFingerprint(): string | null {
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
   const [navLocaleTick, setNavLocaleTick] = useState(0);
   const [localeOfferTarget, setLocaleOfferTarget] = useState<Locale | null>(
@@ -108,6 +110,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => () => clearTransitionTimeouts(), [clearTransitionTimeouts]);
 
+  useEffect(() => {
+    if (pathname !== "/privacy" && localeTransitionPhase === "invert") {
+      setLocaleTransitionPhase("idle");
+    }
+  }, [pathname, localeTransitionPhase]);
+
   const dismissLocaleOffer = useCallback(() => {
     if (typeof window === "undefined") return;
     const detected = localeFromNavigator();
@@ -126,6 +134,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
       clearTransitionTimeouts();
       setLocaleTransitionPhase("idle");
+
+      const onPrivacy =
+        typeof window !== "undefined" &&
+        window.location.pathname === "/privacy";
+
+      if (!onPrivacy) {
+        setLocaleState(next);
+        window.localStorage.setItem(STORAGE_KEY, next);
+        persistLocaleHintCookie(next);
+        return;
+      }
 
       const run = () => {
         setLocaleTransitionPhase("invert");
