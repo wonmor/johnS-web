@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+    images: {
+      formats: ["image/avif", "image/webp"],
+    },
+    compiler: {
+      removeConsole:
+        process.env.NODE_ENV === "production"
+          ? { exclude: ["error", "warn"] }
+          : false,
+    },
     i18n: {
       localeDetection: false,
       // These are all the locales you want to support in

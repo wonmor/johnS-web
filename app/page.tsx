@@ -1,17 +1,26 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import * as THREE from "three";
-import { Box3, Vector3, MathUtils } from "three";
 import Link from "next/link";
-import { OrbitControls } from "@react-three/drei";
+import React, { Suspense, useEffect, useRef, useState } from "react";
+import { LazyMountInView } from "./components/portfolio/LazyMountInView";
 import { ibmPlexSansKRFontStack, tubeFont } from "./fonts";
 import { useI18n } from "./i18n/context";
 import type { Locale } from "./i18n/messages";
+
+const BenzeneCanvas = dynamic(
+  () => import("./components/portfolio/BenzeneCanvas"),
+  { ssr: false }
+);
+const GadoliniumCanvas = dynamic(
+  () => import("./components/portfolio/GadoliniumCanvas"),
+  { ssr: false }
+);
+const FaceCanvas = dynamic(
+  () => import("./components/portfolio/FaceCanvas"),
+  { ssr: false }
+);
 
 const tubeRed = "#f77f6b"; // legacy accent red (kept for logos)
 const tubeBlue = "#003688";
@@ -462,80 +471,13 @@ function TubeRoundelWith787({
 }
 
 
-function Model({ modelPath }: { modelPath: string }) {
-  const obj = useLoader(OBJLoader, modelPath);
-  const objRef = useRef<THREE.Object3D>();
-  const [rotDir, setRotDir] = useState(1);
-  const [rotY, setRotY] = useState(0);
-  const speed = 0.001;
-  const limit = MathUtils.degToRad(50);
-
-  useFrame(() => {
-    if (objRef.current) {
-      const newY = rotY + speed * rotDir;
-      if (Math.abs(newY) > limit) setRotDir(-rotDir);
-      else setRotY(newY);
-      objRef.current.rotation.y = newY;
-    }
-  });
-
-  useEffect(() => {
-    if (!objRef.current) return;
-    objRef.current.traverse((c) => {
-      if (c instanceof THREE.Mesh) c.material.side = THREE.DoubleSide;
-    });
-    objRef.current.rotation.set(
-      MathUtils.degToRad(180),
-      MathUtils.degToRad(40),
-      MathUtils.degToRad(90)
-    );
-    objRef.current.scale.setScalar(20);
-    const bbox = new Box3().setFromObject(objRef.current);
-    const center = new Vector3();
-    bbox.getCenter(center);
-    objRef.current.position.copy(center.negate());
-  }, [obj]);
-
-  return <primitive object={obj} ref={objRef} />;
-}
-
-function GLTFModel({ modelPath, size }: { modelPath: string; size?: number }) {
-  const gltf = useLoader(GLTFLoader, modelPath);
-  const objRef = useRef<THREE.Object3D>(null);
-
-  useEffect(() => {
-    if (!objRef.current) return;
-    objRef.current.traverse((child) => {
-      if ((child as THREE.Mesh).isMesh) {
-        const mesh = child as THREE.Mesh;
-        if (Array.isArray(mesh.material)) {
-          mesh.material.forEach((mat) => (mat.side = THREE.DoubleSide));
-        } else {
-          mesh.material.side = THREE.DoubleSide;
-        }
-      }
-    });
-    const scale = size || 1;
-    objRef.current.scale.setScalar(scale);
-    const bbox = new Box3().setFromObject(objRef.current);
-    const center = new Vector3();
-    bbox.getCenter(center);
-    objRef.current.position.copy(center.negate());
-  }, [gltf, size]);
-
-  useFrame(() => {
-    if (objRef.current) objRef.current.rotation.y += 0.002;
-  });
-
-  return <primitive object={gltf.scene} ref={objRef} />;
-}
-
 export default function Portfolio() {
   const { t, locale } = useI18n();
   const headerRoundelTheme = getRoundelTheme(locale);
   const [activeTab, setActiveTab] = useState<"benzene" | "gadolinium">(
     "benzene"
   );
+  const [atoms3dUnlocked, setAtoms3dUnlocked] = useState(false);
   const benzeneRef = useRef<HTMLDivElement>(null);
   const gadoliniumRef = useRef<HTMLDivElement>(null);
 
@@ -593,6 +535,8 @@ export default function Portfolio() {
               alt={t("awards.reachAlt")}
               width={100}
               height={100}
+              priority
+              sizes="100px"
               style={{
                 width: "100%",
                 height: "100%",
@@ -746,7 +690,10 @@ export default function Portfolio() {
                 ? "bg-white text-black"
                 : "bg-transparent text-white border border-white/60"
             }`}
-            onClick={() => setActiveTab("gadolinium")}
+            onClick={() => {
+              setAtoms3dUnlocked(true);
+              setActiveTab("gadolinium");
+            }}
           >
             {t("gltf.tabGd")}
           </button>
@@ -756,7 +703,10 @@ export default function Portfolio() {
                 ? "bg-white text-black"
                 : "bg-transparent text-white border border-white/60"
             }`}
-            onClick={() => setActiveTab("benzene")}
+            onClick={() => {
+              setAtoms3dUnlocked(true);
+              setActiveTab("benzene");
+            }}
           >
             {t("gltf.tabBenzene")}
           </button>
@@ -765,22 +715,25 @@ export default function Portfolio() {
         <div ref={benzeneRef}>
           {activeTab === "benzene" && (
             <div className="bg-black rounded-md p-6 shadow-lg">
-              <Suspense
+              <LazyMountInView
+                unlock={atoms3dUnlocked}
+                rootMargin="220px 0px 260px 0px"
                 fallback={
-                  <div className="p-20 text-center text-3xl font-thin text-white">
+                  <div className="flex h-[300px] items-center justify-center text-center text-3xl font-thin text-white">
                     {t("gltf.loadingBenzene")}
                   </div>
                 }
               >
-                <Canvas
-                  style={{ height: 300 }}
-                  camera={{ position: [0, 0, 5] }}
+                <Suspense
+                  fallback={
+                    <div className="flex h-[300px] items-center justify-center text-center text-3xl font-thin text-white">
+                      {t("gltf.loadingBenzene")}
+                    </div>
+                  }
                 >
-                  <ambientLight intensity={2} />
-                  <GLTFModel modelPath="/model-6.gltf" size={0.3} />
-                  <OrbitControls enablePan enableZoom enableRotate />
-                </Canvas>
-              </Suspense>
+                  <BenzeneCanvas />
+                </Suspense>
+              </LazyMountInView>
               <div className="bg-gray-900 p-6 text-center text-white">
                 <h4 className="text-2xl tracking-wide">
                   {t("gltf.benzeneTitle")}
@@ -809,22 +762,25 @@ export default function Portfolio() {
         <div ref={gadoliniumRef}>
           {activeTab === "gadolinium" && (
             <div className="bg-black rounded-md p-6 shadow-lg">
-              <Suspense
+              <LazyMountInView
+                unlock={atoms3dUnlocked}
+                rootMargin="220px 0px 260px 0px"
                 fallback={
-                  <div className="p-20 text-center text-3xl font-thin text-white">
+                  <div className="flex h-[400px] items-center justify-center text-center text-3xl font-thin text-white">
                     {t("gltf.loadingGd")}
                   </div>
                 }
               >
-                <Canvas
-                  style={{ height: 400 }}
-                  camera={{ position: [0, 0, 5] }}
+                <Suspense
+                  fallback={
+                    <div className="flex h-[400px] items-center justify-center text-center text-3xl font-thin text-white">
+                      {t("gltf.loadingGd")}
+                    </div>
+                  }
                 >
-                  <ambientLight intensity={2} />
-                  <GLTFModel modelPath="/model-4.gltf" />
-                  <OrbitControls enablePan enableZoom enableRotate />
-                </Canvas>
-              </Suspense>
+                  <GadoliniumCanvas />
+                </Suspense>
+              </LazyMountInView>
               <div className="bg-gray-900 p-6 text-center text-white">
                 <h4 className="text-2xl tracking-wide">{t("gltf.gdTitle")}</h4>
                 <p className="mt-2 text-gray-300">{t("gltf.gdBody")}</p>
@@ -922,19 +878,24 @@ export default function Portfolio() {
         id="section-face"
         className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-lg"
       >
-        <Suspense
+        <LazyMountInView
+          rootMargin="240px 0px 320px 0px"
           fallback={
-            <div className="p-20 text-center text-3xl font-thin text-white">
+            <div className="flex h-[400px] items-center justify-center text-center text-3xl font-thin text-white">
               {t("face.loading")}
             </div>
           }
         >
-          <Canvas style={{ height: 400 }} camera={{ position: [0, 0, 5] }}>
-            <ambientLight intensity={3} />
-            <Model modelPath="face_model1.obj" />
-            <OrbitControls enablePan enableZoom enableRotate />
-          </Canvas>
-        </Suspense>
+          <Suspense
+            fallback={
+              <div className="flex h-[400px] items-center justify-center text-center text-3xl font-thin text-white">
+                {t("face.loading")}
+              </div>
+            }
+          >
+            <FaceCanvas />
+          </Suspense>
+        </LazyMountInView>
         <div className="bg-gray-900 p-6 text-center text-white">
           <h4 className="text-2xl tracking-wide">{t("face.title")}</h4>
           <p className="mt-2 text-gray-300">{t("face.body")}</p>
@@ -982,6 +943,7 @@ export default function Portfolio() {
             height="250"
             src="https://www.youtube.com/embed/LqiZKoXhtDA?si=T8ZAd0P-vh_x1XaY"
             title="YouTube video player"
+            loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
@@ -1004,6 +966,7 @@ export default function Portfolio() {
             height="250"
             src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
             title="YouTube video player"
+            loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
