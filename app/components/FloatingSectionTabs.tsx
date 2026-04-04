@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useChromeBackdropProbes } from "./ChromeBackdropProvider";
 import { tubeFont } from "../fonts";
 import { useI18n } from "../i18n/context";
 import type { MessageKey } from "../i18n/messages";
@@ -15,20 +16,8 @@ const SECTIONS: { id: string; labelKey: MessageKey }[] = [
   { id: "section-edu", labelKey: "navTab.edu" },
 ];
 
-const LIGHT_FOOTER_EL = "site-light-footer";
-
-/** Viewport Y (from top) sampled just above the tab pill. */
-const PROBE_OFFSET_FROM_BOTTOM = 84;
-
-/**
- * Within `#site-light-footer`, top ~this fraction is cream (Orchestr) → black tab text.
- * Below that the gradient goes navy → white tab text again.
- */
-const FOOTER_CREAM_FRACTION = 0.58;
-
-function useBottomTabChrome() {
-  /** true = light pill + dark text; false = dark pill + white text (default for whole site). */
-  const [useLightChrome, setUseLightChrome] = useState(false);
+/** Scroll spy only: which section is active in the tab bar. */
+function useActiveSectionTab() {
   const [activeId, setActiveId] = useState(SECTIONS[0].id);
 
   useEffect(() => {
@@ -45,22 +34,6 @@ function useBottomTabChrome() {
         if (top - 20 <= line) best = id;
       }
       setActiveId((prev) => (prev === best ? prev : best));
-
-      const yProbe = h - PROBE_OFFSET_FROM_BOTTOM;
-      const footer = document.getElementById(LIGHT_FOOTER_EL);
-      if (!footer) {
-        setUseLightChrome(false);
-        return;
-      }
-      const r = footer.getBoundingClientRect();
-      const insideFooter = yProbe >= r.top && yProbe <= r.bottom;
-      if (!insideFooter) {
-        setUseLightChrome(false);
-        return;
-      }
-      const t = (yProbe - r.top) / Math.max(1, r.height);
-      const inOrchestrCream = t < FOOTER_CREAM_FRACTION;
-      setUseLightChrome(inOrchestrCream);
     };
 
     tick();
@@ -72,12 +45,13 @@ function useBottomTabChrome() {
     };
   }, []);
 
-  return { useLightChrome, activeId, setActiveId };
+  return { activeId, setActiveId };
 }
 
 export function FloatingSectionTabs() {
   const { t, locale, localeTransitionPhase } = useI18n();
-  const { useLightChrome, activeId, setActiveId } = useBottomTabChrome();
+  const { bottomUseLightChrome } = useChromeBackdropProbes();
+  const { activeId, setActiveId } = useActiveSectionTab();
   const invert = localeTransitionPhase === "invert";
 
   const fontClass =
@@ -94,7 +68,7 @@ export function FloatingSectionTabs() {
     [setActiveId]
   );
 
-  const pill = useLightChrome
+  const pill = bottomUseLightChrome
     ? "border-[0.5px] border-black/[0.08] bg-white/48 text-[#0c1220] shadow-[0_10px_44px_rgba(0,0,0,0.09),inset_0_1px_0_rgba(255,255,255,0.92)]"
     : "border-[0.5px] border-white/[0.12] bg-[#060d20]/38 text-white shadow-[0_14px_48px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.14)]";
 
@@ -117,7 +91,7 @@ export function FloatingSectionTabs() {
       >
         {SECTIONS.map(({ id, labelKey }) => {
           const on = activeId === id;
-          const cls = useLightChrome
+          const cls = bottomUseLightChrome
             ? on
               ? btnLightOn
               : btnLightIdle

@@ -171,7 +171,7 @@ export const messages = {
 
     "hero.line1": "TRAVAUX CRÉATIFS",
     "hero.line2": "AÉROSPATIALE",
-    "hero.landmark": "JACQUES-CARTIER BRIDGE IN MONTREAL",
+    "hero.landmark": "JACQUES-CARTIER BRIDGE IN MONTRÉAL",
     "hero.email": "john@orchestrsim.com",
     "awards.wwdc": "Lauréat du Swift Challenge Apple WWDC23",
     "awards.wwdcVenue": "À L’APPLE PARK, CUPERTINO",
