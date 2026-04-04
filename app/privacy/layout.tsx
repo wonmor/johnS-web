@@ -5,7 +5,7 @@ import { messages } from "../i18n/messages";
 export const metadata: Metadata = {
   title: `${messages.en["privacy.title"]} — ${messages.en["meta.title"]}`,
   description:
-    "Privacy policy in Français, British English, and 한국어 (GDPR / ePrivacy-aligned transparency).",
+    "Privacy policy in English, Français, and 한국어 (GDPR / ePrivacy-aligned transparency).",
 };
 
 export default function PrivacyLayout({ children }: { children: ReactNode }) {

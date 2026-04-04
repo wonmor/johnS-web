@@ -1,15 +1,78 @@
 "use client";
 
 import Link from "next/link";
+import { Fragment, useMemo } from "react";
 import { tubeFont } from "../fonts";
 import { useI18n } from "../i18n/context";
-import { messages } from "../i18n/messages";
+import { type Locale, messages } from "../i18n/messages";
 
-const SECTION_IDS = { en: "privacy-en", fr: "privacy-fr", ko: "privacy-ko" } as const;
+const SECTION_IDS: Record<Locale, string> = {
+  en: "privacy-en",
+  fr: "privacy-fr",
+  ko: "privacy-ko",
+};
+
+const ALL_LOCALES: Locale[] = ["en", "fr", "ko"];
+
+function privacyLocalesOrder(current: Locale): Locale[] {
+  return [current, ...ALL_LOCALES.filter((l) => l !== current)];
+}
+
+function navAnchorLabel(loc: Locale) {
+  switch (loc) {
+    case "en":
+      return "English";
+    case "fr":
+      return "Français";
+    case "ko":
+      return (
+        <span className="font-ibm-plex-sans-kr" lang="ko">
+          한국어
+        </span>
+      );
+    default: {
+      const _x: never = loc;
+      return _x;
+    }
+  }
+}
+
+function sectionHeading(loc: Locale) {
+  const title = messages[loc]["privacy.title"];
+  switch (loc) {
+    case "en":
+      return (
+        <>
+          English — {title}
+        </>
+      );
+    case "fr":
+      return (
+        <>
+          Français — {title}
+        </>
+      );
+    case "ko":
+      return (
+        <span className="font-ibm-plex-sans-kr" lang="ko">
+          한국어 — {title}
+        </span>
+      );
+    default: {
+      const _x: never = loc;
+      return _x;
+    }
+  }
+}
+
+const navLinkClass =
+  "rounded-sm text-white/85 ring-offset-[#020824] transition hover:text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40";
 
 export default function PrivacyPolicyPage() {
   const { t, locale } = useI18n();
   const year = new Date().getFullYear();
+
+  const localeOrder = useMemo(() => privacyLocalesOrder(locale), [locale]);
 
   return (
     <div
@@ -34,61 +97,35 @@ export default function PrivacyPolicyPage() {
           aria-label="Policy languages"
           className="mb-14 flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-white/10 pb-6 text-sm"
         >
-          <a
-            href={`#${SECTION_IDS.fr}`}
-            className="rounded-sm text-white/85 ring-offset-[#020824] transition hover:text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40"
-          >
-            Français
-          </a>
-          <span className="text-white/25" aria-hidden>
-            ·
-          </span>
-          <a
-            href={`#${SECTION_IDS.en}`}
-            className="rounded-sm text-white/85 ring-offset-[#020824] transition hover:text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40"
-          >
-            English
-          </a>
-          <span className="text-white/25" aria-hidden>
-            ·
-          </span>
-          <a
-            href={`#${SECTION_IDS.ko}`}
-            className="rounded-sm text-white/85 ring-offset-[#020824] transition hover:text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40"
-          >
-            <span className="font-ibm-plex-sans-kr">한국어</span>
-          </a>
+          {localeOrder.map((loc, idx) => (
+            <Fragment key={loc}>
+              {idx > 0 ? (
+                <span className="text-white/25" aria-hidden>
+                  ·
+                </span>
+              ) : null}
+              <a href={`#${SECTION_IDS[loc]}`} className={navLinkClass}>
+                {navAnchorLabel(loc)}
+              </a>
+            </Fragment>
+          ))}
         </nav>
 
-        <section id={SECTION_IDS.fr} className="mb-20 scroll-mt-28">
-          <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
-            Français — {messages.fr["privacy.title"]}
-          </h2>
-          <p className="text-[15px] leading-[1.65] text-white/82 sm:text-base">
-            {messages.fr["privacy.body"]}
-          </p>
-        </section>
-
-        <section id={SECTION_IDS.en} className="mb-20 scroll-mt-28">
-          <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
-            English — {messages.en["privacy.title"]}
-          </h2>
-          <p className="text-[15px] leading-[1.65] text-white/82 sm:text-base">
-            {messages.en["privacy.body"]}
-          </p>
-        </section>
-
-        <section
-          id={SECTION_IDS.ko}
-          className="font-ibm-plex-sans-kr mb-20 scroll-mt-28"
-        >
-          <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
-            한국어 — {messages.ko["privacy.title"]}
-          </h2>
-          <p className="text-[15px] leading-[1.65] text-white/82 sm:text-base">
-            {messages.ko["privacy.body"]}
-          </p>
-        </section>
+        {localeOrder.map((loc) => (
+          <section
+            key={loc}
+            id={SECTION_IDS[loc]}
+            className={`mb-20 scroll-mt-28${loc === "ko" ? " font-ibm-plex-sans-kr" : ""}`}
+            lang={loc === "ko" ? "ko" : loc === "fr" ? "fr" : "en"}
+          >
+            <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
+              {sectionHeading(loc)}
+            </h2>
+            <p className="text-[15px] leading-[1.65] text-white/82 sm:text-base">
+              {messages[loc]["privacy.body"]}
+            </p>
+          </section>
+        ))}
 
         <div className="border-t border-white/10 pt-10">
           <a
