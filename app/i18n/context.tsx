@@ -12,7 +12,6 @@ import React, {
   useState,
 } from "react";
 import { CookieConsentDialog } from "../components/CookieConsentDialog";
-import { LocaleOfferDialog } from "../components/LocaleOfferDialog";
 import {
   type Locale,
   type MessageKey,
@@ -21,7 +20,6 @@ import {
 import {
   DEFAULT_LOCALE,
   LOCALE_HINT_COOKIE,
-  LOCALE_OFFER_DISMISSED_KEY,
   localeFromNavigator,
   parseLocaleCookieValue,
 } from "./localeDetect";
@@ -62,18 +60,9 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-function dismissedOfferFingerprint(): string | null {
-  if (typeof window === "undefined") return null;
-  return window.localStorage.getItem(LOCALE_OFFER_DISMISSED_KEY);
-}
-
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE);
-  const [navLocaleTick, setNavLocaleTick] = useState(0);
-  const [localeOfferTarget, setLocaleOfferTarget] = useState<Locale | null>(
-    null
-  );
   const [localeTransitionPhase, setLocaleTransitionPhase] =
     useState<LocaleTransitionPhase>("idle");
   const [privacyEntranceInvert, setPrivacyEntranceInvert] = useState(false);
@@ -85,29 +74,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     timeoutIdsRef.current = [];
   }, []);
 
+  /* On first load: use stored preference, or auto-detect from browser language */
   useIsomorphicLayoutEffect(() => {
-    setLocaleState(readStoredLocale() ?? DEFAULT_LOCALE);
-  }, []);
-
-  useEffect(() => {
-    const onLang = () => setNavLocaleTick((n) => n + 1);
-    window.addEventListener("languagechange", onLang);
-    return () => window.removeEventListener("languagechange", onLang);
-  }, []);
-
-  useEffect(() => {
-    const detected = localeFromNavigator();
-    if (detected === locale) {
-      setLocaleOfferTarget(null);
-      return;
+    const stored = readStoredLocale();
+    if (stored) {
+      setLocaleState(stored);
+    } else {
+      const detected = localeFromNavigator();
+      setLocaleState(detected);
+      window.localStorage.setItem(STORAGE_KEY, detected);
+      persistLocaleHintCookie(detected);
     }
-    const fingerprint = `${locale}|${detected}`;
-    if (dismissedOfferFingerprint() === fingerprint) {
-      setLocaleOfferTarget(null);
-      return;
-    }
-    setLocaleOfferTarget(detected);
-  }, [locale, navLocaleTick]);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang =
@@ -149,18 +127,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       setPrivacyEntranceInvert(false);
     };
   }, [pathname]);
-
-  const dismissLocaleOffer = useCallback(() => {
-    if (typeof window === "undefined") return;
-    const detected = localeFromNavigator();
-    if (detected !== locale) {
-      window.localStorage.setItem(
-        LOCALE_OFFER_DISMISSED_KEY,
-        `${locale}|${detected}`
-      );
-    }
-    setLocaleOfferTarget(null);
-  }, [locale]);
 
   const setLocale = useCallback(
     (next: Locale) => {
@@ -226,30 +192,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       t,
       localeTransitionPhase,
       privacyEntranceInvert,
-      localeOfferActive: localeOfferTarget !== null,
+      localeOfferActive: false,
     }),
-    [locale, setLocale, t, localeTransitionPhase, privacyEntranceInvert, localeOfferTarget]
+    [locale, setLocale, t, localeTransitionPhase, privacyEntranceInvert]
   );
 
   return (
     <I18nContext.Provider value={value}>
       {children}
-      {localeOfferTarget ? (
-        <LocaleOfferDialog
-          target={localeOfferTarget}
-          onAccept={() => {
-            const next = localeOfferTarget;
-            setLocaleOfferTarget(null);
-            if (typeof window !== "undefined") {
-              window.localStorage.removeItem(LOCALE_OFFER_DISMISSED_KEY);
-            }
-            if (next && next !== locale) {
-              setLocale(next);
-            }
-          }}
-          onDecline={dismissLocaleOffer}
-        />
-      ) : null}
       <CookieConsentDialog />
     </I18nContext.Provider>
   );
