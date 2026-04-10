@@ -4,9 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useI18n } from "../i18n/context";
 import type { Locale } from "../i18n/messages";
+
+const JEBOS_GALLERY = [
+  { src: "/products/jebos-1.webp", caption: "VFR sectional chart with synthetic vision PFD" },
+  { src: "/products/jebos-2.webp", caption: "IFR enroute chart — Montreal waypoints and navaids" },
+  { src: "/products/jebos-3.webp", caption: "Airport diagram viewer — KOWD Norwood Memorial" },
+  { src: "/products/jebos-4.webp", caption: "Live ATC transcription with highlighted callsigns" },
+  { src: "/products/jebos-5.webp", caption: "Preflight checklist — documents, walk-around, fuel, oil" },
+  { src: "/products/jebos-6.webp", caption: "Settings — AIRAC data, navdata downloads" },
+  { src: "/products/jebos-7.webp", caption: "POH reference — Cessna 152 V-speeds and weight limits" },
+  { src: "/products/jebos-8.webp", caption: "Split view — POH sidebar with VFR map" },
+  { src: "/products/jebos-9.webp", caption: "Satellite overlay with ADS-B traffic contacts" },
+];
 
 export function BodyContent({ children }: { children: React.ReactNode }) {
   const { t, locale } = useI18n();
@@ -44,133 +56,319 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
       <EulaModal />
 
       {showSiteFooter ? (
-      <div id="site-light-footer">
-        <div
-          data-chrome-surface="light"
-          className={`bg-[#f5f0e6] text-black selection:bg-black selection:text-[#f5f0e6] ${
-            locale === "ko" ? "" : "font-mono"
-          }`}
-        >
-          <header className="mx-auto max-w-4xl px-6 pb-20 pt-12 sm:pb-24">
-            <div className="flex items-start justify-between gap-4">
-              <div className="text-left">
-                <span
-                  className="-ml-2 mb-1 inline-block opacity-95"
-                  aria-hidden="true"
-                >
-                  <svg
-                    width="46"
-                    height="20"
-                    viewBox="0 0 56 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-gray-600"
-                  >
-                    <path
-                      d="M2 8.5H22"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeDasharray="2.6 2.8"
-                      opacity="0.9"
-                    />
-                    <path
-                      d="M2 13.5H20"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeDasharray="2.6 2.8"
-                      opacity="0.8"
-                    />
-                    <path
-                      d="M23 12L34 10.6L45 12L34 13.4L23 12Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M31.5 12L27 7.6H29.8L34 10.6L31.5 12Z"
-                      fill="currentColor"
-                      opacity="0.9"
-                    />
-                    <path
-                      d="M31.5 12L27 16.4H29.8L34 13.4L31.5 12Z"
-                      fill="currentColor"
-                      opacity="0.9"
-                    />
-                    <path
-                      d="M45 12L49.2 11.5L54 12L49.2 12.5L45 12Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-                <h1 className="text-5xl font-extralight tracking-widest">
-                  {t("orchestr.title")}
-                </h1>
-                <span className="mt-1 inline-block text-xs tracking-[0.35em] text-gray-700">
-                  {t("orchestr.subtitle")}
-                </span>
-              </div>
-              <div className="text-[11px] uppercase tracking-[0.35em] text-gray-500">
-                {t("orchestr.badge")}
-              </div>
-            </div>
-
-            <div className="mt-8 max-w-2xl space-y-3 text-left text-gray-800">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">
-                {t("orchestr.intro")}
-                <span className="ml-2 inline-block rounded-full border border-red-500/60 px-2 py-[2px] text-[10px] tracking-[0.25em]">
-                  {t("orchestr.new")}
-                </span>
-              </p>
-              <p className="text-xl leading-relaxed">
-                {t("orchestr.tagline")}
-                {t("orchestr.taglineFrNote") ? (
-                  <>
-                    <br />
-                    <span className="italic text-gray-700">
-                      {t("orchestr.taglineFrNote")}
-                    </span>
-                  </>
-                ) : null}
-              </p>
-              <p className="text-sm leading-relaxed text-gray-900">
-                {t("orchestr.features")}
-              </p>
-            </div>
-
-            <div className="mt-6 flex justify-start gap-6">
-              <a
-                href="https://orchestrsim.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-md border border-black/75 bg-transparent px-6 py-2 text-black transition hover:bg-black hover:text-[#f5f0e6] focus:outline-none focus:ring-2 focus:ring-black/30 active:bg-black active:text-[#f5f0e6]"
-              >
-                {t("orchestr.cta")}
-              </a>
-            </div>
-          </header>
-        </div>
-        <div
-          data-chrome-surface="dark"
-          className="relative isolate flex min-h-[min(40vh,26rem)] flex-col bg-[#020824] pb-4 pt-8"
-        >
-          {/* Blend cream → navy only inside this block so nothing overlaps the Orchestr section above the CTA on mobile */}
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 z-0 h-12 bg-gradient-to-b from-[#f5f0e6] to-[#020824] sm:h-14"
-            aria-hidden
-          />
-          <AirshipFooterSilhouette />
-          <div className="relative z-10 mt-auto flex justify-center px-4 pb-8 pt-6 sm:pb-10">
-            <Link
-              href="/privacy"
-              className="pointer-events-auto text-center text-[11px] font-medium uppercase tracking-[0.2em] text-white/80 underline decoration-white/35 underline-offset-4 transition hover:text-white hover:decoration-white/60 sm:text-xs sm:tracking-[0.26em]"
+        <>
+          <FloatingOrchBanner />
+          <div id="site-light-footer">
+            {/* ── Orchestr section: dark, matching OrchAerospace.com ── */}
+            <div
+              data-chrome-surface="dark"
+              className="relative bg-[#060910] text-white selection:bg-cyan-400 selection:text-black"
             >
-              {t("privacy.title")}
-            </Link>
+              <div className="mx-auto max-w-5xl px-6 pb-16 pt-14 sm:px-8 sm:pb-20 sm:pt-16">
+                {/* Title row */}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="text-left">
+                    <OrchAircraftIcon />
+                    <h1
+                      className="text-5xl font-bold uppercase tracking-tight sm:text-6xl"
+                      style={{
+                        color: "transparent",
+                        WebkitTextStroke: "2px rgba(255,255,255,0.9)",
+                        textShadow:
+                          "0 0 20px rgba(255,255,255,0.15), 0 0 40px rgba(255,255,255,0.08)",
+                      }}
+                    >
+                      {t("orchestr.title")}
+                    </h1>
+                    <span className="mt-1 inline-block text-xs font-semibold tracking-[0.35em] text-white/60">
+                      {t("orchestr.subtitle")}
+                    </span>
+                  </div>
+                  <div className="text-[11px] uppercase tracking-[0.35em] text-white/40">
+                    {t("orchestr.badge")}
+                  </div>
+                </div>
+
+                {/* Intro */}
+                <div className="mt-8 max-w-2xl space-y-3 text-left">
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-500">
+                    {t("orchestr.intro")}
+                    <span className="ml-2 inline-block rounded-full border border-red-500/60 px-2 py-[2px] text-[10px] tracking-[0.25em] text-red-400">
+                      {t("orchestr.new")}
+                    </span>
+                  </p>
+                  <p className="text-xl leading-relaxed text-white/90">
+                    {t("orchestr.tagline")}
+                  </p>
+                  <p className="text-sm leading-relaxed text-white/60">
+                    {t("orchestr.features")}
+                  </p>
+                </div>
+
+                {/* Hardware image */}
+                <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
+                  <Image
+                    src="/products/Avionic1.webp"
+                    alt="Orch Avionic 1 hardware"
+                    width={1200}
+                    height={675}
+                    className="w-full object-cover"
+                    sizes="(max-width: 1024px) 100vw, 1024px"
+                    priority
+                  />
+                </div>
+
+                {/* JebediahOS section */}
+                <div className="mt-20">
+                  <div className="flex flex-col gap-8 md:flex-row md:gap-12">
+                    <div className="w-full md:w-1/2">
+                      <div className="mb-3 flex items-center gap-3">
+                        <h3 className="text-2xl font-bold uppercase md:text-3xl">
+                          {t("orchestr.jebos.title")}
+                        </h3>
+                        <span className="inline-flex items-center rounded-md border border-cyan-400 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-cyan-400">
+                          {t("orchestr.jebos.tag")}
+                        </span>
+                      </div>
+                      <p className="mb-3 leading-relaxed text-white/90">
+                        {t("orchestr.jebos.desc")}
+                      </p>
+                      <p className="mb-5 text-sm leading-relaxed text-white/60">
+                        {t("orchestr.jebos.features")}
+                      </p>
+                      <a
+                        href="https://orchestrsim.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-lg bg-cyan-400 px-5 py-2.5 text-sm font-medium text-black transition-colors hover:bg-cyan-300"
+                      >
+                        {t("orchestr.jebos.cta")}
+                      </a>
+                    </div>
+
+                    {/* First screenshot as hero */}
+                    <div className="w-full md:w-1/2">
+                      <div className="overflow-hidden rounded-2xl border border-white/20">
+                        <Image
+                          src="/products/jebos-1.webp"
+                          alt="JebediahOS VFR sectional chart"
+                          width={960}
+                          height={540}
+                          className="w-full object-cover"
+                          sizes="(max-width: 768px) 100vw, 512px"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Auto-cycling gallery */}
+                  <JebosGallery />
+                </div>
+
+                {/* CTA */}
+                <div className="mt-12 flex justify-start">
+                  <a
+                    href="https://orchestrsim.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+                  >
+                    {t("orchestr.cta")} →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer with privacy link */}
+            <div
+              data-chrome-surface="dark"
+              className="relative isolate flex min-h-[min(40vh,26rem)] flex-col bg-[#020824] pb-4 pt-8"
+            >
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 z-0 h-12 bg-gradient-to-b from-[#060910] to-[#020824] sm:h-14"
+                aria-hidden
+              />
+              <AirshipFooterSilhouette />
+              <div className="relative z-10 mt-auto flex justify-center px-4 pb-8 pt-6 sm:pb-10">
+                <Link
+                  href="/privacy"
+                  className="pointer-events-auto text-center text-[11px] font-medium uppercase tracking-[0.2em] text-white/80 underline decoration-white/35 underline-offset-4 transition hover:text-white hover:decoration-white/60 sm:text-xs sm:tracking-[0.26em]"
+                >
+                  {t("privacy.title")}
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
       ) : null}
     </>
+  );
+}
+
+/* ── JebediahOS auto-cycling screenshot gallery ── */
+function JebosGallery() {
+  const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setSlide((s) => (s + 1) % JEBOS_GALLERY.length), 4000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="mt-10 w-full">
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/20">
+        {JEBOS_GALLERY.map((item, i) => (
+          <div
+            key={i}
+            className="absolute inset-0 transition-opacity duration-700"
+            style={{ opacity: slide === i ? 1 : 0 }}
+          >
+            <Image
+              src={item.src}
+              alt={item.caption}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 1024px"
+            />
+          </div>
+        ))}
+        {/* Caption overlay */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-6 py-4">
+          <p className="text-sm font-medium text-white md:text-base">
+            {JEBOS_GALLERY[slide].caption}
+          </p>
+        </div>
+        {/* Navigation dots */}
+        <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 gap-1.5">
+          {JEBOS_GALLERY.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setSlide(i)}
+              className={`h-2 rounded-full transition-all ${
+                slide === i ? "w-6 bg-white" : "w-2 bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Floating banner that appears on scroll ── */
+function FloatingOrchBanner() {
+  const { t } = useI18n();
+  const [visible, setVisible] = useState(false);
+  const footerRef = useRef<HTMLElement | null>(null);
+
+  const onScroll = useCallback(() => {
+    const scrollY = window.scrollY;
+    const viewH = window.innerHeight;
+    // Show after scrolling past 60% of viewport
+    const showThreshold = viewH * 0.6;
+    // Hide when the Orchestr footer section is in view
+    const footer = footerRef.current ?? document.getElementById("site-light-footer");
+    if (footer && !footerRef.current) footerRef.current = footer;
+
+    if (footer) {
+      const rect = footer.getBoundingClientRect();
+      if (rect.top < viewH) {
+        setVisible(false);
+        return;
+      }
+    }
+    setVisible(scrollY > showThreshold);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [onScroll]);
+
+  return (
+    <a
+      href="https://orchestrsim.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`fixed bottom-6 left-1/2 z-[35] flex -translate-x-1/2 items-center gap-2.5 rounded-full border border-cyan-400/30 bg-[#060910]/90 px-5 py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 hover:border-cyan-400/60 hover:bg-[#060910] ${
+        visible
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-4 opacity-0"
+      }`}
+    >
+      <span className="flex h-2 w-2">
+        <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-cyan-400 opacity-75" />
+        <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+      </span>
+      <span className="text-xs font-medium tracking-wide text-white sm:text-sm">
+        {t("orchestr.floatingBanner")}
+      </span>
+      <svg
+        className="h-3.5 w-3.5 text-cyan-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M14 5l7 7m0 0l-7 7m7-7H3"
+        />
+      </svg>
+    </a>
+  );
+}
+
+/* ── Small aircraft icon for Orchestr header ── */
+function OrchAircraftIcon() {
+  return (
+    <span className="-ml-1 mb-2 inline-block opacity-60" aria-hidden="true">
+      <svg
+        width="46"
+        height="20"
+        viewBox="0 0 56 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="text-white"
+      >
+        <path
+          d="M2 8.5H22"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeDasharray="2.6 2.8"
+          opacity="0.9"
+        />
+        <path
+          d="M2 13.5H20"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeDasharray="2.6 2.8"
+          opacity="0.8"
+        />
+        <path
+          d="M23 12L34 10.6L45 12L34 13.4L23 12Z"
+          fill="currentColor"
+        />
+        <path
+          d="M31.5 12L27 7.6H29.8L34 10.6L31.5 12Z"
+          fill="currentColor"
+          opacity="0.9"
+        />
+        <path
+          d="M31.5 12L27 16.4H29.8L34 13.4L31.5 12Z"
+          fill="currentColor"
+          opacity="0.9"
+        />
+        <path
+          d="M45 12L49.2 11.5L54 12L49.2 12.5L45 12Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
   );
 }
 

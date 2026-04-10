@@ -71,6 +71,14 @@ export const messages = {
     "orchestr.features":
       "ADS-B, GPS, handheld radio, fuel calculation and flight charts. All in one form factor.",
     "orchestr.cta": "Have a look",
+    "orchestr.jebos.title": "JebediahOS",
+    "orchestr.jebos.tag": "EMBEDDED OS",
+    "orchestr.jebos.desc":
+      "A custom real-time, Debian-based embedded operating system for NVIDIA Jetson Orin Nano with capacitive touchscreen.",
+    "orchestr.jebos.features":
+      "Moving map, ADS-B traffic, VHF ATC transcript, checklists, airport & navaid database, flight planning — all on bare metal.",
+    "orchestr.jebos.cta": "Learn more",
+    "orchestr.floatingBanner": "Check out Orchestr Aerospace",
 
     "hero.line1": "CREATIVE WORK",
     "hero.line2": "AEROSPACE",
@@ -226,6 +234,14 @@ export const messages = {
     "orchestr.features":
       "ADS-B, GPS, radio portable, calcul de carburant et cartes de vol. Tout dans un seul format.",
     "orchestr.cta": "Découvrir",
+    "orchestr.jebos.title": "JebediahOS",
+    "orchestr.jebos.tag": "OS EMBARQUÉ",
+    "orchestr.jebos.desc":
+      "Un système d'exploitation embarqué temps réel basé sur Debian pour NVIDIA Jetson Orin Nano avec écran tactile capacitif.",
+    "orchestr.jebos.features":
+      "Carte dynamique, trafic ADS-B, transcription VHF ATC, checklists, base de données aéroports et navaids, planification de vol — le tout en bare metal.",
+    "orchestr.jebos.cta": "En savoir plus",
+    "orchestr.floatingBanner": "Découvrir Orchestr Aerospace",
 
     "hero.line1": "TRAVAUX CRÉATIFS",
     "hero.line2": "AÉROSPATIALE",
@@ -380,6 +396,14 @@ export const messages = {
     "orchestr.features":
       "ADS-B, GPS, 휴대용 무전기, 연료 계산, 비행 차트까지. 하나의 폼 팩터에 담았습니다.",
     "orchestr.cta": "둘러보기",
+    "orchestr.jebos.title": "JebediahOS",
+    "orchestr.jebos.tag": "임베디드 OS",
+    "orchestr.jebos.desc":
+      "NVIDIA Jetson Orin Nano용 정전식 터치스크린을 갖춘 커스텀 실시간 Debian 기반 임베디드 운영체제.",
+    "orchestr.jebos.features":
+      "무빙맵, ADS-B 트래픽, VHF ATC 트랜스크립트, 체크리스트, 공항 및 항행 데이터베이스, 비행 계획 — 모두 베어메탈.",
+    "orchestr.jebos.cta": "자세히 보기",
+    "orchestr.floatingBanner": "Orchestr Aerospace 둘러보기",
 
     "hero.line1": "창작 활동",
     "hero.line2": "항공우주",
