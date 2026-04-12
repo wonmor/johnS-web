@@ -24,6 +24,10 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
   const { t, locale } = useI18n();
   const pathname = usePathname();
   const showSiteFooter = pathname !== "/privacy";
+  const [jebosVideoMuted, setJebosVideoMuted] = useState(true);
+  const jebosVideoRefCb = useCallback((el: HTMLVideoElement | null) => {
+    if (el) el.volume = 0.25;
+  }, []);
 
   return (
     <>
@@ -146,17 +150,36 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
                       </a>
                     </div>
 
-                    {/* First screenshot as hero */}
+                    {/* Video demo */}
                     <div className="w-full md:w-1/2">
-                      <div className="overflow-hidden rounded-2xl border border-white/20">
-                        <Image
-                          src="/products/jebos-1.webp"
-                          alt="JebediahOS VFR sectional chart"
-                          width={960}
-                          height={540}
-                          className="w-full object-cover"
-                          sizes="(max-width: 768px) 100vw, 512px"
-                        />
+                      <div className="relative overflow-hidden rounded-2xl border border-white/20">
+                        <video
+                          ref={jebosVideoRefCb}
+                          autoPlay
+                          loop
+                          muted={jebosVideoMuted}
+                          playsInline
+                          className="w-full"
+                        >
+                          <source src="/products/jebos-wx-radar-demo.mp4" type="video/mp4" />
+                        </video>
+                        <button
+                          type="button"
+                          onClick={() => setJebosVideoMuted((m) => !m)}
+                          className="absolute bottom-3 right-3 px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-sm text-white text-xs font-medium hover:bg-black/80 transition-colors flex items-center gap-1.5"
+                        >
+                          {jebosVideoMuted ? (
+                            <>
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" /></svg>
+                              PLAY SOUND
+                            </>
+                          ) : (
+                            <>
+                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
+                              MUTE
+                            </>
+                          )}
+                        </button>
                       </div>
                     </div>
                   </div>
