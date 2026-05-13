@@ -751,11 +751,11 @@ export default function Portfolio() {
         </a>
       </nav>
 
-      <div className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 sm:px-6">
+      <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 sm:gap-10 sm:px-6">
       {/* Gadolinium / Benzene Tabs */}
       <div
         id="section-atoms"
-        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-4 shadow-md"
+        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
         <div className="flex justify-center gap-4 mb-4">
           <button
@@ -788,7 +788,7 @@ export default function Portfolio() {
 
         <div ref={benzeneRef}>
           {activeTab === "benzene" && (
-            <div className="bg-black rounded-md p-6 shadow-lg">
+            <div className="bg-black/80 rounded-2xl p-6 shadow-lg ring-1 ring-white/5">
               <LazyMountInView
                 unlock={atoms3dUnlocked}
                 rootMargin="220px 0px 260px 0px"
@@ -808,7 +808,7 @@ export default function Portfolio() {
                   <BenzeneCanvas />
                 </Suspense>
               </LazyMountInView>
-              <div className="bg-gray-900 p-6 text-center text-white">
+              <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
                 <h4 className="text-2xl tracking-wide">
                   {t("gltf.benzeneTitle")}
                 </h4>
@@ -835,7 +835,7 @@ export default function Portfolio() {
 
         <div ref={gadoliniumRef}>
           {activeTab === "gadolinium" && (
-            <div className="bg-black rounded-md p-6 shadow-lg">
+            <div className="bg-black/80 rounded-2xl p-6 shadow-lg ring-1 ring-white/5">
               <LazyMountInView
                 unlock={atoms3dUnlocked}
                 rootMargin="220px 0px 260px 0px"
@@ -855,7 +855,7 @@ export default function Portfolio() {
                   <GadoliniumCanvas />
                 </Suspense>
               </LazyMountInView>
-              <div className="bg-gray-900 p-6 text-center text-white">
+              <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
                 <h4 className="text-2xl tracking-wide">{t("gltf.gdTitle")}</h4>
                 <p className="mt-2 text-gray-300">{t("gltf.gdBody")}</p>
                 <a
@@ -873,7 +873,7 @@ export default function Portfolio() {
       {/* ElectronVisual Section */}
       <section
         id="section-electron"
-        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-lg"
+        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
         <h3 className="mb-4 text-3xl uppercase">
           <ProjectTitle text={t("electron.title")} />
@@ -944,7 +944,7 @@ export default function Portfolio() {
       {/* 3D Face Model */}
       <div
         id="section-face"
-        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-lg"
+        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
         <LazyMountInView
           rootMargin="240px 0px 320px 0px"
@@ -964,7 +964,7 @@ export default function Portfolio() {
             <FaceCanvas />
           </Suspense>
         </LazyMountInView>
-        <div className="bg-gray-900 p-6 text-center text-white">
+        <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
           <h4 className="text-2xl tracking-wide">{t("face.title")}</h4>
           <p className="mt-2 text-gray-300">{t("face.body")}</p>
           <a
@@ -981,7 +981,7 @@ export default function Portfolio() {
       {/* OpticALLY Section */}
       <section
         id="section-orch"
-        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-md"
+        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
         <h3 className="mb-4 text-3xl uppercase">{t("orch.title")}</h3>
         <ul className="list-disc space-y-2 pl-6 text-lg">
@@ -1025,7 +1025,7 @@ export default function Portfolio() {
       {/* Experience Section */}
       <section
         id="section-exp"
-        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-md"
+        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
         <div className="mb-8 flex flex-col items-center">
           <iframe
@@ -1070,7 +1070,7 @@ export default function Portfolio() {
       </section>
 
       <div
-        className="w-full scroll-mt-24 space-y-8 rounded-md border border-white/10 bg-black/60 p-6 shadow-md"
+        className="w-full scroll-mt-24 space-y-8 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
         <div className="flex flex-col items-center text-center">
           <Image
@@ -1101,7 +1101,7 @@ export default function Portfolio() {
       {/* Education */}
       <section
         id="section-edu"
-        className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-md"
+        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
         <h3 className="mb-4 text-3xl uppercase">{t("edu.title")}</h3>
         <ol className="list-decimal space-y-6 pl-6 text-lg marker:text-gray-400">
