@@ -120,14 +120,14 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
                 </div>
 
                 {/* Hardware image */}
-                <div className="mt-10 overflow-hidden rounded-2xl border border-white/10">
+                <div className="mt-10 mx-auto w-full max-w-xl overflow-hidden rounded-2xl border border-white/10">
                   <Image
                     src="/products/Avionic1.webp"
                     alt="Orch Avionic 1 hardware"
                     width={1200}
                     height={675}
                     className="w-full object-cover"
-                    sizes="(max-width: 1024px) 100vw, 1024px"
+                    sizes="(max-width: 768px) 100vw, 36rem"
                     priority
                   />
                 </div>

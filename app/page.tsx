@@ -470,6 +470,39 @@ function TubeRoundelWith787({
   );
 }
 
+function splitTitleYear(text: string): { main: string; year: string | null } {
+  const m = text.match(/^(.*?)\s*\(([^()]+)\)\s*$/);
+  if (!m) return { main: text, year: null };
+  return { main: m[1].trim(), year: m[2].trim() };
+}
+
+function ProjectTitle({
+  text,
+  className,
+  yearClassName,
+}: {
+  text: string;
+  className?: string;
+  yearClassName?: string;
+}) {
+  const { main, year } = splitTitleYear(text);
+  return (
+    <span className={className}>
+      <span className="block">{main}</span>
+      {year ? (
+        <span
+          className={
+            yearClassName ??
+            "mt-1 block text-xs font-medium uppercase tracking-[0.22em] text-white/60"
+          }
+        >
+          {year}
+        </span>
+      ) : null}
+    </span>
+  );
+}
+
 
 export default function Portfolio() {
   const { t, locale } = useI18n();
@@ -557,7 +590,7 @@ export default function Portfolio() {
               }}
             >
               <Image
-                src="/IMG_2530.jpg"
+                src="/apple-park.jpg"
                 alt={t("awards.wwdc")}
                 width={200}
                 height={200}
@@ -843,7 +876,7 @@ export default function Portfolio() {
         className="w-full scroll-mt-24 rounded-md border border-white/10 bg-black/60 p-6 shadow-lg"
       >
         <h3 className="mb-4 text-3xl uppercase">
-          {t("electron.title")}
+          <ProjectTitle text={t("electron.title")} />
         </h3>
         <ul className="list-disc space-y-2 pl-6 text-lg">
           <li>{t("electron.li1")}</li>
@@ -1013,7 +1046,7 @@ export default function Portfolio() {
         <h3 className="mb-4 text-3xl uppercase">{t("exp.title")}</h3>
         <div className="space-y-6 text-lg">
           <div>
-            <h4 className="text-2xl">{t("exp.orchestr")}</h4>
+            <h4 className="text-2xl"><ProjectTitle text={t("exp.orchestr")} /></h4>
             <p>
               <a
                 href={t("exp.orchestrSite")}
@@ -1026,11 +1059,11 @@ export default function Portfolio() {
             </p>
           </div>
           <div>
-            <h4 className="text-2xl">{t("exp.reach")}</h4>
+            <h4 className="text-2xl"><ProjectTitle text={t("exp.reach")} /></h4>
             <p>{t("exp.reachBody")}</p>
           </div>
           <div>
-            <h4 className="text-2xl">{t("exp.snu")}</h4>
+            <h4 className="text-2xl"><ProjectTitle text={t("exp.snu")} /></h4>
             <p>{t("exp.snuBody")}</p>
           </div>
         </div>
@@ -1073,19 +1106,19 @@ export default function Portfolio() {
         <h3 className="mb-4 text-3xl uppercase">{t("edu.title")}</h3>
         <ol className="list-decimal space-y-6 pl-6 text-lg marker:text-gray-400">
           <li>
-            <h4 className="text-2xl">{t("edu.hub.title")}</h4>
+            <h4 className="text-2xl"><ProjectTitle text={t("edu.hub.title")} /></h4>
             <p className="text-gray-300">{t("edu.hub.detail")}</p>
           </li>
           <li>
-            <h4 className="text-2xl">{t("edu.ocfc.title")}</h4>
+            <h4 className="text-2xl"><ProjectTitle text={t("edu.ocfc.title")} /></h4>
             <p className="text-gray-300">{t("edu.ocfc.detail")}</p>
           </li>
           <li>
-            <h4 className="text-2xl">{t("edu.sunrise.title")}</h4>
+            <h4 className="text-2xl"><ProjectTitle text={t("edu.sunrise.title")} /></h4>
             <p className="text-gray-300">{t("edu.sunrise.detail")}</p>
           </li>
           <li>
-            <p className="text-2xl">{t("edu.uci")}</p>
+            <p className="text-2xl"><ProjectTitle text={t("edu.uci")} /></p>
           </li>
         </ol>
       </section>
