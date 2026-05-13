@@ -476,6 +476,25 @@ function splitTitleYear(text: string): { main: string; year: string | null } {
   return { main: m[1].trim(), year: m[2].trim() };
 }
 
+function SectionKicker({
+  label,
+  color = "#00a0e2",
+}: {
+  label: string;
+  color?: string;
+}) {
+  return (
+    <p className="mb-2 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.32em] text-white/55">
+      <span
+        aria-hidden
+        className="inline-block h-1.5 w-1.5 rounded-full"
+        style={{ backgroundColor: color }}
+      />
+      <span>{label}</span>
+    </p>
+  );
+}
+
 function ProjectTitle({
   text,
   className,
@@ -757,6 +776,10 @@ export default function Portfolio() {
         id="section-atoms"
         className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
+        <SectionKicker label="Interactive · 3D viewer" color="#E1251B" />
+        <h3 className="mb-5 text-3xl uppercase tracking-tight">
+          Atoms &amp; molecules
+        </h3>
         <div className="flex justify-center gap-4 mb-4">
           <button
             className={`px-4 py-2 rounded ${
@@ -875,7 +898,8 @@ export default function Portfolio() {
         id="section-electron"
         className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
-        <h3 className="mb-4 text-3xl uppercase">
+        <SectionKicker label="Open source · iOS · WebXR" color="#003688" />
+        <h3 className="mb-5 text-3xl uppercase tracking-tight">
           <ProjectTitle text={t("electron.title")} />
         </h3>
         <ul className="list-disc space-y-2 pl-6 text-lg">
@@ -946,6 +970,10 @@ export default function Portfolio() {
         id="section-face"
         className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
+        <SectionKicker label="iOS · TrueDepth · 3D" color="#00a0e2" />
+        <h3 className="mb-5 text-3xl uppercase tracking-tight">
+          Face scan demo
+        </h3>
         <LazyMountInView
           rootMargin="240px 0px 320px 0px"
           fallback={
@@ -983,7 +1011,8 @@ export default function Portfolio() {
         id="section-orch"
         className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
-        <h3 className="mb-4 text-3xl uppercase">{t("orch.title")}</h3>
+        <SectionKicker label="iOS · Patent pending" color="#007934" />
+        <h3 className="mb-5 text-3xl uppercase tracking-tight">{t("orch.title")}</h3>
         <ul className="list-disc space-y-2 pl-6 text-lg">
           <li>{t("orch.li1")}</li>
           <li>{t("orch.li2")}</li>
@@ -1043,7 +1072,8 @@ export default function Portfolio() {
             {t("footer.video1Caption")}
           </p>
         </div>
-        <h3 className="mb-4 text-3xl uppercase">{t("exp.title")}</h3>
+        <SectionKicker label="Work · 2023 — present" color="#B26300" />
+        <h3 className="mb-5 text-3xl uppercase tracking-tight">{t("exp.title")}</h3>
         <div className="space-y-6 text-lg">
           <div>
             <h4 className="text-2xl"><ProjectTitle text={t("exp.orchestr")} /></h4>
@@ -1072,6 +1102,10 @@ export default function Portfolio() {
       <div
         className="w-full scroll-mt-24 space-y-8 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
+        <div>
+          <SectionKicker label="From the archive" color="#A1A5A7" />
+          <h3 className="text-3xl uppercase tracking-tight">Moments</h3>
+        </div>
         <div className="flex flex-col items-center text-center">
           <Image
             src="/IMG_3505.jpg"
@@ -1103,7 +1137,8 @@ export default function Portfolio() {
         id="section-edu"
         className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
-        <h3 className="mb-4 text-3xl uppercase">{t("edu.title")}</h3>
+        <SectionKicker label="Education · Training" color="#9A0D4D" />
+        <h3 className="mb-5 text-3xl uppercase tracking-tight">{t("edu.title")}</h3>
         <ol className="list-decimal space-y-6 pl-6 text-lg marker:text-gray-400">
           <li>
             <h4 className="text-2xl"><ProjectTitle text={t("edu.hub.title")} /></h4>
