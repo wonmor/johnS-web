@@ -520,77 +520,80 @@ export default function Portfolio() {
           <span className="text-black">{t("hero.email")}</span>
         </div>
         <div data-chrome-surface="dark" className="bg-[#020824] py-8">
-          <div className="mt-0 flex items-center justify-center gap-6">
-          <div
-            className="rounded-full border-4 overflow-hidden"
-            style={{
-              borderColor: headerRoundelTheme.ring,
-              width: 100,
-              height: 100,
-              boxSizing: "border-box",
-            }}
-          >
-            <Image
-              src="/reach-logo.jpg"
-              alt={t("awards.reachAlt")}
-              width={100}
-              height={100}
-              priority
-              sizes="100px"
+          <div className="flex flex-col items-center justify-center gap-4">
+            <div
+              className="rounded-full border-4 overflow-hidden"
               style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
+                borderColor: headerRoundelTheme.ring,
+                width: 200,
+                height: 200,
+                boxSizing: "border-box",
               }}
-            />
-          </div>
+            >
+              <Image
+                src="/IMG_2530.jpg"
+                alt={t("awards.wwdc")}
+                width={200}
+                height={200}
+                priority
+                sizes="200px"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+            </div>
 
-          <div className="text-left text-white">
-            <p>{t("awards.wwdc")}</p>
-            <p className="mb-2 text-xs uppercase tracking-wider text-gray-200">
-              {t("awards.wwdcVenue")}
-            </p>
-            <p className="mt-2 flex items-center gap-1">
-              <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
-              <span className="text-white">{t("awards.ukVisa")}</span>
-            </p>
-            <p className="mt-2 flex items-center gap-1">
-              <Image
-                src="/american-flag.png"
-                alt="American Flag"
-                width={24}
-                height={16}
-              />
-              <span className="text-white">{t("awards.usVisa")}</span>
-            </p>
-            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
-              <Image
-                src="/south-korea-flag.svg"
-                alt="South Korean Flag"
-                width={24}
-                height={16}
-              />
-              <Image
-                src="/canada-flag.svg"
-                alt="Canadian Flag"
-                width={24}
-                height={16}
-              />
-              <span className="inline-flex items-center gap-1.5">
+            <div className="text-center text-white">
+              <p className="text-xl font-medium">{t("awards.wwdc")}</p>
+              <p className="mt-1 text-xs uppercase tracking-wider text-gray-200">
+                {t("awards.wwdcVenue")}
+              </p>
+            </div>
+
+            <div className="mt-2 flex flex-col items-center gap-2 text-white">
+              <p className="flex items-center gap-1">
+                <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
+                <span className="text-white">{t("awards.ukVisa")}</span>
+              </p>
+              <p className="flex items-center gap-1">
                 <Image
-                  src="/quebec-flag.svg"
-                  alt="Quebec Flag"
+                  src="/american-flag.png"
+                  alt="American Flag"
                   width={24}
                   height={16}
                 />
-                <span className="text-xs uppercase tracking-wide text-white sm:text-sm">
-                  {t("awards.madeInQuebec")}
+                <span className="text-white">{t("awards.usVisa")}</span>
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+                <Image
+                  src="/south-korea-flag.svg"
+                  alt="South Korean Flag"
+                  width={24}
+                  height={16}
+                />
+                <Image
+                  src="/canada-flag.svg"
+                  alt="Canadian Flag"
+                  width={24}
+                  height={16}
+                />
+                <span className="inline-flex items-center gap-1.5">
+                  <Image
+                    src="/quebec-flag.svg"
+                    alt="Quebec Flag"
+                    width={24}
+                    height={16}
+                  />
+                  <span className="text-xs uppercase tracking-wide text-white sm:text-sm">
+                    {t("awards.madeInQuebec")}
+                  </span>
                 </span>
-              </span>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
 
@@ -666,14 +669,6 @@ export default function Portfolio() {
           rel="noopener noreferrer"
         >
           LinkedIn
-        </a>
-        <a
-          className="hover:underline hover:text-white transition-all"
-          href="https://flickr.com/photos/johnseongemini8"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Flickr
         </a>
       </nav>
 

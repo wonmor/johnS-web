@@ -84,8 +84,8 @@ export const messages = {
     "hero.line2": "AEROSPACE",
     "hero.landmark": "LONDON TOWER BRIDGE",
     "hero.email": "john@orchestrsim.com",
-    "awards.wwdc": "Apple WWDC23 Swift Challenge Winner",
-    "awards.wwdcVenue": "AT APPLE PARK, CUPERTINO",
+    "awards.wwdc": "Apple WWDC23 Scholar",
+    "awards.wwdcVenue": "INVITED TO APPLE PARK · DISTINGUISHED WINNER",
     "awards.ukVisa": "UK Global Talent Visa Holder",
     "awards.usVisa": "US O-1A Extraordinary Ability",
     "awards.madeInQuebec": "MADE IN QUEBEC",
@@ -137,7 +137,7 @@ export const messages = {
       "3D meshing and registration method I developed for human–computer interfaces (computing IPD and head dimensions) and custom-fitted BCI headsets. Available on iOS.",
     "face.cta": "Watch the demo on YouTube",
 
-    "orch.title": "Orch 3D head & face scan for iPhone",
+    "orch.title": "OpticALLY 3D Scan",
     "orch.li1": "iOS app using Swift and Objective-C++ with a C++ back end",
     "orch.li2":
       "TrueDepth face scan with full point-cloud processing: ICP, feature-based pose estimation, meshing, and registration",
@@ -247,8 +247,8 @@ export const messages = {
     "hero.line2": "AÉROSPATIALE",
     "hero.landmark": "JACQUES-CARTIER BRIDGE IN MONTRÉAL",
     "hero.email": "john@orchestrsim.com",
-    "awards.wwdc": "Lauréat du Swift Challenge Apple WWDC23",
-    "awards.wwdcVenue": "À L’APPLE PARK, CUPERTINO",
+    "awards.wwdc": "Apple WWDC23 Scholar",
+    "awards.wwdcVenue": "INVITÉ À L’APPLE PARK · LAURÉAT DISTINGUÉ",
     "awards.ukVisa": "Titulaire du visa « Global Talent » (R.-U.)",
     "awards.usVisa": "O-1A États-Unis — capacités d’exception",
     "awards.madeInQuebec": "FABRIQUÉ AU QUÉBEC",
@@ -299,7 +299,7 @@ export const messages = {
       "Algorithme de maillage 3D et de recalage que j’ai développé pour les interfaces homme–machine (écart pupillaire et dimensions de la tête) et les casques ICO sur mesure. Disponible sur iOS.",
     "face.cta": "Voir la démo sur YouTube",
 
-    "orch.title": "Orch — scan 3D tête et visage pour iPhone",
+    "orch.title": "OpticALLY 3D Scan",
     "orch.li1": "App iOS en Swift et Objective-C++ avec back end C++",
     "orch.li2":
       "Scan TrueDepth avec traitement complet des nuages de points : ICP, estimation de pose, maillage et recalage",
@@ -409,8 +409,8 @@ export const messages = {
     "hero.line2": "항공우주",
     "hero.landmark": "N SEOUL TOWER",
     "hero.email": "john@orchestrsim.com",
-    "awards.wwdc": "Apple WWDC23 Scholar Award 수상",
-    "awards.wwdcVenue": "캘리포니아 쿠퍼티노 애플 파크에서",
+    "awards.wwdc": "Apple WWDC23 Scholar",
+    "awards.wwdcVenue": "애플 파크 초청 · DISTINGUISHED WINNER",
     "awards.ukVisa": "영국 글로벌 탤런트 비자 보유",
     "awards.usVisa": "미국 O-1A 비자(특별능력)",
     "awards.madeInQuebec": "퀘벡에서 제작",
@@ -462,7 +462,7 @@ export const messages = {
       "인간–컴퓨터 인터페이스용으로 개발한 3D 메싱·정합 알고리즘입니다(동공 간 거리·머리 치수 계산, 맞춤 BCI 헤드셋 등). iOS에서 이용할 수 있습니다.",
     "face.cta": "유튜브에서 데모 보기",
 
-    "orch.title": "아이폰용 Orch 3D 머리·얼굴 스캔",
+    "orch.title": "OpticALLY 3D Scan",
     "orch.li1":
       "Swift와 Objective-C++ 프런트, C++ 백엔드로 만든 iOS 앱",
     "orch.li2":
