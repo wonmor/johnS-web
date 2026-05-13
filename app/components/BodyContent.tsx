@@ -103,33 +103,20 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
                   </div>
                 </div>
 
-                {/* Intro + hardware image side-by-side */}
-                <div className="mt-8 flex flex-col items-start gap-6 sm:gap-8 md:flex-row md:items-center">
-                  <div className="flex-1 space-y-3 text-left">
-                    <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-500">
-                      {t("orchestr.intro")}
-                      <span className="ml-2 inline-block rounded-full border border-red-500/60 px-2 py-[2px] text-[10px] tracking-[0.25em] text-red-400">
-                        {t("orchestr.new")}
-                      </span>
-                    </p>
-                    <p className="text-xl leading-relaxed text-white/90">
-                      {t("orchestr.tagline")}
-                    </p>
-                    <p className="text-sm leading-relaxed text-white/60">
-                      {t("orchestr.features")}
-                    </p>
-                  </div>
-                  <div className="w-full shrink-0 overflow-hidden rounded-xl border border-white/10 md:w-64 lg:w-72">
-                    <Image
-                      src="/products/Avionic1.webp"
-                      alt="Orch Avionic 1 hardware"
-                      width={1200}
-                      height={675}
-                      className="w-full object-cover"
-                      sizes="(max-width: 768px) 100vw, 18rem"
-                      priority
-                    />
-                  </div>
+                {/* Intro */}
+                <div className="mt-8 max-w-2xl space-y-3 text-left">
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-500">
+                    {t("orchestr.intro")}
+                    <span className="ml-2 inline-block rounded-full border border-red-500/60 px-2 py-[2px] text-[10px] tracking-[0.25em] text-red-400">
+                      {t("orchestr.new")}
+                    </span>
+                  </p>
+                  <p className="text-xl leading-relaxed text-white/90">
+                    {t("orchestr.tagline")}
+                  </p>
+                  <p className="text-sm leading-relaxed text-white/60">
+                    {t("orchestr.features")}
+                  </p>
                 </div>
 
                 {/* JebediahOS section */}
