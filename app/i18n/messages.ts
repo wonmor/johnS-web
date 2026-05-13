@@ -88,7 +88,7 @@ export const messages = {
     "awards.wwdcVenue": "INVITED TO APPLE PARK · DISTINGUISHED WINNER AT 19",
     "awards.ukVisa": "UK Global Talent Visa Holder",
     "awards.usVisa": "US O-1A Extraordinary Ability",
-    "awards.madeInQuebec": "MADE IN QUEBEC",
+    "awards.madeInQuebec": "DESIGNED IN QUEBEC",
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "As featured in the following outlets",
@@ -251,7 +251,7 @@ export const messages = {
     "awards.wwdcVenue": "INVITÉ À L’APPLE PARK · LAURÉAT DISTINGUÉ À 19 ANS",
     "awards.ukVisa": "Titulaire du visa « Global Talent » (R.-U.)",
     "awards.usVisa": "O-1A États-Unis — capacités d’exception",
-    "awards.madeInQuebec": "FABRIQUÉ AU QUÉBEC",
+    "awards.madeInQuebec": "CONÇU AU QUÉBEC",
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "Vu dans ces médias",
@@ -413,7 +413,7 @@ export const messages = {
     "awards.wwdcVenue": "애플 파크 초청 · 만 19세 DISTINGUISHED WINNER",
     "awards.ukVisa": "영국 글로벌 탤런트 비자 보유",
     "awards.usVisa": "미국 O-1A 비자(특별능력)",
-    "awards.madeInQuebec": "퀘벡에서 제작",
+    "awards.madeInQuebec": "퀘벡에서 디자인",
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "다음 매체에 소개되었습니다",
