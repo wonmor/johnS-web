@@ -490,7 +490,7 @@ export default function Portfolio() {
       const scrollY = window.scrollY + window.innerHeight / 2;
       if (scrollY < gadTop) setActiveTab("benzene");
       else if (scrollY >= gadTop) setActiveTab("gadolinium");
-      setHeroScrolled(window.scrollY > 200);
+      setHeroScrolled(window.scrollY > 40);
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -593,10 +593,6 @@ export default function Portfolio() {
 
             <div className="mt-2 flex flex-col items-center gap-2 text-white">
               <p className="flex items-center gap-1">
-                <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
-                <span className="text-white">{t("awards.ukVisa")}</span>
-              </p>
-              <p className="flex items-center gap-1">
                 <Image
                   src="/american-flag.png"
                   alt="American Flag"
@@ -604,6 +600,10 @@ export default function Portfolio() {
                   height={16}
                 />
                 <span className="text-white">{t("awards.usVisa")}</span>
+              </p>
+              <p className="flex items-center gap-1">
+                <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
+                <span className="text-white">{t("awards.ukVisa")}</span>
               </p>
               <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
                 <Image
@@ -897,12 +897,6 @@ export default function Portfolio() {
             className="mr-2 mt-4 inline-block rounded bg-white px-4 py-2 text-black hover:bg-gray-200"
         >
           {t("electron.visit")} <code>ElectronVisual.org</code>
-        </a>
-        <a
-          href="https://github.com/wonmor/ElectronVisualized"
-          className="mt-2 inline-block rounded border border-white/70 px-4 py-2 text-white hover:bg-white hover:text-black"
-        >
-          {t("gltf.github")}
         </a>
       </section>
 

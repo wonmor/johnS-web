@@ -143,7 +143,7 @@ export const messages = {
       "TrueDepth face scan with full point-cloud processing: ICP, feature-based pose estimation, meshing, and registration",
     "orch.li3":
       "US provisional patent pending (No. 63/727,879) for aligning rough point clouds using only yaw, pitch, and roll from head pose estimation",
-    "orch.appStoreAlt": "Orch 3D Scan on the App Store",
+    "orch.appStoreAlt": "OpticALLY 3D Scan on the App Store",
 
     "exp.title": "Experience",
     "exp.orchestr": "Start-up co-founder for Orchestr Inc (2026)",
@@ -305,7 +305,7 @@ export const messages = {
       "Scan TrueDepth avec traitement complet des nuages de points : ICP, estimation de pose, maillage et recalage",
     "orch.li3":
       "Brevet provisoire américain en cours (no 63/727,879) pour l’alignement grossier d’un nuage de points à partir du lacet, du tangage et du roulis seulement",
-    "orch.appStoreAlt": "Orch 3D Scan sur l’App Store",
+    "orch.appStoreAlt": "OpticALLY 3D Scan sur l’App Store",
 
     "exp.title": "Expérience",
     "exp.orchestr": "Cofondateur de start-up — Orchestr Inc (2026)",
@@ -469,7 +469,7 @@ export const messages = {
       "TrueDepth 얼굴 스캔과 전체 포인트 클라우드 처리 — ICP, 특징 기반 자세 추정, 메싱, 정합",
     "orch.li3":
       "머리 자세 추정에서 요·피치·롤만으로 거친 포인트 클라우드를 맞추는 방법에 대한 미국 가특허 출원 중(63/727,879호)",
-    "orch.appStoreAlt": "App Store의 Orch 3D 스캔",
+    "orch.appStoreAlt": "App Store의 OpticALLY 3D Scan",
 
     "exp.title": "경력",
     "exp.orchestr": "스타트업 공동창업자 — Orchestr Inc (2026)",

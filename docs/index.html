@@ -114,26 +114,46 @@
         </div>
         <div class="ghp-awards">
           <div class="ghp-awards-inner">
-            <div class="ghp-avatar-ring">
+            <div class="ghp-avatar-wrap">
               <img
-                src="https://johnseong.com/reach-logo.jpg"
-                width="100"
-                height="100"
-                alt="Reach Media Group"
+                class="ghp-signature-bg"
+                src="https://johnseong.com/signature.svg"
+                alt=""
+                aria-hidden="true"
                 loading="lazy"
                 decoding="async"
               />
+              <div class="ghp-avatar-ring ghp-avatar-ring--lg">
+                <img
+                  id="ghp-avatar-primary"
+                  src="https://johnseong.com/IMG_2530.jpg"
+                  width="200"
+                  height="200"
+                  alt="Apple WWDC23 Scholar"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  id="ghp-avatar-secondary"
+                  src="https://johnseong.com/reach-logo.jpg"
+                  width="200"
+                  height="200"
+                  alt="Reach Media Group"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
-            <div class="ghp-awards-copy">
-              <p>Apple WWDC23 Swift Challenge Winner</p>
-              <p class="ghp-muted">At Apple Park, Cupertino</p>
-              <p class="ghp-flag-row">
-                <img src="https://flagcdn.com/w40/gb.png" alt="" width="24" height="16" />
-                <span>UK Global Talent Visa Holder</span>
-              </p>
+            <div class="ghp-awards-copy ghp-awards-copy--center">
+              <p class="ghp-awards-title">Apple WWDC23 Scholar</p>
+              <p class="ghp-muted">Invited to Apple Park · Distinguished Winner at 19</p>
               <p class="ghp-flag-row">
                 <img src="https://flagcdn.com/w40/us.png" alt="" width="24" height="16" />
                 <span>US O-1A Extraordinary Ability</span>
+              </p>
+              <p class="ghp-flag-row">
+                <img src="https://flagcdn.com/w40/gb.png" alt="" width="24" height="16" />
+                <span>UK Global Talent Visa Holder</span>
               </p>
               <div class="ghp-flag-row">
                 <img src="assets/south-korea-flag.svg" alt="" width="24" height="16" />
@@ -362,13 +382,6 @@
             rel="noopener noreferrer"
             >Visit <span class="ghp-code">ElectronVisual.org</span></a
           >
-          <a
-            class="ghp-btn-ghost"
-            href="https://github.com/wonmor/ElectronVisualized"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Source on GitHub</a
-          >
         </section>
 
         <section class="ghp-card" id="section-face">
@@ -399,7 +412,7 @@
         </section>
 
         <section class="ghp-card" id="section-orch">
-          <h3>Orch 3D head &amp; face scan for iPhone</h3>
+          <h3>OpticALLY 3D Scan</h3>
           <ul class="ghp-list">
             <li>
               iOS app using Swift and Objective-C++ with a C++ back end
@@ -419,11 +432,11 @@
               href="https://apps.apple.com/bj/app/orch-3d-head-face-scan/id6468313142"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Orch 3D Scan on the App Store"
+              aria-label="OpticALLY 3D Scan on the App Store"
             >
               <img
                 src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
-                alt="Orch 3D Scan on the App Store"
+                alt="OpticALLY 3D Scan on the App Store"
                 height="50"
                 loading="lazy"
                 style="height: 50px; cursor: pointer"
@@ -588,6 +601,19 @@
               ln.setAttribute("x2", String(x2));
             });
           }, 16);
+        }
+
+        var awards = document.querySelector(".ghp-awards");
+        if (awards) {
+          var onScroll = function () {
+            if (window.scrollY > 40) {
+              awards.classList.add("is-scrolled");
+            } else {
+              awards.classList.remove("is-scrolled");
+            }
+          };
+          window.addEventListener("scroll", onScroll, { passive: true });
+          onScroll();
         }
 
         var tabs = document.querySelectorAll(".ghp-tab");
