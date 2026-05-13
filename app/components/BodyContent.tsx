@@ -58,13 +58,26 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
 
       {showSiteFooter ? <WestminsterSilhouette /> : null}
 
+      <main
+        className={
+          showSiteFooter ? "mb-10 flex-grow" : "min-h-[calc(100vh-5rem)] flex-grow"
+        }
+      >
+        {children}
+      </main>
+
+      <PolicyModal />
+      <EulaModal />
+
       {showSiteFooter ? (
-        <div id="site-orchestr-top">
-          {/* ── Orchestr section: dark, matching OrchAerospace.com ── */}
-          <div
-            data-chrome-surface="dark"
-            className="relative bg-[#060910] text-white selection:bg-cyan-400 selection:text-black"
-          >
+        <>
+          <FloatingOrchBanner />
+          <div id="site-light-footer">
+            {/* ── Orchestr section: dark, matching OrchAerospace.com ── */}
+            <div
+              data-chrome-surface="dark"
+              className="relative bg-[#060910] text-white selection:bg-cyan-400 selection:text-black"
+            >
               <div className="mx-auto max-w-5xl px-6 pb-16 pt-14 sm:px-8 sm:pb-20 sm:pt-16">
                 {/* Title row */}
                 <div className="flex items-start justify-between gap-4">
@@ -213,24 +226,7 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
             </div>
-        </div>
-      ) : null}
 
-      <main
-        className={
-          showSiteFooter ? "mb-10 flex-grow" : "min-h-[calc(100vh-5rem)] flex-grow"
-        }
-      >
-        {children}
-      </main>
-
-      <PolicyModal />
-      <EulaModal />
-
-      {showSiteFooter ? (
-        <>
-          <FloatingOrchBanner />
-          <div id="site-light-footer">
             {/* Footer with privacy link */}
             <div
               data-chrome-surface="dark"
