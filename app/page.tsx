@@ -588,12 +588,13 @@ export default function Portfolio() {
                 width={480}
                 height={232}
                 priority
-                className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none"
+                className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 select-none"
                 style={{
                   width: "min(85vw, 30rem)",
                   height: "auto",
-                  opacity: 0.4,
-                  filter: "invert(1)",
+                  opacity: 0.7,
+                  filter: "invert(1) drop-shadow(0 1px 6px rgba(0,0,0,0.45))",
+                  mixBlendMode: "screen",
                 }}
               />
             <div
@@ -778,7 +779,7 @@ export default function Portfolio() {
           Selected work
         </p>
         <h2 className="text-4xl font-thin uppercase tracking-[0.18em] sm:text-6xl sm:tracking-[0.22em]">
-          Project showcase
+          Showcase
         </h2>
       </div>
       {/* Gadolinium / Benzene Tabs */}

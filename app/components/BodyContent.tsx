@@ -94,7 +94,7 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
                       >
                         {t("orchestr.title")}
                       </span>
-                      <span className="text-white/85">estr</span>
+                      <span className="font-thin text-white/85">estr</span>
                     </h1>
                     <span className="mt-1 inline-block text-xs font-semibold tracking-[0.35em] text-white/60">
                       {t("orchestr.subtitle")}
