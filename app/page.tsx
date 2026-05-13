@@ -912,15 +912,46 @@ export default function Portfolio() {
         id="section-electron"
         className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
-        <div className="mb-6 space-y-4">
-          <Image
-            src="/walter-kohn-cover.png"
-            alt="Walter Kohn — From Kindertransport and Internment to DFT and the Nobel Prize (David C. Clary). Front cover features John Wonmo Seong's DFT electron density visualisation."
-            width={460}
-            height={500}
-            className="mx-auto h-56 w-auto rounded-lg ring-1 ring-white/15 sm:h-64"
-            sizes="(max-width: 640px) 60vw, 16rem"
-          />
+        <div className="mb-6 space-y-3 sm:space-y-4">
+          {/* Row 1: book cover (portrait) + Atomizer screens (portrait) side by side */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <Image
+              src="/walter-kohn-cover.png"
+              alt="Walter Kohn — From Kindertransport and Internment to DFT and the Nobel Prize (David C. Clary). Front cover features John Wonmo Seong's DFT electron density visualisation."
+              width={865}
+              height={947}
+              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
+              sizes="(max-width: 640px) 45vw, 20rem"
+            />
+            <Image
+              src="/atomizer-screens.jpg"
+              alt="Atomizer AR — 2023 Swift Student Challenge Winner; iron (Fe) and sodium (Na) electron configurations rendered in real time on iPhone"
+              width={1077}
+              height={1400}
+              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
+              sizes="(max-width: 640px) 45vw, 20rem"
+            />
+          </div>
+          {/* Row 2: two ElectronVisualized stills (landscape 4:3) */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <Image
+              src="/electronvis-1.jpg"
+              alt="ElectronVisualized DFT visualisation"
+              width={1200}
+              height={900}
+              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
+              sizes="(max-width: 640px) 45vw, 20rem"
+            />
+            <Image
+              src="/electronvis-2.jpg"
+              alt="ElectronVisualized molecular orbital render"
+              width={1200}
+              height={900}
+              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
+              sizes="(max-width: 640px) 45vw, 20rem"
+            />
+          </div>
+          {/* Row 3: preface credit, full width on a white card */}
           <a
             href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
             target="_blank"
@@ -931,30 +962,12 @@ export default function Portfolio() {
             <Image
               src="/walter-kohn-preface.png"
               alt="Front cover credit: Adapted from an electron density map for the hydrogen molecule calculated with Density Functional Theory (courtesy of John Wonmo Seong)"
-              width={1200}
-              height={300}
+              width={1008}
+              height={256}
               className="h-auto w-full object-contain"
-              sizes="(max-width: 640px) 100vw, 40rem"
+              sizes="(max-width: 640px) 100vw, 42rem"
             />
           </a>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <Image
-              src="/electronvis-1.jpg"
-              alt="ElectronVisualized DFT visualisation"
-              width={1200}
-              height={1600}
-              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
-              sizes="(max-width: 640px) 45vw, 20rem"
-            />
-            <Image
-              src="/electronvis-2.jpg"
-              alt="ElectronVisualized molecular orbital render"
-              width={1200}
-              height={1600}
-              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
-              sizes="(max-width: 640px) 45vw, 20rem"
-            />
-          </div>
         </div>
         <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber-300/40 bg-amber-300/[0.06] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-200">
           <span aria-hidden className="text-amber-300">★</span>
