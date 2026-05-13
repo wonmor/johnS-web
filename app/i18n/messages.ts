@@ -58,7 +58,7 @@ export const messages = {
     "footer.video2Caption":
       "3D head scan using only an iPhone — for pilot helmet design",
 
-    "orchestr.title": "ORCHESTR",
+    "orchestr.title": "ORCH",
     "orchestr.subtitle": "AEROSPACE",
     "orchestr.badge": "MY STARTUP",
     "orchestr.intro":
@@ -224,7 +224,7 @@ export const messages = {
     "footer.video2Caption":
       "Numérisation 3D du visage avec un iPhone uniquement — pour la conception de casques de pilote",
 
-    "orchestr.title": "ORCHESTR",
+    "orchestr.title": "ORCH",
     "orchestr.subtitle": "AÉROSPATIALE",
     "orchestr.badge": "MA START-UP",
     "orchestr.intro": "Présentation d’Orch Avionic 1 EFB.",
@@ -385,7 +385,7 @@ export const messages = {
     "footer.video2Caption":
       "아이폰만으로 한 3D 머리 스캔 — 파일럿 헬멧 설계용",
 
-    "orchestr.title": "ORCHESTR",
+    "orchestr.title": "ORCH",
     "orchestr.subtitle": "항공우주",
     "orchestr.badge": "제 스타트업",
     "orchestr.intro": "Orch Avionic 1 EFB를 소개합니다.",
