@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense, useEffect, useRef, useState } from "react";
+import { JebediahShowcase } from "./components/BodyContent";
 import { LazyMountInView } from "./components/portfolio/LazyMountInView";
 import { ibmPlexSansKRFontStack, tubeFont } from "./fonts";
 import { useI18n } from "./i18n/context";
@@ -782,6 +783,8 @@ export default function Portfolio() {
           Showcase
         </h2>
       </div>
+      <JebediahShowcase />
+
       {/* Gadolinium / Benzene Tabs */}
       <div
         id="section-atoms"
