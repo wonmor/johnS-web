@@ -479,6 +479,11 @@ export default function Portfolio() {
   );
   const [atoms3dUnlocked, setAtoms3dUnlocked] = useState(false);
   const [heroScrolled, setHeroScrolled] = useState(false);
+  const [avatarRevealed, setAvatarRevealed] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setAvatarRevealed(true), 1500);
+    return () => clearTimeout(t);
+  }, []);
   const benzeneRef = useRef<HTMLDivElement>(null);
   const gadoliniumRef = useRef<HTMLDivElement>(null);
 
@@ -546,6 +551,9 @@ export default function Portfolio() {
                 width: 200,
                 height: 200,
                 boxSizing: "border-box",
+                opacity: avatarRevealed ? 1 : 0,
+                transform: avatarRevealed ? "scale(1)" : "scale(0.92)",
+                transition: "opacity 900ms ease, transform 900ms ease",
               }}
             >
               <Image

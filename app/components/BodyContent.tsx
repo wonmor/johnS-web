@@ -9,15 +9,25 @@ import { useI18n } from "../i18n/context";
 import type { Locale } from "../i18n/messages";
 
 const JEBOS_GALLERY = [
-  { src: "/products/jebos-1.webp", caption: "VFR sectional chart with synthetic vision PFD" },
-  { src: "/products/jebos-2.webp", caption: "IFR enroute chart — Montreal waypoints and navaids" },
-  { src: "/products/jebos-3.webp", caption: "Airport diagram viewer — KOWD Norwood Memorial" },
-  { src: "/products/jebos-4.webp", caption: "Live ATC transcription with highlighted callsigns" },
-  { src: "/products/jebos-5.webp", caption: "Preflight checklist — documents, walk-around, fuel, oil" },
-  { src: "/products/jebos-6.webp", caption: "Settings — AIRAC data, navdata downloads" },
-  { src: "/products/jebos-7.webp", caption: "POH reference — Cessna 152 V-speeds and weight limits" },
-  { src: "/products/jebos-8.webp", caption: "Split view — POH sidebar with VFR map" },
-  { src: "/products/jebos-9.webp", caption: "Satellite overlay with ADS-B traffic contacts" },
+  { src: "/gallery/ipad-jebediah/screens/screen-01.jpg", platform: "iPad", caption: "Split view — VFR sectional with Orch Vision synthetic PFD" },
+  { src: "/gallery/ipad-jebediah/screens/screen-02.jpg", platform: "iPad", caption: "Satellite terrain map with NEXRAD-net weather overlay" },
+  { src: "/gallery/ipad-jebediah/screens/screen-03.jpg", platform: "iPad", caption: "VFR sectional chart — Los Angeles terminal area" },
+  { src: "/gallery/ipad-jebediah/screens/screen-04.jpg", platform: "iPad", caption: "IFR high-altitude enroute chart — SoCal Class B" },
+  { src: "/gallery/ipad-jebediah/screens/screen-05.jpg", platform: "iPad", caption: "Flight plan builder with airport, VOR and fix search" },
+  { src: "/gallery/ipad-jebediah/screens/screen-06.jpg", platform: "iPad", caption: "Live ADS-B traffic with synthetic vision attitude" },
+  { src: "/gallery/ipad-jebediah/screens/extra-checklist.jpg", platform: "iPad", caption: "Preflight checklist — documents, walk-around, fuel, oil" },
+  { src: "/gallery/ipad-jebediah/screens/extra-poh.jpg", platform: "iPad", caption: "POH reference — Cessna 152 V-speeds and weight limits" },
+  { src: "/gallery/ipad-jebediah/screens/extra-weather.jpg", platform: "iPad", caption: "Weather briefing — METAR, TAF and PIREP overlay" },
+  { src: "/gallery/ipad-jebediah/screens/extra-e6b.jpg", platform: "iPad", caption: "Built-in E6B flight computer for wind and fuel" },
+  { src: "/products/jebos-1.webp", platform: "Android", caption: "VFR sectional chart with synthetic vision PFD" },
+  { src: "/products/jebos-2.webp", platform: "Android", caption: "IFR enroute chart — Montreal waypoints and navaids" },
+  { src: "/products/jebos-3.webp", platform: "Android", caption: "Airport diagram viewer — KOWD Norwood Memorial" },
+  { src: "/products/jebos-4.webp", platform: "macOS", caption: "Live ATC transcription with highlighted callsigns" },
+  { src: "/products/jebos-5.webp", platform: "macOS", caption: "Preflight checklist — documents, walk-around, fuel, oil" },
+  { src: "/products/jebos-6.webp", platform: "macOS", caption: "Settings — AIRAC data, navdata downloads" },
+  { src: "/products/jebos-7.webp", platform: "macOS", caption: "POH reference — Cessna 152 V-speeds and weight limits" },
+  { src: "/products/jebos-8.webp", platform: "macOS", caption: "Split view — POH sidebar with VFR map" },
+  { src: "/products/jebos-9.webp", platform: "macOS", caption: "Satellite overlay with ADS-B traffic contacts" },
 ];
 
 export function BodyContent({ children }: { children: React.ReactNode }) {
@@ -124,6 +134,25 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
 
                 {/* JebediahOS section */}
                 <div className="mt-20">
+                  <div className="mb-8 flex items-center gap-4">
+                    <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
+                      <Image
+                        src="/jebediah-icon.png"
+                        alt="Jebediah app icon"
+                        width={88}
+                        height={88}
+                        className="block h-[72px] w-[72px] md:h-[88px] md:w-[88px]"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.32em] text-white/40">
+                        Available on iPad · Android · macOS
+                      </p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.18em] text-cyan-400/90">
+                        Early access
+                      </p>
+                    </div>
+                  </div>
                   <div className="flex flex-col gap-8 md:flex-row md:gap-12">
                     <div className="w-full md:w-1/2">
                       <div className="mb-3 flex items-center gap-3">
@@ -139,6 +168,13 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
                       </p>
                       <p className="mb-5 text-sm leading-relaxed text-white/60">
                         {t("orchestr.jebos.features")}
+                      </p>
+                      <p className="mb-5 text-sm leading-relaxed text-white/70">
+                        Companion apps for iPad, Android tablets and macOS share
+                        the same VFR/IFR chart engine, ADS-B traffic, METAR/TAF
+                        briefings, ATC transcription and POH library — so what
+                        you see on Avionic 1 hardware mirrors to every device
+                        you fly with.
                       </p>
                       <a
                         href="https://orchestrsim.com"
@@ -161,7 +197,7 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
                           playsInline
                           className="w-full"
                         >
-                          <source src="/products/jebos-wx-radar-demo.mp4" type="video/mp4" />
+                          <source src="/products/jebediah-ipad-demo.mp4" type="video/mp4" />
                         </video>
                         <button
                           type="button"
@@ -257,9 +293,14 @@ function JebosGallery() {
         ))}
         {/* Caption overlay */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-6 py-4">
-          <p className="text-sm font-medium text-white md:text-base">
-            {JEBOS_GALLERY[slide].caption}
-          </p>
+          <div className="flex items-baseline gap-3">
+            <span className="rounded-md border border-cyan-400/60 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-300">
+              {JEBOS_GALLERY[slide].platform}
+            </span>
+            <p className="text-sm font-medium text-white md:text-base">
+              {JEBOS_GALLERY[slide].caption}
+            </p>
+          </div>
         </div>
         {/* Navigation dots */}
         <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 gap-1.5">
