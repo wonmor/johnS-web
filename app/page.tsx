@@ -561,7 +561,7 @@ export default function Portfolio() {
                   objectFit: "cover",
                   display: "block",
                   opacity: heroScrolled ? 0 : 1,
-                  transition: "opacity 1200ms ease",
+                  transition: "opacity 400ms ease",
                 }}
               />
               <Image
@@ -578,7 +578,7 @@ export default function Portfolio() {
                   objectFit: "cover",
                   display: "block",
                   opacity: heroScrolled ? 1 : 0,
-                  transition: "opacity 1200ms ease",
+                  transition: "opacity 400ms ease",
                 }}
               />
             </div>
