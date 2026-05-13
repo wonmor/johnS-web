@@ -573,8 +573,8 @@ export default function Portfolio() {
                 }}
               />
               <Image
-                src="/reach-logo.jpg"
-                alt={t("awards.reachAlt")}
+                src="/IMG_6826.jpg"
+                alt="Cockpit sunset — private pilot training"
                 width={200}
                 height={200}
                 sizes="200px"
