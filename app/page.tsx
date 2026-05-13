@@ -490,7 +490,7 @@ export default function Portfolio() {
       const scrollY = window.scrollY + window.innerHeight / 2;
       if (scrollY < gadTop) setActiveTab("benzene");
       else if (scrollY >= gadTop) setActiveTab("gadolinium");
-      setHeroScrolled(window.scrollY > 40);
+      setHeroScrolled(window.scrollY > 80);
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
