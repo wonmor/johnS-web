@@ -818,10 +818,10 @@ export default function Portfolio() {
                 <h4 className="text-2xl tracking-wide">{t("gltf.gdTitle")}</h4>
                 <p className="mt-2 text-gray-300">{t("gltf.gdBody")}</p>
                 <a
-                  href="https://github.com/wonmor/ElectronVisualized"
+                  href="https://electronvisual.org"
                   className="mt-4 inline-block rounded border border-white px-4 py-2 text-white transition hover:bg-white hover:text-[#003688]"
                 >
-                  {t("gltf.github")}
+                  {t("gltf.benzeneCta")} <code>ElectronVisual.org</code>
                 </a>
               </div>
             </div>
