@@ -83,16 +83,18 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
                 <div className="flex items-start justify-between gap-4">
                   <div className="text-left">
                     <OrchAircraftIcon />
-                    <h1
-                      className="text-5xl font-bold uppercase tracking-tight sm:text-6xl"
-                      style={{
-                        color: "transparent",
-                        WebkitTextStroke: "2px rgba(255,255,255,0.9)",
-                        textShadow:
-                          "0 0 20px rgba(255,255,255,0.15), 0 0 40px rgba(255,255,255,0.08)",
-                      }}
-                    >
-                      {t("orchestr.title")}
+                    <h1 className="text-5xl font-bold uppercase tracking-tight sm:text-6xl">
+                      <span
+                        style={{
+                          color: "transparent",
+                          WebkitTextStroke: "2px rgba(255,255,255,0.9)",
+                          textShadow:
+                            "0 0 20px rgba(255,255,255,0.15), 0 0 40px rgba(255,255,255,0.08)",
+                        }}
+                      >
+                        {t("orchestr.title")}
+                      </span>
+                      <span className="text-white/85">estr</span>
                     </h1>
                     <span className="mt-1 inline-block text-xs font-semibold tracking-[0.35em] text-white/60">
                       {t("orchestr.subtitle")}

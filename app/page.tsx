@@ -908,7 +908,11 @@ export default function Portfolio() {
         id="section-electron"
         className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
       >
-        <SectionKicker label="Open source · iOS · WebXR" color="#003688" />
+        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber-300/40 bg-amber-300/[0.06] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-200">
+          <span aria-hidden className="text-amber-300">★</span>
+          Apple Swift Student Challenge · 2023 Award
+        </div>
+        <SectionKicker label="iOS · WebXR · DFT" color="#003688" />
         <h3 className="mb-5 text-3xl uppercase tracking-tight">
           <ProjectTitle text={t("electron.title")} />
         </h3>
@@ -1086,7 +1090,7 @@ export default function Portfolio() {
         <h3 className="mb-5 text-3xl uppercase tracking-tight">{t("exp.title")}</h3>
         <div className="space-y-6 text-lg">
           <div>
-            <h4 className="text-2xl"><ProjectTitle text={t("exp.orchestr")} /></h4>
+            <h4 className="text-2xl uppercase"><ProjectTitle text={t("exp.orchestr")} /></h4>
             <p>
               <a
                 href={t("exp.orchestrSite")}
@@ -1099,11 +1103,11 @@ export default function Portfolio() {
             </p>
           </div>
           <div>
-            <h4 className="text-2xl"><ProjectTitle text={t("exp.reach")} /></h4>
+            <h4 className="text-2xl uppercase"><ProjectTitle text={t("exp.reach")} /></h4>
             <p>{t("exp.reachBody")}</p>
           </div>
           <div>
-            <h4 className="text-2xl"><ProjectTitle text={t("exp.snu")} /></h4>
+            <h4 className="text-2xl uppercase"><ProjectTitle text={t("exp.snu")} /></h4>
             <p>{t("exp.snuBody")}</p>
           </div>
         </div>
