@@ -478,6 +478,7 @@ export default function Portfolio() {
     "benzene"
   );
   const [atoms3dUnlocked, setAtoms3dUnlocked] = useState(false);
+  const [heroScrolled, setHeroScrolled] = useState(false);
   const benzeneRef = useRef<HTMLDivElement>(null);
   const gadoliniumRef = useRef<HTMLDivElement>(null);
 
@@ -489,6 +490,7 @@ export default function Portfolio() {
       const scrollY = window.scrollY + window.innerHeight / 2;
       if (scrollY < gadTop) setActiveTab("benzene");
       else if (scrollY >= gadTop) setActiveTab("gadolinium");
+      setHeroScrolled(window.scrollY > 200);
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -521,8 +523,24 @@ export default function Portfolio() {
         </div>
         <div data-chrome-surface="dark" className="bg-[#020824] py-8">
           <div className="flex flex-col items-center justify-center gap-4">
+            <div className="relative flex items-center justify-center">
+              <Image
+                src="/signature.svg"
+                alt=""
+                aria-hidden
+                width={480}
+                height={232}
+                priority
+                className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none"
+                style={{
+                  width: "min(85vw, 30rem)",
+                  height: "auto",
+                  opacity: 0.4,
+                  filter: "invert(1)",
+                }}
+              />
             <div
-              className="rounded-full border-4 overflow-hidden"
+              className="relative rounded-full border-4 overflow-hidden"
               style={{
                 borderColor: headerRoundelTheme.ring,
                 width: 200,
@@ -542,8 +560,28 @@ export default function Portfolio() {
                   height: "100%",
                   objectFit: "cover",
                   display: "block",
+                  opacity: heroScrolled ? 0 : 1,
+                  transition: "opacity 400ms ease",
                 }}
               />
+              <Image
+                src="/reach-logo.jpg"
+                alt={t("awards.reachAlt")}
+                width={200}
+                height={200}
+                sizes="200px"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                  opacity: heroScrolled ? 1 : 0,
+                  transition: "opacity 400ms ease",
+                }}
+              />
+            </div>
             </div>
 
             <div className="text-center text-white">
