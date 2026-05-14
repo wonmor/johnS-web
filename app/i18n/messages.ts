@@ -146,7 +146,7 @@ export const messages = {
     "orch.appStoreAlt": "OpticALLY 3D Scan on the App Store",
 
     "exp.title": "Experience",
-    "exp.orchestr": "Start-up co-founder at Orchestr Aerospace Inc (2026)",
+    "exp.orchestr": "Start-up founder at Orchestr Aerospace Inc (2026)",
     "exp.orchestrSite": "https://orchestrsim.com",
     "exp.reach":
       "Reach Media Group — computer vision software engineer (2025)",
@@ -308,7 +308,7 @@ export const messages = {
     "orch.appStoreAlt": "OpticALLY 3D Scan sur l’App Store",
 
     "exp.title": "Expérience",
-    "exp.orchestr": "Cofondateur de start-up — Orchestre Avionique Inc (2026)",
+    "exp.orchestr": "Fondateur de start-up — Orchestre Avionique Inc (2026)",
     "exp.orchestrSite": "https://orchestrsim.com",
     "exp.reach":
       "Reach Media Group — ingénieur logiciel vision par ordinateur (2025)",
@@ -472,7 +472,7 @@ export const messages = {
     "orch.appStoreAlt": "App Store의 OpticALLY 3D Scan",
 
     "exp.title": "경력",
-    "exp.orchestr": "스타트업 공동창업자 — Orchestr Aerospace Inc (2026)",
+    "exp.orchestr": "스타트업 창업자 — Orchestr Aerospace Inc (2026)",
     "exp.orchestrSite": "https://orchestrsim.com",
     "exp.reach":
       "Reach Media Group — 컴퓨터 비전 소프트웨어 엔지니어 (2025)",
