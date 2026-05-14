@@ -125,11 +125,14 @@ export function JebediahShowcase() {
       </div>
       <div className="flex flex-col gap-8 md:flex-row md:gap-12">
         <div className="w-full md:w-1/2">
-          <div className="mb-3 flex items-center gap-3">
-            <h3 className="text-2xl font-bold uppercase md:text-3xl">
-              {t("orchestr.jebos.title")}
+          <div className="mb-3">
+            <h3 className="text-2xl uppercase md:text-3xl">
+              <span className="block font-bold">{t("orchestr.jebos.title")}</span>
+              <span className="mt-1 block font-thin tracking-[0.18em] text-white/70">
+                Flight Bag
+              </span>
             </h3>
-            <span className="inline-flex items-center rounded-md border border-cyan-400 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-cyan-400">
+            <span className="mt-2 inline-flex items-center rounded-md border border-cyan-400 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-cyan-400">
               {t("orchestr.jebos.tag")}
             </span>
           </div>

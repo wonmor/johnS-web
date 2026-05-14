@@ -71,7 +71,7 @@ export const messages = {
     "orchestr.features":
       "ADS-B, GPS, handheld radio, fuel calculation and flight charts. All in one form factor.",
     "orchestr.cta": "Have a look",
-    "orchestr.jebos.title": "Jebediah — Flight Bag",
+    "orchestr.jebos.title": "Jebediah",
     "orchestr.jebos.tag": "EMBEDDED OS",
     "orchestr.jebos.desc":
       "A custom real-time, Debian-based embedded operating system for NVIDIA Jetson Orin Nano with capacitive touchscreen.",
@@ -82,7 +82,7 @@ export const messages = {
 
     "hero.line1": "CREATIVE WORK",
     "hero.line2": "AEROSPACE",
-    "hero.landmark": "LONDON TOWER BRIDGE",
+    "hero.landmark": "PILOT · ENTREPRENEUR · ENGINEER",
     "hero.email": "john@orchestrsim.com",
     "awards.wwdc": "Apple WWDC23 Scholar",
     "awards.wwdcVenue": "INVITED TO APPLE PARK · DISTINGUISHED WINNER AT 19",
@@ -234,7 +234,7 @@ export const messages = {
     "orchestr.features":
       "ADS-B, GPS, radio portable, calcul de carburant et cartes de vol. Tout dans un seul format.",
     "orchestr.cta": "Découvrir",
-    "orchestr.jebos.title": "Jebediah — Flight Bag",
+    "orchestr.jebos.title": "Jebediah",
     "orchestr.jebos.tag": "OS EMBARQUÉ",
     "orchestr.jebos.desc":
       "Un système d'exploitation embarqué temps réel basé sur Debian pour NVIDIA Jetson Orin Nano avec écran tactile capacitif.",
@@ -245,7 +245,7 @@ export const messages = {
 
     "hero.line1": "TRAVAUX CRÉATIFS",
     "hero.line2": "AÉROSPATIALE",
-    "hero.landmark": "JACQUES-CARTIER BRIDGE IN MONTRÉAL",
+    "hero.landmark": "PILOT · ENTREPRENEUR · ENGINEER",
     "hero.email": "john@orchestrsim.com",
     "awards.wwdc": "Apple WWDC23 Scholar",
     "awards.wwdcVenue": "INVITÉ À L’APPLE PARK · LAURÉAT DISTINGUÉ À 19 ANS",
@@ -396,7 +396,7 @@ export const messages = {
     "orchestr.features":
       "ADS-B, GPS, 휴대용 무전기, 연료 계산, 비행 차트까지. 하나의 폼 팩터에 담았습니다.",
     "orchestr.cta": "둘러보기",
-    "orchestr.jebos.title": "Jebediah — Flight Bag",
+    "orchestr.jebos.title": "Jebediah",
     "orchestr.jebos.tag": "임베디드 OS",
     "orchestr.jebos.desc":
       "NVIDIA Jetson Orin Nano용 정전식 터치스크린을 갖춘 커스텀 실시간 Debian 기반 임베디드 운영체제.",
@@ -407,7 +407,7 @@ export const messages = {
 
     "hero.line1": "창작 활동",
     "hero.line2": "항공우주",
-    "hero.landmark": "N SEOUL TOWER",
+    "hero.landmark": "PILOT · ENTREPRENEUR · ENGINEER",
     "hero.email": "john@orchestrsim.com",
     "awards.wwdc": "Apple WWDC23 Scholar",
     "awards.wwdcVenue": "애플 파크 초청 · 만 19세 DISTINGUISHED WINNER",
