@@ -770,6 +770,14 @@ export default function Portfolio() {
         >
           LinkedIn
         </a>
+        <a
+          className="hover:underline hover:text-white transition-all"
+          href="https://apps.apple.com/ca/developer/wonmo-seong/id1625011193"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          App Store
+        </a>
       </nav>
 
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 sm:gap-10 sm:px-6">
