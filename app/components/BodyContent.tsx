@@ -137,16 +137,16 @@ export function JebediahShowcase() {
             </span>
           </div>
           <p className="mb-3 leading-relaxed text-white/90">
-            {t("orchestr.jebos.desc")}
-          </p>
-          <p className="mb-5 text-sm leading-relaxed text-white/60">
-            {t("orchestr.jebos.features")}
-          </p>
-          <p className="mb-5 text-sm leading-relaxed text-white/70">
             Companion apps for iPad, Android tablets and macOS share the same
             VFR/IFR chart engine, ADS-B traffic, METAR/TAF briefings, ATC
             transcription and POH library — so what you see on Avionic 1
             hardware mirrors to every device you fly with.
+          </p>
+          <p className="mb-3 text-sm leading-relaxed text-white/70">
+            {t("orchestr.jebos.desc")}
+          </p>
+          <p className="mb-5 text-sm leading-relaxed text-white/60">
+            {t("orchestr.jebos.features")}
           </p>
           <a
             href="https://orchestrsim.com"
