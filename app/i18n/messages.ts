@@ -74,7 +74,7 @@ export const messages = {
     "orchestr.jebos.title": "Jebediah",
     "orchestr.jebos.tag": "EMBEDDED OS",
     "orchestr.jebos.desc":
-      "A custom real-time, Debian-based embedded operating system for NVIDIA Jetson Orin Nano with capacitive touchscreen.",
+      "A custom real-time, Debian-based embedded operating system for NVIDIA Jetson Orin Nano with capacitive touchscreen. Coming soon with certified hardware.",
     "orchestr.jebos.features":
       "Moving map, ADS-B traffic, VHF ATC transcript, checklists, airport & navaid database, flight planning — all on bare metal.",
     "orchestr.jebos.cta": "Learn more",
@@ -237,7 +237,7 @@ export const messages = {
     "orchestr.jebos.title": "Jebediah",
     "orchestr.jebos.tag": "OS EMBARQUÉ",
     "orchestr.jebos.desc":
-      "Un système d'exploitation embarqué temps réel basé sur Debian pour NVIDIA Jetson Orin Nano avec écran tactile capacitif.",
+      "Un système d'exploitation embarqué temps réel basé sur Debian pour NVIDIA Jetson Orin Nano avec écran tactile capacitif. Bientôt disponible avec matériel certifié.",
     "orchestr.jebos.features":
       "Carte dynamique, trafic ADS-B, transcription VHF ATC, checklists, base de données aéroports et navaids, planification de vol — le tout en bare metal.",
     "orchestr.jebos.cta": "En savoir plus",
@@ -399,7 +399,7 @@ export const messages = {
     "orchestr.jebos.title": "Jebediah",
     "orchestr.jebos.tag": "임베디드 OS",
     "orchestr.jebos.desc":
-      "NVIDIA Jetson Orin Nano용 정전식 터치스크린을 갖춘 커스텀 실시간 Debian 기반 임베디드 운영체제.",
+      "NVIDIA Jetson Orin Nano용 정전식 터치스크린을 갖춘 커스텀 실시간 Debian 기반 임베디드 운영체제. 인증된 하드웨어와 함께 곧 출시 예정.",
     "orchestr.jebos.features":
       "무빙맵, ADS-B 트래픽, VHF ATC 트랜스크립트, 체크리스트, 공항 및 항행 데이터베이스, 비행 계획 — 모두 베어메탈.",
     "orchestr.jebos.cta": "자세히 보기",

@@ -142,11 +142,11 @@ export function JebediahShowcase() {
             transcription and POH library — so what you see on Avionic 1
             hardware mirrors to every device you fly with.
           </p>
-          <p className="mb-3 text-sm leading-relaxed text-white/70">
-            {t("orchestr.jebos.desc")}
-          </p>
-          <p className="mb-5 text-sm leading-relaxed text-white/60">
+          <p className="mb-3 text-sm leading-relaxed text-white/60">
             {t("orchestr.jebos.features")}
+          </p>
+          <p className="mb-5 text-sm leading-relaxed text-white/70">
+            {t("orchestr.jebos.desc")}
           </p>
           <a
             href="https://orchestrsim.com"
