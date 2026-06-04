@@ -10,7 +10,7 @@ import "./globals.css";
 const SITE_URL = "https://johnseong.com";
 const SITE_TITLE = "John Seong — Aerospace & Software Engineer";
 const SITE_DESCRIPTION =
-  "John Seong (Wonmo Seong) — Apple WWDC23 Scholar, co-founder of Orchestr Aerospace, builder of Jebediah avionics, OpticALLY 3D Scan and ElectronVisual.org. UK Global Talent and US O-1A visa holder based between Quebec and London.";
+  "John Seong (Wonmo Seong) — Apple WWDC23 Scholar, co-founder of Orchestr Aerospace, builder of Jeb's avionics, OpticALLY 3D Scan and ElectronVisual.org. UK Global Talent and US O-1A visa holder based between Quebec and London.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "Wonmo Seong",
     "Orchestr Aerospace",
     "Orchestre Avionique",
-    "Jebediah",
+    "Jeb's",
     "Avionic 1",
     "Apple WWDC23 Scholar",
     "OpticALLY 3D Scan",

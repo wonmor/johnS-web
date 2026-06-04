@@ -108,7 +108,7 @@ export function JebediahShowcase() {
         <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
           <Image
             src="/jebediah-icon.png"
-            alt="Jebediah app icon"
+            alt="Jeb's app icon"
             width={88}
             height={88}
             className="block h-[72px] w-[72px] md:h-[88px] md:w-[88px]"
