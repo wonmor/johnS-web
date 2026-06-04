@@ -214,7 +214,7 @@ export function JebediahShowcase() {
               href="https://orchestrsim.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-[46px] items-center gap-2 rounded-xl bg-cyan-400 px-5 text-sm font-medium text-black transition-colors hover:bg-cyan-300"
+              className="inline-flex h-[46px] items-center gap-2 rounded-xl border border-cyan-400 bg-black px-5 text-sm font-medium text-cyan-400 transition-colors hover:bg-cyan-400/10"
             >
               {t("orchestr.jebos.cta")}
             </a>
