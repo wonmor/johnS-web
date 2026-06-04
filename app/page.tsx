@@ -573,7 +573,7 @@ export default function Portfolio() {
             width={1100}
             height={1300}
             priority
-            className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[115%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 select-none object-contain opacity-[0.14]"
+            className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[115%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 select-none object-contain opacity-[0.24]"
           />
           <div className="relative z-10">
             <Link href="/" className="mx-auto block w-fit">
