@@ -160,13 +160,13 @@ export function JebediahShowcase() {
           <p className="mb-5 text-sm leading-relaxed text-white/70">
             {t("orchestr.jebos.desc")}
           </p>
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="grid max-w-md grid-cols-1 gap-3 sm:grid-cols-2">
             <a
               href="https://apps.apple.com/us/app/jebediahs-flight-bag/id6766274262"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Download Jeb's Flight Bag on the App Store"
-              className="inline-flex h-[46px] items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
+              className="inline-flex h-[52px] w-full items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
             >
               <svg aria-hidden viewBox="0 0 384 512" className="h-6 w-6 fill-white">
                 <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
@@ -181,7 +181,7 @@ export function JebediahShowcase() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Get Jeb's Flight Bag on Google Play"
-              className="inline-flex h-[46px] items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
+              className="inline-flex h-[52px] w-full items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
             >
               <svg aria-hidden viewBox="0 0 512 512" className="h-[22px] w-[22px]">
                 <path fill="#00d3ff" d="M48 59.5C45 63 43.3 68.4 43.3 75.4v361.2c0 7 1.7 12.4 4.7 15.9l1.2 1.2 202.4-202.4v-4.8L49.2 58.3z" />
@@ -199,7 +199,7 @@ export function JebediahShowcase() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Try Jeb's Flight Bag on the Web"
-              className="inline-flex h-[46px] items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
+              className="inline-flex h-[52px] w-full items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
             >
               <svg aria-hidden viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-none stroke-cyan-400" strokeWidth="2">
                 <circle cx="12" cy="12" r="9" />
@@ -214,7 +214,7 @@ export function JebediahShowcase() {
               href="https://orchestrsim.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-[46px] items-center gap-2 rounded-xl border border-white/20 bg-black px-5 text-sm font-medium text-white transition-colors hover:border-cyan-400 hover:text-cyan-400"
+              className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-xl border border-cyan-400 bg-black px-5 text-base font-semibold text-cyan-400 transition-colors hover:bg-cyan-400 hover:text-black"
             >
               {t("orchestr.jebos.cta")}
             </a>
