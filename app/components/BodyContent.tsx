@@ -214,7 +214,7 @@ export function JebediahShowcase() {
               href="https://orchaerospace.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-xl border border-cyan-400 bg-black px-5 text-base font-semibold text-cyan-400 transition-colors hover:bg-cyan-400 hover:text-black"
+              className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-xl border border-white bg-black px-5 text-base font-semibold text-white transition-colors hover:bg-white hover:text-black"
             >
               {t("orchestr.jebos.cta")}
             </a>
