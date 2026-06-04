@@ -199,19 +199,19 @@ export function JebediahShowcase() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Try Jeb's Flight Bag on the Web"
-              className="inline-flex h-[52px] w-full items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
+              className="inline-flex h-[52px] w-full items-center gap-2.5 rounded-xl border border-cyan-400 bg-cyan-400/10 px-4 shadow-[0_0_18px_rgba(34,211,238,0.25)] transition-colors hover:bg-cyan-400/20"
             >
               <svg aria-hidden viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-none stroke-cyan-400" strokeWidth="2">
                 <circle cx="12" cy="12" r="9" />
                 <path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9S9.5 5.5 12 3z" />
               </svg>
               <span className="flex flex-col leading-none">
-                <span className="text-[9px] uppercase tracking-wide text-white/70">Try it out as a</span>
-                <span className="mt-0.5 text-base font-semibold text-white">Web App</span>
+                <span className="text-[9px] uppercase tracking-wide text-cyan-300/80">Try it out as a</span>
+                <span className="mt-0.5 text-base font-semibold text-cyan-50">Web App</span>
               </span>
             </a>
             <a
-              href="https://orchestrsim.com"
+              href="https://orchaerospace.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-xl border border-cyan-400 bg-black px-5 text-base font-semibold text-cyan-400 transition-colors hover:bg-cyan-400 hover:text-black"
