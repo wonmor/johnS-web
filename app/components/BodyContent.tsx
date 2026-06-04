@@ -206,8 +206,8 @@ export function JebediahShowcase() {
                 <path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9S9.5 5.5 12 3z" />
               </svg>
               <span className="flex flex-col leading-none">
-                <span className="text-[9px] uppercase tracking-wide text-white/70">Try it out on the</span>
-                <span className="mt-0.5 text-base font-semibold text-white">Web</span>
+                <span className="text-[9px] uppercase tracking-wide text-white/70">Try it out as a</span>
+                <span className="mt-0.5 text-base font-semibold text-white">Web App</span>
               </span>
             </a>
             <a
