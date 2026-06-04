@@ -71,7 +71,7 @@ export const messages = {
     "orchestr.features":
       "ADS-B, GPS, handheld radio, fuel calculation and flight charts. All in one form factor.",
     "orchestr.cta": "Have a look",
-    "orchestr.jebos.title": "Jebediah",
+    "orchestr.jebos.title": "Jeb's",
     "orchestr.jebos.tag": "EMBEDDED OS",
     "orchestr.jebos.desc":
       "A custom real-time, Debian-based embedded operating system for NVIDIA Jetson Orin Nano with capacitive touchscreen. Coming soon with certified hardware.",
@@ -234,7 +234,7 @@ export const messages = {
     "orchestr.features":
       "ADS-B, GPS, radio portable, calcul de carburant et cartes de vol. Tout dans un seul format.",
     "orchestr.cta": "Découvrir",
-    "orchestr.jebos.title": "Jebediah",
+    "orchestr.jebos.title": "Jeb's",
     "orchestr.jebos.tag": "OS EMBARQUÉ",
     "orchestr.jebos.desc":
       "Un système d'exploitation embarqué temps réel basé sur Debian pour NVIDIA Jetson Orin Nano avec écran tactile capacitif. Bientôt disponible avec matériel certifié.",
@@ -396,7 +396,7 @@ export const messages = {
     "orchestr.features":
       "ADS-B, GPS, 휴대용 무전기, 연료 계산, 비행 차트까지. 하나의 폼 팩터에 담았습니다.",
     "orchestr.cta": "둘러보기",
-    "orchestr.jebos.title": "Jebediah",
+    "orchestr.jebos.title": "Jeb's",
     "orchestr.jebos.tag": "임베디드 OS",
     "orchestr.jebos.desc":
       "NVIDIA Jetson Orin Nano용 정전식 터치스크린을 갖춘 커스텀 실시간 Debian 기반 임베디드 운영체제. 인증된 하드웨어와 함께 곧 출시 예정.",
