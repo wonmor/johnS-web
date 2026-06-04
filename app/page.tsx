@@ -62,6 +62,18 @@ function getRoundelTheme(locale: Locale): RoundelTheme {
   }
 }
 
+/**
+ * Easter egg: the roundel's *visuals* (colours + landmark + animated decor) are
+ * swapped between EN and KO — English viewers get the Seoul roundel, Korean
+ * viewers get the London one. Font and copy still follow the real locale; FR is
+ * left untouched.
+ */
+function roundelVisualLocale(locale: Locale): Locale {
+  if (locale === "en") return "ko";
+  if (locale === "ko") return "en";
+  return locale;
+}
+
 function roundelLandmarkSvg(locale: Locale): string | null {
   switch (locale) {
     case "en":
@@ -191,12 +203,14 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
 
 function TubeRoundel() {
   const { locale } = useI18n();
-  const theme = getRoundelTheme(locale);
+  // Visuals swap EN↔KO; font/copy stay on the real locale.
+  const vLocale = roundelVisualLocale(locale);
+  const theme = getRoundelTheme(vLocale);
   const nameFontFamily =
     locale === "ko" ? ibmPlexSansKRFontStack : tubeFont.style.fontFamily;
 
   const showFrBridge = theme.showBridgeAndWaves;
-  const showEnWater = locale === "en";
+  const showEnWater = vLocale === "en";
   const animateWaves = showFrBridge || showEnWater;
 
   const [waves, setWaves] = useState(
@@ -284,7 +298,7 @@ function TubeRoundel() {
 
       {showEnWater ? (
         <>
-          <RoundelLandmarkFill locale={locale} color={theme.decorStroke} />
+          <RoundelLandmarkFill locale={vLocale} color={theme.decorStroke} />
           <svg
             viewBox="0 0 100 100"
             style={{
@@ -312,12 +326,12 @@ function TubeRoundel() {
         </>
       ) : null}
 
-      {locale === "ko" ? (
+      {vLocale === "ko" ? (
         <KoreanRoundelCloudDecor decorStroke={theme.decorStroke} />
       ) : null}
 
       {!showFrBridge && !showEnWater ? (
-        <RoundelLandmarkFill locale={locale} color={theme.decorStroke} />
+        <RoundelLandmarkFill locale={vLocale} color={theme.decorStroke} />
       ) : null}
 
       {/* Hollow center */}
@@ -370,7 +384,7 @@ function TubeRoundelWith787({
   size?: number;
 }) {
   const { locale } = useI18n();
-  const wingColor = getRoundelTheme(locale).bar;
+  const wingColor = getRoundelTheme(roundelVisualLocale(locale)).bar;
   // scale relative to your TubeRoundel's base 140×140
   const base = 140;
   const s = size / base;
@@ -526,7 +540,7 @@ function ProjectTitle({
 
 export default function Portfolio() {
   const { t, locale } = useI18n();
-  const headerRoundelTheme = getRoundelTheme(locale);
+  const headerRoundelTheme = getRoundelTheme(roundelVisualLocale(locale));
   const [activeTab, setActiveTab] = useState<"benzene" | "gadolinium">(
     "benzene"
   );
