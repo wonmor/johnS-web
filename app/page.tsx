@@ -564,20 +564,31 @@ export default function Portfolio() {
       <div id="section-hero" className="scroll-mt-20 text-center">
         <div
           data-chrome-surface="light"
-          className="bg-[#f5f0e6] pb-8 pt-[calc(3.5rem+env(safe-area-inset-top)+3rem)] text-black sm:pt-[calc(4rem+env(safe-area-inset-top)+3.5rem)]"
+          className="relative overflow-hidden bg-[#f5f0e6] pb-8 pt-[calc(3.5rem+env(safe-area-inset-top)+3rem)] text-black sm:pt-[calc(4rem+env(safe-area-inset-top)+3.5rem)]"
         >
-          <Link href="/" className="mx-auto block w-fit">
-            <TubeRoundelWith787 />
-          </Link>
-          <p className="mt-4 text-[0.625rem] font-medium uppercase tracking-[0.22em] text-gray-600 sm:text-[0.7rem] sm:tracking-[0.26em]">
-            {t("hero.landmark")}
-          </p>
-          <p className="mt-2 text-2xl uppercase tracking-[0.25em]">
-            {t("hero.line1")}
-            <br />
-            {t("hero.line2")}
-          </p>
-          <span className="text-black">{t("hero.email")}</span>
+          <Image
+            src="/hero-portrait.webp"
+            alt=""
+            aria-hidden
+            width={1100}
+            height={1300}
+            priority
+            className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[115%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 select-none object-contain opacity-[0.14]"
+          />
+          <div className="relative z-10">
+            <Link href="/" className="mx-auto block w-fit">
+              <TubeRoundelWith787 />
+            </Link>
+            <p className="mt-4 text-[0.625rem] font-medium uppercase tracking-[0.22em] text-gray-600 sm:text-[0.7rem] sm:tracking-[0.26em]">
+              {t("hero.landmark")}
+            </p>
+            <p className="mt-2 text-2xl uppercase tracking-[0.25em]">
+              {t("hero.line1")}
+              <br />
+              {t("hero.line2")}
+            </p>
+            <span className="text-black">{t("hero.email")}</span>
+          </div>
         </div>
         <div data-chrome-surface="dark" className="bg-[#020824] py-8">
           <div className="flex flex-col items-center justify-center gap-4">
