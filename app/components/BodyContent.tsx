@@ -132,9 +132,21 @@ export function JebediahShowcase() {
                 Flight Bag
               </span>
             </h3>
-            <span className="mt-2 inline-flex items-center rounded-md border border-cyan-400 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-cyan-400">
-              {t("orchestr.jebos.tag")}
-            </span>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {[
+                { label: t("orchestr.jebos.tag"), className: "border-cyan-400 text-cyan-400" },
+                { label: "Desktop", className: "border-amber-400 text-amber-400" },
+                { label: "Mobile", className: "border-emerald-400 text-emerald-400" },
+                { label: "Web", className: "border-fuchsia-400 text-fuchsia-400" },
+              ].map((tag) => (
+                <span
+                  key={tag.label}
+                  className={`inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold uppercase tracking-wide ${tag.className}`}
+                >
+                  {tag.label}
+                </span>
+              ))}
+            </div>
           </div>
           <p className="mb-3 leading-relaxed text-white/90">
             Companion apps for iPad, Android tablets and the web share the same
