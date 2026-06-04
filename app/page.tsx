@@ -1026,7 +1026,7 @@ export default function Portfolio() {
           <li>
             {t("electron.li4")}{" "}
             <a
-              href="https://www.youtube.com/watch?v=kHcdvyaqslU"
+              href="https://www.youtube.com/watch?v=5eT39MEA0ec"
               target="_blank"
               rel="noopener noreferrer"
               className="text-pink-600 hover:underline"
