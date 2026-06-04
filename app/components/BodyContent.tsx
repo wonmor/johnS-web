@@ -22,12 +22,12 @@ const JEBOS_GALLERY = [
   { src: "/products/jebos-1.webp", platform: "Android", caption: "VFR sectional chart with synthetic vision PFD" },
   { src: "/products/jebos-2.webp", platform: "Android", caption: "IFR enroute chart — Montreal waypoints and navaids" },
   { src: "/products/jebos-3.webp", platform: "Android", caption: "Airport diagram viewer — KOWD Norwood Memorial" },
-  { src: "/products/jebos-4.webp", platform: "macOS", caption: "Live ATC transcription with highlighted callsigns" },
-  { src: "/products/jebos-5.webp", platform: "macOS", caption: "Preflight checklist — documents, walk-around, fuel, oil" },
-  { src: "/products/jebos-6.webp", platform: "macOS", caption: "Settings — AIRAC data, navdata downloads" },
-  { src: "/products/jebos-7.webp", platform: "macOS", caption: "POH reference — Cessna 152 V-speeds and weight limits" },
-  { src: "/products/jebos-8.webp", platform: "macOS", caption: "Split view — POH sidebar with VFR map" },
-  { src: "/products/jebos-9.webp", platform: "macOS", caption: "Satellite overlay with ADS-B traffic contacts" },
+  { src: "/products/jebos-4.webp", platform: "Web", caption: "Live ATC transcription with highlighted callsigns" },
+  { src: "/products/jebos-5.webp", platform: "Web", caption: "Preflight checklist — documents, walk-around, fuel, oil" },
+  { src: "/products/jebos-6.webp", platform: "Web", caption: "Settings — AIRAC data, navdata downloads" },
+  { src: "/products/jebos-7.webp", platform: "Web", caption: "POH reference — Cessna 152 V-speeds and weight limits" },
+  { src: "/products/jebos-8.webp", platform: "Web", caption: "Split view — POH sidebar with VFR map" },
+  { src: "/products/jebos-9.webp", platform: "Web", caption: "Satellite overlay with ADS-B traffic contacts" },
 ];
 
 export function BodyContent({ children }: { children: React.ReactNode }) {
@@ -116,7 +116,7 @@ export function JebediahShowcase() {
         </div>
         <div>
           <p className="text-[11px] uppercase tracking-[0.32em] text-white/55">
-            Available on iPad · Android · macOS
+            Available on iPad · Android · Web
           </p>
           <p className="mt-1 text-xs uppercase tracking-[0.18em] text-cyan-400/90">
             Early access
@@ -137,7 +137,7 @@ export function JebediahShowcase() {
             </span>
           </div>
           <p className="mb-3 leading-relaxed text-white/90">
-            Companion apps for iPad, Android tablets and macOS share the same
+            Companion apps for iPad, Android tablets and the web share the same
             VFR/IFR chart engine, ADS-B traffic, METAR/TAF briefings, ATC
             transcription and POH library — so what you see on Avionic 1
             hardware mirrors to every device you fly with.
