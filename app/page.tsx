@@ -1224,12 +1224,32 @@ export default function Portfolio() {
         <h3 className="mb-5 text-3xl uppercase tracking-tight">{t("edu.title")}</h3>
         <ol className="list-decimal space-y-6 pl-6 text-lg marker:text-gray-400">
           <li>
-            <h4 className="text-2xl"><ProjectTitle text={t("edu.hub.title")} /></h4>
-            <p className="text-gray-300">{t("edu.hub.detail")}</p>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h4 className="text-2xl"><ProjectTitle text={t("edu.hub.title")} /></h4>
+                <p className="text-gray-300">{t("edu.hub.detail")}</p>
+              </div>
+              <span
+                aria-hidden="true"
+                className="shrink-0 select-none font-bold uppercase leading-none tracking-tight text-white/10 text-5xl sm:text-7xl"
+              >
+                CYHU
+              </span>
+            </div>
           </li>
           <li>
-            <h4 className="text-2xl"><ProjectTitle text={t("edu.ocfc.title")} /></h4>
-            <p className="text-gray-300">{t("edu.ocfc.detail")}</p>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h4 className="text-2xl"><ProjectTitle text={t("edu.ocfc.title")} /></h4>
+                <p className="text-gray-300">{t("edu.ocfc.detail")}</p>
+              </div>
+              <span
+                aria-hidden="true"
+                className="shrink-0 select-none font-bold uppercase leading-none tracking-tight text-white/10 text-5xl sm:text-7xl"
+              >
+                KSNA
+              </span>
+            </div>
           </li>
           <li>
             <h4 className="text-2xl"><ProjectTitle text={t("edu.sunrise.title")} /></h4>
