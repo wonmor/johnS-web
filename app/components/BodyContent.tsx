@@ -160,15 +160,7 @@ export function JebediahShowcase() {
           <p className="mb-5 text-sm leading-relaxed text-white/70">
             {t("orchestr.jebos.desc")}
           </p>
-          <a
-            href="https://orchestrsim.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-cyan-400 px-5 py-2.5 text-sm font-medium text-black transition-colors hover:bg-cyan-300"
-          >
-            {t("orchestr.jebos.cta")}
-          </a>
-          <div className="mt-4 flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <a
               href="https://apps.apple.com/us/app/jebediahs-flight-bag/id6766274262"
               target="_blank"
@@ -217,6 +209,14 @@ export function JebediahShowcase() {
                 <span className="text-[9px] uppercase tracking-wide text-white/70">Try it out on the</span>
                 <span className="mt-0.5 text-base font-semibold text-white">Web</span>
               </span>
+            </a>
+            <a
+              href="https://orchestrsim.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-[46px] items-center gap-2 rounded-xl bg-cyan-400 px-5 text-sm font-medium text-black transition-colors hover:bg-cyan-300"
+            >
+              {t("orchestr.jebos.cta")}
             </a>
           </div>
         </div>
