@@ -190,6 +190,22 @@ export function JebediahShowcase() {
                 <span className="mt-0.5 text-base font-semibold text-white">Google Play</span>
               </span>
             </a>
+            <a
+              href="https://orchaerospace.com/app"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Try Jeb's Flight Bag on the Web"
+              className="inline-flex h-[46px] items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
+            >
+              <svg aria-hidden viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-none stroke-cyan-400" strokeWidth="2">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9S9.5 5.5 12 3z" />
+              </svg>
+              <span className="flex flex-col leading-none">
+                <span className="text-[9px] uppercase tracking-wide text-white/70">Try it out on the</span>
+                <span className="mt-0.5 text-base font-semibold text-white">Web</span>
+              </span>
+            </a>
           </div>
         </div>
 
