@@ -493,18 +493,12 @@ function splitTitleYear(text: string): { main: string; year: string | null } {
 
 function SectionKicker({
   label,
-  color = "#00a0e2",
 }: {
   label: string;
   color?: string;
 }) {
   return (
     <p className="mb-2 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.32em] text-white/55">
-      <span
-        aria-hidden
-        className="inline-block h-1.5 w-1.5 rounded-full"
-        style={{ backgroundColor: color }}
-      />
       <span>{label}</span>
     </p>
   );
@@ -809,7 +803,6 @@ export default function Portfolio() {
       {/* Project showcase header */}
       <div className="pt-4 text-center sm:pt-6">
         <p className="mb-2 flex items-center justify-center gap-2 text-[11px] font-medium uppercase tracking-[0.32em] text-white/55">
-          <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-[#E1251B]" />
           Selected work
         </p>
         <h2 className="text-4xl font-thin uppercase tracking-[0.18em] sm:text-6xl sm:tracking-[0.22em]">
