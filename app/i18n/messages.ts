@@ -88,7 +88,7 @@ export const messages = {
     "awards.wwdcVenue": "INVITED TO APPLE PARK · DISTINGUISHED WINNER AT 19",
     "awards.ukVisa": "UK Global Talent Visa Holder",
     "awards.usVisa": "US O-1A Extraordinary Ability",
-    "awards.madeInQuebec": "DESIGNED IN QUEBEC",
+    "awards.madeInQuebec": "BUILT IN QUEBEC",
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "As featured in the following outlets",
@@ -154,7 +154,7 @@ export const messages = {
       "Developing computer vision pipelines in C++ and Python (OpenCV, linear algebra), full-stack iOS, Objective-C, Swift, and Vue-based systems.",
     "exp.snu": "Seoul National University — research intern (July 2023)",
     "exp.snuBody":
-      "Improved a molecular visualiser using Python (SciPy, RDKit); GUI for AutoDock Vina; experience with Docker and server orchestration under Prof. Juyong Lee.",
+      "Improved a molecular visualiser using Python (SciPy, RDKit); GUI for AutoDock Vina; experience with Docker and server orchestration at Prof. Juyong Lee's Computational Chemistry Lab.",
 
     "edu.title": "Education",
     "edu.hub.title": "École de pilotage Saint-Hubert (2026)",
@@ -166,7 +166,7 @@ export const messages = {
     "edu.sunrise.detail":
       "Training on Evektor SportStar light-sport aircraft.",
     "edu.uci":
-      "University of California, Irvine — withdrew before completing a degree; major undeclared (2023)",
+      "University of California, Irvine — dropout, aerospace engineering and psychology (2023)",
   },
   fr: {
     "meta.title": "John Seong",
@@ -251,7 +251,7 @@ export const messages = {
     "awards.wwdcVenue": "INVITÉ À L’APPLE PARK · LAURÉAT DISTINGUÉ À 19 ANS",
     "awards.ukVisa": "Titulaire du visa « Global Talent » (R.-U.)",
     "awards.usVisa": "O-1A États-Unis — capacités d’exception",
-    "awards.madeInQuebec": "CONÇU AU QUÉBEC",
+    "awards.madeInQuebec": "FABRIQUÉ AU QUÉBEC",
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "Vu dans ces médias",
@@ -316,7 +316,7 @@ export const messages = {
       "Développement de pipelines de vision par ordinateur en C++ et Python (OpenCV, algèbre linéaire), pile complète iOS, Objective-C, Swift et systèmes fondés sur Vue.",
     "exp.snu": "Université nationale de Séoul — stagiaire recherche (juil. 2023)",
     "exp.snuBody":
-      "Amélioration d’un visualiseur moléculaire en Python (SciPy, RDKit) ; interface pour AutoDock Vina ; expérience Docker et orchestration de serveurs avec le prof. Juyong Lee.",
+      "Amélioration d’un visualiseur moléculaire en Python (SciPy, RDKit) ; interface pour AutoDock Vina ; expérience Docker et orchestration de serveurs au laboratoire de chimie computationnelle du prof. Juyong Lee.",
 
     "edu.title": "Formation",
     "edu.hub.title": "École de pilotage Saint-Hubert (2026)",
@@ -329,7 +329,7 @@ export const messages = {
     "edu.sunrise.detail":
       "Formation sur Evektor SportStar, avion ultra-léger motorisé (LSA).",
     "edu.uci":
-      "University of California, Irvine — dropout, majeure non déclarée (2023)",
+      "University of California, Irvine — dropout, génie aérospatial et psychologie (2023)",
   },
   ko: {
     "meta.title": "John Seong",
@@ -413,7 +413,7 @@ export const messages = {
     "awards.wwdcVenue": "애플 파크 초청 · 만 19세 DISTINGUISHED WINNER",
     "awards.ukVisa": "영국 글로벌 탤런트 비자 보유",
     "awards.usVisa": "미국 O-1A 비자(특별능력)",
-    "awards.madeInQuebec": "퀘벡에서 디자인",
+    "awards.madeInQuebec": "퀘벡에서 제작",
     "awards.reachAlt": "Reach Media Group",
 
     "media.featured": "다음 매체에 소개되었습니다",
@@ -480,7 +480,7 @@ export const messages = {
       "C++·Python(OpenCV, 선형대수) 컴퓨터 비전 파이프라인, 풀스택 iOS, Objective-C, Swift, Vue 기반 시스템을 개발합니다.",
     "exp.snu": "서울대학교 — 연구 인턴 (2023년 7월)",
     "exp.snuBody":
-      "Python(SciPy, RDKit)으로 분자 시각화 도구를 개선하고, AutoDock Vina용 GUI를 만들었습니다. 이주용 교수 연구실에서 Docker와 서버 오케스트레이션 경험을 쌓았습니다.",
+      "Python(SciPy, RDKit)으로 분자 시각화 도구를 개선하고, AutoDock Vina용 GUI를 만들었습니다. 이주용 교수 계산화학 연구실에서 Docker와 서버 오케스트레이션 경험을 쌓았습니다.",
 
     "edu.title": "교육",
     "edu.hub.title": "École de pilotage Saint-Hubert (2026)",
@@ -492,7 +492,7 @@ export const messages = {
     "edu.sunrise.detail":
       "경량스포츠기(Evektor SportStar) 훈련.",
     "edu.uci":
-      "University of California, Irvine — dropout, 전공 미선택 (2023)",
+      "University of California, Irvine — dropout, 항공우주공학 및 심리학 (2023)",
   },
 } as const satisfies Record<Locale, Record<string, string>>;
 

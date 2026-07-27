@@ -723,22 +723,6 @@ export default function Portfolio() {
         </p>
         <div className="flex justify-center gap-4">
           <a
-            href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center bg-gray-900 border border-white/10 rounded-md p-2 hover:bg-black transition-all"
-          >
-            <Image
-              src="/mobilesyrup.png"
-              alt="MobileSyrup"
-              width={100}
-              height={40}
-              style={{
-                objectFit: "contain",
-              }}
-            />
-          </a>
-          <a
             href="https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
             target="_blank"
             rel="noopener noreferrer"
@@ -747,6 +731,22 @@ export default function Portfolio() {
             <Image
               src="/hdsb.svg"
               alt="HDSB"
+              width={100}
+              height={40}
+              style={{
+                objectFit: "contain",
+              }}
+            />
+          </a>
+          <a
+            href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center bg-gray-900 border border-white/10 rounded-md p-2 hover:bg-black transition-all"
+          >
+            <Image
+              src="/mobilesyrup.png"
+              alt="MobileSyrup"
               width={100}
               height={40}
               style={{
