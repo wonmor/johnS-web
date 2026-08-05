@@ -21,14 +21,21 @@ import {
 
 const MEDIA_LOGOS = [
   {
-    href: "https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145",
-    src: "/hdsb.svg",
-    alt: "HDSB",
-  },
-  {
     href: "https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/",
     src: "/mobilesyrup.png",
     alt: "MobileSyrup",
+    width: 1062,
+    height: 161,
+    sizeClass: "h-7 sm:h-8",
+  },
+  {
+    href: "https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145",
+    src: "/hdsb-wordmark.png",
+    alt: "Halton District School Board",
+    width: 400,
+    height: 109,
+    sizeClass: "h-12 sm:h-14",
+    note: "(WebArchive.org)",
   },
 ];
 
@@ -48,14 +55,6 @@ const SOCIAL_LINKS = [
   },
 ];
 
-const BenzeneCanvas = dynamic(
-  () => import("./components/portfolio/BenzeneCanvas"),
-  { ssr: false }
-);
-const GadoliniumCanvas = dynamic(
-  () => import("./components/portfolio/GadoliniumCanvas"),
-  { ssr: false }
-);
 const FaceCanvas = dynamic(
   () => import("./components/portfolio/FaceCanvas"),
   { ssr: false }
@@ -533,6 +532,59 @@ function splitTitleYear(text: string): { main: string; year: string | null } {
   return { main: m[1].trim(), year: m[2].trim() };
 }
 
+/**
+ * Live viewer from electronvisual.org rather than a local .gltf snapshot, so
+ * the atom/molecule always uses the current renderer and DFT data.
+ * `keyword` is an element symbol ("Gd") or a formula in the site's molecule
+ * dictionary ("C6H6"); `fullscreen=true` drops its header and footer.
+ */
+function ElectronVisualEmbed({
+  keyword,
+  title,
+}: {
+  keyword: string;
+  title: string;
+}) {
+  const src = `https://electronvisual.org/renderer?keyword=${encodeURIComponent(
+    keyword
+  )}&fullscreen=true`;
+
+  return (
+    <div>
+      <div className="relative h-[380px] w-full overflow-hidden rounded-xl bg-black ring-1 ring-white/10 sm:h-[480px]">
+        <iframe
+          src={src}
+          title={`${title} — ElectronVisual.org renderer`}
+          loading="lazy"
+          allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
+          referrerPolicy="strict-origin-when-cross-origin"
+          className="absolute inset-0 h-full w-full border-0"
+        />
+      </div>
+      <p className="mt-2 text-center text-[11px] uppercase tracking-[0.18em] text-white/45">
+        Live from ElectronVisual.org ·{" "}
+        <a
+          href={src}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-white/30 underline-offset-4 hover:decoration-white"
+        >
+          Open in new tab
+        </a>
+      </p>
+    </div>
+  );
+}
+
+/** Quiet stand-in while the viewer is still out of view. */
+function RendererPlaceholder({ label }: { label: string }) {
+  return (
+    <div className="flex h-[380px] items-center justify-center rounded-xl bg-black/40 text-center text-xl font-thin text-white/60 ring-1 ring-white/10 sm:h-[480px]">
+      {label}
+    </div>
+  );
+}
+
 /** Responsive 16:9 YouTube embed — the old fixed 350×250 boxes never grew. */
 function EmbeddedVideo({
   src,
@@ -804,22 +856,28 @@ export default function Portfolio() {
         <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.32em] text-white/55">
           {t("media.featured")}
         </p>
-        <div className="flex items-center justify-center gap-8">
+        {/* Stacked: the wide HDSB wordmark gets its own line so it can be read */}
+        <div className="flex flex-col items-center gap-5">
           {MEDIA_LOGOS.map((logo) => (
             <a
               key={logo.alt}
               href={logo.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center opacity-55 transition-opacity duration-300 hover:opacity-100"
+              className="inline-flex flex-col items-center gap-1 opacity-70 transition-opacity duration-300 hover:opacity-100"
             >
               <Image
                 src={logo.src}
                 alt={logo.alt}
-                width={100}
-                height={40}
-                className="h-8 w-auto object-contain"
+                width={logo.width}
+                height={logo.height}
+                className={`w-auto object-contain ${logo.sizeClass}`}
               />
+              {"note" in logo && logo.note ? (
+                <span className="text-[10px] uppercase tracking-[0.18em] text-white/45">
+                  {logo.note}
+                </span>
+              ) : null}
             </a>
           ))}
         </div>
@@ -894,21 +952,12 @@ export default function Portfolio() {
               <LazyMountInView
                 unlock={atoms3dUnlocked}
                 rootMargin="220px 0px 260px 0px"
-                fallback={
-                  <div className="flex h-[300px] items-center justify-center text-center text-3xl font-thin text-white">
-                    {t("gltf.loadingBenzene")}
-                  </div>
-                }
+                fallback={<RendererPlaceholder label={t("gltf.loadingBenzene")} />}
               >
-                <Suspense
-                  fallback={
-                    <div className="flex h-[300px] items-center justify-center text-center text-3xl font-thin text-white">
-                      {t("gltf.loadingBenzene")}
-                    </div>
-                  }
-                >
-                  <BenzeneCanvas />
-                </Suspense>
+                <ElectronVisualEmbed
+                  keyword="C6H6"
+                  title={t("gltf.benzeneTitle")}
+                />
               </LazyMountInView>
               <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
                 <h3 className="text-2xl tracking-wide">
@@ -938,21 +987,9 @@ export default function Portfolio() {
               <LazyMountInView
                 unlock={atoms3dUnlocked}
                 rootMargin="220px 0px 260px 0px"
-                fallback={
-                  <div className="flex h-[400px] items-center justify-center text-center text-3xl font-thin text-white">
-                    {t("gltf.loadingGd")}
-                  </div>
-                }
+                fallback={<RendererPlaceholder label={t("gltf.loadingGd")} />}
               >
-                <Suspense
-                  fallback={
-                    <div className="flex h-[400px] items-center justify-center text-center text-3xl font-thin text-white">
-                      {t("gltf.loadingGd")}
-                    </div>
-                  }
-                >
-                  <GadoliniumCanvas />
-                </Suspense>
+                <ElectronVisualEmbed keyword="Gd" title={t("gltf.gdTitle")} />
               </LazyMountInView>
               <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
                 <h3 className="text-2xl tracking-wide">{t("gltf.gdTitle")}</h3>
