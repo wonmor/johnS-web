@@ -533,6 +533,37 @@ function splitTitleYear(text: string): { main: string; year: string | null } {
 }
 
 /**
+ * Pixels of the embedded renderer hidden above the fold. The live page opens
+ * with a geometry summary (Planar / 120° / AX3 …) that duplicates what this
+ * section already says; cropping it starts the frame at the "Connect Atomizer
+ * Remote" row. Tune this one number if the cut lands wrong.
+ */
+const RENDERER_CROP_TOP = 200;
+
+const ATOM_VIEWERS = [
+  {
+    key: "gadolinium",
+    keyword: "Gd",
+    tabKey: "gltf.tabGd",
+    titleKey: "gltf.gdTitle",
+    bodyKey: "gltf.gdBody",
+    loadingKey: "gltf.loadingGd",
+    linkAfterBody: false,
+  },
+  {
+    key: "benzene",
+    keyword: "C6H6",
+    tabKey: "gltf.tabBenzene",
+    titleKey: "gltf.benzeneTitle",
+    bodyKey: "gltf.benzeneBody",
+    loadingKey: "gltf.loadingBenzene",
+    linkAfterBody: true,
+  },
+] as const;
+
+type AtomViewerKey = (typeof ATOM_VIEWERS)[number]["key"];
+
+/**
  * Live viewer from electronvisual.org rather than a local .gltf snapshot, so
  * the atom/molecule always uses the current renderer and DFT data.
  * `keyword` is an element symbol ("Gd") or a formula in the site's molecule
@@ -558,7 +589,11 @@ function ElectronVisualEmbed({
           loading="lazy"
           allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
           referrerPolicy="strict-origin-when-cross-origin"
-          className="absolute inset-0 h-full w-full border-0"
+          className="absolute inset-x-0 w-full border-0"
+          style={{
+            top: -RENDERER_CROP_TOP,
+            height: `calc(100% + ${RENDERER_CROP_TOP}px)`,
+          }}
         />
       </div>
       <p className="mt-2 text-center text-[11px] uppercase tracking-[0.18em] text-white/45">
@@ -658,9 +693,12 @@ function ProjectTitle({
 export default function Portfolio() {
   const { t, locale } = useI18n();
   const headerRoundelTheme = getRoundelTheme(roundelVisualLocale(locale));
-  const [activeTab, setActiveTab] = useState<"benzene" | "gadolinium">(
-    "benzene"
-  );
+  const [activeTab, setActiveTab] = useState<AtomViewerKey>("benzene");
+  // Which viewers have been opened at least once — they stay mounted after.
+  const [openedTabs, setOpenedTabs] = useState<Record<AtomViewerKey, boolean>>({
+    benzene: true,
+    gadolinium: false,
+  });
   const [atoms3dUnlocked, setAtoms3dUnlocked] = useState(false);
   const [heroScrolled, setHeroScrolled] = useState(false);
   const [avatarRevealed, setAvatarRevealed] = useState(false);
@@ -915,90 +953,83 @@ export default function Portfolio() {
           aria-label="Molecule viewer"
           className="mx-auto mb-5 flex w-full max-w-xs rounded-full border border-white/15 bg-white/[0.04] p-1"
         >
-          {(
-            [
-              { key: "gadolinium", label: t("gltf.tabGd") },
-              { key: "benzene", label: t("gltf.tabBenzene") },
-            ] as const
-          ).map((tab) => (
+          {ATOM_VIEWERS.map((viewer) => (
             <button
-              key={tab.key}
+              key={viewer.key}
               type="button"
               role="tab"
-              aria-selected={activeTab === tab.key}
+              aria-selected={activeTab === viewer.key}
               className={`flex-1 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                activeTab === tab.key
+                activeTab === viewer.key
                   ? "bg-white text-[#020824]"
                   : "text-white/70 hover:text-white"
               }`}
               onClick={() => {
                 setAtoms3dUnlocked(true);
-                setActiveTab(tab.key);
+                setActiveTab(viewer.key);
+                setOpenedTabs((prev) => ({ ...prev, [viewer.key]: true }));
               }}
             >
-              {tab.label}
+              {t(viewer.tabKey)}
             </button>
           ))}
         </div>
 
         {/* Anchor sits on the viewer, so the nav tab lands on the renderer
-            itself rather than the section heading above it. */}
+            itself rather than the section heading above it. Both panels stay
+            mounted once opened and the inactive one is only hidden — swapping
+            tabs must not tear down a loaded renderer. */}
         <div id="section-atoms" className="scroll-mt-24">
-          {activeTab === "benzene" && (
-            <div className="bg-black/80 rounded-2xl p-6 shadow-lg ring-1 ring-white/5">
-              <LazyMountInView
-                unlock={atoms3dUnlocked}
-                rootMargin="220px 0px 260px 0px"
-                fallback={<RendererPlaceholder label={t("gltf.loadingBenzene")} />}
+          {ATOM_VIEWERS.map((viewer) =>
+            openedTabs[viewer.key] ? (
+              <div
+                key={viewer.key}
+                className={
+                  activeTab === viewer.key
+                    ? "rounded-2xl bg-black/80 p-6 shadow-lg ring-1 ring-white/5"
+                    : "hidden"
+                }
               >
-                <ElectronVisualEmbed
-                  keyword="C6H6"
-                  title={t("gltf.benzeneTitle")}
-                />
-              </LazyMountInView>
-              <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
-                <h3 className="text-2xl tracking-wide">
-                  {t("gltf.benzeneTitle")}
-                </h3>
-                <p className="mt-2 text-white/70">
-                  {t("gltf.benzeneBody")}{" "}
-                  <a href="https://electronvisual.org" className={LINK_INLINE}>
-                    <code>ElectronVisual.org</code>
+                <LazyMountInView
+                  unlock={atoms3dUnlocked}
+                  rootMargin="220px 0px 260px 0px"
+                  fallback={
+                    <RendererPlaceholder label={t(viewer.loadingKey)} />
+                  }
+                >
+                  <ElectronVisualEmbed
+                    keyword={viewer.keyword}
+                    title={t(viewer.titleKey)}
+                  />
+                </LazyMountInView>
+                <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
+                  <h3 className="text-2xl tracking-wide">
+                    {t(viewer.titleKey)}
+                  </h3>
+                  <p className="mt-2 text-white/70">
+                    {t(viewer.bodyKey)}
+                    {viewer.linkAfterBody ? (
+                      <>
+                        {" "}
+                        <a
+                          href="https://electronvisual.org"
+                          className={LINK_INLINE}
+                        >
+                          ElectronVisual.org
+                        </a>
+                        .
+                      </>
+                    ) : null}
+                  </p>
+                  <a
+                    href="https://electronvisual.org"
+                    className={`mt-4 ${BTN_GHOST}`}
+                  >
+                    {t("gltf.benzeneCta")} ElectronVisual.org
                   </a>
-                  .
-                </p>
-                <a
-                  href="https://electronvisual.org"
-                  className={`mt-4 ${BTN_GHOST}`}
-                >
-                  {t("gltf.benzeneCta")} ElectronVisual.org
-                </a>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-
-        <div>
-          {activeTab === "gadolinium" && (
-            <div className="bg-black/80 rounded-2xl p-6 shadow-lg ring-1 ring-white/5">
-              <LazyMountInView
-                unlock={atoms3dUnlocked}
-                rootMargin="220px 0px 260px 0px"
-                fallback={<RendererPlaceholder label={t("gltf.loadingGd")} />}
-              >
-                <ElectronVisualEmbed keyword="Gd" title={t("gltf.gdTitle")} />
-              </LazyMountInView>
-              <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
-                <h3 className="text-2xl tracking-wide">{t("gltf.gdTitle")}</h3>
-                <p className="mt-2 text-white/70">{t("gltf.gdBody")}</p>
-                <a
-                  href="https://electronvisual.org"
-                  className={`mt-4 ${BTN_GHOST}`}
-                >
-                  {t("gltf.benzeneCta")} ElectronVisual.org
-                </a>
-              </div>
-            </div>
+            ) : null
           )}
         </div>
       </div>
