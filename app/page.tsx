@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { JebediahShowcase } from "./components/BodyContent";
 import { LazyMountInView } from "./components/portfolio/LazyMountInView";
 import { AppStoreBadge } from "./components/StoreBadges";
@@ -668,18 +668,13 @@ export default function Portfolio() {
     const t = setTimeout(() => setAvatarRevealed(true), 1500);
     return () => clearTimeout(t);
   }, []);
-  const benzeneRef = useRef<HTMLDivElement>(null);
-  const gadoliniumRef = useRef<HTMLDivElement>(null);
-
-  // Scroll-based tab switching — coalesced into one frame per scroll burst.
+  // Scrolling used to flip the viewer tab on its own, which tore down the
+  // mounted renderer mid-scroll. The tab is now click-only; scroll just drives
+  // the hero portrait cross-fade.
   useEffect(() => {
     let queued = false;
     const measure = () => {
       queued = false;
-      const gadTop = gadoliniumRef.current?.offsetTop || 0;
-      const scrollY = window.scrollY + window.innerHeight / 2;
-      if (scrollY < gadTop) setActiveTab("benzene");
-      else if (scrollY >= gadTop) setActiveTab("gadolinium");
       setHeroScrolled(window.scrollY > 300);
     };
     const onScroll = () => {
@@ -911,7 +906,7 @@ export default function Portfolio() {
       <JebediahShowcase />
 
       {/* Gadolinium / Benzene Tabs */}
-      <div id="section-atoms" className={SECTION_CARD}>
+      <div className={SECTION_CARD}>
         <SectionKicker label="Interactive · 3D viewer" />
         <h2 className={SECTION_HEADING}>Atoms &amp; molecules</h2>
         {/* Segmented control: one pill, two states — reads as a switch, not two buttons */}
@@ -946,7 +941,9 @@ export default function Portfolio() {
           ))}
         </div>
 
-        <div ref={benzeneRef}>
+        {/* Anchor sits on the viewer, so the nav tab lands on the renderer
+            itself rather than the section heading above it. */}
+        <div id="section-atoms" className="scroll-mt-24">
           {activeTab === "benzene" && (
             <div className="bg-black/80 rounded-2xl p-6 shadow-lg ring-1 ring-white/5">
               <LazyMountInView
@@ -981,7 +978,7 @@ export default function Portfolio() {
           )}
         </div>
 
-        <div ref={gadoliniumRef}>
+        <div>
           {activeTab === "gadolinium" && (
             <div className="bg-black/80 rounded-2xl p-6 shadow-lg ring-1 ring-white/5">
               <LazyMountInView
