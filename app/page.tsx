@@ -846,9 +846,6 @@ export default function Portfolio() {
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 sm:gap-10 sm:px-6">
       {/* Project showcase header */}
       <div className="pt-4 text-center sm:pt-6">
-        <p className="mb-2 flex items-center justify-center gap-2 text-[11px] font-medium uppercase tracking-[0.32em] text-white/55">
-          Selected work
-        </p>
         <h2 className="text-4xl font-thin uppercase tracking-[0.18em] sm:text-6xl sm:tracking-[0.22em]">
           Showcase
         </h2>
