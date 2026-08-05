@@ -6,9 +6,47 @@ import Link from "next/link";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { JebediahShowcase } from "./components/BodyContent";
 import { LazyMountInView } from "./components/portfolio/LazyMountInView";
+import { AppStoreBadge } from "./components/StoreBadges";
 import { ibmPlexSansKRFontStack, tubeFont } from "./fonts";
+import { usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 import { useI18n } from "./i18n/context";
 import type { Locale } from "./i18n/messages";
+import {
+  BTN_GHOST,
+  BTN_PRIMARY,
+  LINK_INLINE,
+  SECTION_CARD,
+  SECTION_HEADING,
+} from "./styles";
+
+const MEDIA_LOGOS = [
+  {
+    href: "https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145",
+    src: "/hdsb.svg",
+    alt: "HDSB",
+  },
+  {
+    href: "https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/",
+    src: "/mobilesyrup.png",
+    alt: "MobileSyrup",
+  },
+];
+
+const SOCIAL_LINKS = [
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w",
+  },
+  { label: "GitHub", href: "https://github.com/wonmor" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/john-seong-9194321a9/",
+  },
+  {
+    label: "App Store",
+    href: "https://apps.apple.com/ca/developer/wonmo-seong/id1625011193",
+  },
+];
 
 const BenzeneCanvas = dynamic(
   () => import("./components/portfolio/BenzeneCanvas"),
@@ -157,9 +195,14 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
   };
 
   const [puffs, setPuffs] = useState(() => initialKoCloudPuffs());
+  const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    const id = setInterval(() => {
+    if (reducedMotion) return;
+    // rAF instead of a 16 ms interval: it yields to the compositor and pauses
+    // outright when the tab is hidden.
+    let frame = 0;
+    const tick = () => {
       setPuffs((prev) =>
         prev.map((p) => {
           let nx = p.cx + KO_CLOUD_DRIFT_PER_TICK;
@@ -167,9 +210,11 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
           return { ...p, cx: nx };
         })
       );
-    }, 16);
-    return () => clearInterval(id);
-  }, []);
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [reducedMotion]);
 
   return (
     <svg viewBox="0 0 100 100" style={cloudStyle} aria-hidden>
@@ -209,9 +254,10 @@ function TubeRoundel() {
   const nameFontFamily =
     locale === "ko" ? ibmPlexSansKRFontStack : tubeFont.style.fontFamily;
 
+  const reducedMotion = usePrefersReducedMotion();
   const showFrBridge = theme.showBridgeAndWaves;
   const showEnWater = vLocale === "en";
-  const animateWaves = showFrBridge || showEnWater;
+  const animateWaves = (showFrBridge || showEnWater) && !reducedMotion;
 
   const [waves, setWaves] = useState(
     Array.from({ length: 30 }).map(() => ({
@@ -224,7 +270,8 @@ function TubeRoundel() {
   useEffect(() => {
     if (!animateWaves) return;
     const speed = 0.3;
-    const interval = setInterval(() => {
+    let frame = 0;
+    const tick = () => {
       setWaves((prev) =>
         prev
           .map((wave) => ({ ...wave, x: wave.x + speed }))
@@ -237,8 +284,10 @@ function TubeRoundel() {
             }))
           )
       );
-    }, 16);
-    return () => clearInterval(interval);
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
   }, [animateWaves]);
 
   const waveDecorStyle: React.CSSProperties = {
@@ -455,19 +504,12 @@ function TubeRoundelWith787({
         </g>
 
         {/* Very faint fill between edges */}
-        <g fill={wingColor} opacity="0.05">
+        <g fill={wingColor} opacity="0.11">
           <path d={`M 38 78 Q -5 66 -85 45 Q -30 58 10 70 Z`} />
           <path d={`M 102 78 Q 145 66 225 45 Q 170 58 130 70 Z`} />
         </g>
 
-
-        {/* Subtle wing fill (kept ultra-thin) */}
-        <g fill={wingColor} opacity="0.06">
-          <path d={`M 38 78 Q -5 66 -85 45 Q -30 58 10 70 Z`} />
-          <path d={`M 102 78 Q 145 66 225 45 Q 170 58 130 70 Z`} />
-        </g>
-
-           {/* Engines — full circles, faint to match wings */}
+        {/* Engines — full circles, faint to match wings */}
         <g stroke={wingColor} strokeWidth="2" fill="none" opacity="0.25">
           {/* Left engine */}
           <circle cx="-5" cy="96" r="14" />
@@ -491,12 +533,41 @@ function splitTitleYear(text: string): { main: string; year: string | null } {
   return { main: m[1].trim(), year: m[2].trim() };
 }
 
-function SectionKicker({
-  label,
+/** Responsive 16:9 YouTube embed — the old fixed 350×250 boxes never grew. */
+function EmbeddedVideo({
+  src,
+  title,
+  caption,
+  className,
 }: {
-  label: string;
-  color?: string;
+  src: string;
+  title: string;
+  caption?: string;
+  className?: string;
 }) {
+  return (
+    <figure className={`mx-auto w-full max-w-2xl ${className ?? ""}`}>
+      <div className="relative aspect-video w-full overflow-hidden rounded-xl ring-1 ring-white/15">
+        <iframe
+          className="absolute inset-0 h-full w-full"
+          src={src}
+          title={title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+      {caption ? (
+        <figcaption className="mt-2 text-center text-sm text-white/60">
+          {caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
+function SectionKicker({ label }: { label: string }) {
   return (
     <p className="mb-2 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.32em] text-white/55">
       <span>{label}</span>
@@ -548,17 +619,23 @@ export default function Portfolio() {
   const benzeneRef = useRef<HTMLDivElement>(null);
   const gadoliniumRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-based tab switching
+  // Scroll-based tab switching — coalesced into one frame per scroll burst.
   useEffect(() => {
-    const onScroll = () => {
-      const benzeneTop = benzeneRef.current?.offsetTop || 0;
+    let queued = false;
+    const measure = () => {
+      queued = false;
       const gadTop = gadoliniumRef.current?.offsetTop || 0;
       const scrollY = window.scrollY + window.innerHeight / 2;
       if (scrollY < gadTop) setActiveTab("benzene");
       else if (scrollY >= gadTop) setActiveTab("gadolinium");
       setHeroScrolled(window.scrollY > 300);
     };
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(measure);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -590,12 +667,18 @@ export default function Portfolio() {
             <p className="mt-4 text-[0.625rem] font-medium uppercase tracking-[0.22em] text-gray-600 sm:text-[0.7rem] sm:tracking-[0.26em]">
               {t("hero.landmark")}
             </p>
-            <p className="mt-2 text-2xl uppercase tracking-[0.25em]">
+            {/* The page's only h1 — everything below hangs off it. */}
+            <h1 className="mt-2 text-2xl uppercase tracking-[0.25em]">
               {t("hero.line1")}
               <br />
               {t("hero.line2")}
-            </p>
-            <span className="text-black">{t("hero.email")}</span>
+            </h1>
+            <a
+              href={`mailto:${t("hero.email")}`}
+              className="mt-3 inline-block text-black underline decoration-black/25 underline-offset-4 transition-colors hover:decoration-black"
+            >
+              {t("hero.email")}
+            </a>
           </div>
         </div>
         <div data-chrome-surface="dark" className="bg-[#020824] py-8">
@@ -716,87 +799,48 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Featured Media */}
+      {/* Featured Media — logos sit bare on the background and only come up on hover */}
       <div className="mt-4 text-center">
-        <p className="mb-2 text-xs uppercase tracking-wider text-gray-400">
+        <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.32em] text-white/55">
           {t("media.featured")}
         </p>
-        <div className="flex justify-center gap-4">
-          <a
-            href="https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center bg-gray-900 border border-white/10 rounded-md p-2 hover:bg-black transition-all"
-          >
-            <Image
-              src="/hdsb.svg"
-              alt="HDSB"
-              width={100}
-              height={40}
-              style={{
-                objectFit: "contain",
-              }}
-            />
-          </a>
-          <a
-            href="https://mobilesyrup.com/2023/06/05/meet-the-six-canadian-winners-of-apples-wwdc23-swift-student-challenge/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center bg-gray-900 border border-white/10 rounded-md p-2 hover:bg-black transition-all"
-          >
-            <Image
-              src="/mobilesyrup.png"
-              alt="MobileSyrup"
-              width={100}
-              height={40}
-              style={{
-                objectFit: "contain",
-              }}
-            />
-          </a>
+        <div className="flex items-center justify-center gap-8">
+          {MEDIA_LOGOS.map((logo) => (
+            <a
+              key={logo.alt}
+              href={logo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center opacity-55 transition-opacity duration-300 hover:opacity-100"
+            >
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={100}
+                height={40}
+                className="h-8 w-auto object-contain"
+              />
+            </a>
+          ))}
         </div>
       </div>
 
       {/* Navigation bar */}
-      <nav className="w-fit m-auto flex flex-wrap justify-center gap-6 text-md font-medium text-gray-300">
-        {/* <a
-          className="hover:underline hover:text-[#e32017] transition-all"
-          href="https://medium.com/@wonmor"
-        >
-          Articles
-        </a> */}
-        <a
-          className="hover:underline hover:text-white transition-all"
-          href="https://www.youtube.com/channel/UC2O-C28dSgDTZcYxv9OX20w"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          YouTube
-        </a>
-        <a
-          className="hover:underline hover:text-white transition-all"
-          href="https://github.com/wonmor"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub
-        </a>
-        <a
-          className="hover:underline hover:text-white transition-all"
-          href="https://www.linkedin.com/in/john-seong-9194321a9/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-        </a>
-        <a
-          className="hover:underline hover:text-white transition-all"
-          href="https://apps.apple.com/ca/developer/wonmo-seong/id1625011193"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          App Store
-        </a>
+      <nav
+        aria-label="Elsewhere"
+        className="m-auto flex w-fit flex-wrap justify-center gap-x-8 gap-y-3 text-base font-medium text-white/60"
+      >
+        {SOCIAL_LINKS.map((link) => (
+          <a
+            key={link.label}
+            className="underline decoration-transparent underline-offset-4 transition-colors duration-200 hover:text-white hover:decoration-white/50"
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link.label}
+          </a>
+        ))}
       </nav>
 
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 sm:gap-10 sm:px-6">
@@ -812,41 +856,39 @@ export default function Portfolio() {
       <JebediahShowcase />
 
       {/* Gadolinium / Benzene Tabs */}
-      <div
-        id="section-atoms"
-        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
-      >
-        <SectionKicker label="Interactive · 3D viewer" color="#E1251B" />
-        <h3 className="mb-5 text-3xl uppercase tracking-tight">
-          Atoms &amp; molecules
-        </h3>
-        <div className="flex justify-center gap-4 mb-4">
-          <button
-            className={`px-4 py-2 rounded ${
-              activeTab === "gadolinium"
-                ? "bg-white text-black"
-                : "bg-transparent text-white border border-white/60"
-            }`}
-            onClick={() => {
-              setAtoms3dUnlocked(true);
-              setActiveTab("gadolinium");
-            }}
-          >
-            {t("gltf.tabGd")}
-          </button>
-          <button
-            className={`px-4 py-2 rounded ${
-              activeTab === "benzene"
-                ? "bg-white text-black"
-                : "bg-transparent text-white border border-white/60"
-            }`}
-            onClick={() => {
-              setAtoms3dUnlocked(true);
-              setActiveTab("benzene");
-            }}
-          >
-            {t("gltf.tabBenzene")}
-          </button>
+      <div id="section-atoms" className={SECTION_CARD}>
+        <SectionKicker label="Interactive · 3D viewer" />
+        <h2 className={SECTION_HEADING}>Atoms &amp; molecules</h2>
+        {/* Segmented control: one pill, two states — reads as a switch, not two buttons */}
+        <div
+          role="tablist"
+          aria-label="Molecule viewer"
+          className="mx-auto mb-5 flex w-full max-w-xs rounded-full border border-white/15 bg-white/[0.04] p-1"
+        >
+          {(
+            [
+              { key: "gadolinium", label: t("gltf.tabGd") },
+              { key: "benzene", label: t("gltf.tabBenzene") },
+            ] as const
+          ).map((tab) => (
+            <button
+              key={tab.key}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab.key}
+              className={`flex-1 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                activeTab === tab.key
+                  ? "bg-white text-[#020824]"
+                  : "text-white/70 hover:text-white"
+              }`}
+              onClick={() => {
+                setAtoms3dUnlocked(true);
+                setActiveTab(tab.key);
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
 
         <div ref={benzeneRef}>
@@ -872,24 +914,21 @@ export default function Portfolio() {
                 </Suspense>
               </LazyMountInView>
               <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
-                <h4 className="text-2xl tracking-wide">
+                <h3 className="text-2xl tracking-wide">
                   {t("gltf.benzeneTitle")}
-                </h4>
-                <p className="mt-2 text-gray-300">
+                </h3>
+                <p className="mt-2 text-white/70">
                   {t("gltf.benzeneBody")}{" "}
-                  <a
-                    href="https://electronvisual.org"
-                    className="hover:underline"
-                  >
+                  <a href="https://electronvisual.org" className={LINK_INLINE}>
                     <code>ElectronVisual.org</code>
                   </a>
                   .
                 </p>
                 <a
                   href="https://electronvisual.org"
-                  className="mt-4 inline-block rounded border border-white px-4 py-2 text-white transition hover:bg-white hover:text-[#003688]"
+                  className={`mt-4 ${BTN_GHOST}`}
                 >
-                  {t("gltf.benzeneCta")} <code>ElectronVisual.org</code>
+                  {t("gltf.benzeneCta")} ElectronVisual.org
                 </a>
               </div>
             </div>
@@ -919,13 +958,13 @@ export default function Portfolio() {
                 </Suspense>
               </LazyMountInView>
               <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
-                <h4 className="text-2xl tracking-wide">{t("gltf.gdTitle")}</h4>
-                <p className="mt-2 text-gray-300">{t("gltf.gdBody")}</p>
+                <h3 className="text-2xl tracking-wide">{t("gltf.gdTitle")}</h3>
+                <p className="mt-2 text-white/70">{t("gltf.gdBody")}</p>
                 <a
                   href="https://electronvisual.org"
-                  className="mt-4 inline-block rounded border border-white px-4 py-2 text-white transition hover:bg-white hover:text-[#003688]"
+                  className={`mt-4 ${BTN_GHOST}`}
                 >
-                  {t("gltf.benzeneCta")} <code>ElectronVisual.org</code>
+                  {t("gltf.benzeneCta")} ElectronVisual.org
                 </a>
               </div>
             </div>
@@ -934,10 +973,7 @@ export default function Portfolio() {
       </div>
 
       {/* ElectronVisual Section */}
-      <section
-        id="section-electron"
-        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
-      >
+      <section id="section-electron" className={SECTION_CARD}>
         <div className="mb-6 space-y-3 sm:space-y-4">
           {/* Row 1: book cover (portrait) + Atomizer screens (portrait) side by side */}
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
@@ -995,14 +1031,14 @@ export default function Portfolio() {
             />
           </a>
         </div>
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber-300/40 bg-amber-300/[0.06] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-200">
-          <span aria-hidden className="text-amber-300">★</span>
+        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/75">
+          <span aria-hidden>★</span>
           Apple Swift Student Challenge · 2023 Award
         </div>
-        <SectionKicker label="iOS · WebXR · DFT" color="#003688" />
-        <h3 className="mb-5 text-3xl uppercase tracking-tight">
+        <SectionKicker label="iOS · WebXR · DFT" />
+        <h2 className={SECTION_HEADING}>
           <ProjectTitle text={t("electron.title")} />
-        </h3>
+        </h2>
         <ul className="list-disc space-y-2 pl-6 text-lg">
           <li>{t("electron.li1")}</li>
           <li>{t("electron.li2")}</li>
@@ -1012,7 +1048,7 @@ export default function Portfolio() {
               href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cyan-300 hover:underline"
+              className={LINK_INLINE}
             >
               {t("electron.li3Book")}
             </a>
@@ -1023,9 +1059,9 @@ export default function Portfolio() {
                 href="https://doi.org/10.1142/13806"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-cyan-300 hover:underline"
+                className={LINK_INLINE}
               >
-                https://doi.org/10.1142/13806
+                doi.org/10.1142/13806
               </a>
               )
             </i>
@@ -1036,45 +1072,28 @@ export default function Portfolio() {
               href="https://www.youtube.com/watch?v=5eT39MEA0ec"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-pink-600 hover:underline"
+              className={LINK_INLINE}
             >
               YouTube
             </a>
           </li>
         </ul>
-        {/* App Store badge */}
-        <div className="mt-6 flex justify-left">
-          <a
+        {/* Actions: store badge and site link on one baseline */}
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <AppStoreBadge
             href="https://apps.apple.com/us/app/atomizer-ar/id6449015706"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={t("electron.appStoreAtomizer")}
-          >
-            <img
-              src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
-              alt={t("electron.appStoreBadgeAlt")}
-              height={50}
-              style={{ height: 50, cursor: "pointer" }}
-            />
+            ariaLabel={t("electron.appStoreAtomizer")}
+          />
+          <a href="https://www.electronvisual.org" className={BTN_PRIMARY}>
+            {t("electron.visit")} ElectronVisual.org
           </a>
         </div>
-        <a
-          href="https://www.electronvisual.org"
-            className="mr-2 mt-4 inline-block rounded bg-white px-4 py-2 text-black hover:bg-gray-200"
-        >
-          {t("electron.visit")} <code>ElectronVisual.org</code>
-        </a>
       </section>
 
       {/* 3D Face Model */}
-      <div
-        id="section-face"
-        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
-      >
-        <SectionKicker label="iOS · TrueDepth · 3D" color="#00a0e2" />
-        <h3 className="mb-5 text-3xl uppercase tracking-tight">
-          Face scan demo
-        </h3>
+      <div id="section-face" className={SECTION_CARD}>
+        <SectionKicker label="iOS · TrueDepth · 3D" />
+        <h2 className={SECTION_HEADING}>Face scan demo</h2>
         <LazyMountInView
           rootMargin="240px 0px 320px 0px"
           fallback={
@@ -1094,13 +1113,13 @@ export default function Portfolio() {
           </Suspense>
         </LazyMountInView>
         <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
-          <h4 className="text-2xl tracking-wide">{t("face.title")}</h4>
-          <p className="mt-2 text-gray-300">{t("face.body")}</p>
+          <h3 className="text-2xl tracking-wide">{t("face.title")}</h3>
+          <p className="mt-2 text-white/70">{t("face.body")}</p>
           <a
             href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-block rounded border border-white px-4 py-2 text-white transition hover:bg-white hover:text-black"
+            className={`mt-4 ${BTN_GHOST}`}
           >
             {t("face.cta")}
           </a>
@@ -1108,174 +1127,155 @@ export default function Portfolio() {
       </div>
 
       {/* OpticALLY Section */}
-      <section
-        id="section-orch"
-        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
-      >
-        <SectionKicker label="iOS · Patent pending" color="#007934" />
-        <h3 className="mb-5 text-3xl uppercase tracking-tight">{t("orch.title")}</h3>
+      <section id="section-orch" className={SECTION_CARD}>
+        <SectionKicker label="iOS · Patent pending" />
+        <h2 className={SECTION_HEADING}>{t("orch.title")}</h2>
         <ul className="list-disc space-y-2 pl-6 text-lg">
           <li>{t("orch.li1")}</li>
           <li>{t("orch.li2")}</li>
           <li>{t("orch.li3")}</li>
         </ul>
         <div className="mt-6 flex justify-start">
-          <a
-            href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://apps.apple.com/bj/app/orch-3d-head-face-scan/id6468313142&ved=2ahUKEwj6r4XErruPAxWlDjQIHZQ5OhgQFnoECBsQAQ&usg=AOvVaw3DnwsFFuRSjo5L9x6z3-PF"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={t("orch.appStoreAlt")}
-          >
-            <img
-              src="https://github.com/wonmor/Atomizer-Swift-Challenge/blob/bb3e156b76ce46eeed402345667d51c843f73280/Docs/appstore-badge.png?raw=true"
-              alt={t("orch.appStoreAlt")}
-              height={50}
-              style={{ height: 50, cursor: "pointer" }}
-            />
-          </a>
-        </div>
-        <div className="mt-8 flex flex-col items-center">
-          <iframe
-            className="m-auto max-w-full overflow-hidden rounded-lg shadow-lg"
-            width="350"
-            height="250"
-            src="https://www.youtube.com/embed/LqiZKoXhtDA?si=T8ZAd0P-vh_x1XaY"
-            title="YouTube video player"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
+          <AppStoreBadge
+            href="https://apps.apple.com/app/orch-3d-head-face-scan/id6468313142"
+            ariaLabel={t("orch.appStoreAlt")}
           />
-          <p className="mt-2 text-center text-sm italic text-gray-300">
-            {t("footer.video2Caption")}
-          </p>
         </div>
+        <EmbeddedVideo
+          src="https://www.youtube.com/embed/LqiZKoXhtDA?si=T8ZAd0P-vh_x1XaY"
+          title={t("orch.title")}
+          caption={t("footer.video2Caption")}
+          className="mt-8"
+        />
       </section>
 
       {/* Experience Section */}
-      <section
-        id="section-exp"
-        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
-      >
-        <div className="mb-8 flex flex-col items-center">
-          <iframe
-            className="m-auto max-w-full overflow-hidden rounded-lg shadow-lg"
-            width="350"
-            height="250"
-            src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
-            title="YouTube video player"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
-          <p className="mt-2 text-center text-sm italic text-gray-300">
-            {t("footer.video1Caption")}
-          </p>
-        </div>
-        <SectionKicker label="Work · 2023 — present" color="#B26300" />
-        <h3 className="mb-5 text-3xl uppercase tracking-tight">{t("exp.title")}</h3>
-        <div className="space-y-6 text-lg">
-          <div>
-            <h4 className="text-2xl uppercase"><ProjectTitle text={t("exp.orchestr")} /></h4>
-            <p>
-              <a
-                href={t("exp.orchestrSite")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-300 hover:underline"
-              >
-                {t("exp.orchestrSite")}
-              </a>
-            </p>
-          </div>
-          <div>
-            <h4 className="text-2xl uppercase"><ProjectTitle text={t("exp.reach")} /></h4>
-            <p>{t("exp.reachBody")}</p>
-          </div>
-          <div>
-            <h4 className="text-2xl uppercase"><ProjectTitle text={t("exp.snu")} /></h4>
-            <p>{t("exp.snuBody")}</p>
-          </div>
-        </div>
+      <section id="section-exp" className={SECTION_CARD}>
+        <EmbeddedVideo
+          src="https://www.youtube.com/embed/F95lSwabPpE?si=WpEctEsx-AZGBeGr"
+          title={t("exp.title")}
+          caption={t("footer.video1Caption")}
+          className="mb-8"
+        />
+        <SectionKicker label="Work · 2023 — present" />
+        <h2 className={SECTION_HEADING}>{t("exp.title")}</h2>
+        {/* Timeline rail: one vertical line ties the roles together */}
+        <ol className="space-y-6 border-l border-white/15 pl-6 text-lg">
+          {[
+            {
+              title: t("exp.orchestr"),
+              body: (
+                <a
+                  href={t("exp.orchestrSite")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={LINK_INLINE}
+                >
+                  {t("exp.orchestrSite")}
+                </a>
+              ),
+            },
+            { title: t("exp.reach"), body: t("exp.reachBody") },
+            { title: t("exp.snu"), body: t("exp.snuBody") },
+          ].map((role) => (
+            <li key={role.title} className="relative">
+              <span
+                aria-hidden
+                className="absolute -left-[1.8125rem] top-2.5 h-1.5 w-1.5 rounded-full bg-white/40"
+              />
+              <h3 className="text-2xl uppercase">
+                <ProjectTitle text={role.title} />
+              </h3>
+              <p className="text-white/70">{role.body}</p>
+            </li>
+          ))}
+        </ol>
       </section>
 
-      <div
-        className="w-full scroll-mt-24 space-y-8 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
-      >
+      <div className={`${SECTION_CARD} space-y-8`}>
         <div>
-          <SectionKicker label="From the archive" color="#A1A5A7" />
-          <h3 className="text-3xl uppercase tracking-tight">Moments</h3>
+          <SectionKicker label="From the archive" />
+          <h2 className="text-3xl uppercase tracking-tight">Moments</h2>
         </div>
-        <div className="flex flex-col items-center text-center">
-          <Image
-            src="/IMG_3505.jpg"
-            alt="With iJustine"
-            width={320}
-            height={192}
-            style={{ objectFit: "contain" }}
-          />
-          <p className="mt-2 text-sm italic text-gray-300">
-            {t("footer.photo1Caption")}
-          </p>
-        </div>
-        <div className="flex flex-col items-center text-center">
-          <Image
-            src="/IMG_0629.jpeg"
-            alt="With flight instructor"
-            width={320}
-            height={192}
-            style={{ objectFit: "contain" }}
-          />
-          <p className="mt-2 text-sm italic text-gray-300">
-            {t("footer.photo2Caption")}
-          </p>
+        {/* Two photos side by side on desktop, stacked on phones */}
+        <div className="grid gap-6 sm:grid-cols-2">
+          {[
+            {
+              src: "/IMG_3505.jpg",
+              alt: "With iJustine",
+              caption: t("footer.photo1Caption"),
+            },
+            {
+              src: "/IMG_0629.jpeg",
+              alt: "With flight instructor",
+              caption: t("footer.photo2Caption"),
+            },
+          ].map((photo) => (
+            <figure key={photo.src} className="flex flex-col">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={640}
+                height={384}
+                sizes="(max-width: 640px) 100vw, 20rem"
+                className="aspect-[5/3] w-full rounded-xl object-cover ring-1 ring-white/15"
+              />
+              <figcaption className="mt-2 text-sm text-white/60">
+                {photo.caption}
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
 
       {/* Education */}
       <section
         id="section-edu"
-        className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
+        className={SECTION_CARD}
       >
-        <SectionKicker label="Education · Training" color="#9A0D4D" />
-        <h3 className="mb-5 text-3xl uppercase tracking-tight">{t("edu.title")}</h3>
-        <ol className="list-decimal space-y-6 pl-6 text-lg marker:text-gray-400">
-          <li>
-            <div className="flex items-start justify-between gap-4">
+        <SectionKicker label="Education · Training" />
+        <h2 className={SECTION_HEADING}>{t("edu.title")}</h2>
+        <ol className="divide-y divide-white/10 text-lg">
+          {[
+            {
+              title: t("edu.hub.title"),
+              detail: t("edu.hub.detail"),
+              code: "CYHU",
+            },
+            {
+              title: t("edu.ocfc.title"),
+              detail: t("edu.ocfc.detail"),
+              code: "KSNA",
+            },
+            {
+              title: t("edu.sunrise.title"),
+              detail: t("edu.sunrise.detail"),
+              code: null,
+            },
+            { title: t("edu.uci"), detail: null, code: null },
+          ].map((item) => (
+            <li
+              key={item.title}
+              className="flex items-start justify-between gap-4 py-5 first:pt-0 last:pb-0"
+            >
               <div>
-                <h4 className="text-2xl"><ProjectTitle text={t("edu.hub.title")} /></h4>
-                <p className="text-gray-300">{t("edu.hub.detail")}</p>
+                <h3 className="text-2xl">
+                  <ProjectTitle text={item.title} />
+                </h3>
+                {item.detail ? (
+                  <p className="text-white/70">{item.detail}</p>
+                ) : null}
               </div>
-              <span
-                aria-hidden="true"
-                className="shrink-0 select-none font-bold uppercase leading-none tracking-tight text-white/10 text-5xl sm:text-7xl"
-              >
-                CYHU
-              </span>
-            </div>
-          </li>
-          <li>
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h4 className="text-2xl"><ProjectTitle text={t("edu.ocfc.title")} /></h4>
-                <p className="text-gray-300">{t("edu.ocfc.detail")}</p>
-              </div>
-              <span
-                aria-hidden="true"
-                className="shrink-0 select-none font-bold uppercase leading-none tracking-tight text-white/10 text-5xl sm:text-7xl"
-              >
-                KSNA
-              </span>
-            </div>
-          </li>
-          <li>
-            <h4 className="text-2xl"><ProjectTitle text={t("edu.sunrise.title")} /></h4>
-            <p className="text-gray-300">{t("edu.sunrise.detail")}</p>
-          </li>
-          <li>
-            <p className="text-2xl"><ProjectTitle text={t("edu.uci")} /></p>
-          </li>
+              {item.code ? (
+                <span
+                  aria-hidden="true"
+                  className="shrink-0 select-none text-5xl font-bold uppercase leading-none tracking-tight text-white/10 sm:text-7xl"
+                >
+                  {item.code}
+                </span>
+              ) : null}
+            </li>
+          ))}
         </ol>
       </section>
       </div>

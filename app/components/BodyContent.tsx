@@ -5,8 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import { useI18n } from "../i18n/context";
 import type { Locale } from "../i18n/messages";
+import { SECTION_CARD } from "../styles";
+import { AppStoreBadge, GooglePlayBadge } from "./StoreBadges";
 
 const JEBOS_GALLERY = [
   { src: "/gallery/ipad-jebediah/screens/screen-01.jpg", platform: "iPad", caption: "Split view — VFR sectional with Orch Vision synthetic PFD" },
@@ -100,10 +103,7 @@ export function JebediahShowcase() {
   }, []);
 
   return (
-    <section
-      id="section-jebediah"
-      className="w-full scroll-mt-24 rounded-2xl border border-white/10 bg-black/60 p-6 shadow-lg sm:p-8"
-    >
+    <section id="section-jebediah" className={SECTION_CARD}>
       <div className="mb-8 flex items-center gap-4">
         <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
           <Image
@@ -126,26 +126,24 @@ export function JebediahShowcase() {
       <div className="flex flex-col gap-8 md:flex-row md:gap-12">
         <div className="w-full md:w-1/2">
           <div className="mb-3">
-            <h3 className="text-2xl uppercase md:text-3xl">
+            <h2 className="text-2xl uppercase md:text-3xl">
               <span className="block font-bold">{t("orchestr.jebos.title")}</span>
               <span className="mt-1 block font-thin tracking-[0.18em] text-white/70">
                 Flight Bag
               </span>
-            </h3>
+            </h2>
+            {/* Platform tags read as one quiet set instead of four competing hues */}
             <div className="mt-2 flex flex-wrap gap-2">
-              {[
-                { label: t("orchestr.jebos.tag"), className: "border-cyan-400 text-cyan-400" },
-                { label: "Desktop", className: "border-amber-400 text-amber-400" },
-                { label: "Mobile", className: "border-emerald-400 text-emerald-400" },
-                { label: "Web", className: "border-fuchsia-400 text-fuchsia-400" },
-              ].map((tag) => (
-                <span
-                  key={tag.label}
-                  className={`inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold uppercase tracking-wide ${tag.className}`}
-                >
-                  {tag.label}
-                </span>
-              ))}
+              {[t("orchestr.jebos.tag"), "Desktop", "Mobile", "Web"].map(
+                (label) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center rounded-md border border-white/25 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-white/70"
+                  >
+                    {label}
+                  </span>
+                )
+              )}
             </div>
           </div>
           <p className="mb-3 leading-relaxed text-white/90">
@@ -161,39 +159,16 @@ export function JebediahShowcase() {
             {t("orchestr.jebos.desc")}
           </p>
           <div className="grid max-w-md grid-cols-1 gap-3 sm:grid-cols-2">
-            <a
+            <AppStoreBadge
               href="https://apps.apple.com/us/app/jebediahs-flight-bag/id6766274262"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download Jeb's Flight Bag on the App Store"
-              className="inline-flex h-[52px] w-full items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
-            >
-              <svg aria-hidden viewBox="0 0 384 512" className="h-6 w-6 fill-white">
-                <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
-              </svg>
-              <span className="flex flex-col leading-none">
-                <span className="text-[9px] uppercase tracking-wide text-white/70">Download on the</span>
-                <span className="mt-0.5 text-base font-semibold text-white">App Store</span>
-              </span>
-            </a>
-            <a
+              ariaLabel="Download Jeb's Flight Bag on the App Store"
+              className="w-full"
+            />
+            <GooglePlayBadge
               href="https://play.google.com/store/apps/details?id=com.orchestrsim.jebediah"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Get Jeb's Flight Bag on Google Play"
-              className="inline-flex h-[52px] w-full items-center gap-2.5 rounded-xl border border-white/20 bg-black px-4 transition-colors hover:border-white/40"
-            >
-              <svg aria-hidden viewBox="0 0 512 512" className="h-[22px] w-[22px]">
-                <path fill="#00d3ff" d="M48 59.5C45 63 43.3 68.4 43.3 75.4v361.2c0 7 1.7 12.4 4.7 15.9l1.2 1.2 202.4-202.4v-4.8L49.2 58.3z" />
-                <path fill="#ffce00" d="M319 327.6l-67.4-67.5v-4.8l67.5-67.5 1.5.9 79.9 45.4c22.8 13 22.8 34.2 0 47.2l-79.9 45.4z" />
-                <path fill="#ff3d00" d="M320.5 326.7L251.6 257.8 48 461.4c7.5 7.9 19.9 8.9 33.9 1L320.5 326.7" />
-                <path fill="#00e676" d="M320.5 188.9L81.9 53.7C67.9 45.7 55.5 46.8 48 54.7l203.6 203.1z" />
-              </svg>
-              <span className="flex flex-col leading-none">
-                <span className="text-[9px] uppercase tracking-wide text-white/70">Get it on</span>
-                <span className="mt-0.5 text-base font-semibold text-white">Google Play</span>
-              </span>
-            </a>
+              ariaLabel="Get Jeb's Flight Bag on Google Play"
+              className="w-full"
+            />
             <a
               href="https://orchaerospace.com/app"
               target="_blank"
@@ -263,20 +238,35 @@ export function JebediahShowcase() {
 /* ── JebediahOS auto-cycling screenshot gallery ── */
 function JebosGallery() {
   const [slide, setSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    const id = setInterval(() => setSlide((s) => (s + 1) % JEBOS_GALLERY.length), 4000);
+    if (paused || reducedMotion) return;
+    const id = setInterval(
+      () => setSlide((s) => (s + 1) % JEBOS_GALLERY.length),
+      4000
+    );
     return () => clearInterval(id);
-  }, []);
+  }, [paused, reducedMotion]);
+
+  const current = JEBOS_GALLERY[slide];
 
   return (
     <div className="mt-10 w-full">
-      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/20">
+      <div
+        className="group relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/20"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+      >
         {JEBOS_GALLERY.map((item, i) => (
           <div
-            key={i}
+            key={item.src}
             className="absolute inset-0 transition-opacity duration-700"
             style={{ opacity: slide === i ? 1 : 0 }}
+            aria-hidden={slide !== i}
           >
             <Image
               src={item.src}
@@ -288,28 +278,31 @@ function JebosGallery() {
           </div>
         ))}
         {/* Caption overlay */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-6 py-4">
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent px-6 pb-4 pt-10">
           <div className="flex items-baseline gap-3">
-            <span className="rounded-md border border-cyan-400/60 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-300">
-              {JEBOS_GALLERY[slide].platform}
+            <span className="shrink-0 rounded-md border border-white/30 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75">
+              {current.platform}
             </span>
             <p className="text-sm font-medium text-white md:text-base">
-              {JEBOS_GALLERY[slide].caption}
+              {current.caption}
             </p>
           </div>
-        </div>
-        {/* Navigation dots */}
-        <div className="absolute bottom-14 left-1/2 flex -translate-x-1/2 gap-1.5">
-          {JEBOS_GALLERY.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => setSlide(i)}
-              className={`h-2 rounded-full transition-all ${
-                slide === i ? "w-6 bg-white" : "w-2 bg-white/40"
-              }`}
-            />
-          ))}
+          {/* One slim progress rail beats nineteen dots */}
+          <div className="mt-3 flex gap-1" role="tablist" aria-label="Screenshots">
+            {JEBOS_GALLERY.map((item, i) => (
+              <button
+                key={item.src}
+                type="button"
+                role="tab"
+                aria-selected={slide === i}
+                aria-label={item.caption}
+                onClick={() => setSlide(i)}
+                className={`h-[3px] flex-1 rounded-full transition-colors duration-300 ${
+                  slide === i ? "bg-white" : "bg-white/25 hover:bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -378,57 +371,6 @@ function FloatingOrchBanner() {
         />
       </svg>
     </a>
-  );
-}
-
-/* ── Small aircraft icon for Orchestr header ── */
-function OrchAircraftIcon() {
-  return (
-    <span className="-ml-1 mb-2 inline-block opacity-60" aria-hidden="true">
-      <svg
-        width="46"
-        height="20"
-        viewBox="0 0 56 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="text-white"
-      >
-        <path
-          d="M2 8.5H22"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeDasharray="2.6 2.8"
-          opacity="0.9"
-        />
-        <path
-          d="M2 13.5H20"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeDasharray="2.6 2.8"
-          opacity="0.8"
-        />
-        <path
-          d="M23 12L34 10.6L45 12L34 13.4L23 12Z"
-          fill="currentColor"
-        />
-        <path
-          d="M31.5 12L27 7.6H29.8L34 10.6L31.5 12Z"
-          fill="currentColor"
-          opacity="0.9"
-        />
-        <path
-          d="M31.5 12L27 16.4H29.8L34 13.4L31.5 12Z"
-          fill="currentColor"
-          opacity="0.9"
-        />
-        <path
-          d="M45 12L49.2 11.5L54 12L49.2 12.5L45 12Z"
-          fill="currentColor"
-        />
-      </svg>
-    </span>
   );
 }
 

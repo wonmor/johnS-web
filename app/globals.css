@@ -9,6 +9,41 @@
   --background-end-rgb: 2, 8, 36;
 }
 
+/* Anchor jumps from the section tab bar glide instead of teleporting. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* One consistent keyboard-focus ring across links, buttons and controls. */
+:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+[data-chrome-surface="light"] :focus-visible {
+  outline-color: rgba(2, 8, 36, 0.75);
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.85);
+  color: #020824;
+}
+
+/* Never animate for viewers who asked us not to. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .fill-width-available {
   width: 100%;
   width: -moz-available;          /* WebKit-based browsers will ignore this. */
