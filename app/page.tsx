@@ -576,9 +576,12 @@ function ElectronVisualEmbed({
   keyword: string;
   title: string;
 }) {
+  // `embed=true` asks the renderer to drop its own summary card; until
+  // electronvisual.org ships that flag the crop below does the same job.
   const src = `https://electronvisual.org/renderer?keyword=${encodeURIComponent(
     keyword
-  )}&fullscreen=true`;
+  )}&fullscreen=true&embed=true`;
+  const [frameLoaded, setFrameLoaded] = useState(false);
 
   return (
     <div>
@@ -586,7 +589,8 @@ function ElectronVisualEmbed({
         <iframe
           src={src}
           title={`${title} — ElectronVisual.org renderer`}
-          loading="lazy"
+          loading="eager"
+          onLoad={() => setFrameLoaded(true)}
           allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
           referrerPolicy="strict-origin-when-cross-origin"
           className="absolute inset-x-0 w-full border-0"
@@ -595,6 +599,13 @@ function ElectronVisualEmbed({
             height: `calc(100% + ${RENDERER_CROP_TOP}px)`,
           }}
         />
+        {/* The renderer's own progress text sits in the cropped-off strip, so
+            the frame would otherwise look empty while it works. */}
+        {!frameLoaded ? (
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black text-sm font-light uppercase tracking-[0.22em] text-white/50">
+            {title}…
+          </div>
+        ) : null}
       </div>
       <p className="mt-2 text-center text-[11px] uppercase tracking-[0.18em] text-white/45">
         Live from ElectronVisual.org ·{" "}
@@ -700,6 +711,35 @@ export default function Portfolio() {
     gadolinium: false,
   });
   const [atoms3dUnlocked, setAtoms3dUnlocked] = useState(false);
+
+  // The renderer computes its density server-side, so the wait starts when the
+  // iframe does. Mount both viewers as soon as the browser is idle — hidden,
+  // but already warming — instead of waiting for a scroll or a click.
+  useEffect(() => {
+    const conn = (navigator as { connection?: { saveData?: boolean } })
+      .connection;
+    if (conn?.saveData) return;
+
+    const warm = () => {
+      setAtoms3dUnlocked(true);
+      setOpenedTabs({ benzene: true, gadolinium: true });
+    };
+
+    const idle = (
+      window as unknown as {
+        requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number;
+      }
+    ).requestIdleCallback;
+    if (idle) {
+      const id = idle(warm, { timeout: 2500 });
+      return () =>
+        (
+          window as unknown as { cancelIdleCallback?: (id: number) => void }
+        ).cancelIdleCallback?.(id);
+    }
+    const t = setTimeout(warm, 1200);
+    return () => clearTimeout(t);
+  }, []);
   const [heroScrolled, setHeroScrolled] = useState(false);
   const [avatarRevealed, setAvatarRevealed] = useState(false);
   useEffect(() => {

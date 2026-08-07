@@ -1,4 +1,3 @@
-import Head from "next/head";
 import type { Metadata } from "next";
 import React from "react";
 import { ChromeBackdropProvider } from "./components/ChromeBackdropProvider";
@@ -82,6 +81,11 @@ export const metadata: Metadata = {
     apple: "/pwa-icon.png",
   },
   category: "technology",
+  // `next/head` is a no-op in the App Router — this is how the smart app
+  // banner actually reaches the document head.
+  other: {
+    "apple-itunes-app": "app-id=6449015706",
+  },
 };
 
 export default function RootLayout({
@@ -116,11 +120,11 @@ export default function RootLayout({
 
   return (
     <html lang="fr">
-      <Head>
-        <meta name="apple-itunes-app" content="app-id=6449015706" />
-      </Head>
-
       <body className="min-h-screen">
+        {/* Warm the connection to the embedded ElectronVisual renderer before
+            the iframe asks for it — saves the DNS + TLS round trips. */}
+        <link rel="preconnect" href="https://electronvisual.org" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://electronvisual.org" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
