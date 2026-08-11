@@ -582,10 +582,36 @@ function ElectronVisualEmbed({
     keyword
   )}&fullscreen=true&embed=true`;
   const [frameLoaded, setFrameLoaded] = useState(false);
+  // The renderer's WebGL canvas eats wheel and touch events, so a page scroll
+  // that reaches this frame dies inside it — the section becomes a wall. A
+  // shield sits over the frame until the visitor clicks in (same deal as a
+  // Google Maps embed): scrolling passes straight through, dragging doesn't.
+  const [interactive, setInteractive] = useState(false);
+  const shellRef = React.useRef<HTMLDivElement | null>(null);
+
+  // Re-arm the shield once the frame leaves the viewport, so scrolling back to
+  // it later doesn't hit a still-live grab — the only way out on touch, where
+  // there is no pointer to move away.
+  useEffect(() => {
+    const el = shellRef.current;
+    if (!el || !interactive) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) setInteractive(false);
+      },
+      { threshold: 0 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [interactive]);
 
   return (
     <div>
-      <div className="relative h-[380px] w-full overflow-hidden rounded-xl bg-black ring-1 ring-white/10 sm:h-[480px]">
+      <div
+        ref={shellRef}
+        onMouseLeave={() => setInteractive(false)}
+        className="relative h-[380px] w-full overflow-hidden rounded-xl bg-black ring-1 ring-white/10 sm:h-[480px]"
+      >
         <iframe
           src={src}
           title={`${title} — ElectronVisual.org renderer`}
@@ -605,6 +631,19 @@ function ElectronVisualEmbed({
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black text-sm font-light uppercase tracking-[0.22em] text-white/50">
             {title}…
           </div>
+        ) : null}
+        {!interactive ? (
+          <button
+            type="button"
+            onClick={() => setInteractive(true)}
+            aria-label={`Interact with the ${title} 3D viewer`}
+            className="group absolute inset-0 flex cursor-pointer items-end justify-center bg-transparent pb-4 transition-colors duration-200 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white/40"
+          >
+            <span className="rounded-full bg-black/55 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-white/70 backdrop-blur-sm transition-opacity duration-200 group-focus-visible:opacity-100 motion-reduce:transition-none sm:opacity-0 sm:group-hover:opacity-100">
+              <span className="sm:hidden">Tap</span>
+              <span className="hidden sm:inline">Click</span> to rotate
+            </span>
+          </button>
         ) : null}
       </div>
       <p className="mt-2 text-center text-[11px] uppercase tracking-[0.18em] text-white/45">
