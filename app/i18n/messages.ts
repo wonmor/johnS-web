@@ -64,7 +64,7 @@ export const messages = {
     "jebos.tagMobile": "mobile",
     "jebos.tagWeb": "web",
     "jebos.pitch":
-      "one chart engine on the Avionic 1 hardware and on every device you fly with.",
+      "one chart engine on the Avionic 1 hardware and in every aircraft you fly.",
     "jebos.sound": "sound",
     "jebos.mute": "mute",
     "jebos.tryAs": "try it as a",
@@ -245,7 +245,7 @@ export const messages = {
     "jebos.tagMobile": "mobile",
     "jebos.tagWeb": "web",
     "jebos.pitch":
-      "un même moteur de cartes sur l’Avionic 1 et sur tous les appareils avec lesquels vous volez.",
+      "un même moteur de cartes sur l’Avionic 1 et dans tous les avions que vous pilotez.",
     "jebos.sound": "son",
     "jebos.mute": "muet",
     "jebos.tryAs": "essayez-le en",
@@ -423,7 +423,7 @@ export const messages = {
     "jebos.tagMobile": "모바일",
     "jebos.tagWeb": "웹",
     "jebos.pitch":
-      "Avionic 1 하드웨어와 함께 비행하는 모든 기기에서 같은 차트 엔진을 씁니다.",
+      "Avionic 1 하드웨어와 조종하는 모든 항공기에서 같은 차트 엔진을 씁니다.",
     "jebos.sound": "소리",
     "jebos.mute": "음소거",
     "jebos.tryAs": "이렇게도 쓸 수 있어요",
