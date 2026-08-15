@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
+import { serifFont } from "./fonts";
 import { ChromeBackdropProvider } from "./components/ChromeBackdropProvider";
 import { LanguageProvider } from "./i18n/context";
 import { I18nShell } from "./components/I18nShell";
@@ -120,7 +121,8 @@ export default function RootLayout({
 
   return (
     <html lang="fr">
-      <body className="min-h-screen">
+      {/* Serif on the body so floating chrome outside the shell inherits it too. */}
+      <body className={`${serifFont.className} min-h-screen bg-[#f5f0e6]`}>
         {/* Warm the connection to the embedded ElectronVisual renderer before
             the iframe asks for it — saves the DNS + TLS round trips. */}
         <link rel="preconnect" href="https://electronvisual.org" crossOrigin="" />

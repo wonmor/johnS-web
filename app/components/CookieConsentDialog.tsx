@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { tubeFont } from "../fonts";
+import { serifFont } from "../fonts";
 import { COOKIE_LAW_SCOPE_COOKIE } from "../i18n/cookieLawRegion";
 import { useI18n } from "../i18n/context";
 
@@ -66,7 +66,7 @@ export function CookieConsentDialog() {
   const cardBottom = bottomOffsetPx(pathname);
   const dimBottom = backdropBottom(pathname);
   const fontClass =
-    locale === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;
+    locale === "ko" ? "font-ko-serif" : serifFont.className;
 
   const [visible, setVisible] = useState(false);
   const [scopeRequired, setScopeRequired] = useState(false);

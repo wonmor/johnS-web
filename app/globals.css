@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  /* Minimal dark navy + white typography-centric theme */
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 2, 8, 36;  /* #020824 */
-  --background-end-rgb: 2, 8, 36;
+  /* Paper + ink: one light, typography-centric theme */
+  --foreground-rgb: 28, 26, 23;      /* #1c1a17 */
+  --background-start-rgb: 245, 240, 230;  /* #f5f0e6 */
+  --background-end-rgb: 245, 240, 230;
 }
 
 /* Anchor jumps from the section tab bar glide instead of teleporting. */
@@ -18,18 +18,18 @@
 
 /* One consistent keyboard-focus ring across links, buttons and controls. */
 :focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline: 2px solid rgba(28, 26, 23, 0.75);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-[data-chrome-surface="light"] :focus-visible {
-  outline-color: rgba(2, 8, 36, 0.75);
+[data-chrome-surface="dark"] :focus-visible {
+  outline-color: rgba(255, 255, 255, 0.85);
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.85);
-  color: #020824;
+  background: rgba(28, 26, 23, 0.85);
+  color: #f5f0e6;
 }
 
 /* Never animate for viewers who asked us not to. */
@@ -95,8 +95,8 @@
   animation: flicker 1.5s infinite alternate;  
 }
 
-.font-ibm-plex-sans-kr {
-  font-family: "IBM Plex Sans KR", sans-serif;
+.font-ko-serif {
+  font-family: "Noto Serif KR", serif;
 }
 
 /* Locale switch: full invert pulse, slower (no opacity fade) */
@@ -117,10 +117,4 @@
   transition: filter 520ms ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 2, 8, 36;
-    --background-end-rgb: 2, 8, 36;
-  }
-}
+/* The site is light in both colour schemes — no dark variant to switch to. */

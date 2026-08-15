@@ -14,14 +14,14 @@ const toggleLabelKey: Record<Locale, MessageKey> = {
 export function LanguageToggle({
   lightChrome = false,
 }: {
-  /** Sitting on light frosted chrome (dark page behind) — higher contrast controls. */
+  /** Sitting on the light frosted pill — ink controls instead of white ones. */
   lightChrome?: boolean;
 }) {
   const { locale, setLocale, t, localeTransitionPhase } = useI18n();
   const isTransitioning = localeTransitionPhase !== "idle";
 
   const shell = lightChrome
-    ? "border-black/15 bg-black/[0.06]"
+    ? "border-[#1c1a17]/15 bg-[#1c1a17]/[0.05]"
     : "border-white/35 bg-white/10";
 
   return (
@@ -42,10 +42,10 @@ export function LanguageToggle({
           className={`rounded px-2 py-0.5 text-xs font-medium leading-none tracking-wider transition sm:px-2.5 sm:py-1 sm:text-sm ${
             locale === code
               ? lightChrome
-                ? "bg-[#020824] text-white"
+                ? "bg-[#1c1a17] text-[#f5f0e6]"
                 : "bg-white text-black"
               : lightChrome
-                ? "text-gray-600 hover:text-gray-900"
+                ? "text-[#1c1a17]/55 hover:text-[#1c1a17]"
                 : "text-white/85 hover:bg-white/15 hover:text-white"
           } ${isTransitioning ? "cursor-wait" : ""}`}
           aria-pressed={locale === code}

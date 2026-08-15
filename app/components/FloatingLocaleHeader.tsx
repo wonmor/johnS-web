@@ -16,11 +16,11 @@ export function FloatingLocaleHeader() {
     (localeTransitionPhase === "invert" || privacyEntranceInvert);
 
   const chrome = topUseLightChrome
-    ? "border-black/12 bg-white/78 text-[#0c1220] shadow-xl shadow-black/12 backdrop-blur-md"
+    ? "border-[#1c1a17]/12 bg-[#f5f0e6]/80 text-[#1c1a17] shadow-lg shadow-[#1c1a17]/10 backdrop-blur-md"
     : "border-white/22 bg-gradient-to-b from-[#010613] from-0% via-[#050b22] via-45% to-[#0d1733] to-100% text-white shadow-black/45 shadow-xl backdrop-blur-md";
 
   const copyrightMuted = topUseLightChrome
-    ? "text-gray-600"
+    ? "text-[#1c1a17]/55"
     : "text-white/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]";
 
   /* Same compact mobile sizing previously used for French — all locales for consistency */
@@ -34,7 +34,7 @@ export function FloatingLocaleHeader() {
     >
       {pathname !== "/privacy" ? (
         <p
-          className={`text-center uppercase leading-tight ${copyrightSize} ${copyrightMuted}`}
+          className={`text-center lowercase leading-tight ${copyrightSize} ${copyrightMuted}`}
         >
           {t("topBar.copyright", { year })}
         </p>

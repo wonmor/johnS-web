@@ -33,12 +33,13 @@ function surfaceAtPoint(x: number, y: number): ChromeSurface {
       node = node.parentElement;
     }
   }
-  return "dark";
+  return "light";
 }
 
 type ChromeCtx = {
   topSurface: ChromeSurface;
   bottomSurface: ChromeSurface;
+  /** True → frosted light pill (for the light paper page). False → dark glass. */
   topUseLightChrome: boolean;
   /** True → frosted light pill (for light cream backdrops). False → dark glass (navy areas). */
   bottomUseLightChrome: boolean;
@@ -58,10 +59,10 @@ export function ChromeBackdropProvider({
 }) {
   const [topSurface, setTopSurface] = useState<ChromeSurface>("light");
   const [bottomSurface, setBottomSurface] =
-    useState<ChromeSurface>("dark");
+    useState<ChromeSurface>("light");
   const [bottomBand, setBottomBand] = useState<
     readonly [ChromeSurface, ChromeSurface, ChromeSurface]
-  >(["dark", "dark", "dark"]);
+  >(["light", "light", "light"]);
 
   useEffect(() => {
     let raf = 0;
@@ -105,7 +106,7 @@ export function ChromeBackdropProvider({
     (): ChromeCtx => ({
       topSurface,
       bottomSurface,
-      topUseLightChrome: topSurface === "dark",
+      topUseLightChrome: topSurface === "light",
       bottomUseLightChrome: bottomSurface === "light",
       bottomTabBackdropIsDark: [
         bottomBand[0] === "dark",
@@ -127,11 +128,11 @@ export function useChromeBackdropProbes(): ChromeCtx {
   const ctx = useContext(ChromeBackdropContext);
   if (!ctx) {
     return {
-      topSurface: "dark",
-      bottomSurface: "dark",
+      topSurface: "light",
+      bottomSurface: "light",
       topUseLightChrome: true,
-      bottomUseLightChrome: false,
-      bottomTabBackdropIsDark: [true, true, true] as const,
+      bottomUseLightChrome: true,
+      bottomTabBackdropIsDark: [false, false, false] as const,
     };
   }
   return ctx;

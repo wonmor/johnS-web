@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
-import { tubeFont } from "../fonts";
+import { serifFont } from "../fonts";
 import type { Locale, MessageKey } from "../i18n/messages";
 import { messages } from "../i18n/messages";
 
@@ -63,7 +63,7 @@ export function LocaleOfferDialog({
     [target]
   );
   const fontClass =
-    target === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;
+    target === "ko" ? "font-ko-serif" : serifFont.className;
 
   const titleKey: MessageKey =
     target === "en"

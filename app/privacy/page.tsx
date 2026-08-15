@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useMemo } from "react";
-import { tubeFont } from "../fonts";
+import { serifFont } from "../fonts";
 import { useI18n } from "../i18n/context";
 import { type Locale, messages } from "../i18n/messages";
 
@@ -26,7 +26,7 @@ function navAnchorLabel(loc: Locale) {
       return "Français";
     case "ko":
       return (
-        <span className="font-ibm-plex-sans-kr" lang="ko">
+        <span className="font-ko-serif" lang="ko">
           한국어
         </span>
       );
@@ -54,7 +54,7 @@ function sectionHeading(loc: Locale) {
       );
     case "ko":
       return (
-        <span className="font-ibm-plex-sans-kr" lang="ko">
+        <span className="font-ko-serif" lang="ko">
           한국어 — {title}
         </span>
       );
@@ -66,7 +66,7 @@ function sectionHeading(loc: Locale) {
 }
 
 const navLinkClass =
-  "rounded-sm text-white/85 ring-offset-[#020824] transition hover:text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40";
+  "rounded-sm text-[#1c1a17]/80 transition hover:text-[#1c1a17] focus-visible:outline focus-visible:ring-2 focus-visible:ring-[#1c1a17]/30";
 
 export default function PrivacyPolicyPage() {
   const { t, locale } = useI18n();
@@ -76,31 +76,31 @@ export default function PrivacyPolicyPage() {
 
   return (
     <div
-      className={`${tubeFont.className} bg-[#020824] px-6 py-10 text-white antialiased sm:px-10 sm:py-14`}
+      className={`${serifFont.className} bg-[#f5f0e6] px-6 py-10 text-[#1c1a17] antialiased sm:px-10 sm:py-14`}
     >
       <div className="mx-auto max-w-3xl">
         <Link
           href="/"
-          className="mb-8 inline-block text-sm text-white/65 transition hover:text-white"
+          className="mb-8 inline-block text-sm text-[#1c1a17]/60 transition hover:text-[#1c1a17]"
         >
           {t("privacy.backHome")}
         </Link>
 
-        <h1 className="mb-3 text-2xl font-light uppercase tracking-[0.12em] sm:text-3xl sm:tracking-[0.14em]">
+        <h1 className="mb-3 text-3xl font-light lowercase tracking-tight sm:text-4xl">
           {t("privacy.title")}
         </h1>
-        <p className="mb-10 max-w-xl text-sm leading-relaxed text-white/70">
+        <p className="mb-10 max-w-xl text-sm leading-relaxed text-[#1c1a17]/65">
           {t("privacy.allVersions")}
         </p>
 
         <nav
           aria-label="Policy languages"
-          className="mb-14 flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-white/10 pb-6 text-sm"
+          className="mb-14 flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-[#1c1a17]/12 pb-6 text-sm"
         >
           {localeOrder.map((loc, idx) => (
             <Fragment key={loc}>
               {idx > 0 ? (
-                <span className="text-white/25" aria-hidden>
+                <span className="text-[#1c1a17]/25" aria-hidden>
                   ·
                 </span>
               ) : null}
@@ -115,25 +115,25 @@ export default function PrivacyPolicyPage() {
           <section
             key={loc}
             id={SECTION_IDS[loc]}
-            className={`mb-20 scroll-mt-28${loc === "ko" ? " font-ibm-plex-sans-kr" : ""}`}
+            className={`mb-20 scroll-mt-28${loc === "ko" ? " font-ko-serif" : ""}`}
             lang={loc === "ko" ? "ko" : loc === "fr" ? "fr" : "en"}
           >
-            <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-white/90">
+            <h2 className="mb-5 text-sm lowercase text-[#1c1a17]/60">
               {sectionHeading(loc)}
             </h2>
-            <p className="text-[15px] leading-[1.65] text-white/82 sm:text-base">
+            <p className="text-[15px] leading-[1.65] text-[#1c1a17]/85 sm:text-base">
               {messages[loc]["privacy.body"]}
             </p>
           </section>
         ))}
 
-        <div className="border-t border-white/10 pt-10">
+        <div className="border-t border-[#1c1a17]/12 pt-10">
           <a
             href="https://github.com/wonmor/johnS-web"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("privacy.githubAria")}
-            className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-white/90 ring-offset-[#020824] transition hover:border-white/30 hover:bg-white/[0.08] hover:text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-white/40"
+            className="inline-flex items-center gap-2 rounded-md border border-[#1c1a17]/20 px-4 py-2.5 text-sm lowercase text-[#1c1a17]/80 transition hover:bg-[#1c1a17]/[0.05] hover:text-[#1c1a17] focus-visible:outline focus-visible:ring-2 focus-visible:ring-[#1c1a17]/30"
           >
             <svg
               className="h-[1.1em] w-[1.1em] shrink-0 opacity-90"
@@ -155,18 +155,18 @@ export default function PrivacyPolicyPage() {
         <div className="pt-20 sm:pt-28">
           <Link
             href="/"
-            className="inline-block text-sm text-white/65 transition hover:text-white"
+            className="inline-block text-sm text-[#1c1a17]/60 transition hover:text-[#1c1a17]"
           >
             {t("privacy.backHome")}
           </Link>
         </div>
 
         <footer
-          className={`mt-12 border-t border-white/10 pt-10 pb-10 text-center sm:mt-14 sm:pb-14 ${locale === "ko" ? "font-ibm-plex-sans-kr" : ""}`}
+          className={`mt-12 border-t border-[#1c1a17]/12 pt-10 pb-10 text-center sm:mt-14 sm:pb-14 ${locale === "ko" ? "font-ko-serif" : ""}`}
           aria-label="Copyright"
         >
           <p
-            className="text-[0.625rem] font-medium uppercase leading-tight tracking-[0.14em] text-white/55 sm:text-sm sm:tracking-[0.2em]"
+            className="text-xs leading-tight tracking-[0.12em] text-[#1c1a17]/50 sm:text-sm"
           >
             {t("topBar.copyright", { year })}
           </p>

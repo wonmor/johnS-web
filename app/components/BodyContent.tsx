@@ -7,34 +7,34 @@ import Script from "next/script";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import { useI18n } from "../i18n/context";
-import type { Locale } from "../i18n/messages";
+import type { MessageKey } from "../i18n/messages";
 import { SECTION_CARD } from "../styles";
 import { AppStoreBadge, GooglePlayBadge } from "./StoreBadges";
 
-const JEBOS_GALLERY = [
-  { src: "/gallery/ipad-jebediah/screens/screen-01.jpg", platform: "iPad", caption: "Split view — VFR sectional with Orch Vision synthetic PFD" },
-  { src: "/gallery/ipad-jebediah/screens/screen-02.jpg", platform: "iPad", caption: "Satellite terrain map with NEXRAD-net weather overlay" },
-  { src: "/gallery/ipad-jebediah/screens/screen-03.jpg", platform: "iPad", caption: "VFR sectional chart — Los Angeles terminal area" },
-  { src: "/gallery/ipad-jebediah/screens/screen-04.jpg", platform: "iPad", caption: "IFR high-altitude enroute chart — SoCal Class B" },
-  { src: "/gallery/ipad-jebediah/screens/screen-05.jpg", platform: "iPad", caption: "Flight plan builder with airport, VOR and fix search" },
-  { src: "/gallery/ipad-jebediah/screens/screen-06.jpg", platform: "iPad", caption: "Live ADS-B traffic with synthetic vision attitude" },
-  { src: "/gallery/ipad-jebediah/screens/extra-checklist.jpg", platform: "iPad", caption: "Preflight checklist — documents, walk-around, fuel, oil" },
-  { src: "/gallery/ipad-jebediah/screens/extra-poh.jpg", platform: "iPad", caption: "POH reference — Cessna 152 V-speeds and weight limits" },
-  { src: "/gallery/ipad-jebediah/screens/extra-weather.jpg", platform: "iPad", caption: "Weather briefing — METAR, TAF and PIREP overlay" },
-  { src: "/gallery/ipad-jebediah/screens/extra-e6b.jpg", platform: "iPad", caption: "Built-in E6B flight computer for wind and fuel" },
-  { src: "/products/jebos-1.webp", platform: "Android", caption: "VFR sectional chart with synthetic vision PFD" },
-  { src: "/products/jebos-2.webp", platform: "Android", caption: "IFR enroute chart — Montreal waypoints and navaids" },
-  { src: "/products/jebos-3.webp", platform: "Android", caption: "Airport diagram viewer — KOWD Norwood Memorial" },
-  { src: "/products/jebos-4.webp", platform: "Web", caption: "Live ATC transcription with highlighted callsigns" },
-  { src: "/products/jebos-5.webp", platform: "Web", caption: "Preflight checklist — documents, walk-around, fuel, oil" },
-  { src: "/products/jebos-6.webp", platform: "Web", caption: "Settings — AIRAC data, navdata downloads" },
-  { src: "/products/jebos-7.webp", platform: "Web", caption: "POH reference — Cessna 152 V-speeds and weight limits" },
-  { src: "/products/jebos-8.webp", platform: "Web", caption: "Split view — POH sidebar with VFR map" },
-  { src: "/products/jebos-9.webp", platform: "Web", caption: "Satellite overlay with ADS-B traffic contacts" },
+const JEBOS_GALLERY: { src: string; platform: string; captionKey: MessageKey }[] = [
+  { src: "/gallery/ipad-jebediah/screens/screen-01.jpg", platform: "iPad", captionKey: "jebos.g.vfrPfd" },
+  { src: "/gallery/ipad-jebediah/screens/screen-02.jpg", platform: "iPad", captionKey: "jebos.g.satelliteWx" },
+  { src: "/gallery/ipad-jebediah/screens/screen-03.jpg", platform: "iPad", captionKey: "jebos.g.vfrLa" },
+  { src: "/gallery/ipad-jebediah/screens/screen-04.jpg", platform: "iPad", captionKey: "jebos.g.ifrSocal" },
+  { src: "/gallery/ipad-jebediah/screens/screen-05.jpg", platform: "iPad", captionKey: "jebos.g.planner" },
+  { src: "/gallery/ipad-jebediah/screens/screen-06.jpg", platform: "iPad", captionKey: "jebos.g.traffic" },
+  { src: "/gallery/ipad-jebediah/screens/extra-checklist.jpg", platform: "iPad", captionKey: "jebos.g.checklist" },
+  { src: "/gallery/ipad-jebediah/screens/extra-poh.jpg", platform: "iPad", captionKey: "jebos.g.poh" },
+  { src: "/gallery/ipad-jebediah/screens/extra-weather.jpg", platform: "iPad", captionKey: "jebos.g.briefing" },
+  { src: "/gallery/ipad-jebediah/screens/extra-e6b.jpg", platform: "iPad", captionKey: "jebos.g.e6b" },
+  { src: "/products/jebos-1.webp", platform: "Android", captionKey: "jebos.g.vfrSynthetic" },
+  { src: "/products/jebos-2.webp", platform: "Android", captionKey: "jebos.g.ifrMontreal" },
+  { src: "/products/jebos-3.webp", platform: "Android", captionKey: "jebos.g.airportDiagram" },
+  { src: "/products/jebos-4.webp", platform: "Web", captionKey: "jebos.g.atc" },
+  { src: "/products/jebos-5.webp", platform: "Web", captionKey: "jebos.g.checklist" },
+  { src: "/products/jebos-6.webp", platform: "Web", captionKey: "jebos.g.airac" },
+  { src: "/products/jebos-7.webp", platform: "Web", captionKey: "jebos.g.poh" },
+  { src: "/products/jebos-8.webp", platform: "Web", captionKey: "jebos.g.pohSplit" },
+  { src: "/products/jebos-9.webp", platform: "Web", captionKey: "jebos.g.satelliteTraffic" },
 ];
 
 export function BodyContent({ children }: { children: React.ReactNode }) {
-  const { t, locale } = useI18n();
+  const { t } = useI18n();
   const pathname = usePathname();
   const showSiteFooter = pathname !== "/privacy";
 
@@ -74,14 +74,14 @@ export function BodyContent({ children }: { children: React.ReactNode }) {
           <div id="site-light-footer">
             {/* Footer with privacy link — bg matches the page so it blends seamlessly */}
             <div
-              data-chrome-surface="dark"
-              className="relative isolate flex min-h-[min(40vh,26rem)] flex-col bg-[#020824] pb-4 pt-8"
+              data-chrome-surface="light"
+              className="relative isolate flex min-h-[min(40vh,26rem)] flex-col bg-[#f5f0e6] pb-4 pt-8"
             >
               <AirshipFooterSilhouette />
               <div className="relative z-10 mt-auto flex justify-center px-4 pb-8 pt-6 sm:pb-10">
                 <Link
                   href="/privacy"
-                  className="pointer-events-auto text-center text-[11px] font-medium uppercase tracking-[0.2em] text-white/80 underline decoration-white/35 underline-offset-4 transition hover:text-white hover:decoration-white/60 sm:text-xs sm:tracking-[0.26em]"
+                  className="pointer-events-auto text-center text-sm lowercase text-[#1c1a17]/70 underline decoration-[#1c1a17]/25 underline-offset-4 transition hover:text-[#1c1a17] hover:decoration-[#1c1a17]/60"
                 >
                   {t("privacy.title")}
                 </Link>
@@ -105,7 +105,7 @@ export function JebediahShowcase() {
   return (
     <section id="section-jebediah" className={SECTION_CARD}>
       <div className="mb-8 flex items-center gap-4">
-        <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
+        <div className="overflow-hidden rounded-2xl border border-[#1c1a17]/12 shadow-[0_8px_24px_rgba(28,26,23,0.12)]">
           <Image
             src="/jebediah-icon.png"
             alt="Jeb's app icon"
@@ -114,31 +114,29 @@ export function JebediahShowcase() {
             className="block h-[72px] w-[72px] md:h-[88px] md:w-[88px]"
           />
         </div>
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.32em] text-white/55">
-            Available on iPad · Android · Web
-          </p>
-          <p className="mt-1 text-xs uppercase tracking-[0.18em] text-cyan-400/90">
-            Early access
-          </p>
+        <div className="text-sm text-[#1c1a17]/55">
+          <p>{t("jebos.platforms")}</p>
+          <p className="mt-1">{t("jebos.earlyAccess")}</p>
         </div>
       </div>
       <div className="flex flex-col gap-8 md:flex-row md:gap-12">
         <div className="w-full md:w-1/2">
           <div className="mb-3">
-            <h2 className="text-2xl uppercase md:text-3xl">
-              <span className="block font-bold">{t("orchestr.jebos.title")}</span>
-              <span className="mt-1 block font-thin tracking-[0.18em] text-white/70">
-                Flight Bag
-              </span>
+            <h2 className="text-2xl lowercase md:text-3xl">
+              {t("orchestr.jebos.title")} flight bag
             </h2>
             {/* Platform tags read as one quiet set instead of four competing hues */}
             <div className="mt-2 flex flex-wrap gap-2">
-              {[t("orchestr.jebos.tag"), "Desktop", "Mobile", "Web"].map(
+              {[
+                t("orchestr.jebos.tag"),
+                t("jebos.tagDesktop"),
+                t("jebos.tagMobile"),
+                t("jebos.tagWeb"),
+              ].map(
                 (label) => (
                   <span
                     key={label}
-                    className="inline-flex items-center rounded-md border border-white/25 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-white/70"
+                    className="inline-flex items-center rounded-md border border-[#1c1a17]/20 px-2 py-0.5 text-xs lowercase text-[#1c1a17]/60"
                   >
                     {label}
                   </span>
@@ -146,50 +144,49 @@ export function JebediahShowcase() {
               )}
             </div>
           </div>
-          <p className="mb-3 leading-relaxed text-white/90">
-            Companion apps for iPad, Android tablets and the web share the same
-            VFR/IFR chart engine, ADS-B traffic, METAR/TAF briefings, ATC
-            transcription and POH library — so what you see on Avionic 1
-            hardware mirrors to every device you fly with.
-          </p>
-          <p className="mb-3 text-sm leading-relaxed text-white/60">
+          <p className="mb-3 leading-relaxed">{t("jebos.pitch")}</p>
+          <p className="mb-3 text-sm leading-relaxed text-[#1c1a17]/60">
             {t("orchestr.jebos.features")}
           </p>
-          <p className="mb-5 text-sm leading-relaxed text-white/70">
+          <p className="mb-5 text-sm leading-relaxed text-[#1c1a17]/60">
             {t("orchestr.jebos.desc")}
           </p>
           <div className="grid max-w-md grid-cols-1 gap-3 sm:grid-cols-2">
             <AppStoreBadge
               href="https://apps.apple.com/us/app/jebediahs-flight-bag/id6766274262"
-              ariaLabel="Download Jeb's Flight Bag on the App Store"
+              ariaLabel={t("jebos.appStoreAlt")}
               className="w-full"
             />
             <GooglePlayBadge
               href="https://play.google.com/store/apps/details?id=com.orchestrsim.jebediah"
-              ariaLabel="Get Jeb's Flight Bag on Google Play"
+              ariaLabel={t("jebos.playAlt")}
               className="w-full"
             />
             <a
               href="https://orchaerospace.com/app"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Try Jeb's Flight Bag on the Web"
-              className="inline-flex h-[52px] w-full items-center gap-2.5 rounded-xl border border-cyan-400 bg-cyan-400/10 px-4 shadow-[0_0_18px_rgba(34,211,238,0.25)] transition-colors hover:bg-cyan-400/20"
+              aria-label={t("jebos.webAlt")}
+              className="inline-flex h-[52px] w-full items-center gap-2.5 rounded-xl border border-[#1c1a17]/25 px-4 transition-colors hover:bg-[#1c1a17]/[0.05]"
             >
-              <svg aria-hidden viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-none stroke-cyan-400" strokeWidth="2">
+              <svg aria-hidden viewBox="0 0 24 24" className="h-[22px] w-[22px] fill-none stroke-[#1c1a17]" strokeWidth="1.5">
                 <circle cx="12" cy="12" r="9" />
                 <path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9S9.5 5.5 12 3z" />
               </svg>
               <span className="flex flex-col leading-none">
-                <span className="text-[9px] uppercase tracking-wide text-cyan-300/80">Try it out as a</span>
-                <span className="mt-0.5 text-base font-semibold text-cyan-50">Web App</span>
+                <span className="text-[10px] lowercase text-[#1c1a17]/55">
+                  {t("jebos.tryAs")}
+                </span>
+                <span className="mt-0.5 text-base lowercase">
+                  {t("jebos.webApp")}
+                </span>
               </span>
             </a>
             <a
               href="https://orchaerospace.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-xl border border-white bg-black px-5 text-base font-semibold text-white transition-colors hover:bg-white hover:text-black"
+              className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-[#1c1a17] px-5 text-base lowercase text-[#f5f0e6] transition-colors hover:bg-[#1c1a17]/85"
             >
               {t("orchestr.jebos.cta")}
             </a>
@@ -198,7 +195,7 @@ export function JebediahShowcase() {
 
         {/* Video demo */}
         <div className="w-full md:w-1/2">
-          <div className="relative overflow-hidden rounded-2xl border border-white/20">
+          <div className="relative overflow-hidden rounded-2xl border border-[#1c1a17]/15">
             <video
               ref={jebosVideoRefCb}
               autoPlay
@@ -217,12 +214,12 @@ export function JebediahShowcase() {
               {jebosVideoMuted ? (
                 <>
                   <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" /></svg>
-                  PLAY SOUND
+                  {t("jebos.sound")}
                 </>
               ) : (
                 <>
                   <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /></svg>
-                  MUTE
+                  {t("jebos.mute")}
                 </>
               )}
             </button>
@@ -237,6 +234,7 @@ export function JebediahShowcase() {
 
 /* ── JebediahOS auto-cycling screenshot gallery ── */
 function JebosGallery() {
+  const { t } = useI18n();
   const [slide, setSlide] = useState(0);
   const [paused, setPaused] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
@@ -255,7 +253,7 @@ function JebosGallery() {
   return (
     <div className="mt-10 w-full">
       <div
-        className="group relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/20"
+        className="group relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#1c1a17]/15"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocus={() => setPaused(true)}
@@ -270,7 +268,7 @@ function JebosGallery() {
           >
             <Image
               src={item.src}
-              alt={item.caption}
+              alt={t(item.captionKey)}
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 1024px"
@@ -280,22 +278,26 @@ function JebosGallery() {
         {/* Caption overlay */}
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent px-6 pb-4 pt-10">
           <div className="flex items-baseline gap-3">
-            <span className="shrink-0 rounded-md border border-white/30 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75">
+            <span className="shrink-0 rounded-md border border-white/30 px-2 py-0.5 text-[11px] text-white/75">
               {current.platform}
             </span>
             <p className="text-sm font-medium text-white md:text-base">
-              {current.caption}
+              {t(current.captionKey)}
             </p>
           </div>
           {/* One slim progress rail beats nineteen dots */}
-          <div className="mt-3 flex gap-1" role="tablist" aria-label="Screenshots">
+          <div
+            className="mt-3 flex gap-1"
+            role="tablist"
+            aria-label={t("jebos.screenshots")}
+          >
             {JEBOS_GALLERY.map((item, i) => (
               <button
                 key={item.src}
                 type="button"
                 role="tab"
                 aria-selected={slide === i}
-                aria-label={item.caption}
+                aria-label={t(item.captionKey)}
                 onClick={() => setSlide(i)}
                 className={`h-[3px] flex-1 rounded-full transition-colors duration-300 ${
                   slide === i ? "bg-white" : "bg-white/25 hover:bg-white/50"
@@ -344,21 +346,21 @@ function FloatingOrchBanner() {
       href="https://orchestrsim.com"
       target="_blank"
       rel="noopener noreferrer"
-      className={`fixed bottom-6 left-1/2 z-[35] flex -translate-x-1/2 items-center gap-2.5 rounded-full border border-cyan-400/30 bg-[#060910]/90 px-5 py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 hover:border-cyan-400/60 hover:bg-[#060910] ${
+      className={`fixed bottom-6 left-1/2 z-[35] flex -translate-x-1/2 items-center gap-2.5 rounded-full bg-[#1c1a17] px-5 py-2.5 shadow-[0_8px_28px_rgba(28,26,23,0.28)] transition-all duration-500 hover:bg-[#1c1a17]/85 ${
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"
       }`}
     >
       <span className="flex h-2 w-2">
-        <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-cyan-400 opacity-75" />
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+        <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-[#f5f0e6] opacity-60" />
+        <span className="relative inline-flex h-2 w-2 rounded-full bg-[#f5f0e6]" />
       </span>
-      <span className="text-xs font-medium tracking-wide text-white sm:text-sm">
+      <span className="text-xs text-[#f5f0e6] sm:text-sm">
         {t("orchestr.floatingBanner")}
       </span>
       <svg
-        className="h-3.5 w-3.5 text-cyan-400"
+        className="h-3.5 w-3.5 text-[#f5f0e6]"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -381,12 +383,12 @@ function PolicyModal() {
       id="privacy-modal"
       className="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black bg-opacity-50 p-4"
     >
-      <div className="w-full max-w-md rounded-lg border border-white/10 bg-[#020824] p-6 text-white shadow-lg">
-        <h2 className="mb-2 text-lg tracking-wide">{t("privacy.title")}</h2>
-        <p className="mb-4 text-sm text-gray-300">{t("privacy.body")}</p>
+      <div className="w-full max-w-md rounded-lg border border-[#1c1a17]/10 bg-[#f5f0e6] p-6 text-[#1c1a17] shadow-lg">
+        <h2 className="mb-2 text-lg lowercase">{t("privacy.title")}</h2>
+        <p className="mb-4 text-sm text-[#1c1a17]/70">{t("privacy.body")}</p>
         <button
           id="privacy-close"
-          className="mt-2 rounded-md border border-white/40 px-3 py-1 text-sm text-white transition hover:bg-white hover:text-black"
+          className="mt-2 rounded-md border border-[#1c1a17]/30 px-3 py-1 text-sm transition hover:bg-[#1c1a17] hover:text-[#f5f0e6]"
         >
           {t("privacy.close")}
         </button>
@@ -402,12 +404,12 @@ function EulaModal() {
       id="eula-modal"
       className="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black bg-opacity-50 p-4"
     >
-      <div className="w-full max-w-md rounded-lg border border-white/10 bg-[#020824] p-6 text-white shadow-lg">
-        <h2 className="mb-2 text-lg tracking-wide">{t("eula.title")}</h2>
-        <p className="mb-4 text-sm text-gray-300">{t("eula.body")}</p>
+      <div className="w-full max-w-md rounded-lg border border-[#1c1a17]/10 bg-[#f5f0e6] p-6 text-[#1c1a17] shadow-lg">
+        <h2 className="mb-2 text-lg lowercase">{t("eula.title")}</h2>
+        <p className="mb-4 text-sm text-[#1c1a17]/70">{t("eula.body")}</p>
         <button
           id="eula-close"
-          className="mt-2 rounded-md border border-white/40 px-3 py-1 text-sm text-white transition hover:bg-white hover:text-black"
+          className="mt-2 rounded-md border border-[#1c1a17]/30 px-3 py-1 text-sm transition hover:bg-[#1c1a17] hover:text-[#f5f0e6]"
         >
           {t("eula.close")}
         </button>
@@ -427,12 +429,12 @@ function AirshipFooterSilhouette() {
       <span className="sr-only">
         Decorative airship silhouette in the page background.
       </span>
-      <div className="relative h-full w-full max-w-6xl opacity-[0.42] sm:opacity-[0.52]">
+      <div className="relative h-full w-full max-w-6xl opacity-[0.14] sm:opacity-[0.18]">
         <Image
           src="/decorative/airship-blimp.svg"
           alt=""
           fill
-          className="object-contain object-bottom [filter:brightness(0)_invert(1)] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.55)_40%,rgba(0,0,0,0.22)_72%,transparent_100%)]"
+          className="object-contain object-bottom [filter:brightness(0)] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.55)_40%,rgba(0,0,0,0.22)_72%,transparent_100%)]"
           sizes="(max-width:768px)100vw,72rem"
         />
       </div>
@@ -460,7 +462,7 @@ function WestminsterSilhouette() {
           src="/decorative/london-tower-bridge-silhouette.svg"
           alt=""
           fill
-          className="object-cover object-bottom [filter:brightness(0)_invert(1)] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.55)_0%,transparent_85%)]"
+          className="object-cover object-bottom opacity-[0.35] [filter:brightness(0)] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.55)_0%,transparent_85%)]"
           sizes="100vw"
         />
       </div>

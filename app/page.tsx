@@ -7,7 +7,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { JebediahShowcase } from "./components/BodyContent";
 import { LazyMountInView } from "./components/portfolio/LazyMountInView";
 import { AppStoreBadge } from "./components/StoreBadges";
-import { ibmPlexSansKRFontStack, tubeFont } from "./fonts";
+import { koSerifFontStack, serifFont } from "./fonts";
 import { usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 import { useI18n } from "./i18n/context";
 import type { Locale } from "./i18n/messages";
@@ -27,6 +27,7 @@ const MEDIA_LOGOS = [
     width: 1062,
     height: 161,
     sizeClass: "h-7 sm:h-8",
+    tintOnPaper: "",
   },
   {
     href: "https://web.archive.org/web/20240530133558/https://hdsb.ca/our-board/Pages/News/News-Description.aspx?NewsID=1145",
@@ -36,6 +37,9 @@ const MEDIA_LOGOS = [
     height: 109,
     sizeClass: "h-12 sm:h-14",
     note: "(WebArchive.org)",
+    // The wordmark ships in a pale blue meant for dark backgrounds — darken it
+    // so it stays legible on paper.
+    tintOnPaper: "[filter:brightness(0.62)_saturate(1.6)]",
   },
 ];
 
@@ -62,8 +66,8 @@ const FaceCanvas = dynamic(
 
 const tubeRed = "#f77f6b"; // legacy accent red (kept for logos)
 const tubeBlue = "#003688";
-const tubeGreyBg = "#020824"; // dark navy background to match layout
-const tubeText = "#f9fafb"; // light text on dark
+const paper = "#f5f0e6"; // warm paper background, same cream as the hero
+const ink = "#1c1a17"; // warm near-black text
 
 type RoundelTheme = {
   ring: string;
@@ -251,7 +255,7 @@ function TubeRoundel() {
   const vLocale = roundelVisualLocale(locale);
   const theme = getRoundelTheme(vLocale);
   const nameFontFamily =
-    locale === "ko" ? ibmPlexSansKRFontStack : tubeFont.style.fontFamily;
+    locale === "ko" ? koSerifFontStack : serifFont.style.fontFamily;
 
   const reducedMotion = usePrefersReducedMotion();
   const showFrBridge = theme.showBridgeAndWaves;
@@ -382,14 +386,14 @@ function TubeRoundel() {
         <RoundelLandmarkFill locale={vLocale} color={theme.decorStroke} />
       ) : null}
 
-      {/* Hollow center */}
+      {/* Hollow center — paper, so it reads as a hole in the ring */}
       <div
         style={{
           position: "absolute",
           width: 70,
           height: 70,
           borderRadius: "50%",
-          backgroundColor: "white",
+          backgroundColor: paper,
           zIndex: 2,
         }}
       />
@@ -533,17 +537,32 @@ function splitTitleYear(text: string): { main: string; year: string | null } {
 }
 
 /**
- * Pixels of the embedded renderer hidden above the fold. The live page opens
- * with a geometry summary (Planar / 120° / AX3 …) that duplicates what this
- * section already says; cropping it starts the frame at the "Connect Atomizer
- * Remote" row. Tune this one number if the cut lands wrong.
+ * Where the 3D canvas sits inside the embedded renderer, measured against
+ * electronvisual.org on 2026-08-11. The site has no real embed mode — it parses
+ * an `embed` flag and ignores it — and opens with a tall geometry summary
+ * (Planar / 120° / AX3 …) that duplicates what this section already says in
+ * words. So the frame is aimed at the canvas by hand instead of cropped by a
+ * guessed offset: a fixed crop showed the summary and only the first ~40px of
+ * the model, which is why the viewer looked like it needed scrolling.
+ *
+ * Above the embedded page's own `md` breakpoint these numbers stop moving with
+ * width: the canvas keeps a 162px gutter on each side, and its height tracks
+ * the frame's at 85vh less a 4px ring. Only its top edge differs per viewer,
+ * because the atom's summary card is shorter than the molecule's.
  */
-const RENDERER_CROP_TOP = 200;
+const EV_CANVAS = {
+  /** Keep the frame wide enough that the embedded page stays in its md layout. */
+  minFrameWidth: 800,
+  gutter: 162,
+  heightRatio: 0.85,
+  heightInset: 4,
+};
 
 const ATOM_VIEWERS = [
   {
     key: "gadolinium",
     keyword: "Gd",
+    canvasTop: 380,
     tabKey: "gltf.tabGd",
     titleKey: "gltf.gdTitle",
     bodyKey: "gltf.gdBody",
@@ -553,6 +572,7 @@ const ATOM_VIEWERS = [
   {
     key: "benzene",
     keyword: "C6H6",
+    canvasTop: 640,
     tabKey: "gltf.tabBenzene",
     titleKey: "gltf.benzeneTitle",
     bodyKey: "gltf.benzeneBody",
@@ -572,15 +592,16 @@ type AtomViewerKey = (typeof ATOM_VIEWERS)[number]["key"];
 function ElectronVisualEmbed({
   keyword,
   title,
+  canvasTop,
 }: {
   keyword: string;
   title: string;
+  canvasTop: number;
 }) {
-  // `embed=true` asks the renderer to drop its own summary card; until
-  // electronvisual.org ships that flag the crop below does the same job.
+  const { t } = useI18n();
   const src = `https://electronvisual.org/renderer?keyword=${encodeURIComponent(
     keyword
-  )}&fullscreen=true&embed=true`;
+  )}&fullscreen=true`;
   const [frameLoaded, setFrameLoaded] = useState(false);
   // The renderer's WebGL canvas eats wheel and touch events, so a page scroll
   // that reaches this frame dies inside it — the section becomes a wall. A
@@ -588,6 +609,40 @@ function ElectronVisualEmbed({
   // Google Maps embed): scrolling passes straight through, dragging doesn't.
   const [interactive, setInteractive] = useState(false);
   const shellRef = React.useRef<HTMLDivElement | null>(null);
+
+  // The frame is sized from the shell rather than the other way round, so the
+  // canvas lands on it exactly. Below ~476px the frame can't shrink further
+  // without dropping the embedded page into its narrow layout, where the
+  // summary card rewraps and every offset here moves — so it stays wide and
+  // scales down instead.
+  const [shell, setShell] = useState({ w: 0, h: 0 });
+  useEffect(() => {
+    const el = shellRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      const r = entry.contentRect;
+      setShell({ w: Math.round(r.width), h: Math.round(r.height) });
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const fit = React.useMemo(() => {
+    const w = shell.w || 800;
+    const h = shell.h || 480;
+    const canvasW = Math.max(w, EV_CANVAS.minFrameWidth - 2 * EV_CANVAS.gutter);
+    const scale = w / canvasW;
+    const canvasH = h / scale;
+    return {
+      width: Math.round(canvasW + 2 * EV_CANVAS.gutter),
+      height: Math.round(
+        (canvasH + EV_CANVAS.heightInset) / EV_CANVAS.heightRatio
+      ),
+      scale,
+      left: -EV_CANVAS.gutter * scale,
+      top: -canvasTop * scale,
+    };
+  }, [shell, canvasTop]);
 
   // Re-arm the shield once the frame leaves the viewport, so scrolling back to
   // it later doesn't hit a still-live grab — the only way out on touch, where
@@ -610,7 +665,7 @@ function ElectronVisualEmbed({
       <div
         ref={shellRef}
         onMouseLeave={() => setInteractive(false)}
-        className="relative h-[380px] w-full overflow-hidden rounded-xl bg-black ring-1 ring-white/10 sm:h-[480px]"
+        className="relative h-[380px] w-full overflow-hidden rounded-xl bg-black ring-1 ring-black/10 sm:h-[480px]"
       >
         <iframe
           src={src}
@@ -619,16 +674,21 @@ function ElectronVisualEmbed({
           onLoad={() => setFrameLoaded(true)}
           allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
           referrerPolicy="strict-origin-when-cross-origin"
-          className="absolute inset-x-0 w-full border-0"
+          scrolling="no"
+          className="absolute border-0"
           style={{
-            top: -RENDERER_CROP_TOP,
-            height: `calc(100% + ${RENDERER_CROP_TOP}px)`,
+            width: fit.width,
+            height: fit.height,
+            left: fit.left,
+            top: fit.top,
+            transform: `scale(${fit.scale})`,
+            transformOrigin: "0 0",
           }}
         />
         {/* The renderer's own progress text sits in the cropped-off strip, so
             the frame would otherwise look empty while it works. */}
         {!frameLoaded ? (
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black text-sm font-light uppercase tracking-[0.22em] text-white/50">
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black text-sm font-light text-white/50">
             {title}…
           </div>
         ) : null}
@@ -636,35 +696,37 @@ function ElectronVisualEmbed({
           <button
             type="button"
             onClick={() => setInteractive(true)}
-            aria-label={`Interact with the ${title} 3D viewer`}
+            aria-label={t("atoms.interact", { title })}
             className="group absolute inset-0 flex cursor-pointer items-end justify-center bg-transparent pb-4 transition-colors duration-200 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white/40"
           >
-            <span className="rounded-full bg-black/55 px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-white/70 backdrop-blur-sm transition-opacity duration-200 group-focus-visible:opacity-100 motion-reduce:transition-none sm:opacity-0 sm:group-hover:opacity-100">
-              <span className="sm:hidden">Tap</span>
-              <span className="hidden sm:inline">Click</span> to rotate
+            <span className="rounded-full bg-black/55 px-3 py-1.5 text-[13px] text-white/70 backdrop-blur-sm transition-opacity duration-200 group-focus-visible:opacity-100 motion-reduce:transition-none sm:opacity-0 sm:group-hover:opacity-100">
+              <span className="sm:hidden">{t("atoms.rotateTouch")}</span>
+              <span className="hidden sm:inline">
+                {t("atoms.rotatePointer")}
+              </span>
             </span>
           </button>
         ) : null}
       </div>
-      <p className="mt-2 text-center text-[11px] uppercase tracking-[0.18em] text-white/45">
-        Live from ElectronVisual.org ·{" "}
+      <p className="mt-2 text-[13px] text-[#1c1a17]/45">
+        {t("atoms.liveFrom")}{" "}
         <a
           href={src}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline decoration-white/30 underline-offset-4 hover:decoration-white"
+          className="underline decoration-[#1c1a17]/25 underline-offset-4 hover:decoration-[#1c1a17]"
         >
-          Open in new tab
+          ElectronVisual.org
         </a>
       </p>
     </div>
   );
 }
 
-/** Quiet stand-in while the viewer is still out of view. */
+/** Quiet stand-in while the viewer is still out of view — matches the black frame it becomes. */
 function RendererPlaceholder({ label }: { label: string }) {
   return (
-    <div className="flex h-[380px] items-center justify-center rounded-xl bg-black/40 text-center text-xl font-thin text-white/60 ring-1 ring-white/10 sm:h-[480px]">
+    <div className="flex h-[380px] items-center justify-center rounded-xl bg-black text-center text-xl font-light text-white/50 ring-1 ring-black/10 sm:h-[480px]">
       {label}
     </div>
   );
@@ -684,7 +746,7 @@ function EmbeddedVideo({
 }) {
   return (
     <figure className={`mx-auto w-full max-w-2xl ${className ?? ""}`}>
-      <div className="relative aspect-video w-full overflow-hidden rounded-xl ring-1 ring-white/15">
+      <div className="relative aspect-video w-full overflow-hidden rounded-xl ring-1 ring-black/10">
         <iframe
           className="absolute inset-0 h-full w-full"
           src={src}
@@ -696,19 +758,11 @@ function EmbeddedVideo({
         />
       </div>
       {caption ? (
-        <figcaption className="mt-2 text-center text-sm text-white/60">
+        <figcaption className="mt-2 text-sm text-[#1c1a17]/55">
           {caption}
         </figcaption>
       ) : null}
     </figure>
-  );
-}
-
-function SectionKicker({ label }: { label: string }) {
-  return (
-    <p className="mb-2 flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.32em] text-white/55">
-      <span>{label}</span>
-    </p>
   );
 }
 
@@ -728,8 +782,7 @@ function ProjectTitle({
       {year ? (
         <span
           className={
-            yearClassName ??
-            "mt-1 block text-xs font-medium uppercase tracking-[0.22em] text-white/60"
+            yearClassName ?? "mt-0.5 block text-sm text-[#1c1a17]/50"
           }
         >
           {year}
@@ -805,9 +858,9 @@ export default function Portfolio() {
 
   return (
     <div
-      data-chrome-surface="dark"
+      data-chrome-surface="light"
       className="flex flex-col gap-6 pb-14 sm:pb-16"
-      style={{ background: tubeGreyBg, color: tubeText }}
+      style={{ background: paper, color: ink }}
     >
       {/* Header banner */}
       <div id="section-hero" className="scroll-mt-20 text-center">
@@ -828,24 +881,24 @@ export default function Portfolio() {
             <Link href="/" className="mx-auto block w-fit">
               <TubeRoundelWith787 />
             </Link>
-            <p className="mt-4 text-[0.625rem] font-medium uppercase tracking-[0.22em] text-gray-600 sm:text-[0.7rem] sm:tracking-[0.26em]">
+            <p className="mt-4 text-xs tracking-[0.18em] text-[#1c1a17]/55 sm:text-sm">
               {t("hero.landmark")}
             </p>
             {/* The page's only h1 — everything below hangs off it. */}
-            <h1 className="mt-2 text-2xl uppercase tracking-[0.25em]">
+            <h1 className="mt-2 text-2xl lowercase tracking-[0.16em]">
               {t("hero.line1")}
               <br />
               {t("hero.line2")}
             </h1>
             <a
               href={`mailto:${t("hero.email")}`}
-              className="mt-3 inline-block text-black underline decoration-black/25 underline-offset-4 transition-colors hover:decoration-black"
+              className="mt-3 inline-block text-[#1c1a17] underline decoration-[#1c1a17]/25 underline-offset-4 transition-colors hover:decoration-[#1c1a17]"
             >
               {t("hero.email")}
             </a>
           </div>
         </div>
-        <div data-chrome-surface="dark" className="bg-[#020824] py-8">
+        <div data-chrome-surface="light" className="bg-[#f5f0e6] py-8">
           <div className="flex flex-col items-center justify-center gap-4">
             <div className="relative flex items-center justify-center">
               <Image
@@ -859,9 +912,8 @@ export default function Portfolio() {
                 style={{
                   width: "min(85vw, 30rem)",
                   height: "auto",
-                  opacity: 0.7,
-                  filter: "invert(1) drop-shadow(0 1px 6px rgba(0,0,0,0.45))",
-                  mixBlendMode: "screen",
+                  opacity: 0.55,
+                  mixBlendMode: "multiply",
                 }}
               />
             <div
@@ -912,14 +964,14 @@ export default function Portfolio() {
             </div>
             </div>
 
-            <div className="text-center text-white">
-              <p className="text-xl font-medium">{t("awards.wwdc")}</p>
-              <p className="mt-1 text-xs uppercase tracking-wider text-gray-200">
+            <div className="text-center">
+              <p className="text-xl">{t("awards.wwdc")}</p>
+              <p className="mt-1 text-sm text-[#1c1a17]/55">
                 {t("awards.wwdcVenue")}
               </p>
             </div>
 
-            <div className="mt-2 flex flex-col items-center gap-2 text-white">
+            <div className="mt-2 flex flex-col items-center gap-2">
               <p className="flex items-center gap-1">
                 <Image
                   src="/american-flag.png"
@@ -927,11 +979,11 @@ export default function Portfolio() {
                   width={24}
                   height={16}
                 />
-                <span className="text-white">{t("awards.usVisa")}</span>
+                <span>{t("awards.usVisa")}</span>
               </p>
               <p className="flex items-center gap-1">
                 <Image src="/uk-flag.png" alt="UK Flag" width={24} height={16} />
-                <span className="text-white">{t("awards.ukVisa")}</span>
+                <span>{t("awards.ukVisa")}</span>
               </p>
               <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
                 <Image
@@ -953,7 +1005,7 @@ export default function Portfolio() {
                     width={24}
                     height={16}
                   />
-                  <span className="text-xs uppercase tracking-wide text-white sm:text-sm">
+                  <span className="text-sm text-[#1c1a17]/70">
                     {t("awards.madeInQuebec")}
                   </span>
                 </span>
@@ -965,7 +1017,7 @@ export default function Portfolio() {
 
       {/* Featured Media — logos sit bare on the background and only come up on hover */}
       <div className="mt-4 text-center">
-        <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.32em] text-white/55">
+        <p className="mb-3 text-sm text-[#1c1a17]/50">
           {t("media.featured")}
         </p>
         {/* Stacked: the wide HDSB wordmark gets its own line so it can be read */}
@@ -983,12 +1035,12 @@ export default function Portfolio() {
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className={`w-auto object-contain ${logo.sizeClass}`}
+                className={`w-auto object-contain ${logo.sizeClass} ${
+                  logo.tintOnPaper ?? ""
+                }`}
               />
               {"note" in logo && logo.note ? (
-                <span className="text-[10px] uppercase tracking-[0.18em] text-white/45">
-                  {logo.note}
-                </span>
+                <span className="text-xs text-[#1c1a17]/40">{logo.note}</span>
               ) : null}
             </a>
           ))}
@@ -997,13 +1049,13 @@ export default function Portfolio() {
 
       {/* Navigation bar */}
       <nav
-        aria-label="Elsewhere"
-        className="m-auto flex w-fit flex-wrap justify-center gap-x-8 gap-y-3 text-base font-medium text-white/60"
+        aria-label={t("section.elsewhere")}
+        className="m-auto flex w-fit flex-wrap justify-center gap-x-8 gap-y-3 text-base lowercase text-[#1c1a17]/60"
       >
         {SOCIAL_LINKS.map((link) => (
           <a
             key={link.label}
-            className="underline decoration-transparent underline-offset-4 transition-colors duration-200 hover:text-white hover:decoration-white/50"
+            className="underline decoration-transparent underline-offset-4 transition-colors duration-200 hover:text-[#1c1a17] hover:decoration-[#1c1a17]/40"
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
@@ -1015,22 +1067,21 @@ export default function Portfolio() {
 
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 sm:gap-10 sm:px-6">
       {/* Project showcase header */}
-      <div className="pt-4 text-center sm:pt-6">
-        <h2 className="text-4xl font-thin uppercase tracking-[0.18em] sm:text-6xl sm:tracking-[0.22em]">
-          Showcase
+      <div className="pt-4 sm:pt-6">
+        <h2 className="text-3xl font-light lowercase tracking-tight sm:text-4xl">
+          {t("section.showcase")}
         </h2>
       </div>
       <JebediahShowcase />
 
       {/* Gadolinium / Benzene Tabs */}
       <div className={SECTION_CARD}>
-        <SectionKicker label="Interactive · 3D viewer" />
-        <h2 className={SECTION_HEADING}>Atoms &amp; molecules</h2>
+        <h2 className={SECTION_HEADING}>{t("section.atoms")}</h2>
         {/* Segmented control: one pill, two states — reads as a switch, not two buttons */}
         <div
           role="tablist"
-          aria-label="Molecule viewer"
-          className="mx-auto mb-5 flex w-full max-w-xs rounded-full border border-white/15 bg-white/[0.04] p-1"
+          aria-label={t("atoms.viewerLabel")}
+          className="mb-5 flex w-full max-w-xs rounded-full border border-[#1c1a17]/15 p-1"
         >
           {ATOM_VIEWERS.map((viewer) => (
             <button
@@ -1038,10 +1089,10 @@ export default function Portfolio() {
               type="button"
               role="tab"
               aria-selected={activeTab === viewer.key}
-              className={`flex-1 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+              className={`flex-1 rounded-full px-4 py-2 text-sm lowercase transition-colors duration-200 ${
                 activeTab === viewer.key
-                  ? "bg-white text-[#020824]"
-                  : "text-white/70 hover:text-white"
+                  ? "bg-[#1c1a17] text-[#f5f0e6]"
+                  : "text-[#1c1a17]/60 hover:text-[#1c1a17]"
               }`}
               onClick={() => {
                 setAtoms3dUnlocked(true);
@@ -1063,11 +1114,7 @@ export default function Portfolio() {
             openedTabs[viewer.key] ? (
               <div
                 key={viewer.key}
-                className={
-                  activeTab === viewer.key
-                    ? "rounded-2xl bg-black/80 p-6 shadow-lg ring-1 ring-white/5"
-                    : "hidden"
-                }
+                className={activeTab === viewer.key ? "" : "hidden"}
               >
                 <LazyMountInView
                   unlock={atoms3dUnlocked}
@@ -1079,13 +1126,12 @@ export default function Portfolio() {
                   <ElectronVisualEmbed
                     keyword={viewer.keyword}
                     title={t(viewer.titleKey)}
+                    canvasTop={viewer.canvasTop}
                   />
                 </LazyMountInView>
-                <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
-                  <h3 className="text-2xl tracking-wide">
-                    {t(viewer.titleKey)}
-                  </h3>
-                  <p className="mt-2 text-white/70">
+                <div className="mt-5">
+                  <h3 className="text-2xl lowercase">{t(viewer.titleKey)}</h3>
+                  <p className="mt-2 text-[#1c1a17]/70">
                     {t(viewer.bodyKey)}
                     {viewer.linkAfterBody ? (
                       <>
@@ -1100,12 +1146,6 @@ export default function Portfolio() {
                       </>
                     ) : null}
                   </p>
-                  <a
-                    href="https://electronvisual.org"
-                    className={`mt-4 ${BTN_GHOST}`}
-                  >
-                    {t("gltf.benzeneCta")} ElectronVisual.org
-                  </a>
                 </div>
               </div>
             ) : null
@@ -1123,7 +1163,7 @@ export default function Portfolio() {
               alt="Walter Kohn — From Kindertransport and Internment to DFT and the Nobel Prize (David C. Clary). Front cover features John Wonmo Seong's DFT electron density visualisation."
               width={865}
               height={947}
-              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
+              className="h-full w-full rounded-lg object-cover ring-1 ring-black/10"
               sizes="(max-width: 640px) 45vw, 20rem"
             />
             <Image
@@ -1131,7 +1171,7 @@ export default function Portfolio() {
               alt="Atomizer AR — 2023 Swift Student Challenge Winner; iron (Fe) and sodium (Na) electron configurations rendered in real time on iPhone"
               width={1077}
               height={1400}
-              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
+              className="h-full w-full rounded-lg object-cover ring-1 ring-black/10"
               sizes="(max-width: 640px) 45vw, 20rem"
             />
           </div>
@@ -1142,7 +1182,7 @@ export default function Portfolio() {
               alt="ElectronVisualized DFT visualisation"
               width={1200}
               height={900}
-              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
+              className="h-full w-full rounded-lg object-cover ring-1 ring-black/10"
               sizes="(max-width: 640px) 45vw, 20rem"
             />
             <Image
@@ -1150,7 +1190,7 @@ export default function Portfolio() {
               alt="ElectronVisualized molecular orbital render"
               width={1200}
               height={900}
-              className="h-full w-full rounded-lg object-cover ring-1 ring-white/15"
+              className="h-full w-full rounded-lg object-cover ring-1 ring-black/10"
               sizes="(max-width: 640px) 45vw, 20rem"
             />
           </div>
@@ -1159,7 +1199,7 @@ export default function Portfolio() {
             href="https://www.worldscientific.com/doi/suppl/10.1142/13806/suppl_file/13806_preface.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="block overflow-hidden rounded-lg bg-white p-3 ring-1 ring-white/10 transition hover:ring-white/30"
+            className="block overflow-hidden rounded-lg bg-white p-3 ring-1 ring-black/10 transition hover:ring-black/25"
             aria-label="Open Walter Kohn book preface PDF crediting John Wonmo Seong"
           >
             <Image
@@ -1172,15 +1212,14 @@ export default function Portfolio() {
             />
           </a>
         </div>
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/75">
+        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#1c1a17]/20 px-3 py-1 text-xs text-[#1c1a17]/65">
           <span aria-hidden>★</span>
-          Apple Swift Student Challenge · 2023 Award
+          Apple Swift Student Challenge, 2023
         </div>
-        <SectionKicker label="iOS · WebXR · DFT" />
         <h2 className={SECTION_HEADING}>
           <ProjectTitle text={t("electron.title")} />
         </h2>
-        <ul className="list-disc space-y-2 pl-6 text-lg">
+        <ul className="list-disc space-y-2 pl-5 text-lg marker:text-[#1c1a17]/30">
           <li>{t("electron.li1")}</li>
           <li>{t("electron.li2")}</li>
           <li>
@@ -1233,29 +1272,31 @@ export default function Portfolio() {
 
       {/* 3D Face Model */}
       <div id="section-face" className={SECTION_CARD}>
-        <SectionKicker label="iOS · TrueDepth · 3D" />
-        <h2 className={SECTION_HEADING}>Face scan demo</h2>
-        <LazyMountInView
-          rootMargin="240px 0px 320px 0px"
-          fallback={
-            <div className="flex h-[400px] items-center justify-center text-center text-3xl font-thin text-white">
-              {t("face.loading")}
-            </div>
-          }
-        >
-          <Suspense
+        <h2 className={SECTION_HEADING}>{t("section.face")}</h2>
+        {/* The mesh is lit pale, so it keeps a dark frame of its own on paper. */}
+        <div className="overflow-hidden rounded-xl bg-[#0d0f14] ring-1 ring-black/10">
+          <LazyMountInView
+            rootMargin="240px 0px 320px 0px"
             fallback={
-              <div className="flex h-[400px] items-center justify-center text-center text-3xl font-thin text-white">
+              <div className="flex h-[400px] items-center justify-center text-center text-2xl font-light text-white/50">
                 {t("face.loading")}
               </div>
             }
           >
-            <FaceCanvas />
-          </Suspense>
-        </LazyMountInView>
-        <div className="mt-4 rounded-xl bg-white/5 p-6 text-center text-white ring-1 ring-white/10">
-          <h3 className="text-2xl tracking-wide">{t("face.title")}</h3>
-          <p className="mt-2 text-white/70">{t("face.body")}</p>
+            <Suspense
+              fallback={
+                <div className="flex h-[400px] items-center justify-center text-center text-2xl font-light text-white/50">
+                  {t("face.loading")}
+                </div>
+              }
+            >
+              <FaceCanvas />
+            </Suspense>
+          </LazyMountInView>
+        </div>
+        <div className="mt-5">
+          <h3 className="text-2xl lowercase">{t("face.title")}</h3>
+          <p className="mt-2 text-[#1c1a17]/70">{t("face.body")}</p>
           <a
             href="https://www.youtube.com/watch?v=LqiZKoXhtDA"
             target="_blank"
@@ -1269,9 +1310,8 @@ export default function Portfolio() {
 
       {/* OpticALLY Section */}
       <section id="section-orch" className={SECTION_CARD}>
-        <SectionKicker label="iOS · Patent pending" />
         <h2 className={SECTION_HEADING}>{t("orch.title")}</h2>
-        <ul className="list-disc space-y-2 pl-6 text-lg">
+        <ul className="list-disc space-y-2 pl-5 text-lg marker:text-[#1c1a17]/30">
           <li>{t("orch.li1")}</li>
           <li>{t("orch.li2")}</li>
           <li>{t("orch.li3")}</li>
@@ -1298,10 +1338,9 @@ export default function Portfolio() {
           caption={t("footer.video1Caption")}
           className="mb-8"
         />
-        <SectionKicker label="Work · 2023 — present" />
         <h2 className={SECTION_HEADING}>{t("exp.title")}</h2>
         {/* Timeline rail: one vertical line ties the roles together */}
-        <ol className="space-y-6 border-l border-white/15 pl-6 text-lg">
+        <ol className="space-y-6 border-l border-[#1c1a17]/15 pl-6 text-lg">
           {[
             {
               title: t("exp.orchestr"),
@@ -1319,25 +1358,18 @@ export default function Portfolio() {
             { title: t("exp.reach"), body: t("exp.reachBody") },
             { title: t("exp.snu"), body: t("exp.snuBody") },
           ].map((role) => (
-            <li key={role.title} className="relative">
-              <span
-                aria-hidden
-                className="absolute -left-[1.8125rem] top-2.5 h-1.5 w-1.5 rounded-full bg-white/40"
-              />
-              <h3 className="text-2xl uppercase">
+            <li key={role.title}>
+              <h3 className="text-2xl lowercase">
                 <ProjectTitle text={role.title} />
               </h3>
-              <p className="text-white/70">{role.body}</p>
+              <p className="text-[#1c1a17]/70">{role.body}</p>
             </li>
           ))}
         </ol>
       </section>
 
       <div className={`${SECTION_CARD} space-y-8`}>
-        <div>
-          <SectionKicker label="From the archive" />
-          <h2 className="text-3xl uppercase tracking-tight">Moments</h2>
-        </div>
+        <h2 className={SECTION_HEADING}>{t("section.moments")}</h2>
         {/* Two photos side by side on desktop, stacked on phones */}
         <div className="grid gap-6 sm:grid-cols-2">
           {[
@@ -1359,9 +1391,9 @@ export default function Portfolio() {
                 width={640}
                 height={384}
                 sizes="(max-width: 640px) 100vw, 20rem"
-                className="aspect-[5/3] w-full rounded-xl object-cover ring-1 ring-white/15"
+                className="aspect-[5/3] w-full rounded-xl object-cover ring-1 ring-black/10"
               />
-              <figcaption className="mt-2 text-sm text-white/60">
+              <figcaption className="mt-2 text-sm text-[#1c1a17]/55">
                 {photo.caption}
               </figcaption>
             </figure>
@@ -1374,9 +1406,8 @@ export default function Portfolio() {
         id="section-edu"
         className={SECTION_CARD}
       >
-        <SectionKicker label="Education · Training" />
         <h2 className={SECTION_HEADING}>{t("edu.title")}</h2>
-        <ol className="divide-y divide-white/10 text-lg">
+        <ol className="divide-y divide-[#1c1a17]/10 text-lg">
           {[
             {
               title: t("edu.hub.title"),
@@ -1404,13 +1435,13 @@ export default function Portfolio() {
                   <ProjectTitle text={item.title} />
                 </h3>
                 {item.detail ? (
-                  <p className="text-white/70">{item.detail}</p>
+                  <p className="text-[#1c1a17]/70">{item.detail}</p>
                 ) : null}
               </div>
               {item.code ? (
                 <span
                   aria-hidden="true"
-                  className="shrink-0 select-none text-5xl font-bold uppercase leading-none tracking-tight text-white/10 sm:text-7xl"
+                  className="shrink-0 select-none text-5xl leading-none tracking-tight text-[#1c1a17]/10 sm:text-7xl"
                 >
                   {item.code}
                 </span>

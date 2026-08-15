@@ -2,32 +2,32 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { tubeFont } from "../fonts";
+import { serifFont } from "../fonts";
 import { useI18n } from "../i18n/context";
 import { BodyContent } from "./BodyContent";
 import { FloatingLocaleHeader } from "./FloatingLocaleHeader";
 
-const IBM_PLEX_SANS_KR_LINK_ID = "font-ibm-plex-sans-kr-css";
-const IBM_PLEX_SANS_KR_HREF =
-  "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap";
+const KO_SERIF_LINK_ID = "font-ko-serif-css";
+const KO_SERIF_HREF =
+  "https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap";
 
 export function I18nShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { locale, localeTransitionPhase, privacyEntranceInvert } = useI18n();
 
   useEffect(() => {
-    const needIbm = locale === "ko" || pathname === "/privacy";
-    if (!needIbm) return;
-    if (document.getElementById(IBM_PLEX_SANS_KR_LINK_ID)) return;
+    const needKoSerif = locale === "ko" || pathname === "/privacy";
+    if (!needKoSerif) return;
+    if (document.getElementById(KO_SERIF_LINK_ID)) return;
     const link = document.createElement("link");
-    link.id = IBM_PLEX_SANS_KR_LINK_ID;
+    link.id = KO_SERIF_LINK_ID;
     link.rel = "stylesheet";
-    link.href = IBM_PLEX_SANS_KR_HREF;
+    link.href = KO_SERIF_HREF;
     document.head.appendChild(link);
   }, [locale, pathname]);
 
   const fontClass =
-    locale === "ko" ? "font-ibm-plex-sans-kr" : tubeFont.className;
+    locale === "ko" ? "font-ko-serif" : serifFont.className;
 
   const txClass =
     pathname === "/privacy" &&
@@ -39,7 +39,7 @@ export function I18nShell({ children }: { children: React.ReactNode }) {
     <>
       <FloatingLocaleHeader />
       <div
-        className={`locale-tx-root ${fontClass} ${txClass} flex min-h-screen flex-col bg-[#020824] text-white antialiased`}
+        className={`locale-tx-root ${fontClass} ${txClass} flex min-h-screen flex-col bg-[#f5f0e6] text-[#1c1a17] antialiased`}
       >
         <BodyContent>{children}</BodyContent>
       </div>
