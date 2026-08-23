@@ -51,7 +51,7 @@ export const messages = {
     "orchestr.jebos.desc":
       "a real-time Debian build for the Jetson Orin Nano. certified hardware soon.",
     "orchestr.jebos.features":
-      "moving map, ADS-B (GPS) and vision-based traffic, ATC transcript, verbal checklist, charts, flight planning.",
+      "international map, ADS-B (GPS) and vision-based traffic, ATC transcript, verbal checklist, charts, flight planning.",
     "orchestr.jebos.cta": "orchaerospace.com",
     "orchestr.floatingBanner": "orchestr aerospace",
 
@@ -228,7 +228,7 @@ export const messages = {
     "orchestr.jebos.desc":
       "un Debian temps réel pour le Jetson Orin Nano. matériel certifié bientôt.",
     "orchestr.jebos.features":
-      "carte dynamique, trafic ADS-B (GPS) et par vision, transcription ATC, checklist verbale, cartes, planification de vol.",
+      "carte internationale, trafic ADS-B (GPS) et par vision, transcription ATC, checklist verbale, cartes, planification de vol.",
     "orchestr.jebos.cta": "orchaerospace.com",
     "orchestr.floatingBanner": "orchestr aerospace",
 
