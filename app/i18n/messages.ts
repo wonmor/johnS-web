@@ -61,7 +61,7 @@ export const messages = {
     "jebos.tagMobile": "mobile",
     "jebos.tagWeb": "web",
     "jebos.pitch":
-      "the same software on Flight Computer 1 and in every aircraft you fly.",
+      "one software on Flight Computer 1 and in every aircraft you fly.",
     "jebos.sound": "sound",
     "jebos.mute": "mute",
     "jebos.tryAs": "try it as a",
