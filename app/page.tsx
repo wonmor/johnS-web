@@ -473,33 +473,6 @@ function TubeRoundelWith787({
   );
 }
 
-/**
- * Quebec's fleur-de-lis, the one off the flag, drawn in gold beside the
- * "built in Quebec" line. Decorative — the flag next to it already carries the
- * meaning, so it stays out of the accessibility tree. The petals are flattened
- * to polygons, so the mark needs no font and no asset of its own.
- */
-function FleurDeLis({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 32 44"
-      className={className}
-      fill="currentColor"
-      aria-hidden
-      focusable="false"
-    >
-      {/* centre petal */}
-      <path d="M15.8 1.4 L15.4 2.2 L15.0 2.9 L14.6 3.8 L14.2 4.6 L13.9 5.4 L13.5 6.3 L13.2 7.1 L12.9 8.0 L12.5 8.9 L12.2 9.8 L12.0 10.7 L12.2 11.6 L12.5 12.5 L12.8 13.4 L13.1 14.3 L13.4 15.1 L13.8 16.0 L14.2 16.8 L14.6 17.6 L15.0 18.5 L15.4 19.2 L16.0 20.0 L16.0 20.0 L16.3 19.1 L16.5 18.2 L16.7 17.4 L16.9 16.5 L17.2 15.7 L17.4 14.8 L17.6 14.0 L17.8 13.2 L18.1 12.3 L18.3 11.5 L18.5 10.7 L18.3 9.9 L18.0 9.1 L17.8 8.2 L17.5 7.4 L17.3 6.6 L17.1 5.7 L16.9 4.9 L16.7 4.0 L16.5 3.2 L16.3 2.3 L16.2 1.4 Z" />
-      {/* lateral petals, mirrored about x=16 */}
-      <path d="M14.7 18.1 L14.3 17.9 L13.9 17.7 L13.4 17.4 L13.0 17.1 L12.6 16.7 L12.1 16.3 L11.7 15.9 L11.2 15.4 L10.8 14.9 L10.3 14.4 L9.7 14.1 L9.1 13.9 L8.5 13.6 L7.8 13.4 L7.2 13.2 L6.5 13.1 L5.7 13.0 L4.8 13.2 L4.0 13.6 L3.3 14.2 L3.0 15.0 L2.8 15.8 L2.9 16.5 L3.0 17.3 L3.2 18.2 L3.4 19.2 L3.7 20.4 L4.1 21.8 L4.6 23.3 L5.2 25.0 L5.2 25.0 L5.1 23.2 L5.0 21.6 L4.9 20.2 L4.9 19.1 L5.0 18.1 L5.2 17.3 L5.3 16.7 L5.5 16.4 L5.7 16.3 L5.8 16.5 L5.6 16.8 L5.3 17.1 L5.1 17.2 L5.1 17.3 L5.2 17.5 L5.4 17.8 L5.7 18.1 L6.1 18.5 L6.5 18.9 L7.0 19.4 L7.7 19.6 L8.4 19.9 L9.2 20.1 L10.0 20.4 L10.8 20.6 L11.6 20.8 L12.4 20.9 L13.2 20.9 L14.1 20.9 L14.9 20.7 Z" />
-      <path d="M17.3 18.1 L17.7 17.9 L18.1 17.7 L18.6 17.4 L19.0 17.1 L19.4 16.7 L19.9 16.3 L20.3 15.9 L20.8 15.4 L21.2 14.9 L21.7 14.4 L22.3 14.1 L22.9 13.9 L23.5 13.6 L24.2 13.4 L24.8 13.2 L25.5 13.1 L26.3 13.0 L27.2 13.2 L28.0 13.6 L28.7 14.2 L29.0 15.0 L29.2 15.8 L29.1 16.5 L29.0 17.3 L28.8 18.2 L28.6 19.2 L28.3 20.4 L27.9 21.8 L27.4 23.3 L26.8 25.0 L26.8 25.0 L26.9 23.2 L27.0 21.6 L27.1 20.2 L27.1 19.1 L27.0 18.1 L26.8 17.3 L26.7 16.7 L26.5 16.4 L26.3 16.3 L26.2 16.5 L26.4 16.8 L26.7 17.1 L26.9 17.2 L26.9 17.3 L26.8 17.5 L26.6 17.8 L26.3 18.1 L25.9 18.5 L25.5 18.9 L25.0 19.4 L24.3 19.6 L23.6 19.9 L22.8 20.1 L22.0 20.4 L21.2 20.6 L20.4 20.8 L19.6 20.9 L18.8 20.9 L17.9 20.9 L17.1 20.7Z" />
-      {/* band, then the stem flaring into a footed base */}
-      <rect x="8.4" y="19.4" width="15.2" height="3.1" rx="1.55" />
-      <path d="M13.6 22.9C13.4 26.8 12.6 30 11.6 33 11 34.9 10.7 36.8 11.4 38.6C12.6 37.4 14 36.6 16 36.4 18 36.6 19.4 37.4 20.6 38.6C21.3 36.8 21 34.9 20.4 33 19.4 30 18.6 26.8 18.4 22.9Z" />
-    </svg>
-  );
-}
-
 function splitTitleYear(text: string): { main: string; year: string | null } {
   const m = text.match(/^(.*?)\s*\(([^()]+)\)\s*$/);
   if (!m) return { main: text, year: null };
@@ -896,7 +869,9 @@ export default function Portfolio() {
                   <span className="text-sm text-[#1c1a17]/70">
                     {t("awards.madeInQuebec")}
                   </span>
-                  <FleurDeLis className="h-[18px] w-auto text-[#a67c00]" />
+                  <span aria-hidden className="text-base leading-none">
+                    ⚜️
+                  </span>
                 </span>
               </div>
             </div>
