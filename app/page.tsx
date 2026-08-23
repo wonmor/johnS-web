@@ -7,7 +7,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { JebediahShowcase } from "./components/BodyContent";
 import { LazyMountInView } from "./components/portfolio/LazyMountInView";
 import { AppStoreBadge } from "./components/StoreBadges";
-import { koSerifFontStack, serifFont } from "./fonts";
+import { serifFont } from "./fonts";
 import { usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 import { useI18n } from "./i18n/context";
 import type { Locale } from "./i18n/messages";
@@ -77,7 +77,7 @@ type RoundelTheme = {
   ring: string;
   bar: string;
   decorStroke: string;
-  /** Bridge + waves (FR); EN waves behind Tower Bridge mask; KO uses animated clouds in roundel */
+  /** Bridge + waves (FR); EN gets the Seoul tower under drifting clouds */
   showBridgeAndWaves: boolean;
 };
 
@@ -90,44 +90,18 @@ function getRoundelTheme(locale: Locale): RoundelTheme {
         decorStroke: tubeBlue,
         showBridgeAndWaves: true,
       };
-    case "ko":
+    default:
       return {
         ring: "#00B2A9",
         bar: "#007A8C",
         decorStroke: "#005A66",
         showBridgeAndWaves: false,
       };
-    default:
-      return {
-        ring: "#9364CC",
-        bar: "#5E2F88",
-        decorStroke: "#4A2565",
-        showBridgeAndWaves: false,
-      };
   }
-}
-
-/**
- * Easter egg: the roundel's *visuals* (colours + landmark + animated decor) are
- * swapped between EN and KO — English viewers get the Seoul roundel, Korean
- * viewers get the London one. Font and copy still follow the real locale; FR is
- * left untouched.
- */
-function roundelVisualLocale(locale: Locale): Locale {
-  if (locale === "en") return "ko";
-  if (locale === "ko") return "en";
-  return locale;
 }
 
 function roundelLandmarkSvg(locale: Locale): string | null {
-  switch (locale) {
-    case "en":
-      return "/tower-bridge-roundel.svg";
-    case "ko":
-      return "/n-seoul-tower-roundel.svg";
-    default:
-      return null;
-  }
+  return locale === "en" ? "/n-seoul-tower-roundel.svg" : null;
 }
 
 function RoundelLandmarkFill({
@@ -166,7 +140,7 @@ function RoundelLandmarkFill({
   );
 }
 
-type KoCloudPuff = {
+type CloudPuff = {
   cx: number;
   baseCy: number;
   rx: number;
@@ -175,9 +149,9 @@ type KoCloudPuff = {
 };
 
 /** Single drift speed (L→R, viewBox units per tick) — slower, uniform like wind. */
-const KO_CLOUD_DRIFT_PER_TICK = 0.11;
+const CLOUD_DRIFT_PER_TICK = 0.11;
 
-function initialKoCloudPuffs(): KoCloudPuff[] {
+function initialCloudPuffs(): CloudPuff[] {
   return Array.from({ length: 38 }, () => ({
     cx: -40 + Math.random() * 185,
     baseCy: 4 + Math.random() * 92,
@@ -188,8 +162,8 @@ function initialKoCloudPuffs(): KoCloudPuff[] {
   }));
 }
 
-/** Korean roundel: puffs drift slowly in one direction (left → right). */
-function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
+/** Seoul roundel: puffs drift slowly in one direction (left → right). */
+function RoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
   const cloudStyle: React.CSSProperties = {
     position: "absolute",
     top: "50%",
@@ -201,7 +175,7 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
     pointerEvents: "none",
   };
 
-  const [puffs, setPuffs] = useState(() => initialKoCloudPuffs());
+  const [puffs, setPuffs] = useState(() => initialCloudPuffs());
   const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -212,7 +186,7 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
     const tick = () => {
       setPuffs((prev) =>
         prev.map((p) => {
-          let nx = p.cx + KO_CLOUD_DRIFT_PER_TICK;
+          let nx = p.cx + CLOUD_DRIFT_PER_TICK;
           if (nx > 122) nx = -32 - Math.random() * 28;
           return { ...p, cx: nx };
         })
@@ -227,7 +201,7 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
     <svg viewBox="0 0 100 100" style={cloudStyle} aria-hidden>
       <defs>
         <filter
-          id="ko-roundel-cloud-soft"
+          id="roundel-cloud-soft"
           x="-45%"
           y="-45%"
           width="190%"
@@ -236,7 +210,7 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
           <feGaussianBlur in="SourceGraphic" stdDeviation="0.85 0.28" />
         </filter>
       </defs>
-      <g filter="url(#ko-roundel-cloud-soft)">
+      <g filter="url(#roundel-cloud-soft)">
         {puffs.map((p, i) => (
           <ellipse
             key={i}
@@ -255,16 +229,12 @@ function KoreanRoundelCloudDecor({ decorStroke }: { decorStroke: string }) {
 
 function TubeRoundel() {
   const { locale } = useI18n();
-  // Visuals swap EN↔KO; font/copy stay on the real locale.
-  const vLocale = roundelVisualLocale(locale);
-  const theme = getRoundelTheme(vLocale);
-  const nameFontFamily =
-    locale === "ko" ? koSerifFontStack : serifFont.style.fontFamily;
+  const theme = getRoundelTheme(locale);
+  const nameFontFamily = serifFont.style.fontFamily;
 
   const reducedMotion = usePrefersReducedMotion();
   const showFrBridge = theme.showBridgeAndWaves;
-  const showEnWater = vLocale === "en";
-  const animateWaves = (showFrBridge || showEnWater) && !reducedMotion;
+  const animateWaves = showFrBridge && !reducedMotion;
 
   const [waves, setWaves] = useState(
     Array.from({ length: 30 }).map(() => ({
@@ -352,42 +322,11 @@ function TubeRoundel() {
         </svg>
       ) : null}
 
-      {showEnWater ? (
+      {!showFrBridge ? (
         <>
-          <RoundelLandmarkFill locale={vLocale} color={theme.decorStroke} />
-          <svg
-            viewBox="0 0 100 100"
-            style={{
-              ...waveDecorStyle,
-              zIndex: 1,
-              clipPath: "inset(54% -10% -5% -10%)",
-              WebkitClipPath: "inset(54% -10% -5% -10%)",
-            }}
-            aria-hidden
-          >
-            <line x1="0" y1="70" x2="100" y2="70" opacity={0.2} />
-            {waves.map((wave, i) => (
-              <line
-                key={i}
-                x1={wave.x}
-                y1={wave.y}
-                x2={wave.x + wave.length}
-                y2={wave.y}
-                stroke={theme.decorStroke}
-                strokeOpacity={0.2}
-                strokeWidth={1.2}
-              />
-            ))}
-          </svg>
+          <RoundelCloudDecor decorStroke={theme.decorStroke} />
+          <RoundelLandmarkFill locale={locale} color={theme.decorStroke} />
         </>
-      ) : null}
-
-      {vLocale === "ko" ? (
-        <KoreanRoundelCloudDecor decorStroke={theme.decorStroke} />
-      ) : null}
-
-      {!showFrBridge && !showEnWater ? (
-        <RoundelLandmarkFill locale={vLocale} color={theme.decorStroke} />
       ) : null}
 
       {/* Hollow center — paper, so it reads as a hole in the ring */}
@@ -440,7 +379,7 @@ function TubeRoundelWith787({
   size?: number;
 }) {
   const { locale } = useI18n();
-  const wingColor = getRoundelTheme(roundelVisualLocale(locale)).bar;
+  const wingColor = getRoundelTheme(locale).bar;
   // scale relative to your TubeRoundel's base 140×140
   const base = 140;
   const s = size / base;
@@ -734,7 +673,7 @@ function ProjectTitle({
 
 export default function Portfolio() {
   const { t, locale } = useI18n();
-  const headerRoundelTheme = getRoundelTheme(roundelVisualLocale(locale));
+  const headerRoundelTheme = getRoundelTheme(locale);
   const [activeTab, setActiveTab] = useState<AtomViewerKey>("benzene");
   // Which viewers have been opened at least once — they stay mounted after.
   const [openedTabs, setOpenedTabs] = useState<Record<AtomViewerKey, boolean>>({

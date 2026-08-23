@@ -62,21 +62,12 @@ export function LocaleOfferDialog({
     () => (key: MessageKey) => translateForLocale(target, key),
     [target]
   );
-  const fontClass =
-    target === "ko" ? "font-ko-serif" : serifFont.className;
+  const fontClass = serifFont.className;
 
   const titleKey: MessageKey =
-    target === "en"
-      ? "localeOffer.titleEn"
-      : target === "fr"
-        ? "localeOffer.titleFr"
-        : "localeOffer.titleKo";
+    target === "en" ? "localeOffer.titleEn" : "localeOffer.titleFr";
   const bodyKey: MessageKey =
-    target === "en"
-      ? "localeOffer.bodyEn"
-      : target === "fr"
-        ? "localeOffer.bodyFr"
-        : "localeOffer.bodyKo";
+    target === "en" ? "localeOffer.bodyEn" : "localeOffer.bodyFr";
 
   return (
     <>

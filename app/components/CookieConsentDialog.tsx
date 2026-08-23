@@ -66,7 +66,7 @@ export function CookieConsentDialog() {
   const cardBottom = bottomOffsetPx(pathname);
   const dimBottom = backdropBottom(pathname);
   const fontClass =
-    locale === "ko" ? "font-ko-serif" : serifFont.className;
+    serifFont.className;
 
   const [visible, setVisible] = useState(false);
   const [scopeRequired, setScopeRequired] = useState(false);

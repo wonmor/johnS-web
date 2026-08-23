@@ -95,10 +95,6 @@
   animation: flicker 1.5s infinite alternate;  
 }
 
-.font-ko-serif {
-  font-family: "Nanum Myeongjo", "Noto Serif KR", serif;
-}
-
 /* Locale switch: full invert pulse, slower (no opacity fade) */
 .locale-tx-root {
   transition: filter 520ms ease-in-out;

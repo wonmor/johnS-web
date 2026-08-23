@@ -3,12 +3,11 @@
 import { useI18n } from "../i18n/context";
 import type { Locale, MessageKey } from "../i18n/messages";
 
-const locales: Locale[] = ["en", "fr", "ko"];
+const locales: Locale[] = ["en", "fr"];
 
 const toggleLabelKey: Record<Locale, MessageKey> = {
   en: "langToggle.en",
   fr: "langToggle.fr",
-  ko: "langToggle.ko",
 };
 
 export function LanguageToggle({

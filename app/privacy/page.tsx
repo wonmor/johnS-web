@@ -9,10 +9,9 @@ import { type Locale, messages } from "../i18n/messages";
 const SECTION_IDS: Record<Locale, string> = {
   en: "privacy-en",
   fr: "privacy-fr",
-  ko: "privacy-ko",
 };
 
-const ALL_LOCALES: Locale[] = ["en", "fr", "ko"];
+const ALL_LOCALES: Locale[] = ["en", "fr"];
 
 function privacyLocalesOrder(current: Locale): Locale[] {
   return [current, ...ALL_LOCALES.filter((l) => l !== current)];
@@ -24,12 +23,6 @@ function navAnchorLabel(loc: Locale) {
       return "English";
     case "fr":
       return "Français";
-    case "ko":
-      return (
-        <span className="font-ko-serif" lang="ko">
-          한국어
-        </span>
-      );
     default: {
       const _x: never = loc;
       return _x;
@@ -51,12 +44,6 @@ function sectionHeading(loc: Locale) {
         <>
           Français — {title}
         </>
-      );
-    case "ko":
-      return (
-        <span className="font-ko-serif" lang="ko">
-          한국어 — {title}
-        </span>
       );
     default: {
       const _x: never = loc;
@@ -115,8 +102,8 @@ export default function PrivacyPolicyPage() {
           <section
             key={loc}
             id={SECTION_IDS[loc]}
-            className={`mb-20 scroll-mt-28${loc === "ko" ? " font-ko-serif" : ""}`}
-            lang={loc === "ko" ? "ko" : loc === "fr" ? "fr" : "en"}
+            className="mb-20 scroll-mt-28"
+            lang={loc === "fr" ? "fr" : "en"}
           >
             <h2 className="mb-5 text-sm lowercase text-[#1c1a17]/60">
               {sectionHeading(loc)}
@@ -162,7 +149,7 @@ export default function PrivacyPolicyPage() {
         </div>
 
         <footer
-          className={`mt-12 border-t border-[#1c1a17]/12 pt-10 pb-10 text-center sm:mt-14 sm:pb-14 ${locale === "ko" ? "font-ko-serif" : ""}`}
+          className="mt-12 border-t border-[#1c1a17]/12 pt-10 pb-10 text-center sm:mt-14 sm:pb-14"
           aria-label="Copyright"
         >
           <p

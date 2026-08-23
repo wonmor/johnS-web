@@ -88,8 +88,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    document.documentElement.lang =
-      locale === "fr" ? "fr" : locale === "ko" ? "ko" : "en";
+    document.documentElement.lang = locale === "fr" ? "fr" : "en";
   }, [locale]);
 
   useEffect(() => () => clearTransitionTimeouts(), [clearTransitionTimeouts]);

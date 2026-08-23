@@ -95,7 +95,7 @@ export function FloatingSectionTabs() {
     localeTransitionPhase === "invert" && pathname === "/privacy";
 
   const fontClass =
-    locale === "ko" ? "font-ko-serif" : serifFont.className;
+    serifFont.className;
 
   const scrollTo = useCallback(
     (id: string) => {
