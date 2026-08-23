@@ -9,7 +9,7 @@ import { FloatingLocaleHeader } from "./FloatingLocaleHeader";
 
 const KO_SERIF_LINK_ID = "font-ko-serif-css";
 const KO_SERIF_HREF =
-  "https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap";
+  "https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap";
 
 export function I18nShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
