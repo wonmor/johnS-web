@@ -64,7 +64,7 @@ export const messages = {
     "jebos.tagMobile": "mobile",
     "jebos.tagWeb": "web",
     "jebos.pitch":
-      "one chart engine on the Avionic 1 hardware and in every aircraft you fly.",
+      "one chart software on Flight Computer 1 and in every aircraft you fly.",
     "jebos.sound": "sound",
     "jebos.mute": "mute",
     "jebos.tryAs": "try it as a",
@@ -93,14 +93,13 @@ export const messages = {
 
     "section.showcase": "showcase",
     "section.atoms": "atoms",
-    "section.face": "face scan",
+    "section.face": "computer vision (3d reconstruction)",
     "section.moments": "moments",
     "section.elsewhere": "Elsewhere",
     "atoms.viewerLabel": "Molecule viewer",
     "atoms.interact": "Interact with the {title} 3D viewer",
     "atoms.rotateTouch": "tap to rotate",
     "atoms.rotatePointer": "click to rotate",
-    "atoms.liveFrom": "live from",
 
     "hero.line1": "creative work",
     "hero.line2": "aerospace",
@@ -245,7 +244,7 @@ export const messages = {
     "jebos.tagMobile": "mobile",
     "jebos.tagWeb": "web",
     "jebos.pitch":
-      "un même moteur de cartes sur l’Avionic 1 et dans tous les avions que vous pilotez.",
+      "un même logiciel de cartes sur le Flight Computer 1 et dans tous les avions que vous pilotez.",
     "jebos.sound": "son",
     "jebos.mute": "muet",
     "jebos.tryAs": "essayez-le en",
@@ -274,14 +273,13 @@ export const messages = {
 
     "section.showcase": "réalisations",
     "section.atoms": "atomes",
-    "section.face": "scan du visage",
+    "section.face": "vision par ordinateur (reconstruction 3d)",
     "section.moments": "moments",
     "section.elsewhere": "Ailleurs",
     "atoms.viewerLabel": "Visualiseur de molécules",
     "atoms.interact": "Interagir avec le visualiseur 3D {title}",
     "atoms.rotateTouch": "touchez pour pivoter",
     "atoms.rotatePointer": "cliquez pour pivoter",
-    "atoms.liveFrom": "en direct de",
 
     "hero.line1": "travaux créatifs",
     "hero.line2": "aérospatiale",
@@ -423,7 +421,7 @@ export const messages = {
     "jebos.tagMobile": "모바일",
     "jebos.tagWeb": "웹",
     "jebos.pitch":
-      "Avionic 1 하드웨어와 조종하는 모든 항공기에서 같은 차트 엔진을 씁니다.",
+      "Flight Computer 1과 조종하는 모든 항공기에서 같은 차트 소프트웨어를 씁니다.",
     "jebos.sound": "소리",
     "jebos.mute": "음소거",
     "jebos.tryAs": "이렇게도 쓸 수 있어요",
@@ -452,14 +450,13 @@ export const messages = {
 
     "section.showcase": "작업",
     "section.atoms": "원자",
-    "section.face": "얼굴 스캔",
+    "section.face": "컴퓨터 비전 (3D 재구성)",
     "section.moments": "순간",
     "section.elsewhere": "다른 곳",
     "atoms.viewerLabel": "분자 뷰어",
     "atoms.interact": "{title} 3D 뷰어 조작하기",
     "atoms.rotateTouch": "탭하면 회전",
     "atoms.rotatePointer": "클릭하면 회전",
-    "atoms.liveFrom": "실시간 제공:",
 
     "hero.line1": "창작 활동",
     "hero.line2": "항공우주",
