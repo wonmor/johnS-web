@@ -63,6 +63,10 @@ const FaceCanvas = dynamic(
   () => import("./components/portfolio/FaceCanvas"),
   { ssr: false }
 );
+const AtomModelCanvas = dynamic(
+  () => import("./components/portfolio/AtomModelCanvas"),
+  { ssr: false }
+);
 
 const tubeRed = "#f77f6b"; // legacy accent red (kept for logos)
 const tubeBlue = "#003688";
@@ -536,33 +540,10 @@ function splitTitleYear(text: string): { main: string; year: string | null } {
   return { main: m[1].trim(), year: m[2].trim() };
 }
 
-/**
- * Where the 3D canvas sits inside the embedded renderer, measured against
- * electronvisual.org on 2026-08-11. The site has no real embed mode — it parses
- * an `embed` flag and ignores it — and opens with a tall geometry summary
- * (Planar / 120° / AX3 …) that duplicates what this section already says in
- * words. So the frame is aimed at the canvas by hand instead of cropped by a
- * guessed offset: a fixed crop showed the summary and only the first ~40px of
- * the model, which is why the viewer looked like it needed scrolling.
- *
- * Above the embedded page's own `md` breakpoint these numbers stop moving with
- * width: the canvas keeps a 162px gutter on each side, and its height tracks
- * the frame's at 85vh less a 4px ring. Only its top edge differs per viewer,
- * because the atom's summary card is shorter than the molecule's.
- */
-const EV_CANVAS = {
-  /** Keep the frame wide enough that the embedded page stays in its md layout. */
-  minFrameWidth: 800,
-  gutter: 162,
-  heightRatio: 0.85,
-  heightInset: 4,
-};
-
 const ATOM_VIEWERS = [
   {
     key: "gadolinium",
-    keyword: "Gd",
-    canvasTop: 380,
+    modelPath: "/model-4.gltf",
     tabKey: "gltf.tabGd",
     titleKey: "gltf.gdTitle",
     bodyKey: "gltf.gdBody",
@@ -571,8 +552,8 @@ const ATOM_VIEWERS = [
   },
   {
     key: "benzene",
-    keyword: "C6H6",
-    canvasTop: 640,
+    modelPath: "/model-6.gltf",
+    modelSize: 0.3,
     tabKey: "gltf.tabBenzene",
     titleKey: "gltf.benzeneTitle",
     bodyKey: "gltf.benzeneBody",
@@ -584,67 +565,26 @@ const ATOM_VIEWERS = [
 type AtomViewerKey = (typeof ATOM_VIEWERS)[number]["key"];
 
 /**
- * Live viewer from electronvisual.org rather than a local .gltf snapshot, so
- * the atom/molecule always uses the current renderer and DFT data.
- * `keyword` is an element symbol ("Gd") or a formula in the site's molecule
- * dictionary ("C6H6"); `fullscreen=true` drops its header and footer.
+ * The .gltf snapshots render in-page again — no iframe to electronvisual.org.
+ * OrbitControls still swallows wheel and touch events, so a page scroll that
+ * reaches the canvas would die inside it. A shield sits over the viewer until
+ * the visitor clicks in (same deal as a Google Maps embed): scrolling passes
+ * straight through, dragging doesn't.
  */
-function ElectronVisualEmbed({
-  keyword,
+function StaticModelViewer({
+  modelPath,
+  modelSize,
   title,
-  canvasTop,
 }: {
-  keyword: string;
+  modelPath: string;
+  modelSize?: number;
   title: string;
-  canvasTop: number;
 }) {
   const { t } = useI18n();
-  const src = `https://electronvisual.org/renderer?keyword=${encodeURIComponent(
-    keyword
-  )}&fullscreen=true`;
-  const [frameLoaded, setFrameLoaded] = useState(false);
-  // The renderer's WebGL canvas eats wheel and touch events, so a page scroll
-  // that reaches this frame dies inside it — the section becomes a wall. A
-  // shield sits over the frame until the visitor clicks in (same deal as a
-  // Google Maps embed): scrolling passes straight through, dragging doesn't.
   const [interactive, setInteractive] = useState(false);
   const shellRef = React.useRef<HTMLDivElement | null>(null);
 
-  // The frame is sized from the shell rather than the other way round, so the
-  // canvas lands on it exactly. Below ~476px the frame can't shrink further
-  // without dropping the embedded page into its narrow layout, where the
-  // summary card rewraps and every offset here moves — so it stays wide and
-  // scales down instead.
-  const [shell, setShell] = useState({ w: 0, h: 0 });
-  useEffect(() => {
-    const el = shellRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([entry]) => {
-      const r = entry.contentRect;
-      setShell({ w: Math.round(r.width), h: Math.round(r.height) });
-    });
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  const fit = React.useMemo(() => {
-    const w = shell.w || 800;
-    const h = shell.h || 480;
-    const canvasW = Math.max(w, EV_CANVAS.minFrameWidth - 2 * EV_CANVAS.gutter);
-    const scale = w / canvasW;
-    const canvasH = h / scale;
-    return {
-      width: Math.round(canvasW + 2 * EV_CANVAS.gutter),
-      height: Math.round(
-        (canvasH + EV_CANVAS.heightInset) / EV_CANVAS.heightRatio
-      ),
-      scale,
-      left: -EV_CANVAS.gutter * scale,
-      top: -canvasTop * scale,
-    };
-  }, [shell, canvasTop]);
-
-  // Re-arm the shield once the frame leaves the viewport, so scrolling back to
+  // Re-arm the shield once the viewer leaves the viewport, so scrolling back to
   // it later doesn't hit a still-live grab — the only way out on touch, where
   // there is no pointer to move away.
   useEffect(() => {
@@ -661,64 +601,36 @@ function ElectronVisualEmbed({
   }, [interactive]);
 
   return (
-    <div>
-      <div
-        ref={shellRef}
-        onMouseLeave={() => setInteractive(false)}
-        className="relative h-[380px] w-full overflow-hidden rounded-xl bg-black ring-1 ring-black/10 sm:h-[480px]"
-      >
-        <iframe
-          src={src}
-          title={`${title} — ElectronVisual.org renderer`}
-          loading="eager"
-          onLoad={() => setFrameLoaded(true)}
-          allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
-          referrerPolicy="strict-origin-when-cross-origin"
-          scrolling="no"
-          className="absolute border-0"
-          style={{
-            width: fit.width,
-            height: fit.height,
-            left: fit.left,
-            top: fit.top,
-            transform: `scale(${fit.scale})`,
-            transformOrigin: "0 0",
-          }}
-        />
-        {/* The renderer's own progress text sits in the cropped-off strip, so
-            the frame would otherwise look empty while it works. */}
-        {!frameLoaded ? (
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black text-sm font-light text-white/50">
-            {title}…
-          </div>
-        ) : null}
-        {!interactive ? (
-          <button
-            type="button"
-            onClick={() => setInteractive(true)}
-            aria-label={t("atoms.interact", { title })}
-            className="group absolute inset-0 flex cursor-pointer items-end justify-center bg-transparent pb-4 transition-colors duration-200 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white/40"
-          >
-            <span className="rounded-full bg-black/55 px-3 py-1.5 text-[13px] text-white/70 backdrop-blur-sm transition-opacity duration-200 group-focus-visible:opacity-100 motion-reduce:transition-none sm:opacity-0 sm:group-hover:opacity-100">
-              <span className="sm:hidden">{t("atoms.rotateTouch")}</span>
-              <span className="hidden sm:inline">
-                {t("atoms.rotatePointer")}
-              </span>
-            </span>
-          </button>
-        ) : null}
-      </div>
-      <p className="mt-2 text-[13px] text-[#1c1a17]/45">
-        {t("atoms.liveFrom")}{" "}
-        <a
-          href={src}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline decoration-[#1c1a17]/25 underline-offset-4 hover:decoration-[#1c1a17]"
+    <div
+      ref={shellRef}
+      onMouseLeave={() => setInteractive(false)}
+      className="relative h-[380px] w-full overflow-hidden rounded-xl bg-black ring-1 ring-black/10 sm:h-[480px]"
+    >
+      <Suspense fallback={<ModelLoading label={`${title}…`} />}>
+        <AtomModelCanvas modelPath={modelPath} size={modelSize} />
+      </Suspense>
+      {!interactive ? (
+        <button
+          type="button"
+          onClick={() => setInteractive(true)}
+          aria-label={t("atoms.interact", { title })}
+          className="group absolute inset-0 flex cursor-pointer items-end justify-center bg-transparent pb-4 transition-colors duration-200 hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white/40"
         >
-          ElectronVisual.org
-        </a>
-      </p>
+          <span className="rounded-full bg-black/55 px-3 py-1.5 text-[13px] text-white/70 backdrop-blur-sm transition-opacity duration-200 group-focus-visible:opacity-100 motion-reduce:transition-none sm:opacity-0 sm:group-hover:opacity-100">
+            <span className="sm:hidden">{t("atoms.rotateTouch")}</span>
+            <span className="hidden sm:inline">{t("atoms.rotatePointer")}</span>
+          </span>
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
+/** Fills the black frame while the model file is still downloading. */
+function ModelLoading({ label }: { label: string }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black text-sm font-light text-white/50">
+      {label}
     </div>
   );
 }
@@ -876,6 +788,14 @@ export default function Portfolio() {
             height={1300}
             priority
             className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[115%] w-auto max-w-none -translate-x-1/2 -translate-y-1/2 select-none object-contain opacity-[0.24]"
+            /* The portrait used to hit the banner's bottom edge as a hard cut
+               just under the email line; fade it out into the paper instead. */
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to bottom, #000 0%, #000 52%, rgba(0,0,0,0) 90%)",
+              maskImage:
+                "linear-gradient(to bottom, #000 0%, #000 52%, rgba(0,0,0,0) 90%)",
+            }}
           />
           <div className="relative z-10">
             <Link href="/" className="mx-auto block w-fit">
@@ -1123,10 +1043,10 @@ export default function Portfolio() {
                     <RendererPlaceholder label={t(viewer.loadingKey)} />
                   }
                 >
-                  <ElectronVisualEmbed
-                    keyword={viewer.keyword}
+                  <StaticModelViewer
+                    modelPath={viewer.modelPath}
+                    modelSize={"modelSize" in viewer ? viewer.modelSize : undefined}
                     title={t(viewer.titleKey)}
-                    canvasTop={viewer.canvasTop}
                   />
                 </LazyMountInView>
                 <div className="mt-5">

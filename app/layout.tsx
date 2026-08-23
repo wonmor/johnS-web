@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "Orchestr Aerospace",
     "Orchestre Avionique",
     "Jeb's",
-    "Avionic 1",
+    "Flight Computer 1",
     "Apple WWDC23 Scholar",
     "OpticALLY 3D Scan",
     "ElectronVisual",
@@ -123,10 +123,6 @@ export default function RootLayout({
     <html lang="fr">
       {/* Serif on the body so floating chrome outside the shell inherits it too. */}
       <body className={`${serifFont.className} min-h-screen bg-[#f5f0e6]`}>
-        {/* Warm the connection to the embedded ElectronVisual renderer before
-            the iframe asks for it — saves the DNS + TLS round trips. */}
-        <link rel="preconnect" href="https://electronvisual.org" crossOrigin="" />
-        <link rel="dns-prefetch" href="https://electronvisual.org" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
