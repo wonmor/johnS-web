@@ -93,7 +93,7 @@ export const messages = {
 
     "section.showcase": "showcase",
     "section.atoms": "atoms",
-    "section.face": "computer vision (3d reconstruction)",
+    "section.face": "computer vision (3d reconstruction work)",
     "section.moments": "moments",
     "section.elsewhere": "Elsewhere",
     "atoms.viewerLabel": "Molecule viewer",
@@ -139,7 +139,7 @@ export const messages = {
     "electron.li2":
       "Three.js, React, WebXR · RDKit, SciPy, GPAW, Celery, AWS",
     "electron.li3Before": "on the cover of",
-    "electron.li3Book": "Sir David Clary’s book",
+    "electron.li3Book": "Sir David Clary FRS’s book",
     "electron.li3After": ",",
     "electron.li3Title": "Walter Kohn",
     "electron.li4": "demo:",
@@ -273,7 +273,7 @@ export const messages = {
 
     "section.showcase": "réalisations",
     "section.atoms": "atomes",
-    "section.face": "vision par ordinateur (reconstruction 3d)",
+    "section.face": "vision par ordinateur (travaux de reconstruction 3d)",
     "section.moments": "moments",
     "section.elsewhere": "Ailleurs",
     "atoms.viewerLabel": "Visualiseur de molécules",
@@ -319,7 +319,7 @@ export const messages = {
     "electron.li2":
       "Three.js, React, WebXR · RDKit, SciPy, GPAW, Celery, AWS",
     "electron.li3Before": "en couverture du",
-    "electron.li3Book": "livre de Sir David Clary",
+    "electron.li3Book": "livre de Sir David Clary FRS",
     "electron.li3After": ",",
     "electron.li3Title": "Walter Kohn",
     "electron.li4": "démo :",
@@ -450,7 +450,7 @@ export const messages = {
 
     "section.showcase": "작업",
     "section.atoms": "원자",
-    "section.face": "컴퓨터 비전 (3D 재구성)",
+    "section.face": "컴퓨터 비전 (3D 재구성 작업)",
     "section.moments": "순간",
     "section.elsewhere": "다른 곳",
     "atoms.viewerLabel": "분자 뷰어",
@@ -496,7 +496,7 @@ export const messages = {
     "electron.li2":
       "Three.js, React, WebXR · RDKit, SciPy, GPAW, Celery, AWS",
     "electron.li3Before": "표지에 실린 책:",
-    "electron.li3Book": "데이비드 클래리 경의 저서",
+    "electron.li3Book": "데이비드 클래리 경(FRS)의 저서",
     "electron.li3After": ",",
     "electron.li3Title": "Walter Kohn",
     "electron.li4": "데모:",

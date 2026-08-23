@@ -534,6 +534,33 @@ function TubeRoundelWith787({
   );
 }
 
+/**
+ * Quebec's fleur-de-lis, the one off the flag, drawn in gold beside the
+ * "built in Quebec" line. Decorative — the flag next to it already carries the
+ * meaning, so it stays out of the accessibility tree. The petals are flattened
+ * to polygons, so the mark needs no font and no asset of its own.
+ */
+function FleurDeLis({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 44"
+      className={className}
+      fill="currentColor"
+      aria-hidden
+      focusable="false"
+    >
+      {/* centre petal */}
+      <path d="M15.8 1.4 L15.4 2.2 L15.0 3.0 L14.7 3.8 L14.3 4.6 L14.0 5.4 L13.6 6.3 L13.3 7.2 L13.0 8.0 L12.7 8.9 L12.4 9.8 L12.2 10.7 L12.4 11.6 L12.7 12.5 L12.9 13.4 L13.2 14.3 L13.6 15.1 L13.9 16.0 L14.2 16.8 L14.6 17.6 L15.0 18.4 L15.5 19.2 L16.0 20.0 L16.0 20.0 L16.3 19.1 L16.5 18.3 L16.7 17.4 L16.9 16.5 L17.1 15.7 L17.3 14.8 L17.5 14.0 L17.7 13.2 L17.9 12.3 L18.1 11.5 L18.3 10.7 L18.1 9.9 L17.8 9.1 L17.6 8.2 L17.4 7.4 L17.2 6.5 L17.0 5.7 L16.8 4.9 L16.6 4.0 L16.5 3.1 L16.3 2.3 L16.2 1.4 Z" />
+      {/* lateral petals, mirrored about x=16 */}
+      <path d="M14.7 18.1 L14.3 18.0 L13.9 17.8 L13.4 17.5 L12.9 17.2 L12.5 16.9 L12.0 16.5 L11.5 16.1 L11.0 15.7 L10.5 15.2 L10.1 14.8 L9.5 14.5 L8.8 14.2 L8.2 14.0 L7.6 13.8 L6.9 13.6 L6.2 13.5 L5.5 13.5 L4.6 13.7 L3.9 14.2 L3.4 14.9 L3.1 15.6 L3.0 16.3 L3.0 17.1 L3.1 17.9 L3.3 18.9 L3.5 20.0 L3.8 21.3 L4.2 22.7 L4.6 24.4 L5.2 26.2 L5.2 26.2 L5.0 24.3 L4.9 22.6 L4.8 21.1 L4.8 19.9 L4.9 18.8 L5.0 17.9 L5.2 17.3 L5.4 16.8 L5.6 16.6 L5.7 16.6 L5.7 16.8 L5.5 17.0 L5.3 17.2 L5.3 17.3 L5.4 17.4 L5.7 17.7 L6.0 18.0 L6.3 18.3 L6.8 18.7 L7.3 19.1 L7.9 19.4 L8.6 19.6 L9.3 19.9 L10.1 20.2 L10.8 20.4 L11.6 20.6 L12.4 20.8 L13.2 20.8 L14.1 20.8 L14.9 20.7 Z" />
+      <path d="M17.3 18.1 L17.7 18.0 L18.1 17.8 L18.6 17.5 L19.1 17.2 L19.5 16.9 L20.0 16.5 L20.5 16.1 L21.0 15.7 L21.5 15.2 L21.9 14.8 L22.5 14.5 L23.2 14.2 L23.8 14.0 L24.4 13.8 L25.1 13.6 L25.8 13.5 L26.5 13.5 L27.4 13.7 L28.1 14.2 L28.6 14.9 L28.9 15.6 L29.0 16.3 L29.0 17.1 L28.9 17.9 L28.7 18.9 L28.5 20.0 L28.2 21.3 L27.8 22.7 L27.4 24.4 L26.8 26.2 L26.8 26.2 L27.0 24.3 L27.1 22.6 L27.2 21.1 L27.2 19.9 L27.1 18.8 L27.0 17.9 L26.8 17.3 L26.6 16.8 L26.4 16.6 L26.3 16.6 L26.3 16.8 L26.5 17.0 L26.7 17.2 L26.7 17.3 L26.6 17.4 L26.3 17.7 L26.0 18.0 L25.7 18.3 L25.2 18.7 L24.7 19.1 L24.1 19.4 L23.4 19.6 L22.7 19.9 L21.9 20.2 L21.2 20.4 L20.4 20.6 L19.6 20.8 L18.8 20.8 L17.9 20.8 L17.1 20.7Z" />
+      {/* band and flared foot */}
+      <rect x="8.4" y="19.4" width="15.2" height="3.1" rx="1.55" />
+      <path d="M13 22.9c-.6 4-2.8 7.3-2.6 11.1.2 3.4 2.6 5.6 5.6 7.9 3-2.3 5.4-4.5 5.6-7.9.2-3.8-2-7.1-2.6-11.1z" />
+    </svg>
+  );
+}
+
 function splitTitleYear(text: string): { main: string; year: string | null } {
   const m = text.match(/^(.*?)\s*\(([^()]+)\)\s*$/);
   if (!m) return { main: text, year: null };
@@ -930,6 +957,7 @@ export default function Portfolio() {
                   <span className="text-sm text-[#1c1a17]/70">
                     {t("awards.madeInQuebec")}
                   </span>
+                  <FleurDeLis className="h-[18px] w-auto text-[#a67c00]" />
                 </span>
               </div>
             </div>
@@ -1082,7 +1110,7 @@ export default function Portfolio() {
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
             <Image
               src="/walter-kohn-cover.png"
-              alt="Walter Kohn — From Kindertransport and Internment to DFT and the Nobel Prize (David C. Clary). Front cover features John Wonmo Seong's DFT electron density visualisation."
+              alt="Walter Kohn — From Kindertransport and Internment to DFT and the Nobel Prize (Sir David Clary FRS). Front cover features John Wonmo Seong's DFT electron density visualisation."
               width={865}
               height={947}
               className="h-full w-full rounded-lg object-cover ring-1 ring-black/10"
