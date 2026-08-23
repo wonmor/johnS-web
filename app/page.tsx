@@ -746,8 +746,10 @@ export default function Portfolio() {
   }, []);
   const [heroScrolled, setHeroScrolled] = useState(false);
   const [avatarRevealed, setAvatarRevealed] = useState(false);
+  // Just long enough to land after first paint, so the portrait still fades in
+  // rather than popping — it used to sit blank for a second and a half first.
   useEffect(() => {
-    const t = setTimeout(() => setAvatarRevealed(true), 1500);
+    const t = setTimeout(() => setAvatarRevealed(true), 120);
     return () => clearTimeout(t);
   }, []);
   // Scrolling used to flip the viewer tab on its own, which tore down the
@@ -845,7 +847,7 @@ export default function Portfolio() {
                 boxSizing: "border-box",
                 opacity: avatarRevealed ? 1 : 0,
                 transform: avatarRevealed ? "scale(1)" : "scale(0.92)",
-                transition: "opacity 900ms ease, transform 900ms ease",
+                transition: "opacity 420ms ease, transform 420ms ease",
               }}
             >
               <Image
