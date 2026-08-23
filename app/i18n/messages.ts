@@ -61,7 +61,7 @@ export const messages = {
     "jebos.tagMobile": "mobile",
     "jebos.tagWeb": "web",
     "jebos.pitch":
-      "a single software on Flight Computer 1 and in every aircraft you fly.",
+      "a single software in every aircraft you fly.",
     "jebos.sound": "sound",
     "jebos.mute": "mute",
     "jebos.tryAs": "try it as a",
@@ -238,7 +238,7 @@ export const messages = {
     "jebos.tagMobile": "mobile",
     "jebos.tagWeb": "web",
     "jebos.pitch":
-      "un même logiciel sur le Flight Computer 1 et dans tous les avions que vous pilotez.",
+      "un même logiciel dans tous les avions que vous pilotez.",
     "jebos.sound": "son",
     "jebos.mute": "muet",
     "jebos.tryAs": "essayez-le en",
