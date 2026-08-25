@@ -13,6 +13,7 @@ const SECTIONS: { id: string; labelKey: MessageKey }[] = [
   { id: "section-electron", labelKey: "navTab.electron" },
   { id: "section-face", labelKey: "navTab.face" },
   { id: "section-orch", labelKey: "navTab.orch" },
+  { id: "section-fp", labelKey: "navTab.fp" },
   { id: "section-exp", labelKey: "navTab.exp" },
   { id: "section-edu", labelKey: "navTab.edu" },
 ];

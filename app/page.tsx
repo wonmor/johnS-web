@@ -584,6 +584,82 @@ function RendererPlaceholder({ label }: { label: string }) {
 }
 
 /** Responsive 16:9 YouTube embed — the old fixed 350×250 boxes never grew. */
+/** First Principles screenshots. Captions live in the message catalogue. */
+const FP_GALLERY = [
+  { src: "/products/fp-3.webp", captionKey: "fp.shot1" },
+  { src: "/products/fp-2.webp", captionKey: "fp.shot2" },
+  { src: "/products/fp-1.webp", captionKey: "fp.shot3" },
+] as const;
+
+/** Auto-cycling gallery, same behaviour as the JebediahOS one: pause on
+    hover or focus, and hold still when the visitor asks for reduced motion. */
+function FpGallery() {
+  const { t } = useI18n();
+  const [slide, setSlide] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    if (paused || reducedMotion) return;
+    const id = setInterval(
+      () => setSlide((s) => (s + 1) % FP_GALLERY.length),
+      4000
+    );
+    return () => clearInterval(id);
+  }, [paused, reducedMotion]);
+
+  return (
+    <div
+      className="relative mt-8 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#1c1a17]/15"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      {FP_GALLERY.map((item, i) => (
+        <div
+          key={item.src}
+          className="absolute inset-0 transition-opacity duration-700"
+          style={{ opacity: slide === i ? 1 : 0 }}
+          aria-hidden={slide !== i}
+        >
+          <Image
+            src={item.src}
+            alt={t(item.captionKey)}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 1024px"
+          />
+        </div>
+      ))}
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent px-6 pb-4 pt-10">
+        <p className="text-sm font-medium text-white md:text-base">
+          {t(FP_GALLERY[slide].captionKey)}
+        </p>
+        <div
+          className="mt-3 flex gap-1"
+          role="tablist"
+          aria-label={t("fp.screenshots")}
+        >
+          {FP_GALLERY.map((item, i) => (
+            <button
+              key={item.src}
+              type="button"
+              role="tab"
+              aria-selected={slide === i}
+              aria-label={t(item.captionKey)}
+              onClick={() => setSlide(i)}
+              className={`h-1 flex-1 rounded-full transition-colors ${
+                slide === i ? "bg-white" : "bg-white/30"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function EmbeddedVideo({
   src,
   title,
@@ -1192,6 +1268,34 @@ export default function Portfolio() {
           caption={t("footer.video2Caption")}
           className="mt-8"
         />
+      </section>
+
+      {/* First Principles. It used to sit among the company's products on the
+          Orchestr Aerospace site; it is a personal project, so it lives here. */}
+      <section id="section-fp" className={SECTION_CARD}>
+        <h2 className={SECTION_HEADING}>{t("fp.title")}</h2>
+        <ul className="list-disc space-y-2 pl-5 text-lg marker:text-[#1c1a17]/30">
+          <li>{t("fp.li1")}</li>
+          <li>{t("fp.li2")}</li>
+          <li>{t("fp.li3")}</li>
+        </ul>
+        <p className="mt-4 text-sm text-[#1c1a17]/60">{t("fp.platforms")}</p>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <AppStoreBadge
+            href="https://apps.apple.com/us/app/first-principles-2d-platformer/id6760980245"
+            ariaLabel={t("fp.appStoreAlt")}
+          />
+          <a
+            href="https://github.com/rkaissi/First-Principles"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={BTN_GHOST}
+          >
+            {t("fp.github")}
+          </a>
+        </div>
+        <FpGallery />
+        <p className="mt-4 text-xs text-[#1c1a17]/45">{t("fp.trademark")}</p>
       </section>
 
       {/* Experience Section */}

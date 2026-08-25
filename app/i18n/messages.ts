@@ -116,6 +116,7 @@ export const messages = {
     "navTab.electron": "electron",
     "navTab.face": "face",
     "navTab.orch": "orch",
+    "navTab.fp": "principles",
     "navTab.exp": "work",
     "navTab.edu": "school",
 
@@ -156,6 +157,23 @@ export const messages = {
     "orch.li3":
       "US patent pending (63/727,879) — aligning rough point clouds from head pose alone",
     "orch.appStoreAlt": "OpticALLY 3D Scan on the App Store",
+
+    "fp.title": "First Principles (2025)",
+    "fp.li1":
+      "calculus, error minimisation and aerodynamics taught inside a Limbo-style 2D platformer. the platforms follow the curve; the gaps follow derivative rules.",
+    "fp.li2":
+      "interactive graphing calculator — Taylor and Maclaurin series, Riemann sums, at AP Calculus BC and AP Physics C level",
+    "fp.li3":
+      "aerospace stages: lift vs angle of attack, drag polar, atmosphere density, phugoid mode. localised in 14 languages.",
+    "fp.platforms": "iOS, iPadOS, macOS — Android, Windows and Linux to follow",
+    "fp.appStoreAlt": "First Principles on the App Store",
+    "fp.github": "source on GitHub",
+    "fp.screenshots": "screenshots",
+    "fp.shot1": "stall model — lift coefficient vs angle of attack",
+    "fp.shot2": "spring-mass oscillation — Hooke's law as a cosine",
+    "fp.shot3": "gravity well — a softened 1/r curve with its derivative",
+    "fp.trademark":
+      "Limbo is a trademark of Playdead. this project is not affiliated with, endorsed by or sponsored by Playdead.",
 
     "exp.title": "work",
     "exp.orchestr": "founder, Orchestr Aerospace (2026)",
@@ -293,6 +311,7 @@ export const messages = {
     "navTab.electron": "électron",
     "navTab.face": "visage",
     "navTab.orch": "orch",
+    "navTab.fp": "principes",
     "navTab.exp": "travail",
     "navTab.edu": "études",
 
@@ -333,6 +352,23 @@ export const messages = {
     "orch.li3":
       "brevet américain en cours (63/727,879) — aligner un nuage de points grossier à partir de la seule pose de la tête",
     "orch.appStoreAlt": "OpticALLY 3D Scan sur l’App Store",
+
+    "fp.title": "First Principles (2025)",
+    "fp.li1":
+      "calcul différentiel, minimisation d’erreur et aérodynamique enseignés dans un jeu de plateforme 2D à la Limbo. les plateformes suivent la courbe; les vides suivent les règles de dérivation.",
+    "fp.li2":
+      "calculatrice graphique interactive — séries de Taylor et de Maclaurin, sommes de Riemann, au niveau AP Calculus BC et AP Physics C",
+    "fp.li3":
+      "étapes aérospatiales : portance vs angle d’attaque, polaire de traînée, densité de l’atmosphère, mode phugoïde. localisé en 14 langues.",
+    "fp.platforms": "iOS, iPadOS, macOS — Android, Windows et Linux à venir",
+    "fp.appStoreAlt": "First Principles sur l’App Store",
+    "fp.github": "code source sur GitHub",
+    "fp.screenshots": "captures d’écran",
+    "fp.shot1": "modèle de décrochage — coefficient de portance vs angle d’attaque",
+    "fp.shot2": "oscillation masse-ressort — loi de Hooke en cosinus",
+    "fp.shot3": "puits de gravité — courbe en 1/r adoucie et sa dérivée",
+    "fp.trademark":
+      "Limbo est une marque de Playdead. ce projet n’est ni affilié à Playdead, ni approuvé ou parrainé par elle.",
 
     "exp.title": "travail",
     "exp.orchestr": "fondateur, Orchestre Avionique (2026)",
