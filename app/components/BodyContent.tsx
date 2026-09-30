@@ -1,5 +1,6 @@
 "use client";
 
+import { instrumentSerifItalic } from "../fonts";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -122,7 +123,7 @@ export function JebediahShowcase() {
       <div className="flex flex-col gap-8 md:flex-row md:gap-12">
         <div className="w-full md:w-1/2">
           <div className="mb-3">
-            <h2 className="text-2xl lowercase md:text-3xl">
+            <h2 className={`text-3xl lowercase md:text-4xl ${instrumentSerifItalic.className}`}>
               {t("orchestr.jebos.title")} flight bag
             </h2>
             {/* Platform tags read as one quiet set instead of four competing hues */}

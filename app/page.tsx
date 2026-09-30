@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { Suspense, useEffect, useState } from "react";
 import { JebediahShowcase } from "./components/BodyContent";
 import { LazyMountInView } from "./components/portfolio/LazyMountInView";
-import { AppStoreBadge } from "./components/StoreBadges";
+import { AppStoreBadge, SteamBadge } from "./components/StoreBadges";
 import { instrumentSerifItalic, serifFont } from "./fonts";
 import { usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 import { useI18n } from "./i18n/context";
@@ -697,15 +697,31 @@ function ProjectTitle({
   text,
   className,
   yearClassName,
+  italic,
 }: {
   text: string;
   className?: string;
   yearClassName?: string;
+  /** A substring of the title to set in Instrument Serif italic, or true for all of it. */
+  italic?: string | true;
 }) {
   const { main, year } = splitTitleYear(text);
+  const k = typeof italic === "string" ? main.indexOf(italic) : -1;
+  const mainNode =
+    italic === true ? (
+      <span className={`text-[1.25em] ${instrumentSerifItalic.className}`}>{main}</span>
+    ) : k >= 0 ? (
+      <>
+        {main.slice(0, k)}
+        <span className={`text-[1.25em] ${instrumentSerifItalic.className}`}>{italic}</span>
+        {main.slice(k + (italic as string).length)}
+      </>
+    ) : (
+      main
+    );
   return (
     <span className={className}>
-      <span className="block">{main}</span>
+      <span className="block">{mainNode}</span>
       {year ? (
         <span
           className={
@@ -1016,7 +1032,7 @@ export default function Portfolio() {
 
       {/* Gadolinium / Benzene Tabs */}
       <div className={SECTION_CARD}>
-        <h2 className={SECTION_HEADING}>{t("section.atoms")}</h2>
+        <h2 className={`${SECTION_HEADING} normal-case ${instrumentSerifItalic.className}`}>{t("section.atoms")}</h2>
         {/* Segmented control: one pill, two states — reads as a switch, not two buttons */}
         <div
           role="tablist"
@@ -1157,7 +1173,7 @@ export default function Portfolio() {
           Apple Swift Student Challenge, 2023
         </div>
         <h2 className={SECTION_HEADING}>
-          <ProjectTitle text={t("electron.title")} />
+          <ProjectTitle text={t("electron.title")} italic />
         </h2>
         <ul className="list-disc space-y-2 pl-5 text-lg marker:text-[#1c1a17]/30">
           <li>{t("electron.li1")}</li>
@@ -1250,7 +1266,7 @@ export default function Portfolio() {
 
       {/* OpticALLY Section */}
       <section id="section-orch" className={SECTION_CARD}>
-        <h2 className={SECTION_HEADING}>{t("orch.title")}</h2>
+        <h2 className={`${SECTION_HEADING} normal-case ${instrumentSerifItalic.className}`}>{t("orch.title")}</h2>
         <ul className="list-disc space-y-2 pl-5 text-lg marker:text-[#1c1a17]/30">
           <li>{t("orch.li1")}</li>
           <li>{t("orch.li2")}</li>
@@ -1273,7 +1289,7 @@ export default function Portfolio() {
       {/* First Principles. It used to sit among the company's products on the
           Orchestr Aerospace site; it is a personal project, so it lives here. */}
       <section id="section-fp" className={SECTION_CARD}>
-        <h2 className={SECTION_HEADING}>{t("fp.title")}</h2>
+        <h2 className={`${SECTION_HEADING} normal-case ${instrumentSerifItalic.className}`}>{t("fp.title")}</h2>
         <ul className="list-disc space-y-2 pl-5 text-lg marker:text-[#1c1a17]/30">
           <li>{t("fp.li1")}</li>
           <li>{t("fp.li2")}</li>
@@ -1281,6 +1297,10 @@ export default function Portfolio() {
         </ul>
         <p className="mt-4 text-sm text-[#1c1a17]/60">{t("fp.platforms")}</p>
         <div className="mt-6 flex flex-wrap items-center gap-3">
+          <SteamBadge
+            href="https://store.steampowered.com/app/4570070/First_Principles_A_Calculus_Platformer/"
+            ariaLabel={t("fp.steamAlt")}
+          />
           <AppStoreBadge
             href="https://apps.apple.com/us/app/first-principles-2d-platformer/id6760980245"
             ariaLabel={t("fp.appStoreAlt")}
@@ -1312,6 +1332,7 @@ export default function Portfolio() {
           {[
             {
               title: t("exp.orchestr"),
+              italic: t("exp.orchestrOrg"),
               body: (
                 <a
                   href={t("exp.orchestrSite")}
@@ -1323,12 +1344,12 @@ export default function Portfolio() {
                 </a>
               ),
             },
-            { title: t("exp.reach"), body: t("exp.reachBody") },
-            { title: t("exp.snu"), body: t("exp.snuBody") },
+            { title: t("exp.reach"), italic: t("exp.reachOrg"), body: t("exp.reachBody") },
+            { title: t("exp.snu"), italic: t("exp.snuOrg"), body: t("exp.snuBody") },
           ].map((role) => (
             <li key={role.title}>
               <h3 className="text-2xl lowercase">
-                <ProjectTitle text={role.title} />
+                <ProjectTitle text={role.title} italic={role.italic} />
               </h3>
               <p className="text-[#1c1a17]/70">{role.body}</p>
             </li>
@@ -1392,7 +1413,7 @@ export default function Portfolio() {
               detail: t("edu.sunrise.detail"),
               code: null,
             },
-            { title: t("edu.uci"), detail: null, code: null },
+            { title: t("edu.uci"), italic: t("edu.uciOrg"), detail: null, code: null },
           ].map((item) => (
             <li
               key={item.title}
@@ -1400,7 +1421,7 @@ export default function Portfolio() {
             >
               <div>
                 <h3 className="text-2xl">
-                  <ProjectTitle text={item.title} />
+                  <ProjectTitle text={item.title} italic={item.italic} />
                 </h3>
                 {item.detail ? (
                   <p className="text-[#1c1a17]/70">{item.detail}</p>

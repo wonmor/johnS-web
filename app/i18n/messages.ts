@@ -89,7 +89,7 @@ export const messages = {
     "jebos.g.satelliteTraffic": "Satellite overlay with ADS-B contacts",
 
     "section.showcase": "showcase",
-    "section.atoms": "atoms",
+    "section.atoms": "Atomizer AR",
     "section.face": "computer vision (3d reconstruction work)",
     "section.moments": "moments",
     "section.elsewhere": "Elsewhere",
@@ -131,7 +131,7 @@ export const messages = {
     "gltf.gdBody":
       "the outer f-orbital, modelled with spherical harmonics. made with my iOS app, Atomizer AR.",
 
-    "electron.title": "ElectronVisualized, Atomizer AR (2022 – 2025)",
+    "electron.title": "ElectronVisualized (2022 – 2025)",
     "electron.li1":
       "quantum mechanics visualiser built on DFT — web, iOS, macOS, visionOS. 10k downloads. won the 2023 Apple Swift Student Challenge.",
     "electron.li2":
@@ -167,6 +167,7 @@ export const messages = {
       "aerospace stages: lift vs angle of attack, drag polar, atmosphere density, phugoid mode. localised in 14 languages.",
     "fp.platforms": "iOS, iPadOS, macOS — Android, Windows and Linux to follow",
     "fp.appStoreAlt": "First Principles on the App Store",
+    "fp.steamAlt": "First Principles on Steam",
     "fp.github": "source on GitHub",
     "fp.screenshots": "screenshots",
     "fp.shot1": "stall model — lift coefficient vs angle of attack",
@@ -177,11 +178,14 @@ export const messages = {
 
     "exp.title": "work",
     "exp.orchestr": "founder, Orchestr Aerospace (2026)",
+    "exp.orchestrOrg": "Orchestr Aerospace",
     "exp.orchestrSite": "https://orchestrsim.com",
     "exp.reach": "Reach Media Group — computer vision engineer (2025)",
+    "exp.reachOrg": "Reach Media Group",
     "exp.reachBody":
       "vision pipelines in C++ and Python; iOS and Vue systems.",
     "exp.snu": "Seoul National University — research intern (2023)",
+    "exp.snuOrg": "Seoul National University",
     "exp.snuBody":
       "molecular visualiser in Python; a GUI for AutoDock Vina.",
 
@@ -194,6 +198,7 @@ export const messages = {
     "edu.sunrise.detail": "Evektor SportStar.",
     "edu.uci":
       "University of California, Irvine — aerospace engineering, dropout (2023)",
+    "edu.uciOrg": "University of California, Irvine",
   },
   fr: {
     "meta.title": "John Seong",
@@ -284,7 +289,7 @@ export const messages = {
     "jebos.g.satelliteTraffic": "Couche satellite avec contacts ADS-B",
 
     "section.showcase": "réalisations",
-    "section.atoms": "atomes",
+    "section.atoms": "Atomizer AR",
     "section.face": "vision par ordinateur (travaux de reconstruction 3d)",
     "section.moments": "moments",
     "section.elsewhere": "Ailleurs",
@@ -326,7 +331,7 @@ export const messages = {
     "gltf.gdBody":
       "l’orbitale f externe, modélisée par harmoniques sphériques. faite avec mon app iOS, Atomizer AR.",
 
-    "electron.title": "ElectronVisualized, Atomizer AR (2022 – 2025)",
+    "electron.title": "ElectronVisualized (2022 – 2025)",
     "electron.li1":
       "visualiseur de mécanique quantique fondé sur la DFT — web, iOS, macOS, visionOS. 10 k téléchargements. lauréat du Apple Swift Student Challenge 2023.",
     "electron.li2":
@@ -362,6 +367,7 @@ export const messages = {
       "étapes aérospatiales : portance vs angle d’attaque, polaire de traînée, densité de l’atmosphère, mode phugoïde. localisé en 14 langues.",
     "fp.platforms": "iOS, iPadOS, macOS — Android, Windows et Linux à venir",
     "fp.appStoreAlt": "First Principles sur l’App Store",
+    "fp.steamAlt": "First Principles sur Steam",
     "fp.github": "code source sur GitHub",
     "fp.screenshots": "captures d’écran",
     "fp.shot1": "modèle de décrochage — coefficient de portance vs angle d’attaque",
@@ -372,12 +378,15 @@ export const messages = {
 
     "exp.title": "travail",
     "exp.orchestr": "fondateur, Orchestre Avionique (2026)",
+    "exp.orchestrOrg": "Orchestre Avionique",
     "exp.orchestrSite": "https://orchestrsim.com",
     "exp.reach":
       "Reach Media Group — ingénieur vision par ordinateur (2025)",
+    "exp.reachOrg": "Reach Media Group",
     "exp.reachBody":
       "pipelines de vision en C++ et Python ; systèmes iOS et Vue.",
     "exp.snu": "Université nationale de Séoul — stagiaire recherche (2023)",
+    "exp.snuOrg": "Université nationale de Séoul",
     "exp.snuBody":
       "visualiseur moléculaire en Python ; interface pour AutoDock Vina.",
 
@@ -390,6 +399,7 @@ export const messages = {
     "edu.sunrise.detail": "Evektor SportStar.",
     "edu.uci":
       "University of California, Irvine — génie aérospatial, abandon (2023)",
+    "edu.uciOrg": "University of California, Irvine",
   },
 } as const satisfies Record<Locale, Record<string, string>>;
 
