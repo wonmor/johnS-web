@@ -7,7 +7,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import { JebediahShowcase } from "./components/BodyContent";
 import { LazyMountInView } from "./components/portfolio/LazyMountInView";
 import { AppStoreBadge } from "./components/StoreBadges";
-import { serifFont } from "./fonts";
+import { instrumentSerifItalic, serifFont } from "./fonts";
 import { usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 import { useI18n } from "./i18n/context";
 import type { Locale } from "./i18n/messages";
@@ -822,7 +822,7 @@ export default function Portfolio() {
               {t("hero.landmark")}
             </p>
             {/* The page's only h1 — everything below hangs off it. */}
-            <h1 className="mt-2 text-2xl lowercase tracking-[0.16em]">
+            <h1 className={`mt-2 text-3xl lowercase tracking-[0.04em] sm:text-4xl ${instrumentSerifItalic.className}`}>
               {t("hero.line1")}
               <br />
               {t("hero.line2")}
