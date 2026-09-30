@@ -916,3 +916,13 @@ a {
 .muted {
   color: #d1d5db;
 }
+
+/* Instrument Serif italic for selected titles and organisation names. */
+.ghp-cursive {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: 1.2em;
+}
