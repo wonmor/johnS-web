@@ -184,7 +184,7 @@ export const messages = {
     "exp.reachOrg": "Reach Media Group",
     "exp.reachBody":
       "vision pipelines in C++ and Python; iOS and Vue systems.",
-    "exp.snu": "Seoul National University — research intern (2023)",
+    "exp.snu": "Seoul National University — research intern (2022)",
     "exp.snuOrg": "Seoul National University",
     "exp.snuBody":
       "molecular visualiser in Python; a GUI for AutoDock Vina.",
@@ -385,7 +385,7 @@ export const messages = {
     "exp.reachOrg": "Reach Media Group",
     "exp.reachBody":
       "pipelines de vision en C++ et Python ; systèmes iOS et Vue.",
-    "exp.snu": "Université nationale de Séoul — stagiaire recherche (2023)",
+    "exp.snu": "Université nationale de Séoul — stagiaire recherche (2022)",
     "exp.snuOrg": "Université nationale de Séoul",
     "exp.snuBody":
       "visualiseur moléculaire en Python ; interface pour AutoDock Vina.",
