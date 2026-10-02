@@ -1413,7 +1413,7 @@ export default function Portfolio() {
               detail: t("edu.sunrise.detail"),
               code: null,
             },
-            { title: t("edu.uci"), italic: t("edu.uciOrg"), detail: null, code: null },
+            { title: t("edu.uci"), italic: t("edu.uciOrg"), detail: t("edu.uci.detail"), code: null },
           ].map((item) => (
             <li
               key={item.title}

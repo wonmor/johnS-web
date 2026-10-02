@@ -197,7 +197,8 @@ export const messages = {
     "edu.sunrise.title": "Sunrise Aviation (2024)",
     "edu.sunrise.detail": "Evektor SportStar.",
     "edu.uci":
-      "University of California, Irvine — aerospace engineering, dropout (2023)",
+      "University of California, Irvine — undeclared major, dropout (2023)",
+    "edu.uci.detail": "Took psychology and aerospace engineering courses.",
     "edu.uciOrg": "University of California, Irvine",
   },
   fr: {
@@ -398,7 +399,8 @@ export const messages = {
     "edu.sunrise.title": "Sunrise Aviation (2024)",
     "edu.sunrise.detail": "Evektor SportStar.",
     "edu.uci":
-      "University of California, Irvine — génie aérospatial, abandon (2023)",
+      "University of California, Irvine — majeure non déclarée, abandon (2023)",
+    "edu.uci.detail": "Cours de psychologie et de génie aérospatial.",
     "edu.uciOrg": "University of California, Irvine",
   },
 } as const satisfies Record<Locale, Record<string, string>>;
